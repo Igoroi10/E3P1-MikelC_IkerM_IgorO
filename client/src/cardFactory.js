@@ -1,0 +1,1 @@
+//Funcion encargada de crear todo el mazo a partir de los datos de la Base de Datos.
