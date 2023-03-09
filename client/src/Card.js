@@ -55,3 +55,10 @@ class ClimateCard extends Card{
         this.type       = type;
     }
 }
+
+export{
+    UnitCard,
+    SuddenCard,
+    PermaCard,
+    ClimateCard
+}
