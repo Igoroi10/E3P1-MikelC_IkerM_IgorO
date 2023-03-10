@@ -1,4 +1,4 @@
-import {btnStartDown, btnStartOver, btnStartOut, btnAddDown} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut} from "./events.js";
 import globals from "./globals.js";
 import render from "./gameRender.js";
 
@@ -23,4 +23,7 @@ function init()
     globals.buttonStart.addEventListener("moseout", btnStartOut, false);
 }
 
-function initEvents()
+export function initGame()
+{
+    render();
+}

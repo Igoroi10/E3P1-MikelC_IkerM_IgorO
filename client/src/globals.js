@@ -10,6 +10,5 @@ export default
     buttonStart: {},
 
     //Array de Cartas
-    cards: [],
-    buttonAdd: {}
+    cards: []
 }

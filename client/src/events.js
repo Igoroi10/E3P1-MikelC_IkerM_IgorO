@@ -7,11 +7,18 @@ import { initGame } from "./initialize.js";
 export function btnStartDown (event)
 {
     console.log("OK");
+
+    //Ocultamos el boton de START
+    globals.buttonStart.style.visibility = "hidden";
+
+    document.getElementById('divCanvas').style.display = "block";
 }
 
 export function btnStartOver (event)
 {
     //cambiamos el texto 
+
+    console.log("entraa");
     document.getElementById("btnStart").innerHTML = "OVER";
 
 }

@@ -1,0 +1,14 @@
+#gameScreen{
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5px;
+    display: block;
+    background-image: url("../images/Mesa.png");
+
+}
+
+html {
+    background-color: black;
+}
