@@ -1,6 +1,6 @@
 class Card{
 
-    constructor(xPos, yPos, frontImg, backImg, frameImg, cardName, categoryId){
+    constructor(xPos, yPos, frontImg, backImg, frameImg, cardName, categoryId, state, showBack){
 
         this.xPos       = xPos;
         this.yPos       = yPos;
@@ -9,6 +9,8 @@ class Card{
         this.frameImg   = frameImg;
         this.cardName   = cardName;
         this.categoryId = categoryId;
+        this.state      = state;
+        this.showBack   = showBack;
 
     }
 }
