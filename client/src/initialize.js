@@ -99,7 +99,7 @@ function insertCard(i){
     
 }
 
-function addPermaCards(){
+function addClimateCards(){
     for(let i = 0; i < CardQuantity.EXPERT_CLIMATE; i++){
         randomChoice = Math.floor(Math.random() * (4 + 1));
         let checks;
@@ -138,7 +138,7 @@ function addPermaCards(){
 
 function addInstaCards(){
     for(let i = 0; i < CardQuantity.EXPERT_INSTA; i++){
-        randomChoice = Math.floor(Math.random() * (2 + 1));
+        randomChoice = Math.floor(Math.random() * (3 + 1));
         let checks;
 
         for(let l = 0; 0 < globals.cards.length; l++){

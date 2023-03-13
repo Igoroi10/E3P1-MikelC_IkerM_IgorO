@@ -36,11 +36,11 @@ const CardCategory ={
 
 const CardQuantity = {
 
-    NORMAL_PERMA    = 3,
-    NORMAL_INSTA    = 6,
-    EXPERT_PERMA    = 6,
-    EXPERT_INSTA    = 10,
-    EXPERT_CLIMATE  = 9,
+    NORMAL_PERMA:     3,
+    NORMAL_INSTA:     6,
+    EXPERT_PERMA:     6,
+    EXPERT_INSTA:     10,
+    EXPERT_CLIMATE:   9,
 
 }
 
