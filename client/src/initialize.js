@@ -1,8 +1,9 @@
 import {btnStartDown, btnStartOver, btnStartOut} from "./events.js";
 import globals from "./globals.js";
-import {CardState} from "./constants.js";
+import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type } from "./constants.js";
 import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
+import FakeCard from "./FakeCard.js";
 
 window.onload = init;
 
@@ -83,4 +84,29 @@ function insertCard(i){
 
     }
     
+}
+
+//Atributos + Categor
+// Inicializamos unas cartas fake para meter al array de objetos
+
+function FakeCardCreation()
+{
+    const frontImg      = "1";                      // ./images/Ruta de la imagen de frente
+    const backImg       = "1";                      // ./images/Ruta la imagen de atras
+    const frameImg      = "1";                      // ./images/Ruta del frame correspondiente
+    const cardName      = "Zarateee";               // Nombre de la Carta
+    const cardCategory  = "unit";                   // Asignamos el Estado/Categoria de la Carta 
+    const state         = CardState.DECK;           // Estado de la carta 
+    const value         = 7;                        // Valor de la carta
+    const description   = "Zarate The villiain";    // Descripcion de la carta
+    const effect        = Effect.SCORCH_INMUNE;     // Effecto que tendra la categoria 
+    const rarity        = Rarity.ULTRA_RARE;        // Rareza de la carta
+    const type          = Type.DISTANCE;            // Tipo de la carta
+    const showBack      = false;                    // Boolean que Enseña el dorso de la carta
+
+
+    // frontImg, backImg, frameImg, cardName, CardCategory, state, showBack
+    const FakeCard1 = new FakeCard (frontImg, backImg, frameImg, cardName, cardCategory, state, value, description, effect, rarity, type, showBack);
+
+    globals.cards.push(FakeCard1);
 }
