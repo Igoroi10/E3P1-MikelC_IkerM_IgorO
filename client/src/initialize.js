@@ -1,6 +1,6 @@
 import {btnStartDown, btnStartOver, btnStartOut} from "./events.js";
 import globals from "./globals.js";
-import {CardState} from "./constants.js";
+import {CardCategory, CardQuantity, CardState} from "./constants.js";
 import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 
@@ -33,13 +33,23 @@ export function initGame()
 
 function createExpertDeck(){
 
+    let cardsNeeded = 80;
     addOneOfEach();
+    addPermaCards();
+    addInstaCards();
+    addClimateCards();
+
+    cardsNeeded -= globals.cards.length;
+
+    addUnitCards(cardsNeeded)
+    
+    
 
 }
 
 function addOneOfEach(){
-
-    for(let i = 0; i < globals.fakeCardInfo.lenght; i++){
+ 
+    for(let i = 0; i < globals.fakeCardInfo.length; i++){
                 insertCard(i);
     }
 }
@@ -80,7 +90,72 @@ function insertCard(i){
         globals.tokens.push(tokenCard);
         break;
 
+        default:
+            console.error("Incorrect card category");
+
+
 
     }
     
+}
+
+function addPermaCards(){
+    for(let i = 0; i < CardQuantity.EXPERT_CLIMATE; i++){
+        randomChoice = Math.floor(Math.random() * (4 + 1));
+        let checks;
+
+        for(let l = 0; 0 < globals.cards.length; l++){
+            if(globals.cards[l].category === CardCategory.CLIMATE){
+                checks++;
+
+                if(checks === randomChoice){
+                    insertCard(l);
+                    l = globals.cards.length;
+                }    
+            }
+        }
+    }
+}
+
+function addPermaCards(){
+    for(let i = 0; i < CardQuantity.EXPERT_PERMA; i++){
+        randomChoice = Math.floor(Math.random() * (2 + 1));
+        let checks;
+
+        for(let l = 0; 0 < globals.cards.length; l++){
+            if(globals.cards[l].category === CardCategory.PERMAEFFECT){
+                checks++;
+                
+                if(checks === randomChoice){
+                    insertCard(l);
+                    l = globals.cards.length;
+                }    
+            }
+        }
+    }
+}
+
+
+function addInstaCards(){
+    for(let i = 0; i < CardQuantity.EXPERT_INSTA; i++){
+        randomChoice = Math.floor(Math.random() * (2 + 1));
+        let checks;
+
+        for(let l = 0; 0 < globals.cards.length; l++){
+            if(globals.cards[l].category === CardCategory.INSTAEFFECT){
+                checks++;
+                
+                if(checks === randomChoice){
+                    insertCard(l);
+                    l = globals.cards.length;
+                }    
+            }
+        }
+    }
+}
+
+
+
+export {
+    createExpertDeck
 }
