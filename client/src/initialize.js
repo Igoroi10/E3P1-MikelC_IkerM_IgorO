@@ -39,7 +39,7 @@ function createExpertDeck(){
 
 function addOneOfEach(){
 
-    for(let i = 0; i < globals.fakeCardInfo.lenght -2; i++){
+    for(let i = 0; i < globals.fakeCardInfo.lenght; i++){
                 insertCard(i);
     }
 }
@@ -49,28 +49,35 @@ function insertCard(i){
     switch(globals.fakeCardInfo[i]){
 
         case "unit":
-        const unitCard = new UnitCard(globals.fakeCardInfo[i].)
+        const unitCard = new UnitCard(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
+                                      CardState.DECK, true, globals.fakeCardInfo[i].value, globals.fakeCardInfo[i].description, globals.fakeCardInfo[i].effect, globals.fakeCardInfo[i].rarity,
+                                      globals.fakeCardInfo[i].type);
         globals.cards.push(unitCard);
         break;
 
         case "instaeffect":
-        const instaCard = new SuddenCard()
+        const instaCard = new SuddenCard(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
+                                         CardState.DECK, true, globals.fakeCardInfo[i].description, globals.fakeCardInfo[i].effect);
         globals.cards.push(instaCard);
         break;
 
         case "permaeffect":
-        const permaCard = new PermaCard()
+        const permaCard = new PermaCard(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
+                                        CardState.DECK, true, globals.fakeCardInfo[i].description, globals.fakeCardInfo[i].effect);
         globals.cards.push(permaCard);
         break;
 
         case "climate":
-        const climateCard = new ClimateCard();
+        const climateCard = new ClimateCard(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
+                                            CardState.DECK, true, globals.fakeCardInfo[i].description, globals.fakeCardInfo[i].effect);
         globals.cards.push(climateCard);
         break;
 
         case "token":
-        const tokenCard = new Card();
-        globals.cards.push(tokenCard);
+        
+        const tokenCard = new Card(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
+                                   CardState.DECK, false);
+        globals.tokens.push(tokenCard);
         break;
 
 
