@@ -94,9 +94,9 @@ function insertCard(i){
 
 function fakeCardCreation_1() // Zarate
 {
-    const frontImg      = "1";                      // ./images/Ruta de la imagen de frente
-    const backImg       = "1";                      // ./images/Ruta la imagen de atras
-    const frameImg      = "1";                      // ./images/Ruta del frame correspondiente
+    const frontImg      = client\images\Images_for_fake\Zarate.png;                      // ./images/Ruta de la imagen de frente
+    const backImg       = client\images\Images_for_fake\Back_Image.png;                      // ./images/Ruta la imagen de atras
+    const frameImg      = client\images\Images_for_fake\Card_Template.png;                      // ./images/Ruta del frame correspondiente
     const cardName      = "Zarateee";               // Nombre de la Carta
     const cardCategory  = "unit";                   // Asignamos el Estado/Categoria de la Carta 
     const state         = CardState.DECK;           // Estado de la carta 
@@ -121,9 +121,9 @@ function fakeCardCreation_1() // Zarate
 
 function fakeCardCreation_2() //Climatology Card
 {
-    const frontImg      = "1";                      // ./images/Ruta de la imagen de frente
-    const backImg       = "1";                      // ./images/Ruta la imagen de atras
-    const frameImg      = "1";                      // ./images/Ruta del frame correspondiente
+    const frontImg      = client\images\Images_for_fake\bitting_frost.png;                      // ./images/Ruta de la imagen de frente
+    const backImg       = client\images\Images_for_fake\Back_Image.png;                      // ./images/Ruta la imagen de atras
+    const frameImg      = client\images\Images_for_fake\Card_Template.png;                      // ./images/Ruta del frame correspondiente
     const cardName      = "Bitting Frost";          // Nombre de la Carta
     const cardCategory  = "climate";                // Asignamos el Estado/Categoria de la Carta 
     const state         = CardState.DECK;           // Estado de la carta 
@@ -148,11 +148,11 @@ function fakeCardCreation_2() //Climatology Card
     // globals.cards.push(Climatology);
 }
 
-function fakeCardCreation_2() //PermaEffect Card
+function fakeCardCreation_3() //PermaEffect Card
 {
-    const frontImg      = "1";                      // ./images/Ruta de la imagen de frente
-    const backImg       = "1";                      // ./images/Ruta la imagen de atras
-    const frameImg      = "1";                      // ./images/Ruta del frame correspondiente
+    const frontImg      = client\images\Images_for_fake\Commander's Horn.png;                      // ./images/Ruta de la imagen de frente
+    const backImg       = client\images\Images_for_fake\Back_Image.png;                      // ./images/Ruta la imagen de atras
+    const frameImg      = client\images\Images_for_fake\Card_Template.png;                      // ./images/Ruta del frame correspondiente
     const cardName      = "Commander's Horn";       // Nombre de la Carta
     const cardCategory  = "Effect";                 // Asignamos el Estado/Categoria de la Carta 
     const state         = CardState.DECK;           // Estado de la carta 
@@ -177,11 +177,11 @@ function fakeCardCreation_2() //PermaEffect Card
     // globals.cards.push(PermaEffect);
 }
 
-function fakeCardCreation_2() //Token card
+function fakeCardCreation_4() //Token card
 {
-    const frontImg      = "1";                      // ./images/Ruta de la imagen de frente
-    const backImg       = "1";                      // ./images/Ruta la imagen de atras
-    const frameImg      = "1";                      // ./images/Ruta del frame correspondiente
+    const frontImg      = client\images\Images_for_fake\Coin.png;                      // ./images/Ruta de la imagen de frente
+    const backImg       = client\images\Images_for_fake\Back_Image.png;                      // ./images/Ruta la imagen de atras
+    const frameImg      = client\images\Images_for_fake\Card_Template.png;                      // ./images/Ruta del frame correspondiente
     const cardName      = "Coin";          // Nombre de la Carta
     const cardCategory  = "Token";                // Asignamos el Estado/Categoria de la Carta 
     const state         = CardState.DECK;           // Estado de la carta 
