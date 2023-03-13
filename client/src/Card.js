@@ -2,7 +2,7 @@ import {CardCategory} from constants.js;
 
 class Card{
 
-    constructor(xPos, yPos, frontImg, backImg, frameImg, cardName, categoryId, state, showBack){
+    constructor(xPos, yPos, frontImg, backImg, frameImg, cardName, state, showBack){
 
         this.xPos       = xPos;
         this.yPos       = yPos;
@@ -10,7 +10,7 @@ class Card{
         this.backImg    = backImg;
         this.frameImg   = frameImg;
         this.cardName   = cardName;
-        this.categoryId = categoryId;
+        this.categoryId = CardCategory.TOKEN;
         this.state      = state;
         this.showBack   = showBack;
 
@@ -20,11 +20,12 @@ class Card{
 class UnitCard extends Card{
 
     constructor(value, description, effect, rarity, type){
-        super(xPos, yPos, frontImg, backImg, frameImg, cardName, categoryId, type);
+        super(xPos, yPos, frontImg, backImg, frameImg, cardName, type);
         this.value          = value;
         this.description    = description;
         this.effect         = effect;
         this.rarity         = rarity;
+        this.categoryId     = CardCategory.UNIT;
         this.type           = type;
 
     }
@@ -33,19 +34,20 @@ class UnitCard extends Card{
 class SuddenCard extends Card {
 
     constructor(description, effect, type){
-        super(xPos, yPos, frontImg, backImg, frameImg, cardName, categoryId, type);
+        super(xPos, yPos, frontImg, backImg, frameImg, cardName, type);
         this.description    = description;
         this.effect         = effect;
-        this.type           = type;
+        this.categoryId     = CardCategory.INSTAEFFECT;
     }
 }
 
 class PermaCard extends Card{
 
     constructor(description, effect, type){
-        super(xPos, yPos, frontImg, backImg, frameImg, cardName, categoryId, type);
+        super(xPos, yPos, frontImg, backImg, frameImg, cardName);
         this.description    = description;
         this.effect         = effect;
+        this.categoryId     = CardCategory.PERMAEFFECT;
         this.type           = type;
     }
 }
@@ -54,9 +56,9 @@ class PermaCard extends Card{
 class ClimateCard extends Card{
 
     constructor (effect, type){
-        super(xPos, yPos, frontImg, backImg, frameImg, cardName, categoryId, type);
+        super(xPos, yPos, frontImg, backImg, frameImg, cardName, type);
+        this.categoryId     = CardCategory.CLIMATE;
         this.effect     = effect;
-        this.type       = type;
     }
 }
 
@@ -64,5 +66,6 @@ export{
     UnitCard,
     SuddenCard,
     PermaCard,
-    ClimateCard
+    ClimateCard,
+    Card
 }
