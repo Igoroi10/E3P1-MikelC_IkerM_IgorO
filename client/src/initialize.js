@@ -1,12 +1,10 @@
 import {btnStartDown, btnStartOver, btnStartOut} from "./events.js";
 import globals from "./globals.js";
-import {CardState} from "./constants.js";
-import render from "./gameRender.js";
+import {CardState, State, FPS} from "./constants.js";
+import {render} from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 
-window.onload = init;
-
-function init()
+function initHTMLelements()
 {
     //Falta crear la global
     globals.buttonStart     = document.getElementById('btnStart');
@@ -23,6 +21,17 @@ function init()
     globals.buttonStart.addEventListener("mousedown", btnStartDown, false);
     globals.buttonStart.addEventListener("mouseover", btnStartOver, false);
     globals.buttonStart.addEventListener("moseout", btnStartOut, false);
+}
+
+function initVars()
+{
+    //Inicializamos las variables de gestión de tiempo
+    globals.previousCycleMilliseconds = 0;
+    globals.deltaTime = 0;
+    globals.frameTimeObj = 1 / FPS; //Frame time in seconds
+
+    //Inicializamos el estado del juego
+    globals.gameState = State.PLAYING;
 }
 
 export function initGame()
@@ -83,4 +92,9 @@ function insertCard(i){
 
     }
     
+}
+
+export {
+    initHTMLelements,
+    initVars
 }

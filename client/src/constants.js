@@ -13,6 +13,8 @@ const State = {
     
 }  
 
+const FPS = 30;
+
 const Languages = {
 
     EUSKERA:    0,
@@ -39,5 +41,6 @@ export{
     State,
     Languages,
     CardState,
-    CardCategory
+    CardCategory,
+    FPS
 }
