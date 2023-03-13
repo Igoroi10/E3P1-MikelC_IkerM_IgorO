@@ -26,3 +26,18 @@ const CardState = {
     DECK:       3
     }
 
+const CardCategory ={
+    UNIT:           0,
+    INSTAEFFECT:    1,
+    PERMAEFFECT:    2,
+    CLIMATE:        3,
+    TOKEN:          4    
+}
+
+
+export{
+    State,
+    Languages,
+    CardState,
+    CardCategory
+}

@@ -1,3 +1,5 @@
+import {CardCategory} from constants.js;
+
 class Card{
 
     constructor(xPos, yPos, frontImg, backImg, frameImg, cardName, categoryId, state, showBack){
