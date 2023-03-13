@@ -1,4 +1,4 @@
-import {CardCategory} from constants.js;
+import {CardCategory} from "./constants.js";
 
 class Card{
 

@@ -10,5 +10,9 @@ export default
     buttonStart: {},
 
     //Array de Cartas
-    cards: []
+    cards: [],
+
+    fakeCardInfo: [],
+
+    tokens:[],
 }
