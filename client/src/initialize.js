@@ -1,6 +1,6 @@
 import {btnStartDown, btnStartOver, btnStartOut} from "./events.js";
 import globals from "./globals.js";
-import {CardCategory, CardQuantity, CardState} from "./constants.js";
+import {CardCategory, CardQuantity, CardState, GameMode, Rarity} from "./constants.js";
 import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 
@@ -29,14 +29,25 @@ export function initGame()
 {
     render();
 }
+function createNormalDeck(){
+    let cardsNeeded = 50;
+    let normalMode = GameMode.NORMAL_MODE;
+    addPermaCards(normalMode);
+    addInstaCards(normalMode);
+
+    cardsNeeded -= globals.cards.length;
+
+    addUnitCards(cardsNeeded,normalMode);
+}
 
 
 function createExpertDeck(){
 
     let cardsNeeded = 80;
+    let expertMode = GameMode.EXPERT_MODE;
     addOneOfEach();
-    addPermaCards();
-    addInstaCards();
+    addPermaCards(expertMode);
+    addInstaCards(expertMode);
     addClimateCards();
 
     cardsNeeded -= globals.cards.length;
@@ -117,8 +128,15 @@ function addClimateCards(){
     }
 }
 
-function addPermaCards(){
-    for(let i = 0; i < CardQuantity.EXPERT_PERMA; i++){
+function addPermaCards(mode){
+
+    let cardsToDraw;
+    if(mode === GameMode.EXPERT_MODE)
+        cardsToDraw = CardQuantity.EXPERT_PERMA;
+    else
+        cardsToDraw = CardQuantity.NORMAL_PERMA;
+
+    for(let i = 0; i < cardsToDraw; i++){
         randomChoice = Math.floor(Math.random() * (2 + 1));
         let checks;
 
@@ -136,8 +154,14 @@ function addPermaCards(){
 }
 
 
-function addInstaCards(){
-    for(let i = 0; i < CardQuantity.EXPERT_INSTA; i++){
+function addInstaCards(mode){
+    let cardsToDraw;
+    if(mode === GameMode.EXPERT_MODE)
+        cardsToDraw = CardQuantity.EXPERT_INSTA;
+    else
+        cardsToDraw = CardQuantity.NORMAL_INSTA;
+
+    for(let i = 0; i < cardsToDraw; i++){
         randomChoice = Math.floor(Math.random() * (3 + 1));
         let checks;
 
@@ -155,7 +179,64 @@ function addInstaCards(){
 }
 
 
+function addUnitCards(cardsLeft){
+
+    for(let i = 0; i < cardsLeft; i++){
+        chanceNumber = Math.random();
+        if(chanceNumber < 0.10)
+            addUltraRareCard();
+        else if(chanceNumber < 0.40)
+            AddRareCard();
+        else
+            AddCommonCard();
+    }
+}
+
+function addUltraRareCard(){
+    let ultraRareQuantity = 5;
+    let randomChoice = Math.floor(Math.random() * (ultraRareQuantity + 1));
+    let checks = 0;
+    for(i = 0; i < globals.cards.length; i++){
+        if(globals.cards[i].rarity === Rarity.ULTRA_RARE){
+            checks++;
+            if(checks === randomChoice){
+                insertCard(i);
+            }
+        }
+    }
+
+}
+
+function AddRareCard(){
+    let rareQuantity = 8;
+    let randomChoice = Math.floor(Math.random() * (rareQuantity + 1));
+    let checks = 0;
+    for(i = 0; i < globals.cards.length; i++){
+        if(globals.cards[i].rarity === Rarity.RARE){
+            checks++;
+            if(checks === randomChoice){
+                insertCard(i);
+            }
+        }
+    }
+}
+
+function AddCommonCard(){
+    let commonQuantity = 25;
+    let randomChoice = Math.floor(Math.random() * (commonQuantity + 1));
+    let checks = 0;
+    for(i = 0; i < globals.cards.length; i++){
+        if(globals.cards[i].rarity === Rarity.COMMON){
+            checks++;
+            if(checks === randomChoice){
+                insertCard(i);
+            }
+        }
+    }
+
+}
 
 export {
-    createExpertDeck
+    createExpertDeck,
+    createNormalDeck
 }

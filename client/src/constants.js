@@ -44,6 +44,19 @@ const CardQuantity = {
 
 }
 
+const GameMode = {
+    NORMAL_MODE:    0,
+    EXPERT_MODE:    1,
+}
+
+const Rarity = {
+    
+    ULTRA_RARE:     0,
+    RARE:           1,
+    COMMON:         2, 
+
+}
+
 
 export{
     State,
@@ -51,4 +64,6 @@ export{
     CardState,
     CardCategory,
     CardQuantity,
+    GameMode,
+    Rarity
 }
