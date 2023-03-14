@@ -29,9 +29,10 @@ export function initGame()
 {
     render();
 }
+
 function createNormalDeck(){
     let cardsNeeded = 50;
-    let normalMode = GameMode.NORMAL_MODE;
+    const normalMode = GameMode.NORMAL_MODE;
     addPermaCards(normalMode);
     addInstaCards(normalMode);
 
@@ -44,7 +45,7 @@ function createNormalDeck(){
 function createExpertDeck(){
 
     let cardsNeeded = 80;
-    let expertMode = GameMode.EXPERT_MODE;
+    const expertMode = GameMode.EXPERT_MODE;
     addOneOfEach();
     addPermaCards(expertMode);
     addInstaCards(expertMode);
@@ -53,7 +54,6 @@ function createExpertDeck(){
     cardsNeeded -= globals.cards.length;
 
     addUnitCards(cardsNeeded)
-    
     
 
 }
@@ -67,7 +67,7 @@ function addOneOfEach(){
 
 function insertCard(i){
 
-    switch(globals.fakeCardInfo[i]){
+    switch(globals.fakeCardInfo[i].category){
 
         case "unit":
         const unitCard = new UnitCard(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
