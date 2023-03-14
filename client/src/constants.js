@@ -56,6 +56,39 @@ const Rarity = {
     ULTRA_RARE:     0,
     RARE:           1,
     COMMON:         2, 
+}
+
+
+const Effect ={
+    
+    //HABILITY
+    SCORCH_INMUNE:      0,
+    SCORCH:             1,
+    COMMANDERS_HORN:    2,
+    DEMORALIZE:         3,
+    DECOY:              4,
+    
+    //WEATHER 
+    BITTING_FROST:      5,
+    CLEAR_WEATHER:      6,
+    IMPENETRABLE_FOG:   7,
+    TORRENTIAL_RAIN:    8,
+    
+    //UNIT HABILITY
+    MEDIC:              9,
+    MORALE_BOOST:       10,
+    MUSTER:             11,
+    SPY:                12,
+    TIGHT_BOND:         13,
+    
+}
+
+const Type ={
+
+    PHYSICAL:       1,
+    DISTANCE:       2,
+    SIEGE:          3,
+
 
 }
 
@@ -65,9 +98,11 @@ export{
     Languages,
     CardState,
     CardCategory,
-    FPS,
+    Rarity,
+    Effect,
+    Type,
     CardQuantity,
     GameMode,
-    Rarity
+    Rarity,
 }
 
