@@ -2,6 +2,7 @@ import globals from "./globals.js";
 import {initHTMLelements, initVars} from "./initialize.js";
 import update from "./gameLogic.js";
 import { render } from "./gameRender.js";
+import { FPS } from "./constants.js";
 
 ////////////////////////////////////////////////////////////////////////////////////////
 // GAME INIT
@@ -50,3 +51,5 @@ function gameLoop(timeStamp)
         globals.deltaTime -= globalThis.frameTimeObj;
     }
 }
+
+console.log(FPS);

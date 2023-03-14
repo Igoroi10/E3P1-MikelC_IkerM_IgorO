@@ -11,7 +11,7 @@ export default function update()
             break;
 
         case State.PLAYING:
-            playGame();
+            // playGame();
             break;
 
         default:
@@ -19,7 +19,11 @@ export default function update()
     }
 }
 
+
 function playGame()
 {
-    //.. A completar
+    //... ANTERIor
+
+    //Sacamos en pantalla las coordenadas del ratón 
+    globals.txtPruebas.innerHTML = "X: " + globals.mouse.x + " Y: " + globals.mouse.y;
 }

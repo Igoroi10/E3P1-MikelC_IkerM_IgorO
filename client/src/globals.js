@@ -25,6 +25,11 @@ export default
     //Array de Cartas
     cards: [],
 
+    action: {},
+
+    //Objeto que guarda las coordenadas del ratón (contiene las coords x e y)
+    mouse: {}, 
+    
     fakeCardInfo: [],
 
     tokens:[],
