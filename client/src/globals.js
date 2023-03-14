@@ -10,5 +10,10 @@ export default
     buttonStart: {},
 
     //Array de Cartas
-    cards: []
+    cards: [],
+
+    action: {},
+
+    //Objeto que guarda las coordenadas del ratón (contiene las coords x e y)
+    mouse: {}
 }

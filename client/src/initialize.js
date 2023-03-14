@@ -1,8 +1,8 @@
-import {btnStartDown, btnStartOver, btnStartOut} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler} from "./events.js";
 import globals from "./globals.js";
 import render from "./gameRender.js";
 
-window.onload = init;
+
 
 function init()
 {
@@ -26,4 +26,30 @@ function init()
 export function initGame()
 {
     render();
+}
+
+function initVars()
+{
+    //... ANTERIOR!!
+
+    //Inicializamos los estados de las acciones
+    globals.action = {
+        mousePressed: false
+    };
+
+    //Inicializamos el objeto mouse
+    globals.mouse = {
+        x: -1,
+        y: -1
+    }
+}
+
+function initEvents()
+{
+    // ... ANTERIOR!!
+
+    //Add the event listeners
+    globals.canvas.addEventListener("mouseup",   canvasMouseupHandler, false);
+    globals.canvas.addEventListener("mousedown", canvasMousedownHandler, false);
+    globals.canvas.addEventListener("mousemove",canvasMousemoveHandler, false);
 }
