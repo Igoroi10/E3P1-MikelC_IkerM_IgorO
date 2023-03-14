@@ -15,5 +15,9 @@ export default
     action: {},
 
     //Objeto que guarda las coordenadas del ratón (contiene las coords x e y)
-    mouse: {}
+    mouse: {}, 
+    
+    fakeCardInfo: [],
+
+    tokens:[],
 }
