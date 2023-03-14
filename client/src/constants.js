@@ -34,12 +34,26 @@ const CardCategory ={
     TOKEN:          4,    
 }
 
+const CardQuantity = {
+
+    NORMAL_PERMA:     3,
+    NORMAL_INSTA:     6,
+    EXPERT_PERMA:     6,
+    EXPERT_INSTA:     10,
+    EXPERT_CLIMATE:   9,
+
+}
+
+const GameMode = {
+    NORMAL_MODE:    0,
+    EXPERT_MODE:    1,
+}
+
 const Rarity = {
     
     ULTRA_RARE:     0,
     RARE:           1,
     COMMON:         2, 
-
 }
 
 
@@ -85,4 +99,8 @@ export{
     Rarity,
     Effect,
     Type,
+    CardQuantity,
+    GameMode,
+    Rarity,
 }
+
