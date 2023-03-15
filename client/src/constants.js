@@ -105,6 +105,7 @@ const Key = {
 }
 
 
+
 const CardSizes = {
     SMALL_HEIGHT:   87,
     SMALL_WIDTH:    85,
@@ -113,6 +114,7 @@ const CardSizes = {
     TOKEN_HEIGHT:   106,
     TOKEN_WIDHT:    85
 }
+
 
 
 export{
@@ -128,7 +130,5 @@ export{
     GameMode,
     FPS,
     CardSizes,
-
-
 }
 
