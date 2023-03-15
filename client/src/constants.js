@@ -26,6 +26,13 @@ const CardState = {
     DECK:       3,
     }
 
+const CardDisplaySize = {
+
+    SMALL:  0,
+    FULL:   1,
+
+}
+
 const CardCategory ={
     UNIT:           0,
     INSTAEFFECT:    1,
@@ -64,6 +71,7 @@ export{
     CardState,
     CardCategory,
     CardQuantity,
+    CardDisplaySize,
     GameMode,
     Rarity
 }
