@@ -1,7 +1,7 @@
 import {btnStartDown, btnStartOver, btnStartOut, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler} from "./events.js";
 import globals from "./globals.js";
-import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type } from "./constants.js";
-import {CardCategory, CardQuantity, CardState, GameMode, Rarity, State, FPS} from "./constants.js";
+import {  State, Languages, CardState, CardCategory, Effect, Type, GameMode, Rarity, FPS} from "./constants.js";
+import {} from "./constants.js";
 import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 import FakeCard from "./FakeCard.js";
