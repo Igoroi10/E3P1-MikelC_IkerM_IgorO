@@ -1,6 +1,8 @@
 import globals from "./globals.js";
 import { initGame } from "./initialize.js";
 
+import { Key } from "./constants.js";
+
 
 //Creacion de Evento para el raton
 
@@ -49,6 +51,7 @@ export function canvasMousemoveHandler(event)
 export function keydownHandler(event)
 {
     globals.asciiCode = event.keyCode;
+    console.log("Ascii code: " + globals.asciiCode);
 
     switch (event.keyCode)
     {

@@ -71,7 +71,7 @@ function loading ()
 {
     if (globals.action.enter)
     {   
-        globals.gameState           = Game.PLAYING; 
+        globals.gameState           = State.PLAYING; 
         globals.action.enter        = false;
     }
 }

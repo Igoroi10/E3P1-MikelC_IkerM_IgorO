@@ -101,7 +101,7 @@ const Type ={
 
 const Key = {
 
-    ENTER:  13,     //Tecla Enter
+    ENTER:  13     //Tecla Enter
 }
 
 

@@ -5,6 +5,7 @@ import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 import FakeCard from "./FakeCard.js";
 
+import { keydownHandler, keyupHandler } from "./events.js";
 
 function initHTMLelements()
 {
@@ -55,6 +56,10 @@ function initVars()
 function initEvents()
 {
     // ... ANTERIOR!!
+
+    //Add the keyboard event listeners
+    window.addEventListener("keydown", keydownHandler, false);
+    window.addEventListener("keyup", keyupHandler, false);
 
     //Add the event listeners
     globals.canvas.addEventListener("mouseup",   canvasMouseupHandler, false);
@@ -392,5 +397,6 @@ export {
     createExpertDeck,
     createNormalDeck,
     initHTMLelements,
-    initVars
+    initVars,
+    initEvents,
 }
