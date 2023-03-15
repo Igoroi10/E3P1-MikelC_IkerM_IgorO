@@ -1,9 +1,6 @@
 import {btnStartDown, btnStartOver, btnStartOut, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler} from "./events.js";
 import globals from "./globals.js";
-
-import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type } from "./constants.js";
-
-import {CardCategory, CardQuantity, CardState, GameMode, Rarity} from "./constants.js";
+import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, GameMode, FPS} from "./constants.js";
 import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 import FakeCard from "./FakeCard.js";
@@ -11,8 +8,7 @@ import FakeCard from "./FakeCard.js";
 import { GameZones } from "./GameZones.js";
 
 
-
-function init()
+function initHTMLelements()
 {
     //Falta crear la global
     globals.buttonStart     = document.getElementById('btnStart');
@@ -38,7 +34,13 @@ export function initGame()
 
 function initVars()
 {
-    //... ANTERIOR!!
+    //Inicializamos las variables de gestión de tiempo
+    globals.previousCycleMilliseconds = 0;
+    globals.deltaTime = 0;
+    globals.frameTimeObj = 1 / FPS; //Frame time in seconds
+
+    //Inicializamos el estado del juego
+    globals.gameState = State.PLAYING;
 
     //Inicializamos los estados de las acciones
     globals.action = {
@@ -62,9 +64,10 @@ function initEvents()
     globals.canvas.addEventListener("mousemove",canvasMousemoveHandler, false);
 }
 
+
 function createNormalDeck(){
     let cardsNeeded = 50;
-    let normalMode = GameMode.NORMAL_MODE;
+    const normalMode = GameMode.NORMAL_MODE;
     addPermaCards(normalMode);
     addInstaCards(normalMode);
 
@@ -77,7 +80,7 @@ function createNormalDeck(){
 function createExpertDeck(){
 
     let cardsNeeded = 80;
-    let expertMode = GameMode.EXPERT_MODE;
+    const expertMode = GameMode.EXPERT_MODE;
     addOneOfEach();
     addPermaCards(expertMode);
     addInstaCards(expertMode);
@@ -86,7 +89,6 @@ function createExpertDeck(){
     cardsNeeded -= globals.cards.length;
 
     addUnitCards(cardsNeeded)
-    
     
 
 }
@@ -100,7 +102,7 @@ function addOneOfEach(){
 
 function insertCard(i){
 
-    switch(globals.fakeCardInfo[i]){
+    switch(globals.fakeCardInfo[i].category){
 
         case "unit":
         const unitCard = new UnitCard(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
@@ -411,5 +413,7 @@ function tableSize()
 
 export {
     createExpertDeck,
-    createNormalDeck
+    createNormalDeck,
+    initHTMLelements,
+    initVars
 }

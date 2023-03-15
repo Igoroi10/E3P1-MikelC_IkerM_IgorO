@@ -13,6 +13,8 @@ const State = {
     
 }  
 
+const FPS = 30;
+
 const Languages = {
 
     EUSKERA:    0,
@@ -25,6 +27,13 @@ const CardState = {
     GAME:       2,
     DECK:       3,
     }
+
+const CardDisplaySize = {
+
+    SMALL:  0,
+    FULL:   1,
+
+}
 
 const CardCategory ={
     UNIT:           0,
@@ -90,6 +99,11 @@ const Type ={
 
 }
 
+const Key = {
+
+    ENTER:  13,     //Tecla Enter
+}
+
 
 export{
     State,
@@ -100,7 +114,8 @@ export{
     Effect,
     Type,
     CardQuantity,
+    CardDisplaySize,
     GameMode,
-    Rarity,
+    FPS
 }
 
