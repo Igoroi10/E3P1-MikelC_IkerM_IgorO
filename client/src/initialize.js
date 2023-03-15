@@ -38,7 +38,7 @@ function initVars()
     globals.frameTimeObj = 1 / FPS; //Frame time in seconds
 
     //Inicializamos el estado del juego
-    globals.gameState = State.PLAYING;
+    globals.gameState = State.LOADING;
 
     //Inicializamos los estados de las acciones
     globals.action = {
