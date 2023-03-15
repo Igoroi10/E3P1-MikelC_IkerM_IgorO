@@ -32,9 +32,11 @@ function renderCards(){
 function renderCard(card){
     if(card.showBack === true){
         globals.ctx.drawImage(
-            globals.assets.reverse,     //archivo de la imagen
-            card.xPos, card.yPos,       //Posición inicial x e y 
-            
+            globals.assets.reverse,                     //archivo de la imagen
+            card.xPos, card.yPos,                       //Posición inicial x e y 
+            card.imageSet.xSize, sprite.imageSet.ySize, 
+            card.xPos, card.yPos,                        //fin de x e y
+            card.imageSet.xSize, card.imageSet.ySize    //Fin de anchura.       
 
         )
 
