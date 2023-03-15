@@ -111,6 +111,6 @@ export{
     CardQuantity,
     CardDisplaySize,
     GameMode,
-    Rarity,
+    FPS
 }
 
