@@ -99,6 +99,11 @@ const Type ={
 
 }
 
+const Key = {
+
+    ENTER:  13,     //Tecla Enter
+}
+
 
 export{
     State,

@@ -8,6 +8,7 @@ export default function update()
     {
         case State.LOADING:
             console.log("Loading assets...");
+            loading();
             break;
         
         case State.LOG_IN:
@@ -27,7 +28,7 @@ export default function update()
             break;
 
         case State.PLAYING:
-            // playGame();
+            playGame();
             break;
 
         case State.STATS:
@@ -50,8 +51,18 @@ export default function update()
 
 function playGame()
 {
-    //... ANTERIor
+    
+    //... ANTERIOR
 
     //Sacamos en pantalla las coordenadas del ratón 
     globals.txtPruebas.innerHTML = "X: " + globals.mouse.x + " Y: " + globals.mouse.y;
+}
+
+function loading ()
+{
+    if (globals.action.enter)
+    {   
+        globals.gameState           = Game.PLAYING; 
+        globals.action.enter        = false;
+    }
 }
