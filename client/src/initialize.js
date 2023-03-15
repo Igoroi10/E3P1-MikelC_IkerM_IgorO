@@ -57,11 +57,11 @@ function initVars()
 function initEvents()
 {
     // ... ANTERIOR!!
-
+    
     //Add the event listeners
     globals.canvas.addEventListener("mouseup",   canvasMouseupHandler, false);
     globals.canvas.addEventListener("mousedown", canvasMousedownHandler, false);
-    globals.canvas.addEventListener("mousemove",canvasMousemoveHandler, false);
+    globals.canvas.addEventListener("mousemove", canvasMousemoveHandler, false);
 }
 
 
@@ -415,5 +415,7 @@ export {
     createExpertDeck,
     createNormalDeck,
     initHTMLelements,
-    initVars
+    initVars,
+    initFakeCards,
+    initEvents
 }

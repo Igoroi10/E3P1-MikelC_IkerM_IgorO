@@ -28,6 +28,7 @@ export default function update()
             break;
 
         case State.PLAYING:
+            // console.log("Colocolo")
             playGame();
             break;
 
@@ -53,9 +54,13 @@ function playGame()
 {
     
     //... ANTERIOR
+    console.log("Actualiza");
+   
+    //Sacamos en pantalla las coordenadas del ratón
 
-    //Sacamos en pantalla las coordenadas del ratón 
+    
     globals.txtPruebas.innerHTML = "X: " + globals.mouse.x + " Y: " + globals.mouse.y;
+
 }
 
 function loading ()
