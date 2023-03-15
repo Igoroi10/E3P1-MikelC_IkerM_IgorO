@@ -396,9 +396,16 @@ function initFakeCards ()
     fakeCardCreation_4;
 }
 
+// Tamaño de la mesa
 function tableSize()
 {
+    const xPos = 0;
+    const yPos = 0;
+    const xSize = 0;
+    const ySize = 0;
     
+    const tableSize = new GameZones (xPos, yPos, xSize, ySize);
+
 }
 
 
