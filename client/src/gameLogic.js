@@ -48,14 +48,23 @@ export default function update()
     }
 }
 
+function displayDeck()
+{
+
+}
+
 
 function playGame()
 {
-    
+    if (globals.action.enter)
+    {   
+    //   displayDeck();
+    }
+
     //... ANTERIOR
 
     //Sacamos en pantalla las coordenadas del ratón 
-    globals.txtPruebas.innerHTML = "X: " + globals.mouse.x + " Y: " + globals.mouse.y;
+    // globals.txtPruebas.innerHTML = "X: " + globals.mouse.x + " Y: " + globals.mouse.y;
 }
 
 function loading ()
