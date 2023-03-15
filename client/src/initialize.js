@@ -74,10 +74,11 @@ function loadAssets()
     //Variable que guardara informacion de la Clase Image
     let tileSet;
 
-    // const template = client/images/Images_for_fake/Card_Template.png
+    // const template = /images/Images_for_fake/Card_Template.png
     const template = 2;
     const objectBololo = new Assets ( 1, template, 3, 4, 5);
     // globals.tileSets.push(objectBololo);
+    // globals.assetsToLoad.push(objectBololo);
 
     //Creamos objeto sin cosntructor 
     const Animal = 
@@ -116,6 +117,9 @@ function loadAssets()
 function loadHandler()
 {
     globals.assetsLoaded++; 
+    // console.log ("Assets loaded: " + globals.assetsLoaded);
+    // console.log ("Assets to load: " + globals.assetsToLoad.length);
+
     
     //Una vez se han cargado todos los activos pasamos
     if(globals.assetsLoaded === globals.assetsToLoad.length)
