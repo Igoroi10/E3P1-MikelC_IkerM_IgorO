@@ -35,4 +35,14 @@ export default
     fakeCardInfo: [],
 
     tokens:[],
+
+    //Array de assets que guarda Datos de imagen
+    tileSets: [],
+
+    //Carga de los Assets
+    assetsToLoad: [],
+    assetsLoaded: 0,
+
+    //PRUEBAA
+    back_image: 0,
 }

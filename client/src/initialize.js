@@ -6,6 +6,7 @@ import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 import FakeCard from "./FakeCard.js";
 
 import { GameZones } from "./GameZones.js";
+import { Assets } from "./Assets.js";
 
 
 function initHTMLelements()
@@ -62,6 +63,74 @@ function initEvents()
     globals.canvas.addEventListener("mouseup",   canvasMouseupHandler, false);
     globals.canvas.addEventListener("mousedown", canvasMousedownHandler, false);
     globals.canvas.addEventListener("mousemove", canvasMousemoveHandler, false);
+}
+
+//===========================================
+//                  ASSETS
+//===========================================
+
+function loadAssets()
+{
+    //Variable que guardara informacion de la Clase Image
+    let tileSet;
+
+    // const template = client/images/Images_for_fake/Card_Template.png
+    const template = 2;
+    const objectBololo = new Assets ( 1, template, 3, 4, 5);
+    // globals.tileSets.push(objectBololo);
+
+    //Creamos objeto sin cosntructor 
+    const Animal = 
+    {
+        // back_Image: [] = client/images/Images_for_fake/Back_Image.png,
+        back_image: globals.back_image,
+        template: globals.tileSets[0], //Coje la posicion donde esta el primer objeto, en nuestro caso "objectBololo = posicion 0"
+        type: 'Invertebrates', //Valor predeterminado de las propiedades
+
+        
+    }
+
+    //Creamos un tipo animal llamado Animal
+    const animal1 = Object.create(Animal);
+    console.log(animal1.type); //Muestra invertebrates
+    console.log(animal1.back_image);
+    console.log(animal1.template);
+
+
+
+
+
+    //Carga el SpriteSheet 
+    
+    tileSet = new Image();
+    tileSet.addEventListener("load", loadHandler, false);
+    tileSet.src = "./images/Zarate_small.png"; //Ojo que la ruta es relativa al HTML, no al JS
+    globals.tileSets.push(tileSet);
+    globals.assetsToLoad.push(tileSet);
+    
+
+    //Carga de Todas las imagenes
+
+}
+
+function loadHandler()
+{
+    globals.assetsLoaded++; 
+    
+    //Una vez se han cargado todos los activos pasamos
+    if(globals.assetsLoaded === globals.assetsToLoad.length)
+    {
+        //remove the load event listener
+        for (let i = 0; i < globals.tileSets.length; i++)
+        {
+            globals.tileSets[i].removeEventListener("load", loadHandler, false);
+        }
+
+        console.log("Assets finished loading");
+
+        //Start the game
+        globals.gameState = State.LOADING;
+    }
 }
 
 
@@ -168,11 +237,11 @@ function fakeCardCreation_1() // Zarate
 
 
     // frontImg, backImg, frameImg, cardName, CardCategory, state, showBack
-    const Zarate = new FakeCard (frontImg, backImg, frameImg, cardName, cardCategory, state, value, description, effect, rarity, type, showBack);
+    const ZarateCard = new FakeCard (frontImg, backImg, frameImg, cardName, cardCategory, state, value, description, effect, rarity, type, showBack);
 
     for (let i = 0; i <= 5; i++)
     {
-        globals.fakeCardInfo.push(Zarate);
+        globals.fakeCardInfo.push(ZarateCard);
     }
 
     // globals.cards.push(Zarate);
@@ -417,5 +486,6 @@ export {
     initHTMLelements,
     initVars,
     initFakeCards,
-    initEvents
+    initEvents,
+    loadAssets,
 }
