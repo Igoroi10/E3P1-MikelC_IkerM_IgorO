@@ -8,6 +8,8 @@ import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 import FakeCard from "./FakeCard.js";
 
+import { GameZones } from "./GameZones.js";
+
 
 
 function init()
@@ -168,10 +170,10 @@ function fakeCardCreation_1() // Zarate
 
     for (let i = 0; i <= 5; i++)
     {
-        globals.cards.push(Zarate);
+        globals.fakeCardInfo.push(Zarate);
     }
 
-    globals.cards.push(Zarate);
+    // globals.cards.push(Zarate);
 }
 
 function fakeCardCreation_2() //Climatology Card
@@ -197,7 +199,7 @@ function fakeCardCreation_2() //Climatology Card
     
     for (let i = 0; i <= 5; i++)
     {
-        globals.cards.push(Climatology);
+        globals.fakeCardInfo.push(Climatology);
     }
 
     // globals.cards.push(Climatology);
@@ -226,7 +228,7 @@ function fakeCardCreation_3() //PermaEffect Card
 
     for (let i = 0; i <= 5; i++)
     {
-        globals.cards.push(PermaEffect);
+        globals.fakeCardInfo.push(PermaEffect);
     }
 
     // globals.cards.push(PermaEffect);
@@ -385,6 +387,20 @@ function AddCommonCard(){
     }
 
 }
+
+function initFakeCards ()
+{
+    fakeCardCreation_1;
+    fakeCardCreation_2;
+    fakeCardCreation_3;
+    fakeCardCreation_4;
+}
+
+function tableSize()
+{
+    
+}
+
 
 export {
     createExpertDeck,
