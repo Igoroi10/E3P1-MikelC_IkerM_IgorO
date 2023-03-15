@@ -116,6 +116,7 @@ export{
     CardQuantity,
     CardDisplaySize,
     GameMode,
-    FPS
+    FPS,
+    Key
 }
 

@@ -33,4 +33,7 @@ export default
     fakeCardInfo: [],
 
     tokens:[],
+
+    //Ascii Code para eventos del teclado
+    asciiCode: -1,
 }
