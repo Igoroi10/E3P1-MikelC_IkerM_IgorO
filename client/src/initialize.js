@@ -9,7 +9,6 @@ import { GameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
 import { keydownHandler, keyupHandler } from "./events.js";
 
-import { GameZones } from "./GameZones.js";
 
 function initHTMLelements()
 {
@@ -186,8 +185,8 @@ function fake_loadASsets ()
 function loadHandler()
 {
     globals.assetsLoaded++; 
-    // console.log ("Assets loaded: " + globals.assetsLoaded);
-    // console.log ("Assets to load: " + globals.assetsToLoad.length);
+    console.log ("Assets loaded: " + globals.assetsLoaded);
+    console.log ("Assets to load: " + globals.assetsToLoad.length);
 
     
     //Una vez se han cargado todos los activos pasamos
@@ -560,6 +559,5 @@ export {
     initVars,
     initEvents,
     initFakeCards,
-    initEvents,
     loadAssets
 }

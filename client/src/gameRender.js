@@ -17,7 +17,7 @@ export default function render()
 function drawGame(){
     renderMap();
     renderCards();
-    renderBigCard();
+    // renderBigCard(); //A CORREGIR
 }
 
 function renderMap ()
@@ -164,7 +164,7 @@ function renderCard(card){
 
 function renderBigCard(){
 
-
+let i = 0;
         if(globals.cards[i].category !== CardCategory.TOKEN){
 
             globals.ctx.drawImage(

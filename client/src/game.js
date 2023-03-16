@@ -14,11 +14,10 @@ function init()
 {
     initHTMLelements();
 
-<<<<<<< HEAD
     loadAssets();
-=======
+
     initEvents();
->>>>>>> master
+
 
     initVars();
 
