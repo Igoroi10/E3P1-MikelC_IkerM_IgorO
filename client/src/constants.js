@@ -22,7 +22,7 @@ const Languages = {
 }
 
 const CardState = {
-    DISSCARD:   0,
+    DISCARD:   0,
     HAND:       1,  
     GAME:       2,
     DECK:       3,
@@ -127,6 +127,14 @@ const CardSizes = {
     TOKEN_WIDHT:    85
 }
 
+
+CardSlotsQuantity = {
+    HAND:       12,
+    FIELD:      8,
+    DECK:       1,
+    DISCARD:    1,
+     
+}
 
 
 export{
