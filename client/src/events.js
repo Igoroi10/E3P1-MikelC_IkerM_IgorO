@@ -44,8 +44,10 @@ export function canvasMouseupHandler(event)
 export function canvasMousemoveHandler(event)
 {
     //Find the mouse's X and Y positions on the canvas
+    
     globals.mouse.x = event.pageX - globals.canvas.offsetLeft;
     globals.mouse.y = event.pageY - globals.canvas.offsetTop;
+<<<<<<< HEAD
 }
 
 export function keydownHandler(event)
@@ -74,4 +76,8 @@ export function keyupHandler(event)
             globals.action.enter    = true;
             break;
     }
+=======
+    // console.log(globals.mouse.x);
+    console.log(globals.mouse.x)
+>>>>>>> master
 }

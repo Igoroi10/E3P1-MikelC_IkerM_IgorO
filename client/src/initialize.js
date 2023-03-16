@@ -1,11 +1,14 @@
 import {btnStartDown, btnStartOver, btnStartOut, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler} from "./events.js";
 import globals from "./globals.js";
+import {  State, Languages, CardState, CardCategory, Effect, Type, GameMode, Rarity, FPS} from "./constants.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, GameMode, FPS} from "./constants.js";
 import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 import FakeCard from "./FakeCard.js";
 
 import { keydownHandler, keyupHandler } from "./events.js";
+
+import { GameZones } from "./GameZones.js";
 
 function initHTMLelements()
 {
@@ -64,7 +67,7 @@ function initEvents()
     //Add the event listeners
     globals.canvas.addEventListener("mouseup",   canvasMouseupHandler, false);
     globals.canvas.addEventListener("mousedown", canvasMousedownHandler, false);
-    globals.canvas.addEventListener("mousemove",canvasMousemoveHandler, false);
+    globals.canvas.addEventListener("mousemove", canvasMousemoveHandler, false);
 }
 
 
@@ -175,10 +178,10 @@ function fakeCardCreation_1() // Zarate
 
     for (let i = 0; i <= 5; i++)
     {
-        globals.cards.push(Zarate);
+        globals.fakeCardInfo.push(Zarate);
     }
 
-    globals.cards.push(Zarate);
+    // globals.cards.push(Zarate);
 }
 
 function fakeCardCreation_2() //Climatology Card
@@ -204,7 +207,7 @@ function fakeCardCreation_2() //Climatology Card
     
     for (let i = 0; i <= 5; i++)
     {
-        globals.cards.push(Climatology);
+        globals.fakeCardInfo.push(Climatology);
     }
 
     // globals.cards.push(Climatology);
@@ -233,7 +236,7 @@ function fakeCardCreation_3() //PermaEffect Card
 
     for (let i = 0; i <= 5; i++)
     {
-        globals.cards.push(PermaEffect);
+        globals.fakeCardInfo.push(PermaEffect);
     }
 
     // globals.cards.push(PermaEffect);
@@ -393,10 +396,32 @@ function AddCommonCard(){
 
 }
 
+function initFakeCards ()
+{
+    fakeCardCreation_1;
+    fakeCardCreation_2;
+    fakeCardCreation_3;
+    fakeCardCreation_4;
+}
+
+// Tamaño de la mesa
+function tableSize()
+{
+    const xPos = 0;
+    const yPos = 0;
+    const xSize = 0;
+    const ySize = 0;
+    
+    const tableSize = new GameZones (xPos, yPos, xSize, ySize);
+
+}
+
+
 export {
     createExpertDeck,
     createNormalDeck,
     initHTMLelements,
     initVars,
     initEvents,
+    initFakeCards,
 }
