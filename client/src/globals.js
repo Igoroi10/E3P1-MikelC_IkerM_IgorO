@@ -37,12 +37,18 @@ export default
     tokens:[],
 
     //Array de assets que guarda Datos de imagen
-    tileSets: [],
+    tileSets: {
+        front_img:         [],
+        card_frame:         [],
+        card_reverse:       [],
+        card_type:          [],
+        card_category:      [],
+        card_effect:        [],
+        card_value:         [],
+    },
 
     //Carga de los Assets
     assetsToLoad: [],
     assetsLoaded: 0,
 
-    //PRUEBAA
-    back_image: 0,
 }

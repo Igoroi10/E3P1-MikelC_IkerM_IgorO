@@ -1,6 +1,6 @@
 import {btnStartDown, btnStartOver, btnStartOut, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler} from "./events.js";
 import globals from "./globals.js";
-import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, GameMode, FPS} from "./constants.js";
+import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 import FakeCard from "./FakeCard.js";
@@ -71,47 +71,91 @@ function initEvents()
 
 function loadAssets()
 {
+    for (let i = 0; i < globals.img_url; i++)
+    {
+        const img = globals.img_url[i]
+
+        if (i < Card_img_quantity.UNIT_CARD )
+        {
+            globals.tileSets.front_img.push(img);
+        }
+        else if (i < Card_img_quantity.EFFECT_CARDS)
+        {
+            globals.tileSets.effect.push(img);
+        }
+        else if (i < Card_img_quantity.VALUE_CARDS)
+        {
+            globals.tileSets.card_value.push(img);
+        }
+        else if (i < Card_img_quantity.CATEGORY_CARDS)
+        {
+            globals.tileSets.card_category.push(img)
+        }
+        else if (i < Card_img_quantity.TYPE_CARDS)
+        {
+            globals.tileSets.card_type.push(img);
+        }
+        else if ( i < Card_img_quantity.FRAME_CARDS)
+        {
+            globals.tileSets.card_frame.push(img);
+        }
+        else
+        {
+            globals.tileSets.card_reverse.push(img);
+        }
+    }
+
+}
+
+function fake_loadASsets ()
+{
     //Variable que guardara informacion de la Clase Image
     let tileSet;
 
-    // const template = /images/Images_for_fake/Card_Template.png
-    const template = 2;
-    const objectBololo = new Assets ( 1, template, 3, 4, 5);
-    // globals.tileSets.push(objectBololo);
-    // globals.assetsToLoad.push(objectBololo);
+    //Reverso de La carta
+    const card_Reverse      = "./client/images/Images_for_fake/card_Reverse.png";
+    globals.tileSets.card_reverse.push(card_Reverse);
 
-    //Creamos objeto sin cosntructor 
-    const Animal = 
-    {
-        // back_Image: [] = client/images/Images_for_fake/Back_Image.png,
-        back_image: globals.back_image,
-        template: globals.tileSets[0], //Coje la posicion donde esta el primer objeto, en nuestro caso "objectBololo = posicion 0"
-        type: 'Invertebrates', //Valor predeterminado de las propiedades
-
-        
-    }
-
-    //Creamos un tipo animal llamado Animal
-    const animal1 = Object.create(Animal);
-    console.log(animal1.type); //Muestra invertebrates
-    console.log(animal1.back_image);
-    console.log(animal1.template);
-
-
-
-
-
-    //Carga el SpriteSheet 
+    //Frame de la carta
+    const card_frame        = "./client/images/Images_for_fake/card_frame.png" 
+    const card_frame_small  = "./client/images/Images_for_fake/card_frame_small.png"  
+    globals.tileSets.card_frame.push(card_frame);
+    globals.tileSets.card_frame.push(card_frame_small);
     
-    tileSet = new Image();
-    tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/Zarate_small.png"; //Ojo que la ruta es relativa al HTML, no al JS
-    globals.tileSets.push(tileSet);
-    globals.assetsToLoad.push(tileSet);
-    
+    //Type - Zelaia
+    const firts_field       =  "./client/images/Images_for_fake/first_field.png";
+    const second_field      =  "./client/images/Images_for_fake/second_field.png";
+    const third_field       =  "./client/images/Images_for_fake/third_field.png";
+    globals.tileSets.card_type.push(firts_field);
+    globals.tileSets.card_type.push(second_field);
+    globals.tileSets.card_type.push(third_field);
 
+    //Category - Ultrare, rare, common
+    const ultraRare     = "UltraRare";
+    const rare          = "Rare";
+    const common        = "Common";
+    globals.tileSets.card_category.push(ultraRare);
+    globals.tileSets.card_category.push(rare);
+    globals.tileSets.card_category.push(common);
+
+    //Values
+    const value0        = "./client/images/Images_for_fake/Values/Valor_0.png";
+    const value1        = "./client/images/Images_for_fake/Values/Valor_1.png";
+    const value2        = "./client/images/Images_for_fake/Values/Valor_2.png";
+    const value3        = "./client/images/Images_for_fake/Values/Valor_3.png";
+    const value4        = "./client/images/Images_for_fake/Values/Valor_4.png";
+    const value5        = "./client/images/Images_for_fake/Values/Valor_5.png";
+    const value6        = "./client/images/Images_for_fake/Values/Valor_6.png";
+    const value7        = "./client/images/Images_for_fake/Values/Valor_7.png";
+    const value8        = "./client/images/Images_for_fake/Values/Valor_8.png";
+    const value9        = "./client/images/Images_for_fake/Values/Valor_9.png";
+    const value10        = "./client/images/Images_for_fake/Values/Valor_10.png";
+    globals.tileSets.card_value.push(value0, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10);
+
+    //Effects
+    
+    
     //Carga de Todas las imagenes
-
 }
 
 function loadHandler()

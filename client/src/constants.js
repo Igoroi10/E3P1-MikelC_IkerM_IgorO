@@ -104,6 +104,18 @@ const Key = {
     ENTER:  13,     //Tecla Enter
 }
 
+const Card_img_quantity = {
+    
+    UNIT_CARD:          36,
+    EFFECT_CARDS:       47,
+    VALUE_CARDS:        58,
+    CATEGORY_CARDS:     61,
+    TYPE_CARDS:         64,
+    FRAME_CARDS:        66,
+    REVERSE_CARDS:      67,
+
+};
+
 
 export{
     State,
@@ -116,6 +128,7 @@ export{
     CardQuantity,
     CardDisplaySize,
     GameMode,
-    FPS
+    FPS,
+    Card_img_quantity
 }
 
