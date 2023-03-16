@@ -1,86 +1,88 @@
 <?php
-//El resto de Clases heredan de esta clase Realiza la conexion con mysqli y singleton
 
-require_once "login_data.php";
+/* El resto de Clases heredan de esta clase
+    Realiza la conexion con mysql y singleton */
 
-class Conexion
-{
-    private static $_singleton = null;
-    private $dbh;
-    private $errno;
-    private $num_rows;
+    require_once "login_data.php"; 
 
-    public static function getInstance()
+    class Conexion
     {
-        if(is_null(self::$_singleton))
+        private static $_singleton = null;
+        private $dbh;
+        private $errno;
+        private $num_rows;
+
+        public static function getInstance()
         {
-            self::$_singleton = new self();
+            if(is_null (self::$_singleton))
+            {
+                self::$_singleton = new self();
+            }
+            return self::$_singleton;
         }
-        return self::$_singleton;
-    }
 
-    private function __clone()
-    {
-        trigger_error('La clonacion de este objeto no está permitida', E_USER_ERROR);
-    }
-
-    public function __wakeup()
-    {
-        trigger_error("No puede deserializar una instancia de " . get_class($this) . " class.", E_USER_ERROR);
-    }
-
-    private function __construct()
-    {
+        private function __clone()
+        {
+            trigger_error('La clonacioón de este objeto no está permitida', E_USER_ERROR);
         
-        global $cfg;
-
-        $db     = $cfg['nombre_bd'];
-        $host   = $cfg['servidor'];
-        $user   = $cfg['usuario'];
-        $pass   = $cfg['password'];
-
-        $this->dbh = new mysqli($host, $user, $pass, $db);
-        
-
-        // echo("Entra");
-
-        //echo($this->dbh->connect_error);
-
-        if($this->dbh->connect_error)
-        {
-            //echo ("Fatal error en la conexion con la BD".$this->dbh->connect_error);
         }
-        else
+
+        public function __wakeup()
         {
-            //OJO: Descomentar para pruebas. Acordarse de quitar cuando se hagan peticiones desde cliente
-            // echo "Connection OK <br>";
+            trigger_error("No puede deserializar una instancia de " . get_class($this) . " class.", E_USER_ERROR);
         }
-    }
 
-    public function getConnection()
-    {
-        return self::$_singleton;
-    }
-
-    public function cerrar()
-    {
-        self::$_singleton->close();
-    }
-
-    protected function query($sql)
-    {
-        $result = $this->dbh->query($sql);
-
-        if(!$result)
+        private function __construct()
         {
-            echo "Error: " . $sql . "<br>" . $this->dbh->error;
-            die ("Fatal error al ejecutar query");
+            global $cfg;
+
+            $db     = $cfg['nombre_bd'];
+            $host   = $cfg['servidor'];
+            $user   = $cfg['usuario'];
+            $pass   = $cfg['password'];
+
+            $this->dbh = new mysqli($host, $user, $pass, $db);
+
+            
+            if($this->dbh->connect_error)
+            {
+                // echo "entra";
+
+                die ("Fatal error en la conexion con la BD");
+            }
+
+            // else
+                //OJO: Desconectgar para pruebas. Acordarse de quitar cuando se hagan peticiones desde cliente.
+                // echo "Conecton OK <br>";
+    
         }
-        // echo $query;
+
+        public function getConnection()
+        {
+            return self::$_singleton;
+        }
+
+        public function cerrar()
+        {
+            self::$_singleton->close();
+        }
+
+        protected function query($sql)
+        {
+            // echo $sql;
+            $result = $this->dbh->query($sql);
+            // echo $result; //AQUI HAY UN ERROR
+            if (!$result)
+            {
+                // echo "entra";
+                echo "Error: " . $sql . "<br>" . $this->dbh->error;
+                die("Fatal error al ejecutar query");
+            }
+
         return $result;
+
+        }
+
+        
     }
-
-}
-
-
 ?>
