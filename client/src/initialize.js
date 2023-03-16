@@ -153,8 +153,27 @@ function fake_loadASsets ()
     globals.tileSets.card_value.push(value0, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10);
 
     //Effects
-    
-    
+    const bitting_Frost         = "./client/images/Images_for_fake/Effects/Bitting_Frost.png";
+    const Clear_Weather         = "./client/images/Images_for_fake/Effects/Clear_Weather.png";
+    const Commanders_horn       = "./client/images/Images_for_fake/Effects/Commanders_horn.png";
+    const Decoy                 = "./client/images/Images_for_fake/Effects/Decoy.png";
+    const Impenetrable_fog      = "./client/images/Images_for_fake/Effects/Impenetrable_fog.png";
+    const Medic                 = "./client/images/Images_for_fake/Effects/Medic.png";
+    const Morale_boost          = "./client/images/Images_for_fake/Effects/Morale_boost.png";
+    const Muster                = "./client/images/Images_for_fake/Effects/Muster.png";
+    const Scorch                = "./client/images/Images_for_fake/Effects/Scorch.png";
+    const Spy                   = "./client/images/Images_for_fake/Effects/Spy.png";
+    const Tight_bond            = "./client/images/Images_for_fake/Effects/Tight_bond.png";
+    const Torrential_Rain       = "./client/images/Images_for_fake/Effects/Torrential_Rain.png";
+    globals.tileSets.card_value.push(bitting_Frost, Clear_Weather, Commanders_horn, Decoy, Impenetrable_fog, Medic, Morale_boost, Muster, Scorch, Spy, Tight_bond, Torrential_Rain);
+
+    //Imagenes de Fondo
+    const bitting_frost_img     = "./client/images/Images_for_fake/Cards_images/bitting_frost.png";
+    const commanders_horn_img   = "./client/images/Images_for_fake/Cards_images/Commanders_Horn.png";
+    const zarate_img            = "./client/images/Images_for_fake/Cards_images/zarate.png";
+    const coin                  = "./client/images/Images_for_fake/Cards_images/coin.png";
+    globals.tileSets.front_img.push(bitting_frost_img, commanders_horn_img, zarate_img, coin);
+
     //Carga de Todas las imagenes
 }
 
