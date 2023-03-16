@@ -7,7 +7,9 @@ import FakeCard from "./FakeCard.js";
 
 import { GameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
+import { keydownHandler, keyupHandler } from "./events.js";
 
+import { GameZones } from "./GameZones.js";
 
 function initHTMLelements()
 {
@@ -41,7 +43,7 @@ function initVars()
     globals.frameTimeObj = 1 / FPS; //Frame time in seconds
 
     //Inicializamos el estado del juego
-    globals.gameState = State.PLAYING;
+    globals.gameState = State.LOADING;
 
     //Inicializamos los estados de las acciones
     globals.action = {
@@ -58,7 +60,11 @@ function initVars()
 function initEvents()
 {
     // ... ANTERIOR!!
-    
+
+    //Add the keyboard event listeners
+    window.addEventListener("keydown", keydownHandler, false);
+    window.addEventListener("keyup", keyupHandler, false);
+
     //Add the event listeners
     globals.canvas.addEventListener("mouseup",   canvasMouseupHandler, false);
     globals.canvas.addEventListener("mousedown", canvasMousedownHandler, false);
@@ -552,7 +558,8 @@ export {
     createNormalDeck,
     initHTMLelements,
     initVars,
+    initEvents,
     initFakeCards,
     initEvents,
-    loadAssets,
+    loadAssets
 }

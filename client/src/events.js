@@ -1,6 +1,8 @@
 import globals from "./globals.js";
 import { initGame } from "./initialize.js";
 
+import { Key } from "./constants.js";
+
 
 //Creacion de Evento para el raton
 
@@ -45,6 +47,37 @@ export function canvasMousemoveHandler(event)
     
     globals.mouse.x = event.pageX - globals.canvas.offsetLeft;
     globals.mouse.y = event.pageY - globals.canvas.offsetTop;
+
+}
+
+export function keydownHandler(event)
+{
+    globals.asciiCode = event.keyCode;
+    console.log("Ascii code: " + globals.asciiCode);
+
+    switch (event.keyCode)
+    {
+        case Key.ENTER:
+            console.log("Entra enter");
+            globals.action.enter    = true;
+            break;
+    }
+
+}
+
+export function keyupHandler(event)
+{
+    globals.asciiCode = -1;
+
+    switch (event.keyCode)
+    {
+        case Key.ENTER:
+            console.log("Sale enter");
+            globals.action.enter    = true;
+            break;
+    }
+
     // console.log(globals.mouse.x);
     console.log(globals.mouse.x)
+
 }

@@ -51,4 +51,6 @@ export default
     assetsToLoad: [],
     assetsLoaded: 0,
 
+    //Ascii Code para eventos del teclado
+    asciiCode: -1,
 }
