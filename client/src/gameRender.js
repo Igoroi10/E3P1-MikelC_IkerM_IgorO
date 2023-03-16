@@ -1,5 +1,8 @@
+
+
+import { CardCategory, CardDisplaySize, CardSizes } from "./constants.js";
 import globals from "./globals.js";
-import {CardSizes, CardCategory} from "./constants.js";
+
 
 
 
@@ -7,6 +10,7 @@ import {CardSizes, CardCategory} from "./constants.js";
 export default function render()
 {
     globals.ctx.clearRect(0,0,globals.canvas.width, globals.canvas.height);
+    drawGame();
 
 }
 
@@ -14,7 +18,6 @@ function drawGame(){
     renderMap();
     renderCards();
     renderBigCard();
-
 }
 
 function renderMap ()
@@ -26,7 +29,7 @@ function renderMap ()
 function renderCards(){
 
     for(let i = 0; i < globals.cards.length; i++){
-        renderCard(globals.cards[i]);
+        renderCard(globals.cards[i]);    
     }
 
 }
@@ -41,10 +44,10 @@ function renderCard(card){
             card.imageSet.xSize, card.imageSet.ySize, 
             card.xPos, card.yPos,                                   //fin de x e y
             CardSizes.TOKEN_WIDHT, CardSizes.TOKEN_HEIGHT             //Fin de anchura.       
-
         )
 
     }
+
 
     //DIBUJO DEL ANVERSO DE LA UNIDAD 
     else if (card.category === CardCategory.UNIT){
@@ -161,9 +164,57 @@ function renderCard(card){
 
 function renderBigCard(){
 
+
+        if(globals.cards[i].category !== CardCategory.TOKEN){
+
+            globals.ctx.drawImage(
+                globals.assets.frontImg,                          //archivo de la imagen
+                card.xPos, card.yPos,                            //Posición inicial x e y 
+                card.imageSet.xSize, sprite.imageSet.ySize, 
+                card.xPos, card.yPos,                            //fin de x e y
+                CardSizes.SMALL_WIDTH, CardSizes.SMALL_HEIGHT    //Final de anchura.       
+    
+            )
+
+            globals.ctx.drawImage(
+                globals.assets.frameImg,                          //archivo de la imagen
+                card.xPos, card.yPos,                            //Posición inicial x e y 
+                card.imageSet.xSize, sprite.imageSet.ySize, 
+                card.xPos, card.yPos,                            //fin de x e y
+                CardSizes.SMALL_WIDTH, CardSizes.SMALL_HEIGHT    //Final de anchura.       
+    
+            )
+
+        }
+
+        else{
+            globals.ctx.drawImage(
+                globals.assets.frontImg,                          //archivo de la imagen
+                card.xPos, card.yPos,                            //Posición inicial x e y 
+                card.imageSet.xSize, sprite.imageSet.ySize, 
+                card.xPos, card.yPos,                            //fin de x e y
+                CardSizes.TOKEN_WIDHT, CardSizes.TOKEN_HEIGHT    //Final de anchura.       
+    
+            )
+
+            globals.ctx.drawImage(
+                globals.assets.frameImg,                          //archivo de la imagen
+                card.xPos, card.yPos,                            //Posición inicial x e y 
+                card.imageSet.xSize, sprite.imageSet.ySize, 
+                card.xPos, card.yPos,                            //fin de x e y
+                CardSizes.TOKEN_WIDHT, CardSizes.TOKEN_HEIGHT    //Final de anchura.       
+    
+            )
+
+        }
+    
+
 }
+
+
+
+
 
 export{
     render,
-    drawGame,
 }

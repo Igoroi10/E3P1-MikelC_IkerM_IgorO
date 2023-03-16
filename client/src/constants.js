@@ -101,8 +101,20 @@ const Type ={
 
 const Key = {
 
-    ENTER:  13,     //Tecla Enter
+    ENTER:  13     //Tecla Enter
 }
+
+
+
+const CardSizes = {
+    SMALL_HEIGHT:   87,
+    SMALL_WIDTH:    85,
+    BIG_HEIGHT:     460,
+    BIG_WIDTH:      360,
+    TOKEN_HEIGHT:   106,
+    TOKEN_WIDHT:    85
+}
+
 
 
 export{
@@ -116,6 +128,8 @@ export{
     CardQuantity,
     CardDisplaySize,
     GameMode,
-    FPS
+    FPS,
+    Key,
+    CardSizes,
 }
 

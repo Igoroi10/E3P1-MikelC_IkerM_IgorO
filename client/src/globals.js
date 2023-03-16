@@ -29,8 +29,13 @@ export default
 
     //Objeto que guarda las coordenadas del ratón (contiene las coords x e y)
     mouse: {}, 
+
+    txtPruebas: {},
     
     fakeCardInfo: [],
 
     tokens:[],
+
+    //Ascii Code para eventos del teclado
+    asciiCode: -1,
 }

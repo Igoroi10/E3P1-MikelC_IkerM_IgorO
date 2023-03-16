@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import {initHTMLelements, initVars} from "./initialize.js";
+import {initEvents, initFakeCards, initHTMLelements, initVars} from "./initialize.js";
 import update from "./gameLogic.js";
 import { render } from "./gameRender.js";
 
@@ -14,7 +14,14 @@ function init()
 {
     initHTMLelements();
 
+    initEvents();
+
     initVars();
+
+    initEvents();
+
+    //Funcion de Obejtos
+    initFakeCards();
 
     window.requestAnimationFrame(gameLoop);
 }
