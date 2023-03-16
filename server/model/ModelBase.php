@@ -16,6 +16,8 @@ class ModelBase extends Conexion{
     function getAll()
     {
         $query = $this->selectDB($this->table_name);
+        // $query = $this->selectDB($this->table_name2);
+        // $query = $this->selectDB($this->table_name3);
 
         //echo "Table name: " . $this->table_name;
         $result = $this->conexion->query($query);

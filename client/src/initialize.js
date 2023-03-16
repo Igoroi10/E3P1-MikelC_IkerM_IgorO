@@ -82,31 +82,31 @@ function loadAssets()
 
         if (i < Card_img_quantity.UNIT_CARD )
         {
-            globals.tileSets.front_img.push(img);
+            globals.assets.front_img.push(img);
         }
         else if (i < Card_img_quantity.EFFECT_CARDS)
         {
-            globals.tileSets.effect.push(img);
+            globals.assets.effect.push(img);
         }
         else if (i < Card_img_quantity.VALUE_CARDS)
         {
-            globals.tileSets.card_value.push(img);
+            globals.assets.card_value.push(img);
         }
         else if (i < Card_img_quantity.CATEGORY_CARDS)
         {
-            globals.tileSets.card_category.push(img)
+            globals.assets.card_category.push(img)
         }
         else if (i < Card_img_quantity.TYPE_CARDS)
         {
-            globals.tileSets.card_type.push(img);
+            globals.assets.card_type.push(img);
         }
         else if ( i < Card_img_quantity.FRAME_CARDS)
         {
-            globals.tileSets.card_frame.push(img);
+            globals.assets.card_frame.push(img);
         }
         else
         {
-            globals.tileSets.card_reverse.push(img);
+            globals.assets.card_reverse.push(img);
         }
     }
 
@@ -117,31 +117,43 @@ function fake_loadASsets ()
     //Variable que guardara informacion de la Clase Image
     // let tileSet;
 
+    tileSet = new Image();
+    tileSet.addEventListener("load", loadHandler, false);
+    tileSet.src = "./images/bricks.png"; //Ojo que la ruta es relativa al HTML, no al JS
+    globals.assets.card_category.push(tileSet);
+    globals.assetsToLoad.push(tileSet);
+
+    
+
+
     //Reverso de La carta
-    const card_Reverse      = "./client/images/Images_for_fake/card_Reverse.png";
-    globals.tileSets.card_reverse.push(card_Reverse);
+    const card_Reverse      = "./images/Images_for_fake/card_Reverse.png";
+    globals.images_routesLinks.push(card_Reverse);
+    globals.assetsToLoad.push(card_Reverse);
+    globals.assets.card_reverse.push(0);
 
     //Frame de la carta
     const card_frame        = "./client/images/Images_for_fake/card_frame.png" 
     const card_frame_small  = "./client/images/Images_for_fake/card_frame_small.png"  
-    globals.tileSets.card_frame.push(card_frame);
-    globals.tileSets.card_frame.push(card_frame_small);
+    globals.images_routesLinks.push(card_frame, card_frame_small);
+    globals.assets.card_frame.push(0, 1);
+    globals.assetsToLoad.push(card_frame, card_frame_small);
     
     //Type - Zelaia
     const firts_field       =  "./client/images/Images_for_fake/Type/first_field.png";
     const second_field      =  "./client/images/Images_for_fake/Type/second_field.png";
     const third_field       =  "./client/images/Images_for_fake/Type/third.png";
-    globals.tileSets.card_type.push(firts_field);
-    globals.tileSets.card_type.push(second_field);
-    globals.tileSets.card_type.push(third_field);
+    globals.images_routesLinks.push(firts_field, second_field, third_field);
+    globals.assets.card_type.push(0, 1, 2);
+    globals.assetsToLoad.push(firts_field, second_field, third_field );
 
     //Category - Clima, Permanente o Inmediato 
     const climatology       = "client/images/Images_for_fake/Category/Clima.png";
     const permanent         = "client/images/Images_for_fake/Category/Permanente.png";
     const inmediate         = "client/images/Images_for_fake/Category/Inmediato.png";
-    globals.tileSets.card_category.push(climatology);
-    globals.tileSets.card_category.push(permanent);
-    globals.tileSets.card_category.push(inmediate);
+    globals.images_routesLinks.push(climatology, permanent, inmediate);
+    globals.assets.card_category.push(0, 1, 2);
+    globals.assetsToLoad.push(card_Reverse);
 
     //Values
     const value0        = "./client/images/Images_for_fake/Values/Valor_0.png";
@@ -155,7 +167,9 @@ function fake_loadASsets ()
     const value8        = "./client/images/Images_for_fake/Values/Valor_8.png";
     const value9        = "./client/images/Images_for_fake/Values/Valor_9.png";
     const value10        = "./client/images/Images_for_fake/Values/Valor_10.png";
-    globals.tileSets.card_value.push(value0, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10);
+    globals.images_routesLinks.push(value0, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10);
+    globals.assets.card_value.push(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+    globals.assetsToLoad.push(card_Reverse);
 
     //Effects
     const bitting_Frost         = "./client/images/Images_for_fake/Effects/Bitting_Frost.png";
@@ -170,14 +184,16 @@ function fake_loadASsets ()
     const Spy                   = "./client/images/Images_for_fake/Effects/Spy.png";
     const Tight_bond            = "./client/images/Images_for_fake/Effects/Tight_bond.png";
     const Torrential_Rain       = "./client/images/Images_for_fake/Effects/Torrential_Rain.png";
-    globals.tileSets.card_value.push(bitting_Frost, Clear_Weather, Commanders_horn, Decoy, Impenetrable_fog, Medic, Morale_boost, Muster, Scorch, Spy, Tight_bond, Torrential_Rain);
+    globals.images_routesLinks.push(bitting_Frost, Clear_Weather, Commanders_horn, Decoy, Impenetrable_fog, Medic, Morale_boost, Muster, Scorch, Spy, Tight_bond, Torrential_Rain);
+    globals.assetsToLoad.push(card_Reverse);
 
     //Imagenes de Fondo
     const bitting_frost_img     = "./client/images/Images_for_fake/Cards_images/bitting_frost.png";
     const commanders_horn_img   = "./client/images/Images_for_fake/Cards_images/Commanders_Horn.png";
     const zarate_img            = "./client/images/Images_for_fake/Cards_images/zarate.png";
     const coin                  = "./client/images/Images_for_fake/Cards_images/coin.png";
-    globals.tileSets.front_img.push(bitting_frost_img, commanders_horn_img, zarate_img, coin);
+    globals.images_routesLinks.push(bitting_frost_img, commanders_horn_img, zarate_img, coin);
+    globals.assetsToLoad.push(card_Reverse);
 
     //Carga de Todas las imagenes
 }
@@ -193,9 +209,9 @@ function loadHandler()
     if(globals.assetsLoaded === globals.assetsToLoad.length)
     {
         //remove the load event listener
-        for (let i = 0; i < globals.tileSets.length; i++)
+        for (let i = 0; i < globals.assets.length; i++)
         {
-            globals.tileSets[i].removeEventListener("load", loadHandler, false);
+            globals.assets[i].removeEventListener("load", loadHandler, false);
         }
 
         console.log("Assets finished loading");

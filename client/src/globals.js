@@ -8,7 +8,7 @@ export default
     ctx:{},
 
     //Estado de juego. inicializamos a INVALIDO
-    gameState: State.PLAYING,
+    gameState: State.LOADING,
 
     //Tiempo de ciclo anterior
     previousCycleMilliseconds: -1,
@@ -37,7 +37,7 @@ export default
     tokens:[],
 
     //Array de assets que guarda Datos de imagen
-    tileSets: {
+    assets: {
         front_img:          [],     // Imagen de la carta
         card_frame:         [],     // Marco de la carta
         card_reverse:       [],     // Reverso de la carta
@@ -46,6 +46,9 @@ export default
         card_effect:        [],     // Effecto de la carta - Scorch, spy...
         card_value:         [],     // Valor de la carta - 0, 1, 3... 10
     },
+
+    //rutas de imagenes
+    images_routesLinks: [],
 
     //Carga de los Assets
     assetsToLoad: [],
