@@ -12,35 +12,36 @@ class ModelBase extends Conexion{
         $this->conexion = parent::getInstance();
     }
 
-    //Obtiene todos los elementos de la tabla
+    // OBtiene todos los elementos de la tabla
     function getAll()
     {
         $query = $this->selectDB($this->table_name);
-        // $query = $this->selectDB($this->table_name2);
-        // $query = $this->selectDB($this->table_name3);
-
-        //echo "Table name: " . $this->table_name;
+        
+        // echo "Table name: " . $this->table_name;
         $result = $this->conexion->query($query);
-
-        //Creamos el array asociativo para devolver los datos
+        
+        // Creamos el array asociativo para devolver los datos
         $array = $this->createArray($result);
+
+   
 
         $result->close();
         return $array;
     }
 
     //OBtiene todos los elementos de la table, filtrados por una valor de una columna
-    function getAllBycolumn($search_name, $search_value)
-    {
-        $query = $this->selectDB($this->table_name, "*", $search_name, $search_value);
-        $result = $this->conexion->query($query);
+    // function getAllBycolumn($search_name, $search_value)
+    // {
+    //     $query = $this->selectDB($this->table_name, "*", $search_name, $search_value);
+    //     $result = $this->conexion->query($query);
+    //     // echo $result;
 
-        //Creamos el array asociativo para devolver los datos
-        $array = $this->createArray($result);
+    //     //Creamos el array asociativo para devolver los datos
+    //     $array = $this->createArray($result);
 
-        $result->close();
-        return $array;
-    }
+    //     $result->close();
+    //     return $array;
+    // }
 
     //Funcion que añade un elemento nuevo a la tabla
     function addNew($array)
@@ -54,19 +55,25 @@ class ModelBase extends Conexion{
 
     protected function createArray($data)
     {
-        //Creamos el array asociativo para devolver los datos
-        while ($row = $data->fetch_array(MYSQLI_ASSOC))
+
+        // Creamos el array asociativo para devolver los datos
+        while($row = $data->fetch_array(MYSQLI_ASSOC))
         {
-            //Añadimos la siguiente fila
+            // Añadimos la siguiente fila
             $array[] = $row;
         }
 
         return $array;
-    } 
+    }
 
     protected function selectDB($table, $columns = "*", $name = "", $value = "")
     {
-        $query = "SELECT $columns FROM $table order by score desc";
+        // select name, score, coins, distance from game JOIN user ON user .id = id_e ORDER BY score desc;
+        $query = "SELECT $columns FROM $table";
+
+        // Nombre, efecto, value, type, description EU, decsription EN, state, category, id_img, rarity, 
+        // $query = "SELECT $columns FROM $table INNER JOIN $table2 ON urritasun_karta ";
+
         if($name != "" && $value != "")
         {
             $query .= " WHERE $name = '$value'";
@@ -75,6 +82,19 @@ class ModelBase extends Conexion{
         // echo $query;
         return $query;
     }
+
+    // protected function selectDBCards($table, $columns = "*", $name = "", $value = "")
+    // {
+    //     $query = "SELECT $columns FROM $table";
+    //     if($name != "" && $value != "")
+    //     {
+    //         $query .= " WHERE $name = '$value'";
+    //     }
+
+    //     // echo $query;
+    //     return $query;
+    // }
+
 
     protected function insertDB($table, $array)
     {
