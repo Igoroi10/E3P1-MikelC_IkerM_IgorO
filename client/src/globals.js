@@ -47,6 +47,13 @@ export default
         card_value:         [],     // Valor de la carta - 0, 1, 3... 10
     },
 
+    //Array para los slots de mesa
+    tableSlots:{
+        player1:    [],
+        player2:    [],
+        common:      [],
+    },
+
     //Carga de los Assets
     assetsToLoad: [],
     assetsLoaded: 0,

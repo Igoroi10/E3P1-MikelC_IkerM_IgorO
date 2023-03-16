@@ -551,6 +551,22 @@ function tableSize()
 
 }
 
+function initTableSlots(){
+    initPlayerSlots();
+    initCommonSlots();
+}
+
+function initPlayerSlots(){
+    initDecks();
+    initHands();
+    initFields();
+    initDiscards();
+}
+
+function initCommonSlots(){
+    initClimateSlot();
+    initBuffSlots();
+}
 
 export {
     createExpertDeck,
