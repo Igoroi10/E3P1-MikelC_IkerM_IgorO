@@ -38,13 +38,13 @@ export default
 
     //Array de assets que guarda Datos de imagen
     tileSets: {
-        front_img:         [],
-        card_frame:         [],
-        card_reverse:       [],
-        card_type:          [],
-        card_category:      [],
-        card_effect:        [],
-        card_value:         [],
+        front_img:          [],     // Imagen de la carta
+        card_frame:         [],     // Marco de la carta
+        card_reverse:       [],     // Reverso de la carta
+        card_type:          [],     // Tipo de Carta - Zelai 1, 2 o 3
+        card_category:      [],     // Categoria de la carta - Permanente, Inmediato o Clima
+        card_effect:        [],     // Effecto de la carta - Scorch, spy...
+        card_value:         [],     // Valor de la carta - 0, 1, 3... 10
     },
 
     //Carga de los Assets

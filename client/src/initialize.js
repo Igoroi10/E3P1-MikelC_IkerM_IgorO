@@ -110,7 +110,7 @@ function loadAssets()
 function fake_loadASsets ()
 {
     //Variable que guardara informacion de la Clase Image
-    let tileSet;
+    // let tileSet;
 
     //Reverso de La carta
     const card_Reverse      = "./client/images/Images_for_fake/card_Reverse.png";
@@ -123,20 +123,20 @@ function fake_loadASsets ()
     globals.tileSets.card_frame.push(card_frame_small);
     
     //Type - Zelaia
-    const firts_field       =  "./client/images/Images_for_fake/first_field.png";
-    const second_field      =  "./client/images/Images_for_fake/second_field.png";
-    const third_field       =  "./client/images/Images_for_fake/third_field.png";
+    const firts_field       =  "./client/images/Images_for_fake/Type/first_field.png";
+    const second_field      =  "./client/images/Images_for_fake/Type/second_field.png";
+    const third_field       =  "./client/images/Images_for_fake/Type/third.png";
     globals.tileSets.card_type.push(firts_field);
     globals.tileSets.card_type.push(second_field);
     globals.tileSets.card_type.push(third_field);
 
-    //Category - Ultrare, rare, common
-    const ultraRare     = "UltraRare";
-    const rare          = "Rare";
-    const common        = "Common";
-    globals.tileSets.card_category.push(ultraRare);
-    globals.tileSets.card_category.push(rare);
-    globals.tileSets.card_category.push(common);
+    //Category - Clima, Permanente o Inmediato 
+    const climatology       = "client/images/Images_for_fake/Category/Clima.png";
+    const permanent         = "client/images/Images_for_fake/Category/Permanente.png";
+    const inmediate         = "client/images/Images_for_fake/Category/Inmediato.png";
+    globals.tileSets.card_category.push(climatology);
+    globals.tileSets.card_category.push(permanent);
+    globals.tileSets.card_category.push(inmediate);
 
     //Values
     const value0        = "./client/images/Images_for_fake/Values/Valor_0.png";
