@@ -127,6 +127,8 @@ const CardSizes = {
     TOKEN_WIDHT:    85
 }
 
+const CARD_SIZE = 150;
+
 
 
 export{
@@ -144,5 +146,6 @@ export{
     Card_img_quantity,
     Key,
     CardSizes,
+    CARD_SIZE,
 }
 
