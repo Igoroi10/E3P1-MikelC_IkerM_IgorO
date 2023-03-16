@@ -8,12 +8,56 @@ import { Key } from "./constants.js";
 
 export function btnStartDown (event)
 {
+    // console.log("OK");
+
+    // //Ocultamos el boton de START
+    // globals.buttonStart.style.visibility = "hidden";
+
+    // document.getElementById('divCanvas').style.display = "block";
+
     console.log("OK");
 
-    //Ocultamos el boton de START
-    globals.buttonStart.style.visibility = "hidden";
+    //Ocultamos el boton de Start
+    globals.buttonStart.style.visibility = "Hidden";
 
     document.getElementById('divCanvas').style.display = "block";
+
+    //Ruta o absoluta o relativa al fichero que hace la peticion (html)
+    const url = "http://localhost/PHP/BookcardExample/server/routes/getAllHighscore.php";
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = function()
+    {
+        // console.log("entra");
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                // console.log("entra");
+                // console.log (this.responseText);
+                if (this.responseText != null)
+                {
+                    
+                    // console.log("Entra");
+                    const resultJSON = JSON.parse(this.responseText);
+                    
+                    
+                    //Iniciamos los datos del juego
+                    initGame(resultJSON);
+
+                }
+                else  
+                    alert("Comunication error: No data received");
+            }
+            else 
+                alert ( "Communication error: " + this.statusText);
+        }
+    }
+
+    request.open ('GET', url, true);
+    request.responseType = "text";
+    request.send();
+
 }
 
 export function btnStartOver (event)

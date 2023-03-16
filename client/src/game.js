@@ -37,6 +37,7 @@ function init()
 
 function gameLoop(timeStamp)
 {
+    // console.log("gameloop");
     //Keep requesting new frames
     window.requestAnimationFrame(gameLoop, globals.canvas);
 
@@ -48,9 +49,11 @@ function gameLoop(timeStamp)
 
     //Variable que corrige el tiempo de frame debido a retrasos con respecto al tiempo objetivo (frameTimeObj)
     globals.deltaTime += elapsedCycleSeconds;
+    // console.log(globals.deltaTime);
 
     if(globals.deltaTime >= globals.frameTimeObj)
     {
+        // console.log("tra");
         //Update the game logic. gameLogic.js
         update();
 
@@ -58,7 +61,7 @@ function gameLoop(timeStamp)
         render();
 
         //Corregimos los excesos de tiempo
-        globals.deltaTime -= globalThis.frameTimeObj;
+        globals.deltaTime -= globals.frameTimeObj;
     }
 
 
