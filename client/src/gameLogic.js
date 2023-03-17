@@ -64,7 +64,7 @@ function playGame()
     }
 
     //... ANTERIOR
-    console.log("Actualiza");
+
    
     //Sacamos en pantalla las coordenadas del ratón
 
@@ -95,7 +95,7 @@ function loading ()
     // console.log("assets cargados: " + globals.assetsLoaded)
     // console.log("Get loaded succesfully");
 
-    if (globals.action.enter && globals.get_checks === 2)
+    if (globals.assetsLoaded === globals.img_url.length && globals.get_checks === 3)
     {   
         globals.gameState           = State.PLAYING; 
         globals.action.enter        = false;

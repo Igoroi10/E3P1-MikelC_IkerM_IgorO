@@ -240,6 +240,8 @@ function loadCardImages(){
             globals.assetsToLoad.push(cardImg);
 
         }
+
+        console.log("fin de carga de imagenes");
     }
 
 
@@ -259,15 +261,46 @@ function loadHandler()
     if(globals.assetsLoaded === globals.assetsToLoad.length)
     {
         //remove the load event listener
-        for (let i = 0; i < globals.assets.length; i++)
+        for (let i = 0; i < globals.assets.front_img.length; i++)
         {
-            globals.assets[i].removeEventListener("load", loadHandler, false);
+            globals.assets.front_img[i].removeEventListener("load", loadHandler, false);
         }
+
+        for (let i = 0; i < globals.assets.card_frame.length; i++)
+        {
+            globals.assets.card_frame[i].removeEventListener("load", loadHandler, false);
+        }
+
+        
+        for (let i = 0; i < globals.assets.card_reverse.length; i++)
+        {
+            globals.assets.card_reverse[i].removeEventListener("load", loadHandler, false);
+        }
+
+        for (let i = 0; i < globals.assets.card_category.length; i++)
+        {
+            globals.assets.card_category[i].removeEventListener("load", loadHandler, false);
+        }
+
+        for (let i = 0; i < globals.assets.card_type.length; i++)
+        {
+            globals.assets.card_type[i].removeEventListener("load", loadHandler, false);
+        }
+
+        for (let i = 0; i < globals.assets.card_effect.length; i++)
+        {
+            globals.assets.card_effect[i].removeEventListener("load", loadHandler, false);
+        }
+
+        for (let i = 0; i < globals.assets.card_value.length; i++)
+        {
+            globals.assets.card_value[i].removeEventListener("load", loadHandler, false);
+        }
+
 
         console.log("Assets finished loading");
 
-        //Start the game
-        globals.gameState = State.LOADING;
+
     }
 }
 
