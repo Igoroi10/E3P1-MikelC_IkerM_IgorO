@@ -27,7 +27,7 @@ function init()
     initFakeCards();
 
     //Inicializamos la base de datos
-    initCardInfo();
+    // initCardInfo();
 
     window.requestAnimationFrame(gameLoop);
 }

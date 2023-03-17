@@ -281,6 +281,8 @@ function fake_loadASsets ()
 
 function loadHandler()
 {
+    console.log("colooooocolooo");
+    
     globals.assetsLoaded++; 
     console.log ("Assets loaded: " + globals.assetsLoaded);
     console.log ("Assets to load: " + globals.assetsToLoad.length);

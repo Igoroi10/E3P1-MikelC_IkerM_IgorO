@@ -15,7 +15,7 @@ export function btnStartDown (event)
 
     // document.getElementById('divCanvas').style.display = "block";
 
-    console.log("OK");
+    // console.log("OK");
 
     //Ocultamos el boton de Start
     globals.buttonStart.style.visibility = "Hidden";

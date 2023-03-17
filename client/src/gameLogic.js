@@ -1,5 +1,6 @@
 import globals from "./globals.js";
 import { State } from "./constants.js";
+import { initCardInfo } from "./initialize.js";
 
 export default function update()
 {
@@ -79,6 +80,8 @@ function playGame()
 
 function loading ()
 {
+    // initCardInfo();
+    
     if (globals.action.enter)
     {   
         globals.gameState           = State.PLAYING; 
