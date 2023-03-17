@@ -86,8 +86,11 @@ function loading ()
     }
 
     console.log(globals.img_url);
+    if(globals.get_checks === 2){
+        loadAssets();
+        globals.get_checks++;
+    }
 
-    loadAssets();
 
     // console.log("assets cargados: " + globals.assetsLoaded)
     // console.log("Get loaded succesfully");

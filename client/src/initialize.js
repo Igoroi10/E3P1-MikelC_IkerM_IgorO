@@ -162,7 +162,7 @@ function loadAssets()
 
     loadCardImages();
 
-
+//  gameState = STATE.PLAYING;   
 }
 
 function loadCardImages(){
@@ -175,7 +175,7 @@ function loadCardImages(){
 
         let cardImg;
 
-        const url = globals.img_url[i].URL;
+        const url ="."+globals.img_url[i].URL;
 
         if (i < Card_img_quantity.UNIT_CARD )
         {
