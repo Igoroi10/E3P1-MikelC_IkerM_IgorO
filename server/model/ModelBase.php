@@ -40,16 +40,14 @@ class ModelBase extends Conexion
     // Obtiene todos los elementos de la tabla,l filtrados por un valor de una columna
     function getLinks()
     {
-        echo("Entra en la función");
         $query = $this->selectDB2();
         $result = $this->conexion->query($query);
 
         // Creamos el array asociativo para devolverlos datos
-        $array = $this->createArray($result);
-
-        $array_links = $this->createArray($result);
+        $array= $this->createArray($result);
 
         $result->close();
+        
         return $array;
     }
 
@@ -79,6 +77,7 @@ class ModelBase extends Conexion
 
         return $array;
     }
+    
 
 
     // Devuelve Un Query de la forma "SELECT * FROM table WHERE authors = 'Jane Austen' "
