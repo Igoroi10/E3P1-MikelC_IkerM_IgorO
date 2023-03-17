@@ -80,10 +80,15 @@ function playGame()
 
 function loading ()
 {
-    initCardInfo();
-    initCardLinks();
-    
-    if (globals.action.enter)
+    if(globals.get_checks < 2){
+        initCardInfo();
+        initCardLinks();
+    }
+
+    // if(globals.get_checks === 2)
+    // console.log("Get loaded succesfully");
+
+    if (globals.action.enter && globals.get_checks === 2)
     {   
         globals.gameState           = State.PLAYING; 
         globals.action.enter        = false;
