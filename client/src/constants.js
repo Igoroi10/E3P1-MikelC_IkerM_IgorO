@@ -106,13 +106,13 @@ const Key = {
 
 const Card_img_quantity = {
     
-    UNIT_CARD:          36,
-    EFFECT_CARDS:       47,
-    VALUE_CARDS:        58,
-    CATEGORY_CARDS:     61,
-    TYPE_CARDS:         64,
-    FRAME_CARDS:        66,
-    REVERSE_CARDS:      67,
+    UNIT_CARD:          35,
+    EFFECT_CARDS:       46,
+    VALUE_CARDS:        57,
+    CATEGORY_CARDS:     60,
+    TYPE_CARDS:         63,
+    FRAME_CARDS:        65,
+    REVERSE_CARDS:      66,
 
 };
 
