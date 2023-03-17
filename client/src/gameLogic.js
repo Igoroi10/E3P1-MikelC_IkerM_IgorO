@@ -80,8 +80,8 @@ function playGame()
 
 function loading ()
 {
-    //initCardInfo();
-    initCardLinks();
+    initCardInfo();
+    //initCardLinks();
     
     if (globals.action.enter)
     {   
