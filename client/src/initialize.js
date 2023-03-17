@@ -343,6 +343,12 @@ function addOneOfEach(){
 
 function insertCard(i){
 
+    //FUncion de imageSet que tengan la anchura y altura carta grande - La paso a loadCardImages 
+    CardSize();
+    //Toquens medida Especial
+    // Generar un fondo en el CSS
+
+
     switch(globals.fakeCardInfo[i].category){
 
         case "unit":
@@ -385,6 +391,17 @@ function insertCard(i){
     }
     
 }
+
+function CardSize(card)
+{
+    // xSize, ySize
+    const xSize     = 0;
+    const ySize     = 0;
+
+    const cardImageSet = new ImageSet(xSize, ySize,)
+}
+
+
 
 // ==================================================
 //               CREATION OF FAKE CARDS
