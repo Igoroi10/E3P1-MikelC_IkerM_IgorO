@@ -70,4 +70,7 @@ export default
 
     //Ascii Code para eventos del teclado
     asciiCode: -1,
+
+    //Checks de los get
+    get_checks: 0,
 }

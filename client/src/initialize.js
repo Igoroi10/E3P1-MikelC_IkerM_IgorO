@@ -8,6 +8,7 @@ import FakeCard from "./FakeCard.js";
 import { GameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
 import { keydownHandler, keyupHandler } from "./events.js";
+import ImageSet from "./ImageSet.js";
 
 
 window.onload = init;
@@ -674,6 +675,52 @@ function initCardInfo()
                     
                     // console.log("Entra");
                     const resultJSON = JSON.parse(this.responseText);
+                    globals.get_checks++;
+                    
+                    //Guardamos los datos del resultJSON
+                    globals.cardInfo = resultJSON;
+                    
+                    //Iniciamos los datos del juego
+                    // initGame(resultJSON);
+
+                    console.log(globals.cardInfo);
+                    // console.log("this.responetext" + this.responseText);
+
+                }
+                else  
+                    alert("Comunication error: No data received");
+            }
+            else 
+                alert ( "Communication error: " + this.statusText);
+        }
+    }
+
+    request.open ('GET', url, true);
+    request.responseType = "text";
+    request.send();
+}
+
+function initCardLinks()
+{
+    console.log("Txocolo");
+    const url = "http://localhost/JavaScript/E3P1/server/routes/getAllLinks.php";
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = function()
+    {
+        // console.log("entra");
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                // console.log("entra");
+                // console.log (this.responseText);
+                if (this.responseText != null)
+                {
+                    
+                    // console.log("Entra");
+                    const resultJSON = JSON.parse(this.responseText);
+                    globals.get_checks++;
                     
                     //Guardamos los datos del resultJSON
                     globals.cardInfo = resultJSON;
@@ -724,5 +771,6 @@ export {
     initEvents,
     initFakeCards,
     loadAssets,
-    initCardInfo
+    initCardInfo,
+    initCardLinks
 }

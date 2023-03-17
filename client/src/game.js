@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { initEvents, initFakeCards, initHTMLelements, initVars, loadAssets, initCardInfo} from "./initialize.js";
+import { initEvents, initFakeCards, initHTMLelements, initVars, loadAssets, initCardInfo, initCardLinks} from "./initialize.js";
 import update from "./gameLogic.js";
 import { render } from "./gameRender.js";
 
@@ -28,6 +28,7 @@ function init()
 
     //Inicializamos la base de datos
     // initCardInfo();
+    // initCardLinks();
 
     window.requestAnimationFrame(gameLoop);
 }

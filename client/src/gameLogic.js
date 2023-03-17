@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import { State } from "./constants.js";
-import { initCardInfo } from "./initialize.js";
+import { initCardInfo, initCardLinks } from "./initialize.js";
 
 export default function update()
 {
@@ -81,6 +81,7 @@ function playGame()
 function loading ()
 {
     // initCardInfo();
+    // initCardLinks();
     
     if (globals.action.enter)
     {   
