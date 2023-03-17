@@ -81,7 +81,7 @@ function playGame()
 function loading ()
 {
     initCardInfo();
-    //initCardLinks();
+    initCardLinks();
     
     if (globals.action.enter)
     {   

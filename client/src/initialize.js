@@ -675,7 +675,7 @@ function tableSize()
 function initCardInfo()
 {
     console.log("Txocolo");
-    const url = "http://localhost/JavaScript/E3P1/server/routes/getAllCards.php";
+    const url = "http://localhost/mythClash/server/routes/getAllCards.php";
     const request = new XMLHttpRequest();
 
     request.onreadystatechange = function()
