@@ -34,6 +34,8 @@ export default
     
     fakeCardInfo: [],
 
+    cardInfo: [],
+
     tokens:[],
 
     //Array de assets que guarda Datos de imagen

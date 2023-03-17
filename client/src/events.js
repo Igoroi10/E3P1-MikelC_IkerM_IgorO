@@ -60,11 +60,11 @@ export function btnStartDown (event)
 
 }
 
+//Boton de Start a Over
 export function btnStartOver (event)
 {
     //cambiamos el texto 
-
-    console.log("entraa");
+    // console.log("entraa");
     document.getElementById("btnStart").innerHTML = "OVER";
 
 }
@@ -92,19 +92,19 @@ export function canvasMousemoveHandler(event)
     globals.mouse.x = event.pageX - globals.canvas.offsetLeft;
     globals.mouse.y = event.pageY - globals.canvas.offsetTop;
     
-    console.log("Mouse xPos: " + globals.mouse.x);
-    console.log("Mouse yPos: " + globals.mouse.y);
+    // console.log("Mouse xPos: " + globals.mouse.x);
+    // console.log("Mouse yPos: " + globals.mouse.y);
 }
 
 export function keydownHandler(event)
 {
     globals.asciiCode = event.keyCode;
-    console.log("Ascii code: " + globals.asciiCode);
+    // console.log("Ascii code: " + globals.asciiCode);
 
     switch (event.keyCode)
     {
         case Key.ENTER:
-            console.log("Entra enter");
+            // console.log("Entra enter");
             globals.action.enter    = true;
             break;
     }
@@ -118,7 +118,7 @@ export function keyupHandler(event)
     switch (event.keyCode)
     {
         case Key.ENTER:
-            console.log("Sale enter");
+            // console.log("Sale enter")
             globals.action.enter    = true;
             break;
     }

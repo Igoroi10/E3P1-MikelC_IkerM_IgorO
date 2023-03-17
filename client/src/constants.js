@@ -138,13 +138,6 @@ const CardSlotsQuantity = {
      
 }
 
-CardSlotsQuantity = {
-    HAND:       12,
-    FIELD:      8,
-    DECK:       1,
-    DISCARD:    1, 
-}
-
 
 export{
     State,
@@ -162,5 +155,7 @@ export{
     Key,
     CardSizes,
     CARD_SIZE,
+    CardSlotsQuantity,
+
 }
 
