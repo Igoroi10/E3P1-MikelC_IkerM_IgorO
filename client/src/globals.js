@@ -36,6 +36,8 @@ export default
 
     cardInfo: [],
 
+    img_url: [],
+
     tokens:[],
 
     //Array de assets que guarda Datos de imagen

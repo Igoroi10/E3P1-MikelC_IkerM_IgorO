@@ -158,131 +158,97 @@ function initEvents()
 
 function loadAssets()
 {
-    for (let i = 0; i < globals.img_url; i++)
+    console.log("entra en loadAssets");
+
+    loadCardImages();
+
+
+}
+
+function loadCardImages(){
+
+    console.log("entra en load card images");
+
+    for (let i = 0; i < globals.img_url.length; i++)
     {
-        const img = globals.img_url[i]
+        
+
+        let cardImg;
+
+        const url = globals.img_url[i].URL;
 
         if (i < Card_img_quantity.UNIT_CARD )
         {
-            globals.assets.front_img.push(img);
+            cardImg = new Image();
+            cardImg.addEventListener("load", loadHandler, false);
+            cardImg.src = url;
+            globals.assets.front_img.push(cardImg);
+            globals.assetsToLoad.push(cardImg);
+
         }
         else if (i < Card_img_quantity.EFFECT_CARDS)
         {
-            globals.assets.effect.push(img);
+            cardImg = new Image();
+            cardImg.addEventListener("load", loadHandler, false);
+            cardImg.src = url;
+            globals.assets.card_effect.push(cardImg);
+            globals.assetsToLoad.push(cardImg);
+
         }
         else if (i < Card_img_quantity.VALUE_CARDS)
         {
-            globals.assets.card_value.push(img);
+            cardImg = new Image();
+            cardImg.addEventListener("load", loadHandler, false);
+            cardImg.src = url;
+            globals.assets.card_value.push(cardImg);
+            globals.assetsToLoad.push(cardImg);
+
         }
         else if (i < Card_img_quantity.CATEGORY_CARDS)
         {
-            globals.assets.card_category.push(img)
+            cardImg = new Image();
+            cardImg.addEventListener("load", loadHandler, false);
+            cardImg.src = url;
+            globals.assets.card_category.push(cardImg)
+            globals.assetsToLoad.push(cardImg);
+
         }
         else if (i < Card_img_quantity.TYPE_CARDS)
         {
-            globals.assets.card_type.push(img);
+            cardImg = new Image();
+            cardImg.addEventListener("load", loadHandler, false);
+            cardImg.src = url;
+            globals.assets.card_type.push(cardImg);
+            globals.assetsToLoad.push(cardImg);
+
         }
         else if ( i < Card_img_quantity.FRAME_CARDS)
-        {
-            globals.assets.card_frame.push(img);
+        {   
+            cardImg = new Image();
+            cardImg.addEventListener("load", loadHandler, false);
+            cardImg.src = url;
+            globals.assets.card_frame.push(cardImg);
+            globals.assetsToLoad.push(cardImg);
+
         }
         else
         {
-            globals.assets.card_reverse.push(img);
+            cardImg = new Image();
+            cardImg.addEventListener("load", loadHandler, false);
+            cardImg.src = url;
+            globals.assets.card_reverse.push(cardImg);
+            globals.assetsToLoad.push(cardImg);
+
         }
     }
 
+
 }
 
-function fake_loadASsets ()
-{
-    //Variable que guardara informacion de la Clase Image
-    // let tileSet;
 
-    tileSet = new Image();
-    tileSet.addEventListener("load", loadHandler, false);
-    tileSet.src = "./images/bricks.png"; //Ojo que la ruta es relativa al HTML, no al JS
-    globals.assets.card_category.push(tileSet);
-    globals.assetsToLoad.push(tileSet);
-
-    
-
-
-    //Reverso de La carta
-    const card_Reverse      = "./images/Images_for_fake/card_Reverse.png";
-    globals.images_routesLinks.push(card_Reverse);
-    globals.assetsToLoad.push(card_Reverse);
-    globals.assets.card_reverse.push(0);
-
-    //Frame de la carta
-    const card_frame        = "./client/images/Images_for_fake/card_frame.png" 
-    const card_frame_small  = "./client/images/Images_for_fake/card_frame_small.png"  
-    globals.images_routesLinks.push(card_frame, card_frame_small);
-    globals.assets.card_frame.push(0, 1);
-    globals.assetsToLoad.push(card_frame, card_frame_small);
-    
-    //Type - Zelaia
-    const firts_field       =  "./client/images/Images_for_fake/Type/first_field.png";
-    const second_field      =  "./client/images/Images_for_fake/Type/second_field.png";
-    const third_field       =  "./client/images/Images_for_fake/Type/third.png";
-    globals.images_routesLinks.push(firts_field, second_field, third_field);
-    globals.assets.card_type.push(0, 1, 2);
-    globals.assetsToLoad.push(firts_field, second_field, third_field );
-
-    //Category - Clima, Permanente o Inmediato 
-    const climatology       = "client/images/Images_for_fake/Category/Clima.png";
-    const permanent         = "client/images/Images_for_fake/Category/Permanente.png";
-    const inmediate         = "client/images/Images_for_fake/Category/Inmediato.png";
-    globals.images_routesLinks.push(climatology, permanent, inmediate);
-    globals.assets.card_category.push(0, 1, 2);
-    globals.assetsToLoad.push(card_Reverse);
-
-    //Values
-    const value0        = "./client/images/Images_for_fake/Values/Valor_0.png";
-    const value1        = "./client/images/Images_for_fake/Values/Valor_1.png";
-    const value2        = "./client/images/Images_for_fake/Values/Valor_2.png";
-    const value3        = "./client/images/Images_for_fake/Values/Valor_3.png";
-    const value4        = "./client/images/Images_for_fake/Values/Valor_4.png";
-    const value5        = "./client/images/Images_for_fake/Values/Valor_5.png";
-    const value6        = "./client/images/Images_for_fake/Values/Valor_6.png";
-    const value7        = "./client/images/Images_for_fake/Values/Valor_7.png";
-    const value8        = "./client/images/Images_for_fake/Values/Valor_8.png";
-    const value9        = "./client/images/Images_for_fake/Values/Valor_9.png";
-    const value10        = "./client/images/Images_for_fake/Values/Valor_10.png";
-    globals.images_routesLinks.push(value0, value1, value2, value3, value4, value5, value6, value7, value8, value9, value10);
-    globals.assets.card_value.push(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
-    globals.assetsToLoad.push(card_Reverse);
-
-    //Effects
-    const bitting_Frost         = "./client/images/Images_for_fake/Effects/Bitting_Frost.png";
-    const Clear_Weather         = "./client/images/Images_for_fake/Effects/Clear_Weather.png";
-    const Commanders_horn       = "./client/images/Images_for_fake/Effects/Commanders_horn.png";
-    const Decoy                 = "./client/images/Images_for_fake/Effects/Decoy.png";
-    const Impenetrable_fog      = "./client/images/Images_for_fake/Effects/Impenetrable_fog.png";
-    const Medic                 = "./client/images/Images_for_fake/Effects/Medic.png";
-    const Morale_boost          = "./client/images/Images_for_fake/Effects/Morale_boost.png";
-    const Muster                = "./client/images/Images_for_fake/Effects/Muster.png";
-    const Scorch                = "./client/images/Images_for_fake/Effects/Scorch.png";
-    const Spy                   = "./client/images/Images_for_fake/Effects/Spy.png";
-    const Tight_bond            = "./client/images/Images_for_fake/Effects/Tight_bond.png";
-    const Torrential_Rain       = "./client/images/Images_for_fake/Effects/Torrential_Rain.png";
-    globals.images_routesLinks.push(bitting_Frost, Clear_Weather, Commanders_horn, Decoy, Impenetrable_fog, Medic, Morale_boost, Muster, Scorch, Spy, Tight_bond, Torrential_Rain);
-    globals.assetsToLoad.push(card_Reverse);
-
-    //Imagenes de Fondo
-    const bitting_frost_img     = "./client/images/Images_for_fake/Cards_images/bitting_frost.png";
-    const commanders_horn_img   = "./client/images/Images_for_fake/Cards_images/Commanders_Horn.png";
-    const zarate_img            = "./client/images/Images_for_fake/Cards_images/zarate.png";
-    const coin                  = "./client/images/Images_for_fake/Cards_images/coin.png";
-    globals.images_routesLinks.push(bitting_frost_img, commanders_horn_img, zarate_img, coin);
-    globals.assetsToLoad.push(card_Reverse);
-
-    //Carga de Todas las imagenes
-}
 
 function loadHandler()
 {
-    console.log("colooooocolooo");
     
     globals.assetsLoaded++; 
     console.log ("Assets loaded: " + globals.assetsLoaded);
@@ -669,7 +635,7 @@ function tableSize()
 }
 
 // ==========================================
-//                  GEt
+//                  GET
 // ==========================================
 
 function initCardInfo()
@@ -740,7 +706,7 @@ function initCardLinks()
                     globals.get_checks++;
                     
                     //Guardamos los datos del resultJSON
-                    globals.cardInfo = resultJSON;
+                    globals.img_url = resultJSON;
                     
                     //Iniciamos los datos del juego
                     // initGame(resultJSON);
@@ -789,5 +755,5 @@ export {
     initFakeCards,
     loadAssets,
     initCardInfo,
-    initCardLinks
+    initCardLinks,
 }

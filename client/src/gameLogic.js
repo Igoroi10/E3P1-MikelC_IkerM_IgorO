@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import { State } from "./constants.js";
-import { initCardInfo, initCardLinks } from "./initialize.js";
+import { initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 
 export default function update()
 {
@@ -85,7 +85,11 @@ function loading ()
         initCardLinks();
     }
 
-    // if(globals.get_checks === 2)
+    console.log(globals.img_url);
+
+    loadAssets();
+
+    // console.log("assets cargados: " + globals.assetsLoaded)
     // console.log("Get loaded succesfully");
 
     if (globals.action.enter && globals.get_checks === 2)
