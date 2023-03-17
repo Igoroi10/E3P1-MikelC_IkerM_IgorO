@@ -335,7 +335,7 @@ function createExpertDeck(){
 
 function addOneOfEach(){
  
-    for(let i = 0; i < globals.fakeCardInfo.length; i++){
+    for(let i = 0; i < globals.cardInfo.length; i++){
                 insertCard(i);
     }
 }
@@ -348,36 +348,36 @@ function insertCard(i){
     // Generar un fondo en el CSS
 
 
-    switch(globals.fakeCardInfo[i].category){
+    switch(globals.cardInfo[i].kategoria){
 
         case "unit":
-        const unitCard = new UnitCard(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
-                                      CardState.DECK, true, globals.fakeCardInfo[i].value, globals.fakeCardInfo[i].description, globals.fakeCardInfo[i].effect, globals.fakeCardInfo[i].rarity,
-                                      globals.fakeCardInfo[i].type);
+        const unitCard = new UnitCard(globals.cardInfo[i].irudia, globals.cardInfo[i].frameImg, globals.cardInfo[i].izena, CardState.DECK, true, 
+                                      globals.cardInfo[i].balioa, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].effect,
+                                      globals.cardInfo[i].urritasun_karta, globals.cardInfo[i].mota);
         globals.cards.push(unitCard);
         break;
 
         case "instaeffect":
-        const instaCard = new SuddenCard(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
-                                         CardState.DECK, true, globals.fakeCardInfo[i].description, globals.fakeCardInfo[i].effect);
+        const instaCard = new SuddenCard(globals.cardInfo[i].frontImg, globals.cardInfo[i].backImg, globals.cardInfo[i].frameImg, globals.cardInfo[i].cardName, 
+                                         CardState.DECK, true, globals.cardInfo[i].description, globals.cardInfo[i].effect);
         globals.cards.push(instaCard);
         break;
 
         case "permaeffect":
-        const permaCard = new PermaCard(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
-                                        CardState.DECK, true, globals.fakeCardInfo[i].description, globals.fakeCardInfo[i].effect);
+        const permaCard = new PermaCard(globals.cardInfo[i].frontImg, globals.cardInfo[i].backImg, globals.cardInfo[i].frameImg, globals.cardInfo[i].cardName, 
+                                        CardState.DECK, true, globals.cardInfo[i].description, globals.cardInfo[i].effect);
         globals.cards.push(permaCard);
         break;
 
         case "climate":
-        const climateCard = new ClimateCard(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
-                                            CardState.DECK, true, globals.fakeCardInfo[i].description, globals.fakeCardInfo[i].effect);
+        const climateCard = new ClimateCard(globals.cardInfo[i].frontImg, globals.cardInfo[i].backImg, globals.cardInfo[i].frameImg, globals.cardInfo[i].cardName, 
+                                            CardState.DECK, true, globals.cardInfo[i].description, globals.cardInfo[i].effect);
         globals.cards.push(climateCard);
         break;
 
         case "token":
         
-        const tokenCard = new Card(globals.fakeCardInfo[i].frontImg, globals.fakeCardInfo[i].backImg, globals.fakeCardInfo[i].frameImg, globals.fakeCardInfo[i].cardName, 
+        const tokenCard = new Card(globals.cardInfo[i].frontImg, globals.cardInfo[i].backImg, globals.cardInfo[i].frameImg, globals.cardInfo[i].cardName, 
                                    CardState.DECK, false);
         globals.tokens.push(tokenCard);
         break;
@@ -429,7 +429,7 @@ function fakeCardCreation_1() // Zarate
 
     for (let i = 0; i <= 5; i++)
     {
-        globals.fakeCardInfo.push(ZarateCard);
+        globals.cardInfo.push(ZarateCard);
     }
 
     // globals.cards.push(Zarate);
@@ -458,7 +458,7 @@ function fakeCardCreation_2() //Climatology Card
     
     for (let i = 0; i <= 5; i++)
     {
-        globals.fakeCardInfo.push(Climatology);
+        globals.cardInfo.push(Climatology);
     }
 
     // globals.cards.push(Climatology);
@@ -487,7 +487,7 @@ function fakeCardCreation_3() //PermaEffect Card
 
     for (let i = 0; i <= 5; i++)
     {
-        globals.fakeCardInfo.push(PermaEffect);
+        globals.cardInfo.push(PermaEffect);
     }
 
     // globals.cards.push(PermaEffect);
@@ -523,7 +523,7 @@ function fakeCardCreation_4() //Token card
 
 function addClimateCards(){
     for(let i = 0; i < CardQuantity.EXPERT_CLIMATE; i++){
-        randomChoice = Math.floor(Math.random() * (4 + 1));
+        let randomChoice = Math.floor(Math.random() * (4 + 1));
         let checks;
 
         for(let l = 0; 0 < globals.cards.length; l++){
@@ -548,7 +548,7 @@ function addPermaCards(mode){
         cardsToDraw = CardQuantity.NORMAL_PERMA;
 
     for(let i = 0; i < cardsToDraw; i++){
-        randomChoice = Math.floor(Math.random() * (2 + 1));
+        let randomChoice = Math.floor(Math.random() * (2 + 1));
         let checks;
 
         for(let l = 0; 0 < globals.cards.length; l++){
@@ -573,7 +573,7 @@ function addInstaCards(mode){
         cardsToDraw = CardQuantity.NORMAL_INSTA;
 
     for(let i = 0; i < cardsToDraw; i++){
-        randomChoice = Math.floor(Math.random() * (3 + 1));
+        let randomChoice = Math.floor(Math.random() * (3 + 1));
         let checks;
 
         for(let l = 0; 0 < globals.cards.length; l++){
@@ -593,7 +593,7 @@ function addInstaCards(mode){
 function addUnitCards(cardsLeft){
 
     for(let i = 0; i < cardsLeft; i++){
-        chanceNumber = Math.random();
+        let chanceNumber = Math.random();
         if(chanceNumber < 0.10)
             addUltraRareCard();
         else if(chanceNumber < 0.40)
@@ -607,7 +607,7 @@ function addUltraRareCard(){
     let ultraRareQuantity = 5;
     let randomChoice = Math.floor(Math.random() * (ultraRareQuantity + 1));
     let checks = 0;
-    for(i = 0; i < globals.cards.length; i++){
+    for(let i = 0; i < globals.cards.length; i++){
         if(globals.cards[i].rarity === Rarity.ULTRA_RARE){
             checks++;
             if(checks === randomChoice){
@@ -622,7 +622,7 @@ function AddRareCard(){
     let rareQuantity = 8;
     let randomChoice = Math.floor(Math.random() * (rareQuantity + 1));
     let checks = 0;
-    for(i = 0; i < globals.cards.length; i++){
+    for(let i = 0; i < globals.cards.length; i++){
         if(globals.cards[i].rarity === Rarity.RARE){
             checks++;
             if(checks === randomChoice){
@@ -636,7 +636,7 @@ function AddCommonCard(){
     let commonQuantity = 25;
     let randomChoice = Math.floor(Math.random() * (commonQuantity + 1));
     let checks = 0;
-    for(i = 0; i < globals.cards.length; i++){
+    for(let i = 0; i < globals.cards.length; i++){
         if(globals.cards[i].rarity === Rarity.COMMON){
             checks++;
             if(checks === randomChoice){

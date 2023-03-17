@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import { State } from "./constants.js";
-import { initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
+import { createExpertDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 
 export default function update()
 {
@@ -60,6 +60,8 @@ function playGame()
 {
     if (globals.action.enter)
     {   
+        createExpertDeck();
+        console.log(globals.cards.length);
     //   displayDeck();
     }
 

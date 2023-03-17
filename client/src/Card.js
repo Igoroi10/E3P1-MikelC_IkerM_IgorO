@@ -2,13 +2,11 @@ import {CardCategory, CardDisplaySize} from "./constants.js";
 
 class Card{
 
-    constructor(frontImg, backImg, frameImg, cardName, state, showBack, imageSet){
+    constructor(frontImg, cardName, state, showBack, imageSet){
 
         this.xPos       = 0;
         this.yPos       = 0;
         this.frontImg   = frontImg;
-        this.backImg    = backImg;
-        this.frameImg   = frameImg;
         this.cardName   = cardName;
         this.categoryId = CardCategory.TOKEN;
         this.state      = state;
@@ -21,10 +19,11 @@ class Card{
 
 class UnitCard extends Card{
 
-    constructor(value, description, effect, rarity, type){
+    constructor(value, description, description_eu, effect, rarity, type){
         super( frontImg, backImg, frameImg, cardName, state, showBack);
         this.value          = value;
         this.description    = description;
+        this.description_eu = description_eu
         this.effect         = effect;
         this.rarity         = rarity;
         this.categoryId     = CardCategory.UNIT;
