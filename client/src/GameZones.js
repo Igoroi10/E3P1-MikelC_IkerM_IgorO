@@ -1,6 +1,6 @@
 class GameZones {
 
-    constructor (xPos, yPos, xSize, ySize, placed_cards)
+    constructor (xPos, yPos, xSize, ySize)
     {
         this.xPos               = xPos;
         this.yPos               = yPos;

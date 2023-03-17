@@ -720,7 +720,7 @@ function initCardInfo()
 function initCardLinks()
 {
     console.log("Txocolo");
-    const url = "http://localhost/JavaScript/E3P1/server/routes/getAllLinks.php";
+    const url = "http://localhost/mythClash/server/routes/getAllLinks.php";
     const request = new XMLHttpRequest();
 
     request.onreadystatechange = function()
