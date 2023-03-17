@@ -38,17 +38,21 @@ class ModelBase extends Conexion
 
 
     // Obtiene todos los elementos de la tabla,l filtrados por un valor de una columna
-    function getAllByColumn ($search_name, $search_value)
+    function getLinks()
     {
-        $query = $this->$selectDB ($this->table_name, "*", $search_name, $search_value);
+        echo("Entra en la función");
+        $query = $this->selectDB2();
         $result = $this->conexion->query($query);
 
         // Creamos el array asociativo para devolverlos datos
         $array = $this->createArray($result);
 
+        $array_links = $this->createArray($result);
+
         $result->close();
         return $array;
     }
+
 
     // Función que añade un elemento nuevo a la tabla 
     function addNew($array) 
@@ -60,6 +64,7 @@ class ModelBase extends Conexion
         // echo $query;
         return $result;
     }
+
 
 
     protected function createArray($data)
@@ -89,6 +94,16 @@ class ModelBase extends Conexion
         $query = "SELECT $columns FROM $table";
         if( $name != "" && $value != "")
             $query .= " WHERE $name = '$value'";
+
+            // echo $query;
+            return $query;
+    }
+
+    protected function selectDB2()
+    {
+        //echo("entra en select 2");
+        
+        $query = "SELECT URL FROM LINKS";
 
             // echo $query;
             return $query;
