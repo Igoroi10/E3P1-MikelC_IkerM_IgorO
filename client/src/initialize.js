@@ -1,13 +1,12 @@
-import {btnStartDown, btnStartOver, btnStartOut, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler} from "./events.js";
 import globals from "./globals.js";
-import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, GameMode, FPS, Card_img_quantity} from "./constants.js";
+import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, GameMode, FPS, Card_img_quantity, Player1_map_pos, Player2_map_pos} from "./constants.js";
 import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 import FakeCard from "./FakeCard.js";
 
 import { GameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
-import { keydownHandler, keyupHandler } from "./events.js";
 import ImageSet from "./ImageSet.js";
 
 
@@ -655,6 +654,32 @@ function initFakeCards ()
     fakeCardCreation_4;
 }
 
+
+
+// ============================================================================================
+//                                      ZONAS DE JUEGO
+// ============================================================================================
+
+//La funcion Slots sera la funcion que llame a todos las funciones donde estaran los slots donde se coloquen todas las cartas
+function Slots()
+{
+    //GENERAL
+    tableSize();                // Tamaño de Toda la Mesa de juego
+    climatologyZone();          // Slots de Cartas de Clima 
+
+    //PLAYER 1
+    slotDiscardP1();            // Slots de Descartes del Jugador 1
+    handPlayer1();              // Mano del Jugador 1 (12 Slots)
+    buffPlayer1();              // Buffs del Player 1 (3 secciones)
+    tableSection_Player1();     // Seccion de juego de todas las cartas del Player 1 (3 Secciones, 10 slots cada una)
+
+    //PLAYER 2
+    slotDiscardP2();            // Slots de Descartes del Jugador 2
+    handPlayer2();              // Mano del Jugador 2 (12 Slots)
+    buffPlayer2();              // Buffs del Player 2 (3 secciones)
+    tableSection_Player2();     // Seccion de juego de todas las cartas del Player 2 (3 Secciones, 10 slots cada una)
+}
+
 // Tamaño de la mesa
 function tableSize()
 {
@@ -666,6 +691,91 @@ function tableSize()
     const tableSize = new GameZones (xPos, yPos, xSize, ySize);
 
 }
+
+
+function slotDiscardP1 ()
+{
+    const xPos      = 0;
+    const yPos      = 0;
+    const xSize     = 0;
+    const ySize     = 0;
+
+    const slotDiscardP1 = new GameZones(xPos, yPos, xSize, ySize);
+    //Se hara un push a un array globals de Slots para almacenar todos los slots (?) - COMENTAR AL GRUPO 
+}
+
+function slotDiscardP2 ()
+{
+    const xPos      = 0;
+    const yPos      = 0;
+    const xSize     = 0;
+    const ySize     = 0;
+
+    const slotDiscardP2 = new GameZones(xPos, yPos, xSize, ySize);
+}
+
+function climatologyZone ()
+{
+    const xPos      = 0;
+    const yPos      = 0;
+    const xSize     = 0;
+    const ySize     = 0;
+
+    const slotClimatology = new GameZones(xPos, yPos, xSize, ySize);
+}
+
+// ECHAR UN OJO AL HAND DE PLAYER - COMENTAR MAÑANA
+function handPlayer1 ()
+{ 
+    const xPos      = 0;
+    const yPos      = 0;
+    const xSize     = 0;
+    const ySize     = 0;
+
+    const slot1 = new GameZones(xPos, yPos, xSize, ySize);
+    
+}
+
+function handPlayer2 ()
+{
+    const xPos      = 0;
+    const yPos      = 0;
+    const xSize     = 0;
+    const ySize     = 0;
+
+    const slotDiscard = new GameZones(xPos, yPos, xSize, ySize);
+}
+
+function buffPlayer1 ()
+{
+    const xPos      = 0;
+    const yPos      = 0;
+    const xSize     = 0;
+    const ySize     = 0;
+
+    const slotDiscard = new GameZones(xPos, yPos, xSize, ySize);
+}
+
+function buffPlayer2 ()
+{
+    const xPos      = 0;
+    const yPos      = 0;
+    const xSize     = 0;
+    const ySize     = 0;
+
+    const slotDiscard = new GameZones(xPos, yPos, xSize, ySize);
+}
+
+function tableSection_Player1()
+{
+    //3 Secciones - Fisico, Distancia, Asedio
+}
+
+function tableSection_Player2()
+{
+    //3 Secciones - Fisico, Distancia, Asedio
+}
+
 
 // ==========================================
 //                  GET
