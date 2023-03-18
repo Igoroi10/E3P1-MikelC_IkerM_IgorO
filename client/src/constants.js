@@ -227,7 +227,10 @@ const Player2_map_pos = {
     PLAYER2_CARDS_IN_HAND12_XPOS:   1255,
 
     PLAYER2_DECK_XPOS:              1340,
-    PLAYER2_DECK_YPOS:              20
+    PLAYER2_DECK_YPOS:              20,
+
+    PLAYER2_DISSCARD_XPOS:          120,
+    PLAYER2_DISSCARD_YPOS:          750,
 }
 
 

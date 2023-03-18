@@ -1,13 +1,14 @@
 import {btnStartDown, btnStartOver, btnStartOut, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler} from "./events.js";
 import globals from "./globals.js";
-import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, GameMode, FPS, Card_img_quantity, Player1_map_pos, Player2_map_pos} from "./constants.js";
+import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 import FakeCard from "./FakeCard.js";
 
-import { GameZones } from "./GameZones.js";
+import { gameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
 import ImageSet from "./ImageSet.js";
+import { Player1_map_pos, Player2_map_pos, Common_map_pos } from "./constants.js";
 
 
 window.onload = init;
@@ -157,7 +158,7 @@ function initEvents()
 
 function loadAssets()
 {
-    console.log("entra en loadAssets");
+    // console.log("entra en loadAssets");
 
     loadCardImages();
 
@@ -166,7 +167,7 @@ function loadAssets()
 
 function loadCardImages(){
 
-    console.log("entra en load card images");
+    // console.log("entra en load card images");
 
     for (let i = 0; i < globals.img_url.length; i++)
     {
@@ -661,10 +662,10 @@ function initFakeCards ()
 // ============================================================================================
 
 //La funcion Slots sera la funcion que llame a todos las funciones donde estaran los slots donde se coloquen todas las cartas
-function Slots()
+function initSlots()
 {
     //GENERAL
-    tableSize();                // Tamaño de Toda la Mesa de juego
+    // tableSize();                // Tamaño de Toda la Mesa de juego
     climatologyZone();          // Slots de Cartas de Clima 
 
     //PLAYER 1
@@ -683,35 +684,38 @@ function Slots()
 // Tamaño de la mesa
 function tableSize()
 {
-    const xPos = 0;
-    const yPos = 0;
-    const xSize = 0;
-    const ySize = 0;
+    const xPos = 200;
+    const yPos = 200;
+    const xSize = 300;
+    const ySize = 300;
     
-    const tableSize = new GameZones (xPos, yPos, xSize, ySize);
+    const tableSize = new gameZones (xPos, yPos, xSize, ySize);
+    globals.slots.push(tableSize);
 
 }
 
 
 function slotDiscardP1 ()
 {
-    const xPos      = 0;
-    const yPos      = 0;
-    const xSize     = 0;
-    const ySize     = 0;
+    const xPos      = 120;
+    const yPos      = 60;
+    const xSize     = 90;
+    const ySize     = 100;
 
-    const slotDiscardP1 = new GameZones(xPos, yPos, xSize, ySize);
+    const slotDiscardP1 = new gameZones(xPos, yPos, xSize, ySize);
+    globals.slots.push(slotDiscardP1);
     //Se hara un push a un array globals de Slots para almacenar todos los slots (?) - COMENTAR AL GRUPO 
 }
 
 function slotDiscardP2 ()
 {
-    const xPos      = 0;
-    const yPos      = 0;
-    const xSize     = 0;
-    const ySize     = 0;
+    const xPos      = Player2_map_pos.PLAYER2_DISSCARD_XPOS;
+    const yPos      = Player2_map_pos.PLAYER2_DISSCARD_YPOS;
+    const xSize     = 90;
+    const ySize     = 100;
 
-    const slotDiscardP2 = new GameZones(xPos, yPos, xSize, ySize);
+    const slotDiscardP2 = new gameZones(xPos, yPos, xSize, ySize);
+    globals.slots.push(slotDiscardP2);
 }
 
 function climatologyZone ()
@@ -721,10 +725,10 @@ function climatologyZone ()
     const xSize     = 0;
     const ySize     = 0;
 
-    const slotClimatology = new GameZones(xPos, yPos, xSize, ySize);
+    const slotClimatology = new gameZones(xPos, yPos, xSize, ySize);
 }
 
-// ECHAR UN OJO AL HAND DE PLAYER - COMENTAR MAÑANA
+// ECHAR UN OJO DE AQUI PARA ABAJO (AUTOMATIZAR LA CREACIÓN - MUCHA LINEA) - COMENTAR MAÑANA
 function handPlayer1 ()
 { 
     const xPos      = 0;
@@ -732,7 +736,7 @@ function handPlayer1 ()
     const xSize     = 0;
     const ySize     = 0;
 
-    const slot1 = new GameZones(xPos, yPos, xSize, ySize);
+    const slot1 = new gameZones(xPos, yPos, xSize, ySize);
     
 }
 
@@ -743,7 +747,7 @@ function handPlayer2 ()
     const xSize     = 0;
     const ySize     = 0;
 
-    const slotDiscard = new GameZones(xPos, yPos, xSize, ySize);
+    const slotDiscard = new gameZones(xPos, yPos, xSize, ySize);
 }
 
 function buffPlayer1 ()
@@ -753,27 +757,30 @@ function buffPlayer1 ()
     const xSize     = 0;
     const ySize     = 0;
 
-    const slotDiscard = new GameZones(xPos, yPos, xSize, ySize);
+    const slotDiscard = new gameZones(xPos, yPos, xSize, ySize);
 }
 
 function buffPlayer2 ()
 {
+    // 3 Secciones 
     const xPos      = 0;
     const yPos      = 0;
     const xSize     = 0;
     const ySize     = 0;
 
-    const slotDiscard = new GameZones(xPos, yPos, xSize, ySize);
+    const slotDiscard = new gameZones(xPos, yPos, xSize, ySize);
 }
 
 function tableSection_Player1()
 {
-    //3 Secciones - Fisico, Distancia, Asedio
+    // 3 Secciones - Fisico, Distancia, Asedio
+    // 10 Slots 
 }
 
 function tableSection_Player2()
 {
-    //3 Secciones - Fisico, Distancia, Asedio
+    // 3 Secciones - Fisico, Distancia, Asedio
+    // 10 Slots
 }
 
 
@@ -809,7 +816,7 @@ function initCardInfo()
                     //Iniciamos los datos del juego
                     // initGame(resultJSON);
 
-                    console.log(globals.cardInfo);
+                    // console.log(globals.cardInfo);
                     // console.log("this.responetext" + this.responseText);
 
                 }
@@ -854,7 +861,7 @@ function initCardLinks()
                     //Iniciamos los datos del juego
                     // initGame(resultJSON);
 
-                    console.log(globals.cardInfo);
+                    // console.log(globals.cardInfo);
                     // console.log("this.responetext" + this.responseText);
 
                 }
@@ -872,23 +879,6 @@ function initCardLinks()
 }
 
 
-function initTableSlots(){
-    initPlayerSlots();
-    initCommonSlots();
-}
-
-function initPlayerSlots(){
-    initDecks();
-    initHands();
-    initFields();
-    initDiscards();
-}
-
-function initCommonSlots(){
-    initClimateSlot();
-    initBuffSlots();
-}
-
 export {
     createExpertDeck,
     createNormalDeck,
@@ -899,4 +889,5 @@ export {
     loadAssets,
     initCardInfo,
     initCardLinks,
+    initSlots,
 }

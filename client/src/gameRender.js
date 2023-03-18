@@ -2,6 +2,7 @@
 
 import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE } from "./constants.js";
 import globals from "./globals.js";
+// import { gameZones } from "./GameZones.js";
 
 
 
@@ -10,13 +11,15 @@ import globals from "./globals.js";
 // export default function render()
 // {
 //     globals.ctx.clearRect(0,0,globals.canvas.width, globals.canvas.height);
-//     drawGame();
+    drawGame();
 
 // }
 
 function drawGame(){
-    renderMap();
-    renderCards();
+    // renderMap();
+    // renderCards();
+
+    drawSlots();
     // renderBigCard(); //A CORREGIR
 }
 
@@ -254,6 +257,47 @@ function renderCard(card)
 }
 
 
+function renderSlots(slot)
+{
+    const xPos = Math.floor(slot.xPos);
+    const yPos = Math.floor(slot.yPos);
+
+    globals.ctx.drawImage(
+        slot.xSize, slot.ySize,         // The Source height and width
+        xPos, yPos,                     // The Source x and y position
+        slot.xSize, slot.ySize          // The destinaton height and width
+    );
+
+}
+
+//Funcion que dibuja el tamaño del slot
+function drawSlots()
+{
+    for (let i = 0; i < globals.slots.length; i++)
+    {
+        const slot = globals.slots[i]
+        
+        //TEST: Dibujado de rectangulo alrededor del Slot
+        drawSlotRectangle(slot);
+
+        //Funcion para renderizar los slots (NO SE SI LA UTILIZAREMOS)
+        // renderSlots(slot);
+    }
+}
+
+function drawSlotRectangle(slot) //Funcion que crea un rectangulo alrededor del Sprite  (Se usa generalmente para posicionar los sprites de la hoja de Spritesheet).
+{
+
+    //Datos del slot
+    const x1 = Math.floor(slot.xPos);
+    const y1 = Math.floor(slot.yPos);
+    const w1 = slot.xSize;
+    const h1 = slot.ySize;
+
+    globals.ctx.fillStyle = "green"; 
+    globals.ctx.fillRect(x1,y1,w1,h1);
+
+}
 
 
 
