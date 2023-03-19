@@ -722,16 +722,18 @@ function slotDiscardP2 ()
 
 function climatologyZone ()
 {
-    const xPos      = Common_map_pos.CLIMATE_BOX_XPOS;
+    const xPos1     = Common_map_pos.CLIMATE_BOX_1_XPOS;
+    const xPos2     = Common_map_pos.CLIMATE_BOX_2_XPOS;
+
     const yPos      = Common_map_pos.CLIMATE_BOX_YPOS;
-    const xSize     = 280;
+    const xSize     = 140;
     const ySize     = 120;
 
-    const slotClimatology = new gameZones(xPos, yPos, xSize, ySize);
-    globals.slots.push(slotClimatology);
+    const slotClimatology1 = new gameZones(xPos1, yPos, xSize, ySize);
+    const slotClimatology2 = new gameZones(xPos2, yPos, xSize, ySize);
+    globals.slots.push(slotClimatology1, slotClimatology2);
 }
 
-// ECHAR UN OJO DE AQUI PARA ABAJO (AUTOMATIZAR LA CREACIÓN - MUCHA LINEA) - COMENTAR MAÑANA
 function handPlayer1 ()
 { 
     const yPos      = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
