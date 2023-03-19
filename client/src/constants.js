@@ -124,8 +124,10 @@ const CardSizes = {
     SMALL_HEIGHT:           87,
     SMALL_WIDTH:            85,
     
-    SMALL_ICON_HEIGHT:      0,
-    SMALL_ICON_WIDTH:       0,
+    SMALL_ICON_HEIGHT:      62,
+    SMALL_ICON_WIDTH:       65,
+    SMALL_ICON_INTERSEC:    54,
+
     
     BIG_HEIGHT:             460,
     BIG_WIDTH:              360,
