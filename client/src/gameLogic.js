@@ -66,6 +66,10 @@ function playGame()
         for(let i = 0; i < globals.cards.length; i++){
             console.log(globals.cards[i]);
         }
+
+        for(let i = 0; i < globals.cardInfo.length; i++){
+            console.log(globals.cardInfo[i].kategoria);
+        }
     //   displayDeck();
     }
 

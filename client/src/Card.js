@@ -45,7 +45,7 @@ class UnitCard extends Card{
 
 class SuddenCard extends Card {
 
-    constructor(frontImg, cardName, state, showBack, imageSet, description, effect){
+    constructor(frontImg, cardName, state, showBack, imageSet, description, description_eu, effect){
         super();
         this.xPos           = 0;
         this.yPos           = 0;

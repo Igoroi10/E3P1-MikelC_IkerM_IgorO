@@ -377,7 +377,7 @@ function insertCard(i){
         case "token":
         
         const tokenCard = new Card(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, false, imageSet);
-        globals.tokens.push(tokenCard);
+        globals.cards.push(tokenCard);
         break;
 
         default:
