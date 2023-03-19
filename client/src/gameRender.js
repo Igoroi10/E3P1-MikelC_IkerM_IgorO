@@ -79,7 +79,7 @@ function renderCard(card){
 
     // //DIBUJO DEL ANVERSO DE LA UNIDAD 
     else if (card.category === CardCategory.UNIT){
-        console.log("entra en pintado de unidad");
+        console.log("entra en pintado de unidad");      
 
         //Imagen de fondo
         globals.ctx.drawImage(
@@ -103,7 +103,7 @@ function renderCard(card){
         globals.ctx.drawImage(
             globals.assets.card_type[card.type-1],                     //archivo de la imagen
             0, 0,                                   //Posición inicial x e y 
-            65, 69, 
+            CardSizes.BIG_HEIGHT, CardSizes.BIG_HEIGHT, 
             card.xPos, card.yPos,                             //fin de x e y
             19, 20                                                 //Fin de anchura.       
 
@@ -149,15 +149,15 @@ function renderCard(card){
             CardSizes.TOKEN_WIDHT, CardSizes.TOKEN_HEIGHT             //Fin de anchura.       
 
         )
-        // // Icono superior izquierda
-        // globals.ctx.drawImage(
-        //     globals.assets.card_category[card.categoryId - 1],                     //archivo de la imagen
-        //     0, 0,                                      //Posición inicial x e y 
-        //     65, 69, 
-        //     card.xPos, card.yPos,                             //fin de x e y
-        //     19, 20                                                 //Fin de anchura.       
+        // Icono superior izquierda
+        globals.ctx.drawImage(
+            globals.assets.card_category[card.categoryId - 1],                     //archivo de la imagen
+            0, 0,                                      //Posición inicial x e y 
+            CardSizes.BIG_HEIGHT, CardSizes.BIG_HEIGHT, 
+            card.xPos, card.yPos,                             //fin de x e y
+            19, 20                                                 //Fin de anchura.       
 
-        // )
+        )
 
         // //Icono abajo izquierda
         // globals.ctx.drawImage(
