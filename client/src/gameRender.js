@@ -222,7 +222,7 @@ let i = 0;
 export default function render()
 {
     // globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
-    // renderCards();
+    renderCards();
     // console.log("bololo");
     
     globals.ctx.clearRect(0,0,globals.canvas.width, globals.canvas.height);

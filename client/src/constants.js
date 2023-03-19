@@ -191,8 +191,8 @@ const Player1_map_pos = {
     PLAYER1_CARDS_IN_HAND11_XPOS:   1180,
     PLAYER1_CARDS_IN_HAND12_XPOS:   1255,
 
-    PLAYER1_DECK_XPOS:              1340,
-    PLAYER1_DECK_YPOS:              750,
+    PLAYER1_DECK_XPOS:              1345,
+    PLAYER1_DECK_YPOS:              20,
     
     PLAYER1_DISSCARD_XPOS:          120,
     PLAYER1_DISSCARD_YPOS:          60,
@@ -237,8 +237,8 @@ const Player2_map_pos = {
     PLAYER2_CARDS_IN_HAND11_XPOS:   1180,
     PLAYER2_CARDS_IN_HAND12_XPOS:   1255,
 
-    PLAYER2_DECK_XPOS:              1340,
-    PLAYER2_DECK_YPOS:              20,
+    PLAYER2_DECK_XPOS:              1345,
+    PLAYER2_DECK_YPOS:              750,
 
     PLAYER2_DISSCARD_XPOS:          120,
     PLAYER2_DISSCARD_YPOS:          750,
