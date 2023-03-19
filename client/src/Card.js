@@ -4,23 +4,34 @@ class Card{
 
     constructor(frontImg, cardName, state, showBack, imageSet){
 
-        this.xPos       = 0;
-        this.yPos       = 0;
-        this.frontImg   = frontImg;
-        this.cardName   = cardName;
-        this.categoryId = CardCategory.TOKEN;
-        this.state      = state;
-        this.showBack   = showBack;
-        this.imageSet   = imageSet;
-        this.Size       = CardDisplaySize.SMALL;
+        this.xPos           = 0;
+        this.yPos           = 0;
+        this.frontImg       = frontImg;
+        this.frameImg       = 0;
+        this.backImg        = 0;
+        this.cardName       = cardName;
+        this.categoryId     = CardCategory.TOKEN;
+        this.state          = state;
+        this.showBack       = showBack;
+        this.imageSet       = imageSet;
+        this.Size           = CardDisplaySize.SMALL;
 
     }
 }
 
 class UnitCard extends Card{
 
-    constructor(value, description, description_eu, effect, rarity, type){
-        super( frontImg, backImg, frameImg, cardName, state, showBack);
+    constructor(frontImg, cardName, state, showBack, imageSet, value, description, description_eu, effect, rarity, type){
+        super();
+        this.xPos           = 0;
+        this.yPos           = 0;
+        this.frontImg       = frontImg;
+        this.frameImg       = 0;
+        this.backImg        = 0;
+        this.cardName       = cardName;
+        this.state          = state;
+        this.showBack       = showBack;
+        this.imageSet       = imageSet;
         this.value          = value;
         this.description    = description;
         this.description_eu = description_eu
@@ -34,9 +45,20 @@ class UnitCard extends Card{
 
 class SuddenCard extends Card {
 
-    constructor(description, effect){
-        super(frontImg, backImg, frameImg, cardName, state, showBack, imageSet);
+    constructor(frontImg, cardName, state, showBack, imageSet, description, effect){
+        super();
+        this.xPos           = 0;
+        this.yPos           = 0;
+        this.frontImg       = frontImg;
+        this.frameImg       = 0;
+        this.backImg        = 0;
+        this.cardName       = cardName;
+        this.state          = state;
+        this.showBack       = showBack;
+        this.imageSet       = imageSet;
+        this.Size           = CardDisplaySize.SMALL;
         this.description    = description;
+        this.description_eu = description_eu
         this.effect         = effect;
         this.categoryId     = CardCategory.INSTAEFFECT;
     }
@@ -44,9 +66,20 @@ class SuddenCard extends Card {
 
 class PermaCard extends Card{
 
-    constructor(description, effect, type){
-        super(frontImg, backImg, frameImg, cardName, state, showBack, imageSet);
+    constructor(frontImg, cardName, state, showBack, imageSet, description, description_eu, effect, type){
+        super();
+        this.xPos           = 0;
+        this.yPos           = 0;
+        this.frontImg       = frontImg;
+        this.frameImg       = 0;
+        this.backImg        = 0;
+        this.cardName       = cardName;
+        this.state          = state;
+        this.showBack       = showBack;
+        this.imageSet       = imageSet;
+        this.Size           = CardDisplaySize.SMALL;
         this.description    = description;
+        this.description_eu = description_eu
         this.effect         = effect;
         this.categoryId     = CardCategory.PERMAEFFECT;
         this.type           = type;
@@ -56,10 +89,23 @@ class PermaCard extends Card{
 
 class ClimateCard extends Card{
 
-    constructor (effect){
-        super(frontImg, backImg, frameImg, cardName, state, showBack, imageSet);
+    constructor (frontImg, cardName, state, showBack, imageSet, description, description_eu, effect){
+        super();
+        this.xPos           = 0;
+        this.yPos           = 0;
+        this.frontImg       = frontImg;
+        this.frameImg       = 0;
+        this.backImg        = 0;
+        this.cardName       = cardName;
+        this.categoryId     = CardCategory.TOKEN;
+        this.state          = state;
+        this.showBack       = showBack;
+        this.imageSet       = imageSet;
+        this.Size           = CardDisplaySize.SMALL;
+        this.description    = description;
+        this.description_eu = description_eu
         this.categoryId     = CardCategory.CLIMATE;
-        this.effect     = effect;
+        this.effect         = effect;
     }
 }
 

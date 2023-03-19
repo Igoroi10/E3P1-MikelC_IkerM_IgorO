@@ -1,6 +1,6 @@
 export default class ImageSet{
 
-    constructor(xSize, ySize, ){
+    constructor(xSize, ySize){
       
         this.xSize      = xSize;    //tamaño de piexeles eje x
         this.ySize      = ySize;    //tamaño de piexeles eje y

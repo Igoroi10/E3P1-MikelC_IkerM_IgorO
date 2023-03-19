@@ -58,6 +58,9 @@ function displayDeck()
 
 function playGame()
 {
+
+    console.log(globals.cards[0]);
+    
     if (globals.action.enter)
     {   
         createExpertDeck();

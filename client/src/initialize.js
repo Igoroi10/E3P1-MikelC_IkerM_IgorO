@@ -1,10 +1,9 @@
 import {btnStartDown, btnStartOver, btnStartOut, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler} from "./events.js";
 import globals from "./globals.js";
-import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, GameMode, FPS, Card_img_quantity} from "./constants.js";
+import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 import FakeCard from "./FakeCard.js";
-
 import { GameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
 import { keydownHandler, keyupHandler } from "./events.js";
@@ -347,35 +346,37 @@ function insertCard(i){
     //Toquens medida Especial
     // Generar un fondo en el CSS
 
+    const imageSet = new ImageSet(CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT);
+
 
     switch(globals.cardInfo[i].kategoria){
 
         case "unit":
-        const unitCard = new UnitCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, CardState.DECK, true, 
+        const unitCard = new UnitCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, CardState.DECK, true, imageSet,
                                       globals.cardInfo[i].balioa, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua,
                                       globals.cardInfo[i].urritasun_karta, globals.cardInfo[i].mota);
         globals.cards.push(unitCard);
         break;
 
         case "instaeffect":
-        const instaCard = new SuddenCard(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, true, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
+        const instaCard = new SuddenCard(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
         globals.cards.push(instaCard);
         break;
 
         case "permaeffect":
-        const permaCard = new PermaCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, CardState.DECK, true, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
+        const permaCard = new PermaCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
         globals.cards.push(permaCard);
         break;
 
         case "climate":
         const climateCard = new ClimateCard(globals.cardInfo[i].irudia, globals.cardInfo[i].cardName, 
-                                            CardState.DECK, true, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
+                                            CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
         globals.cards.push(climateCard);
         break;
 
         case "token":
         
-        const tokenCard = new Card(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, false);
+        const tokenCard = new Card(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, false, imageSet);
         globals.tokens.push(tokenCard);
         break;
 
