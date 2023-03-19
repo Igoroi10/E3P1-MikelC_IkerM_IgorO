@@ -1,4 +1,4 @@
-import {btnStartDown, btnStartOver, btnStartOut, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -6,8 +6,8 @@ import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
 import FakeCard from "./FakeCard.js";
 import { GameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
-import { keydownHandler, keyupHandler } from "./events.js";
 import ImageSet from "./ImageSet.js";
+import { Player1_map_pos, Player2_map_pos, Common_map_pos } from "./constants.js";
 
 
 window.onload = init;
@@ -157,7 +157,7 @@ function initEvents()
 
 function loadAssets()
 {
-    console.log("entra en loadAssets");
+    // console.log("entra en loadAssets");
 
     loadCardImages();
 
@@ -166,7 +166,7 @@ function loadAssets()
 
 function loadCardImages(){
 
-    console.log("entra en load card images");
+    // console.log("entra en load card images");
 
     for (let i = 0; i < globals.img_url.length; i++)
     {
@@ -352,25 +352,25 @@ function insertCard(i){
     switch(globals.cardInfo[i].kategoria){
 
         case "unit":
-        const unitCard = new UnitCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, CardState.DECK, true, imageSet,
+        const unitCard = new UnitCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, CardState.DECK, false, imageSet,
                                       globals.cardInfo[i].balioa, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua,
                                       globals.cardInfo[i].urritasun_karta, globals.cardInfo[i].mota);
         globals.cards.push(unitCard);
         break;
 
         case "instaeffect":
-        const instaCard = new SuddenCard(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
+        const instaCard = new SuddenCard(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, false, imageSet, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
         globals.cards.push(instaCard);
         break;
 
         case "permaeffect":
-        const permaCard = new PermaCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
+        const permaCard = new PermaCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, CardState.DECK, false, imageSet, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
         globals.cards.push(permaCard);
         break;
 
         case "climate":
         const climateCard = new ClimateCard(globals.cardInfo[i].irudia, globals.cardInfo[i].cardName, 
-                                            CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
+                                            CardState.DECK, false, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
         globals.cards.push(climateCard);
         break;
 
@@ -539,17 +539,233 @@ function initFakeCards ()
     fakeCardCreation_4;
 }
 
+
+
+// ============================================================================================
+//                                      ZONAS DE JUEGO
+// ============================================================================================
+
+//La funcion Slots sera la funcion que llame a todos las funciones donde estaran los slots donde se coloquen todas las cartas
+function initSlots()
+{
+    //GENERAL
+    // tableSize();             // Tamaño de Toda la Mesa de juego      - NOT NECESSARY
+    climatologyZone();          // Slots de Cartas de Clima             - DONE
+    buffPlayer1();              // Buffs del Player 1 (3 secciones)     - DONE
+    buffPlayer2();              // Buffs del Player 2 (3 secciones)     - DONE
+
+    //PLAYER 1
+    slotDiscardP1();            // Slots de Descartes del Jugador 1     - DONE
+    handPlayer1();              // Mano del Jugador 1 (12 Slots)        - DONE
+    tableSection_Player1();     // Seccion de juego de todas las cartas del Player 1 (3 Secciones, 10 slots cada una)   - DONE
+    deckPlayer1();              // Mazo del Jugador 1                   - 
+
+    //PLAYER 2
+    slotDiscardP2();            // Slots de Descartes del Jugador 2     - DONE
+    handPlayer2();              // Mano del Jugador 2 (12 Slots)        - DONE
+    tableSection_Player2();     // Seccion de juego de todas las cartas del Player 2 (3 Secciones, 10 slots cada una)   - 
+    deckPlayer2();              // Mazo del jugador 2                   - 
+}
+
 // Tamaño de la mesa
 function tableSize()
 {
-    const xPos = 0;
-    const yPos = 0;
-    const xSize = 0;
-    const ySize = 0;
+    const xPos = 200;
+    const yPos = 200;
+    const xSize = 300;
+    const ySize = 300;
     
     const tableSize = new GameZones (xPos, yPos, xSize, ySize);
+    globals.slots.push(tableSize);
 
 }
+
+
+function slotDiscardP1 ()
+{
+    const xPos      = Player1_map_pos.PLAYER1_DISSCARD_XPOS;
+    const yPos      = Player1_map_pos.PLAYER1_DISSCARD_YPOS;
+    const xSize     = 90;
+    const ySize     = 100;
+
+    const slotDiscardP1 = new GameZones(xPos, yPos, xSize, ySize);
+    globals.slots.push(slotDiscardP1);
+    //Se hara un push a un array globals de Slots para almacenar todos los slots y despues renderizarlos
+}
+
+function slotDiscardP2 ()
+{
+    const xPos      = Player2_map_pos.PLAYER2_DISSCARD_XPOS;
+    const yPos      = Player2_map_pos.PLAYER2_DISSCARD_YPOS;
+    const xSize     = 90;
+    const ySize     = 100;
+
+    const slotDiscardP2 = new GameZones(xPos, yPos, xSize, ySize);
+    globals.slots.push(slotDiscardP2);
+}
+
+function climatologyZone ()
+{
+    const xPos1     = Common_map_pos.CLIMATE_BOX_1_XPOS;
+    const xPos2     = Common_map_pos.CLIMATE_BOX_2_XPOS;
+
+    const yPos      = Common_map_pos.CLIMATE_BOX_YPOS;
+    const xSize     = 140;
+    const ySize     = 120;
+
+    const slotClimatology1 = new GameZones(xPos1, yPos, xSize, ySize);
+    const slotClimatology2 = new GameZones(xPos2, yPos, xSize, ySize);
+    globals.slots.push(slotClimatology1, slotClimatology2);
+}
+
+function handPlayer1 ()
+{ 
+    const yPos      = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+    const xSize     = 75;
+    const ySize     = 90;
+
+    let xPos = Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
+
+    for (let i = 0; i < 12; i++)
+    {
+        const handSlots = new GameZones(xPos, yPos, xSize, ySize)
+        globals.slots.push(handSlots);
+        xPos += 75;
+    }
+
+}
+
+function handPlayer2 ()
+{
+    const yPos      = Player2_map_pos.PLAYER2_CARDS_IN_HAND_YPOS;
+    const xSize     = 75;
+    const ySize     = 90;
+
+    let xPos = Player2_map_pos.PLAYER2_CARDS_IN_HAND1_XPOS;
+
+    for (let i = 0; i < 12; i++)
+    {
+        const handSlots = new GameZones(xPos, yPos, xSize, ySize)
+        globals.slots.push(handSlots);
+        xPos += 75;
+    }
+}
+
+function buffPlayer1 ()
+{
+     // 3 Secciones 
+     const xPos      = Player1_map_pos.PLAYER1_BUFF1_XPOS;
+
+     const yPos1     = Player1_map_pos.PLAYER1_BUFF1_YPOS;
+     const yPos2     = Player1_map_pos.PLAYER1_BUFF2_YPOS;
+     const yPos3     = Player1_map_pos.PLAYER1_BUFF3_YPOS;
+ 
+     const xSize     = 100;
+     const ySize     = 90;
+ 
+     const slot_1_BuffPlayer1 = new GameZones(xPos, yPos1, xSize, ySize);
+     const slot_2_BuffPlayer1 = new GameZones(xPos, yPos2, xSize, ySize);
+     const slot_3_BuffPlayer1 = new GameZones(xPos, yPos3, xSize, ySize);
+ 
+     globals.slots.push(slot_1_BuffPlayer1, slot_2_BuffPlayer1, slot_3_BuffPlayer1);
+}
+
+function buffPlayer2 ()
+{
+    // 3 Secciones 
+    const xPos      = Player2_map_pos.PLAYER2_BUFF1_XPOS;
+
+    const yPos1     = Player2_map_pos.PLAYER2_BUFF1_YPOS;
+    const yPos2     = Player2_map_pos.PLAYER2_BUFF2_YPOS;
+    const yPos3     = Player2_map_pos.PLAYER2_BUFF3_YPOS;
+
+    const xSize     = 100;
+    const ySize     = 90;
+
+    const slot_1_BuffPlayer2 = new GameZones(xPos, yPos1, xSize, ySize);
+    const slot_2_BuffPlayer2 = new GameZones(xPos, yPos2, xSize, ySize);
+    const slot_3_BuffPlayer2 = new GameZones(xPos, yPos3, xSize, ySize);
+
+    globals.slots.push(slot_1_BuffPlayer2, slot_2_BuffPlayer2, slot_3_BuffPlayer2);
+}
+
+function tableSection_Player1()
+{
+    // 3 Secciones - Fisico, Distancia, Asedio
+    // 8 Slots 
+    
+    let yPos        = Player1_map_pos.PLAYER1_TABLE_SECTION1_YPOS;
+    let xPos        = Player1_map_pos.PLAYER1_TABLE_SECTION1_XPOS;
+    const xSize     = 87.5;
+    const ySize     = 90;
+    
+    for (let i = 0; i < 3; i++)
+    {
+        
+
+        for (let j = 0; j < 8; j++)
+        {
+            const slotsTable_Player1 = new GameZones(xPos, yPos, xSize, ySize);
+            globals.slots.push(slotsTable_Player1);
+            xPos  += xSize;
+
+        }
+        
+        yPos += 10 + ySize;
+        xPos = Player1_map_pos.PLAYER1_TABLE_SECTION1_XPOS;
+    }
+    
+}
+
+function tableSection_Player2()
+{
+   // 3 Secciones - Fisico, Distancia, Asedio
+    // 8 Slots 
+    
+    let yPos        = Player2_map_pos.PLAYER2_TABLE_SECTION1_YPOS;
+    let xPos        = Player2_map_pos.PLAYER2_TABLE_SECTION1_XPOS;
+    const xSize     = 87.5;
+    const ySize     = 90;
+    
+    for (let i = 0; i < 3; i++)
+    {
+        
+
+        for (let j = 0; j < 8; j++)
+        {
+            const slotsTable_Player2 = new GameZones(xPos, yPos, xSize, ySize);
+            globals.slots.push(slotsTable_Player2);
+            xPos  += xSize;
+
+        }
+        
+        yPos -= 10 + ySize;
+        xPos = Player1_map_pos.PLAYER1_TABLE_SECTION1_XPOS;
+    }
+}
+
+function deckPlayer1()
+{
+    const xPos      = Player1_map_pos.PLAYER1_DECK_XPOS;
+    const yPos      = Player1_map_pos.PLAYER1_DECK_YPOS;
+    const xSize     = 90;
+    const ySize     = 100;
+
+    const deckSlot = new GameZones(xPos, yPos, xSize, ySize);
+    globals.slots.push(deckSlot);
+}
+
+function deckPlayer2()
+{
+    const xPos      = Player2_map_pos.PLAYER2_DECK_XPOS;
+    const yPos      = Player2_map_pos.PLAYER2_DECK_YPOS;
+    const xSize     = 90;
+    const ySize     = 100;
+
+    const deckSlot = new GameZones(xPos, yPos, xSize, ySize);
+    globals.slots.push(deckSlot);
+}
+
 
 // ==========================================
 //                  GET
@@ -628,7 +844,7 @@ function initCardLinks()
                     //Iniciamos los datos del juego
                     // initGame(resultJSON);
 
-                    console.log(globals.cardInfo);
+                    console.log(globals.img_url);
                     // console.log("this.responetext" + this.responseText);
 
                 }
@@ -771,22 +987,7 @@ function fakeCardCreation_4() //Token card
 //               CREATION OF FAKE CARDS
 // ==================================================
 
-function initTableSlots(){
-    initPlayerSlots();
-    initCommonSlots();
-}
 
-function initPlayerSlots(){
-    initDecks();
-    initHands();
-    initFields();
-    initDiscards();
-}
-
-function initCommonSlots(){
-    initClimateSlot();
-    initBuffSlots();
-}
 
 export {
     createExpertDeck,
@@ -798,4 +999,5 @@ export {
     loadAssets,
     initCardInfo,
     initCardLinks,
+    initSlots,
 }
