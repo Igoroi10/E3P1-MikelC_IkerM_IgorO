@@ -1,6 +1,7 @@
 import globals from "./globals.js";
 import { State } from "./constants.js";
 import { createExpertDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
+import {detectCollisionBetweenMouseAndCards } from "./collision.js";
 
 export default function update()
 {
@@ -81,6 +82,7 @@ function playGame()
     
     globals.txtPruebas.innerHTML = "X: " + globals.mouse.x + " Y: " + globals.mouse.y;
 
+    detectCollisionBetweenMouseAndCards();
 
 }
 

@@ -75,4 +75,6 @@ export default
 
     //Checks de los get
     get_checks: 0,
+
+    mouseHasCollidedWithTheCard: false,
 }
