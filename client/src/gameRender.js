@@ -78,8 +78,8 @@ function renderCard(card){
 
 
     // //DIBUJO DEL ANVERSO DE LA UNIDAD 
-    else if (card.category === CardCategory.UNIT){
-        console.log("entra en pintado de unidad");      
+    else if (card.categoryId === CardCategory.UNIT){
+      
 
         //Imagen de fondo
         globals.ctx.drawImage(
@@ -113,20 +113,20 @@ function renderCard(card){
             globals.assets.card_value[card.value],                     //archivo de la imagen
             0, 0,                                                    //Posición inicial x e y 
             65, 63, 
-            card.xPos, card.yPos + 14,                                   //fin de x e y
-            19, 19             //Fin de anchura.       
+            card.xPos, card.yPos + 60,                                   //fin de x e y
+            30, 30             //Fin de anchura.       
 
         )
 
-        //Icono abajo izquierda
-        globals.ctx.drawImage(
-            globals.assets.card_effect[card.effect],                     //archivo de la imagen
-            0, 0,                                                        //Posición inicial x e y 
-            65, 54, 
-            card.xPos, card.yPos + 51,                                   //fin de x e y
-            19, 16                                                      //Fin de anchura.       
+        // //Icono abajo izquierda
+        // globals.ctx.drawImage(
+        //     globals.assets.card_effect[card.effect],                     //archivo de la imagen
+        //     0, 0,                                                        //Posición inicial x e y 
+        //     65, 54, 
+        //     card.xPos, card.yPos + 51,                                   //fin de x e y
+        //     19, 16                                                      //Fin de anchura.       
 
-        )
+        // )
 
     }
     //DIBUJO DEL ANVERSO DEL RESTO DE CARTAS EXCEPTO TOKEN
