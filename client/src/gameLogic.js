@@ -59,12 +59,13 @@ function displayDeck()
 function playGame()
 {
 
-    console.log(globals.cards[0]);
-    
+
+
     if (globals.action.enter)
     {   
-        createExpertDeck();
-        console.log(globals.cards.length);
+        for(let i = 0; i < globals.cards.length; i++){
+            console.log(globals.cards[i]);
+        }
     //   displayDeck();
     }
 
@@ -102,6 +103,8 @@ function loading ()
 
     if (globals.assetsLoaded === globals.img_url.length && globals.get_checks === 3)
     {   
+        createExpertDeck();
+        console.log(globals.cards.length);
         globals.gameState           = State.PLAYING; 
         globals.action.enter        = false;
     }

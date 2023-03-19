@@ -7,7 +7,7 @@ class Card{
         this.xPos           = 0;
         this.yPos           = 0;
         this.frontImg       = frontImg;
-        this.frameImg       = 0;
+        this.frameImg       = 3;
         this.backImg        = 0;
         this.cardName       = cardName;
         this.categoryId     = CardCategory.TOKEN;

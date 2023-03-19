@@ -321,13 +321,13 @@ function createExpertDeck(){
     let cardsNeeded = 80;
     const expertMode = GameMode.EXPERT_MODE;
     addOneOfEach();
-    addPermaCards(expertMode);
-    addInstaCards(expertMode);
-    addClimateCards();
+    // addPermaCards(expertMode);
+    // addInstaCards(expertMode);
+    // addClimateCards();
 
     cardsNeeded -= globals.cards.length;
 
-    addUnitCards(cardsNeeded)
+    addUnitCards(cardsNeeded);
     
 
 }
@@ -396,6 +396,253 @@ function CardSize(card)
     const ySize     = 0;
 
     const cardImageSet = new ImageSet(xSize, ySize,)
+}
+
+
+
+
+
+
+function addClimateCards(){
+    for(let i = 0; i < CardQuantity.EXPERT_CLIMATE; i++){
+        let randomChoice = Math.floor(Math.random() * (4 + 1));
+        let checks;
+
+        for(let l = 0; 0 < globals.cards.length; l++){
+            if(globals.cards[l].categoryId === CardCategory.CLIMATE){
+                checks++;
+
+                if(checks === randomChoice){
+                    insertCard(l);
+                    l = globals.cards.length;
+                }    
+            }
+        }
+    }
+}
+
+function addPermaCards(mode){
+
+    let cardsToDraw;
+    if(mode === GameMode.EXPERT_MODE)
+        cardsToDraw = CardQuantity.EXPERT_PERMA;
+    else
+        cardsToDraw = CardQuantity.NORMAL_PERMA;
+
+    for(let i = 0; i < cardsToDraw; i++){
+        let randomChoice = Math.floor(Math.random() * (2 + 1));
+        let checks;
+
+        for(let l = 0; 0 < globals.cards.length; l++){
+
+            console.log(globals.cards[l].categoryId);
+            if(globals.cards[l].categoryId === CardCategory.PERMAEFFECT){
+                checks++;
+                
+                if(checks === randomChoice){
+                    insertCard(l);
+                    l = globals.cards.length;
+                }    
+            }
+        }
+    }
+}
+
+
+function addInstaCards(mode){
+    let cardsToDraw;
+    if(mode === GameMode.EXPERT_MODE)
+        cardsToDraw = CardQuantity.EXPERT_INSTA;
+    else
+        cardsToDraw = CardQuantity.NORMAL_INSTA;
+
+    for(let i = 0; i < cardsToDraw; i++){
+        let randomChoice = Math.floor(Math.random() * (3 + 1));
+        let checks;
+
+        for(let l = 0; 0 < globals.cards.length; l++){
+            if(globals.cards[l].categoryId === CardCategory.INSTAEFFECT){
+                checks++;
+                
+                if(checks === randomChoice){
+                    insertCard(l);
+                    l = globals.cards.length;
+                }    
+            }
+        }
+    }
+}
+
+
+function addUnitCards(cardsLeft){
+
+    for(let i = 0; i < cardsLeft; i++){
+        let chanceNumber = Math.random();
+        if(chanceNumber < 0.10)
+            addUltraRareCard();
+        else if(chanceNumber < 0.40)
+            AddRareCard();
+        else
+            AddCommonCard();
+    }
+}
+
+function addUltraRareCard(){
+    let ultraRareQuantity = 5;
+    let randomChoice = Math.floor(Math.random() * (ultraRareQuantity + 1));
+    let checks = 0;
+    for(let i = 0; i < globals.cards.length; i++){
+        if(globals.cards[i].rarity === Rarity.ULTRA_RARE){
+            checks++;
+            if(checks === randomChoice){
+                insertCard(i);
+            }
+        }
+    }
+
+}
+
+function AddRareCard(){
+    let rareQuantity = 8;
+    let randomChoice = Math.floor(Math.random() * (rareQuantity + 1));
+    let checks = 0;
+    for(let i = 0; i < globals.cards.length; i++){
+        if(globals.cards[i].rarity === Rarity.RARE){
+            checks++;
+            if(checks === randomChoice){
+                insertCard(i);
+            }
+        }
+    }
+}
+
+function AddCommonCard(){
+    let commonQuantity = 25;
+    let randomChoice = Math.floor(Math.random() * (commonQuantity + 1));
+    let checks = 0;
+    for(let i = 0; i < globals.cards.length; i++){
+        if(globals.cards[i].rarity === Rarity.COMMON){
+            checks++;
+            if(checks === randomChoice){
+                insertCard(i);
+            }
+        }
+    }
+
+}
+
+function initFakeCards ()
+{
+    fakeCardCreation_1;
+    fakeCardCreation_2;
+    fakeCardCreation_3;
+    fakeCardCreation_4;
+}
+
+// Tamaño de la mesa
+function tableSize()
+{
+    const xPos = 0;
+    const yPos = 0;
+    const xSize = 0;
+    const ySize = 0;
+    
+    const tableSize = new GameZones (xPos, yPos, xSize, ySize);
+
+}
+
+// ==========================================
+//                  GET
+// ==========================================
+
+function initCardInfo()
+{
+
+    const url = "http://localhost/mythClash/server/routes/getAllCards.php";
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = function()
+    {
+        // console.log("entra");
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                // console.log("entra");
+                // console.log (this.responseText);
+                if (this.responseText != null)
+                {
+                    
+                    // console.log("Entra");
+                    const resultJSON = JSON.parse(this.responseText);
+                    globals.get_checks++;
+                    
+                    //Guardamos los datos del resultJSON
+                    globals.cardInfo = resultJSON;
+                    
+                    //Iniciamos los datos del juego
+                    // initGame(resultJSON);
+
+                    console.log(globals.cardInfo);
+                    // console.log("this.responetext" + this.responseText);
+
+                }
+                else  
+                    alert("Comunication error: No data received");
+            }
+            else 
+                alert ( "Communication error: " + this.statusText);
+        }
+    }
+
+    request.open ('GET', url, true);
+    request.responseType = "text";
+    request.send();
+}
+
+function initCardLinks()
+{
+
+    const url = "http://localhost/mythClash/server/routes/getAllLinks.php";
+    const request = new XMLHttpRequest();
+
+    request.onreadystatechange = function()
+    {
+        // console.log("entra");
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                // console.log("entra");
+                // console.log (this.responseText);
+                if (this.responseText != null)
+                {
+                    
+                    // console.log("Entra");
+                    const resultJSON = JSON.parse(this.responseText);
+                    globals.get_checks++;
+                    
+                    //Guardamos los datos del resultJSON
+                    globals.img_url = resultJSON;
+                    
+                    //Iniciamos los datos del juego
+                    // initGame(resultJSON);
+
+                    console.log(globals.cardInfo);
+                    // console.log("this.responetext" + this.responseText);
+
+                }
+                else  
+                    alert("Comunication error: No data received");
+            }
+            else 
+                alert ( "Communication error: " + this.statusText);
+        }
+    }
+
+    request.open ('GET', url, true);
+    request.responseType = "text";
+    request.send();
 }
 
 
@@ -523,248 +770,6 @@ function fakeCardCreation_4() //Token card
 // ==================================================
 //               CREATION OF FAKE CARDS
 // ==================================================
-
-
-function addClimateCards(){
-    for(let i = 0; i < CardQuantity.EXPERT_CLIMATE; i++){
-        let randomChoice = Math.floor(Math.random() * (4 + 1));
-        let checks;
-
-        for(let l = 0; 0 < globals.cards.length; l++){
-            if(globals.cards[l].categoryId === CardCategory.CLIMATE){
-                checks++;
-
-                if(checks === randomChoice){
-                    insertCard(l);
-                    l = globals.cards.length;
-                }    
-            }
-        }
-    }
-}
-
-function addPermaCards(mode){
-
-    let cardsToDraw;
-    if(mode === GameMode.EXPERT_MODE)
-        cardsToDraw = CardQuantity.EXPERT_PERMA;
-    else
-        cardsToDraw = CardQuantity.NORMAL_PERMA;
-
-    for(let i = 0; i < cardsToDraw; i++){
-        let randomChoice = Math.floor(Math.random() * (2 + 1));
-        let checks;
-
-        for(let l = 0; 0 < globals.cards.length; l++){
-            if(globals.cards[l].categoryId === CardCategory.PERMAEFFECT){
-                checks++;
-                
-                if(checks === randomChoice){
-                    insertCard(l);
-                    l = globals.cards.length;
-                }    
-            }
-        }
-    }
-}
-
-
-function addInstaCards(mode){
-    let cardsToDraw;
-    if(mode === GameMode.EXPERT_MODE)
-        cardsToDraw = CardQuantity.EXPERT_INSTA;
-    else
-        cardsToDraw = CardQuantity.NORMAL_INSTA;
-
-    for(let i = 0; i < cardsToDraw; i++){
-        let randomChoice = Math.floor(Math.random() * (3 + 1));
-        let checks;
-
-        for(let l = 0; 0 < globals.cards.length; l++){
-            if(globals.cards[l].categoryId === CardCategory.INSTAEFFECT){
-                checks++;
-                
-                if(checks === randomChoice){
-                    insertCard(l);
-                    l = globals.cards.length;
-                }    
-            }
-        }
-    }
-}
-
-
-function addUnitCards(cardsLeft){
-
-    for(let i = 0; i < cardsLeft; i++){
-        let chanceNumber = Math.random();
-        if(chanceNumber < 0.10)
-            addUltraRareCard();
-        else if(chanceNumber < 0.40)
-            AddRareCard();
-        else
-            AddCommonCard();
-    }
-}
-
-function addUltraRareCard(){
-    let ultraRareQuantity = 5;
-    let randomChoice = Math.floor(Math.random() * (ultraRareQuantity + 1));
-    let checks = 0;
-    for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === "ur3"){
-            checks++;
-            if(checks === randomChoice){
-                insertCard(i);
-            }
-        }
-    }
-
-}
-
-function AddRareCard(){
-    let rareQuantity = 8;
-    let randomChoice = Math.floor(Math.random() * (rareQuantity + 1));
-    let checks = 0;
-    for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === "ur2"){
-            checks++;
-            if(checks === randomChoice){
-                insertCard(i);
-            }
-        }
-    }
-}
-
-function AddCommonCard(){
-    let commonQuantity = 25;
-    let randomChoice = Math.floor(Math.random() * (commonQuantity + 1));
-    let checks = 0;
-    for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === "ur1"){
-            checks++;
-            if(checks === randomChoice){
-                insertCard(i);
-            }
-        }
-    }
-
-}
-
-function initFakeCards ()
-{
-    fakeCardCreation_1;
-    fakeCardCreation_2;
-    fakeCardCreation_3;
-    fakeCardCreation_4;
-}
-
-// Tamaño de la mesa
-function tableSize()
-{
-    const xPos = 0;
-    const yPos = 0;
-    const xSize = 0;
-    const ySize = 0;
-    
-    const tableSize = new GameZones (xPos, yPos, xSize, ySize);
-
-}
-
-// ==========================================
-//                  GET
-// ==========================================
-
-function initCardInfo()
-{
-
-    const url = "http://localhost/mythClash/server/routes/getAllCards.php";
-    const request = new XMLHttpRequest();
-
-    request.onreadystatechange = function()
-    {
-        // console.log("entra");
-        if (this.readyState == 4)
-        {
-            if(this.status == 200)
-            {
-                // console.log("entra");
-                // console.log (this.responseText);
-                if (this.responseText != null)
-                {
-                    
-                    // console.log("Entra");
-                    const resultJSON = JSON.parse(this.responseText);
-                    globals.get_checks++;
-                    
-                    //Guardamos los datos del resultJSON
-                    globals.cardInfo = resultJSON;
-                    
-                    //Iniciamos los datos del juego
-                    // initGame(resultJSON);
-
-                    console.log(globals.cardInfo);
-                    // console.log("this.responetext" + this.responseText);
-
-                }
-                else  
-                    alert("Comunication error: No data received");
-            }
-            else 
-                alert ( "Communication error: " + this.statusText);
-        }
-    }
-
-    request.open ('GET', url, true);
-    request.responseType = "text";
-    request.send();
-}
-
-function initCardLinks()
-{
-
-    const url = "http://localhost/mythClash/server/routes/getAllLinks.php";
-    const request = new XMLHttpRequest();
-
-    request.onreadystatechange = function()
-    {
-        // console.log("entra");
-        if (this.readyState == 4)
-        {
-            if(this.status == 200)
-            {
-                // console.log("entra");
-                // console.log (this.responseText);
-                if (this.responseText != null)
-                {
-                    
-                    // console.log("Entra");
-                    const resultJSON = JSON.parse(this.responseText);
-                    globals.get_checks++;
-                    
-                    //Guardamos los datos del resultJSON
-                    globals.img_url = resultJSON;
-                    
-                    //Iniciamos los datos del juego
-                    // initGame(resultJSON);
-
-                    console.log(globals.cardInfo);
-                    // console.log("this.responetext" + this.responseText);
-
-                }
-                else  
-                    alert("Comunication error: No data received");
-            }
-            else 
-                alert ( "Communication error: " + this.statusText);
-        }
-    }
-
-    request.open ('GET', url, true);
-    request.responseType = "text";
-    request.send();
-}
-
 
 function initTableSlots(){
     initPlayerSlots();

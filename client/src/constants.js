@@ -60,9 +60,9 @@ const GameMode = {
 
 const Rarity = {
     
-    ULTRA_RARE:     0,
-    RARE:           1,
-    COMMON:         2, 
+    ULTRA_RARE:     "ur3",
+    RARE:           "ur2",
+    COMMON:         "ur1", 
 }
 
 

@@ -82,7 +82,7 @@ export function keyupHandler(event)
     {
         case Key.ENTER:
             // console.log("Sale enter")
-            globals.action.enter    = true;
+            globals.action.enter    = false;
             break;
     }
 
