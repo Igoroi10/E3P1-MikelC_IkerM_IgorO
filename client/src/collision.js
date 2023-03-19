@@ -8,23 +8,24 @@ function detectCollisionBetweenMouseAndCards()
     {
         const card = globals.cards[i];
         // console.log(card);
-        const cardSize = card.xSize;
-        
      
-        if(globals.mouse.x < (card.xPos + card.xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < card.yPos)
+        if(globals.action.mousePressed)
         {
-            globals.mouseHasCollidedWithTheCard = true;
+            if(globals.mouse.x < (card.xPos + card.xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < card.yPos)
+            {
+                globals.mouseHasCollidedWithTheCard = true;
+            }
+            else
+                globals.mouseHasCollidedWithTheCard = false; 
+    
+            console.log(globals.mouseHasCollidedWithTheCard);
         }
-        else
-            globals.mouseHasCollidedWithTheCard = false; 
-
-        console.log(card.ImageSet);
     }
-    // console.log(globals.mouseHasCollidedWithTheCard);
+    console.log(globals.action.mousePressed);
    
 
 }
 
 export {
     detectCollisionBetweenMouseAndCards
-}
+}   
