@@ -519,13 +519,19 @@ function fakeCardCreation_4() //Token card
     // globals.cards.push(Token);
 }
 
+
+// ==================================================
+//               CREATION OF FAKE CARDS
+// ==================================================
+
+
 function addClimateCards(){
     for(let i = 0; i < CardQuantity.EXPERT_CLIMATE; i++){
         let randomChoice = Math.floor(Math.random() * (4 + 1));
         let checks;
 
         for(let l = 0; 0 < globals.cards.length; l++){
-            if(globals.cards[l].category === CardCategory.CLIMATE){
+            if(globals.cards[l].categoryId === CardCategory.CLIMATE){
                 checks++;
 
                 if(checks === randomChoice){
@@ -550,7 +556,7 @@ function addPermaCards(mode){
         let checks;
 
         for(let l = 0; 0 < globals.cards.length; l++){
-            if(globals.cards[l].category === CardCategory.PERMAEFFECT){
+            if(globals.cards[l].categoryId === CardCategory.PERMAEFFECT){
                 checks++;
                 
                 if(checks === randomChoice){
@@ -575,7 +581,7 @@ function addInstaCards(mode){
         let checks;
 
         for(let l = 0; 0 < globals.cards.length; l++){
-            if(globals.cards[l].category === CardCategory.INSTAEFFECT){
+            if(globals.cards[l].categoryId === CardCategory.INSTAEFFECT){
                 checks++;
                 
                 if(checks === randomChoice){
@@ -606,7 +612,7 @@ function addUltraRareCard(){
     let randomChoice = Math.floor(Math.random() * (ultraRareQuantity + 1));
     let checks = 0;
     for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === Rarity.ULTRA_RARE){
+        if(globals.cards[i].rarity === "ur3"){
             checks++;
             if(checks === randomChoice){
                 insertCard(i);
@@ -621,7 +627,7 @@ function AddRareCard(){
     let randomChoice = Math.floor(Math.random() * (rareQuantity + 1));
     let checks = 0;
     for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === Rarity.RARE){
+        if(globals.cards[i].rarity === "ur2"){
             checks++;
             if(checks === randomChoice){
                 insertCard(i);
@@ -635,7 +641,7 @@ function AddCommonCard(){
     let randomChoice = Math.floor(Math.random() * (commonQuantity + 1));
     let checks = 0;
     for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === Rarity.COMMON){
+        if(globals.cards[i].rarity === "ur1"){
             checks++;
             if(checks === randomChoice){
                 insertCard(i);
