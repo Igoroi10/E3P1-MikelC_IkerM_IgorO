@@ -2,6 +2,7 @@
 
 import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE } from "./constants.js";
 import globals from "./globals.js";
+// import { gameZones } from "./GameZones.js";
 
 
 
@@ -10,13 +11,27 @@ import globals from "./globals.js";
 // export default function render()
 // {
 //     globals.ctx.clearRect(0,0,globals.canvas.width, globals.canvas.height);
-//     drawGame();
+    drawGame();
 
 // }
 
-function drawGame(){
-    renderMap();
-    renderCards();
+function drawGame()
+{
+    // renderMap();
+    // renderCards();
+
+    if (globals.action.d)
+    {
+        // console.log("Entra accion D");
+        drawSlots();
+        
+    }
+
+    if (globals.action.c)
+    {
+        renderCards();
+    }
+
     // renderBigCard(); //A CORREGIR
 }
 
@@ -217,11 +232,7 @@ let i = 0;
 // PREUBA 
 
 export default function render()
-{
-    // globals.ctx.clearRect(0, 0, globals.canvas.width, globals.canvas.height);
-    // renderCards();
-    // console.log("bololo");
-    
+{    
     globals.ctx.clearRect(0,0,globals.canvas.width, globals.canvas.height);
     drawGame();
 
@@ -230,30 +241,94 @@ export default function render()
 function renderCards()
 {
     // console.log("bololo");
-    // console.log(globals.cards);
-    for (let i = 0; i < globals.cards.length; ++i)
+    // console.log(globals.cardInfo.length);
+    for (let i = 0; i < globals.cardInfo.length; ++i)
     {
-        const card = globals.cards[i];
+        //Las cartas que recibe el array CardInfo no cuentan con tamaño, por lo tanto en el render se utilizara un tamaño global
+        const card = globals.cardInfo[i];
         renderCard(card);
+
         // console.log("entra");
     }
 }
 
 function renderCard(card)
 {
-    // console.log("entra");
-    globals.ctx.fillStyle = 'green';
-    globals.ctx.fillRect(card.xPos, card.yPos, CARD_SIZE, CARD_SIZE);
-    globals.ctx.font = '12px arial';
-    globals.ctx.fillStyle = 'white';
-    globals.ctx.fillText(card.title,        card.xPos + 10, card.yPos + 30); 
-    globals.ctx.fillText(card.isbn,         card.xPos + 10, card.yPos + 50);
-    globals.ctx.fillText(card.author,       card.xPos + 10, card.yPos + 70);
-    globals.ctx.fillText(card.category,     card.xPos + 10, card.yPos + 90);
-    globals.ctx.fillText(card.year,         card.xPos + 10, card.yPos + 110);
+    let xPos = 10;
+    let yPos = 10;
+
+    // console.log(Math.floor(globals.cardInfo));
+
+    for (let i = 1; i < globals.cardInfo.length +1; i++)
+    {
+        globals.ctx.fillStyle = 'green';
+        globals.ctx.fillRect(xPos, yPos, CARD_SIZE, CARD_SIZE);
+        globals.ctx.font = '12px arial';
+        globals.ctx.fillStyle = 'white';
+        globals.ctx.fillText(card.title,        card.xPos + 10, card.yPos + 30); 
+        globals.ctx.fillText(card.isbn,         card.xPos + 10, card.yPos + 50);
+        globals.ctx.fillText(card.author,       card.xPos + 10, card.yPos + 70);
+        globals.ctx.fillText(card.category,     card.xPos + 10, card.yPos + 90);
+        globals.ctx.fillText(card.year,         card.xPos + 10, card.yPos + 110);
+
+        xPos += 160;
+
+        if (i%8 === 0)
+        {   
+            xPos = 10;
+            yPos += 200;
+        }
+    }
+   
 }
 
 
+function renderSlots(slot)
+{
+    const xPos = Math.floor(slot.xPos);
+    const yPos = Math.floor(slot.yPos);
+
+    globals.ctx.drawImage(
+        slot.xSize, slot.ySize,         // The Source height and width
+        xPos, yPos,                     // The Source x and y position
+        slot.xSize, slot.ySize          // The destinaton height and width
+    );
+
+}
+
+//Funcion que dibuja el tamaño del slot
+function drawSlots()
+{
+    for (let i = 0; i < globals.slots.length; i++)
+    {
+        const slot = globals.slots[i]
+        
+        //TEST: Dibujado de rectangulo alrededor del Slot
+        drawSlotRectangle(slot);
+
+        //Funcion para renderizar los slots (NO SE SI LA UTILIZAREMOS)
+        // renderSlots(slot);
+    }
+}
+
+function drawSlotRectangle(slot) //Funcion que crea un rectangulo alrededor del Sprite  (Se usa generalmente para posicionar los sprites de la hoja de Spritesheet).
+{
+
+    //Datos del Slot
+    const x1 = Math.floor(slot.xPos) + Math.floor(0);
+    const y1 = Math.floor(slot.yPos) + Math.floor(0);
+    const w1 = slot.xSize;
+    const h1 = slot.ySize;
+
+    // const x1 = Math.floor(slot.xPos);
+    // const y1 = Math.floor(slot.yPos);
+    // const w1 = slot.xSize;
+    // const h1 = slot.ySize;
+
+    globals.ctx.strokeStyle = "red";
+    globals.ctx.strokeRect(x1, y1, w1, h1);
+
+}
 
 
 

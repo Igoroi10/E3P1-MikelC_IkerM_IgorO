@@ -1,4 +1,4 @@
-class GameZones {
+class gameZones {
 
     constructor (xPos, yPos, xSize, ySize)
     {
@@ -13,5 +13,5 @@ class GameZones {
 
 export {
 
-    GameZones,
+    gameZones,
 }
