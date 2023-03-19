@@ -58,7 +58,7 @@ class SuddenCard extends Card {
         this.imageSet       = imageSet;
         this.Size           = CardDisplaySize.SMALL;
         this.description    = description;
-        this.description_eu = description_eu
+        this.description_eu = description_eu;
         this.effect         = effect;
         this.categoryId     = CardCategory.INSTAEFFECT;
     }

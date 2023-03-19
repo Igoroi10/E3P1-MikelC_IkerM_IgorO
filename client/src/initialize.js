@@ -62,58 +62,8 @@ export function initGame(data)
     render();
 }
 
-function createCards(data)
-{
-    let card;
 
-    //Reseteamos las cartas
-    globals.cards = [];
 
-    for (let i = 0; i < data.length; ++i)
-    {
-        card = new Card(
-            0,
-            0,
-            data[i].isbn,
-            data[i].title,
-            data[i].year,
-            data[i].author,
-            data[i].category
-        )
-
-        globals.cards.push(card);
-    }
-    //Posicionamos la cartas en la pantalla
-    setCardPosition();
-
-}
-
-function setCardPosition()
-{
-    //Posición incial
-     let xPos = 20;
-     let yPos = 10;
-
-     for (let i = 0; i < globals.cards.length; ++i)
-     {
-        globals.cards[i].xInit = xPos;
-        globals.cards[i].yInit = yPos;
-
-        globals.cards[i].xPos = xPos;
-        globals.cards[i].yPos = yPos;
-
-        xPos += CARD_SIZE + 20;
-
-        if (i % 6 === 5)
-        {
-            yPos += 200;
-            xPos =  10;
-
-        }
-
-     }
-
-}
 
 function initVars()
 {
@@ -987,6 +937,13 @@ function fakeCardCreation_4() //Token card
 //               CREATION OF FAKE CARDS
 // ==================================================
 
+
+
+
+function initCommonSlots(){
+    initClimateSlot();
+    initBuffSlots();
+}
 
 
 export {
