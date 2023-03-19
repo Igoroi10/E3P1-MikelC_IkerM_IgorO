@@ -19,7 +19,12 @@ function drawGame(){
     // renderMap();
     // renderCards();
 
-    drawSlots();
+    if (globals.action.d)
+    {
+        console.log("entraaa");
+        drawSlots();
+    }
+
     // renderBigCard(); //A CORREGIR
 }
 

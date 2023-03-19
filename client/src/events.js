@@ -70,6 +70,12 @@ export function keydownHandler(event)
             // console.log("Entra enter");
             globals.action.enter    = true;
             break;
+
+        //TECLA "D"
+        case Key.DECK:
+            // console.log("Entra en D")
+            globals.action.d        = true;
+            break;
     }
 
 }
@@ -83,6 +89,12 @@ export function keyupHandler(event)
         case Key.ENTER:
             // console.log("Sale enter")
             globals.action.enter    = false;
+            break;
+
+        //TECLA "D"
+        case Key.DECK:
+            // console.log("Sale en D")
+            globals.action.d        = false;
             break;
     }
 
