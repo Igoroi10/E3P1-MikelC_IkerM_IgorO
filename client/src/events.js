@@ -73,8 +73,14 @@ export function keydownHandler(event)
 
         //TECLA "D"
         case Key.DECK:
-            // console.log("Entra en D")
+            // console.log("Entra en D");
             globals.action.d        = true;
+            break;
+
+        //TECLA "C"
+        case Key.CARD:
+            // console.log("Entra en C");
+            globals.action.c        = true;
             break;
     }
 
@@ -87,14 +93,19 @@ export function keyupHandler(event)
     switch (event.keyCode)
     {
         case Key.ENTER:
-            // console.log("Sale enter")
+            // console.log("Sale enter");
             globals.action.enter    = false;
             break;
 
         //TECLA "D"
         case Key.DECK:
-            // console.log("Sale en D")
+            // console.log("Sale en D");
             globals.action.d        = false;
+            break;
+
+        case Key.CARD:
+            // console.log("Sale en C");
+            globals.action.c        = false;
             break;
     }
 

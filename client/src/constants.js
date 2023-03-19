@@ -102,7 +102,8 @@ const Type ={
 const Key = {
 
     ENTER:  13,     // Tecla Enter
-    DECK:   68      // Tecla D
+    DECK:   68,     // Tecla D
+    CARD:   67,     // Tecla C
 }
 
 const Card_img_quantity = {
