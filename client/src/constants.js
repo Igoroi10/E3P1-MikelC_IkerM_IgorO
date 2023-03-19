@@ -101,7 +101,9 @@ const Type ={
 
 const Key = {
 
-    ENTER:  13     //Tecla Enter
+    ENTER:  13,     // Tecla Enter
+    DECK:   68,     // Tecla D
+    CARD:   67,     // Tecla C
 }
 
 const Card_img_quantity = {
@@ -119,12 +121,18 @@ const Card_img_quantity = {
 
 
 const CardSizes = {
-    SMALL_HEIGHT:   87,
-    SMALL_WIDTH:    85,
-    BIG_HEIGHT:     460,
-    BIG_WIDTH:      360,
-    TOKEN_HEIGHT:   106,
-    TOKEN_WIDHT:    85
+    SMALL_HEIGHT:           87,
+    SMALL_WIDTH:            85,
+    
+    SMALL_ICON_HEIGHT:      62,
+    SMALL_ICON_WIDTH:       65,
+    SMALL_ICON_INTERSEC:    54,
+
+    
+    BIG_HEIGHT:             460,
+    BIG_WIDTH:              360,
+    TOKEN_HEIGHT:           106,
+    TOKEN_WIDHT:            85
 }
 
 const CARD_SIZE = 150;
@@ -139,19 +147,24 @@ const CardSlotsQuantity = {
 }
 
 const Common_map_pos = {
-    PLAYER2_CARD_XPOS:  120,
-    PLAYER2_CARD_YPOS:  60,
-    CLIMATE_BOX_XPOS:   60,
-    CLIMATE_BOX_YPOS:   290,
-    PLAYER1_CARD_XPOS:  120,
-    PLAYER1_CARD_YPOS:  750
+    PLAYER2_CARD_XPOS:      120,
+    PLAYER2_CARD_YPOS:      60,
+
+    CLIMATE_BOX_1_XPOS:     60,
+    CLIMATE_BOX_2_XPOS:     200,
+    CLIMATE_BOX_YPOS:       390,
+
+    PLAYER1_CARD_XPOS:      120,
+    PLAYER1_CARD_YPOS:      750
 }
 
 const Player1_map_pos = {
     PLAYER1_BUFF1_XPOS:             500,
     PLAYER1_BUFF1_YPOS:             450,
+
     PLAYER1_BUFF2_XPOS:             500,
     PLAYER1_BUFF2_YPOS:             550,
+
     PLAYER1_BUFF3_XPOS:             500,
     PLAYER1_BUFF3_YPOS:             650,
 
@@ -185,15 +198,20 @@ const Player1_map_pos = {
     PLAYER1_CARDS_IN_HAND11_XPOS:   1180,
     PLAYER1_CARDS_IN_HAND12_XPOS:   1255,
 
-    PLAYER1_DECK_XPOS:              1340,
-    PLAYER1_DECK_YPOS:              750            
+    PLAYER1_DECK_XPOS:              1345,
+    PLAYER1_DECK_YPOS:              20,
+    
+    PLAYER1_DISSCARD_XPOS:          120,
+    PLAYER1_DISSCARD_YPOS:          60,
 }
 
 const Player2_map_pos = {
     PLAYER2_BUFF1_XPOS:             500,
     PLAYER2_BUFF1_YPOS:             330,
+
     PLAYER2_BUFF2_XPOS:             500,
     PLAYER2_BUFF2_YPOS:             230,
+
     PLAYER2_BUFF3_XPOS:             500,
     PLAYER2_BUFF3_YPOS:             130,
 
@@ -226,8 +244,11 @@ const Player2_map_pos = {
     PLAYER2_CARDS_IN_HAND11_XPOS:   1180,
     PLAYER2_CARDS_IN_HAND12_XPOS:   1255,
 
-    PLAYER2_DECK_XPOS:              1340,
-    PLAYER2_DECK_YPOS:              20
+    PLAYER2_DECK_XPOS:              1345,
+    PLAYER2_DECK_YPOS:              750,
+
+    PLAYER2_DISSCARD_XPOS:          120,
+    PLAYER2_DISSCARD_YPOS:          750,
 }
 
 

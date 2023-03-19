@@ -75,4 +75,7 @@ export default
 
     //Checks de los get
     get_checks: 0,
+
+    //Array donde se almacenaran los slots / huevos donde se pondran las cartas
+    slots: []
 }

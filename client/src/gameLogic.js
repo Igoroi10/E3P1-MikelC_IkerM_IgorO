@@ -91,7 +91,7 @@ function loading ()
         initCardLinks();
     }
 
-    console.log(globals.img_url);
+    // console.log(globals.img_url);
     if(globals.get_checks === 2){
         loadAssets();
         globals.get_checks++;
