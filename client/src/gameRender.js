@@ -288,14 +288,19 @@ function drawSlots()
 function drawSlotRectangle(slot) //Funcion que crea un rectangulo alrededor del Sprite  (Se usa generalmente para posicionar los sprites de la hoja de Spritesheet).
 {
 
-    //Datos del slot
-    const x1 = Math.floor(slot.xPos);
-    const y1 = Math.floor(slot.yPos);
+    //Datos del Slot
+    const x1 = Math.floor(slot.xPos) + Math.floor(0);
+    const y1 = Math.floor(slot.yPos) + Math.floor(0);
     const w1 = slot.xSize;
     const h1 = slot.ySize;
 
-    globals.ctx.fillStyle = "green"; 
-    globals.ctx.fillRect(x1,y1,w1,h1);
+    // const x1 = Math.floor(slot.xPos);
+    // const y1 = Math.floor(slot.yPos);
+    // const w1 = slot.xSize;
+    // const h1 = slot.ySize;
+
+    globals.ctx.strokeStyle = "red";
+    globals.ctx.strokeRect(x1, y1, w1, h1);
 
 }
 

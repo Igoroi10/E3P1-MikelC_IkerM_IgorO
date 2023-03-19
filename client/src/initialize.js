@@ -665,20 +665,22 @@ function initFakeCards ()
 function initSlots()
 {
     //GENERAL
-    // tableSize();                // Tamaño de Toda la Mesa de juego
-    climatologyZone();          // Slots de Cartas de Clima 
+    // tableSize();             // Tamaño de Toda la Mesa de juego      - NOT NECESSARY
+    climatologyZone();          // Slots de Cartas de Clima             - DONE
+    buffPlayer1();              // Buffs del Player 1 (3 secciones)     - DONE
+    buffPlayer2();              // Buffs del Player 2 (3 secciones)     - DONE
 
     //PLAYER 1
-    slotDiscardP1();            // Slots de Descartes del Jugador 1
-    handPlayer1();              // Mano del Jugador 1 (12 Slots)
-    buffPlayer1();              // Buffs del Player 1 (3 secciones)
-    tableSection_Player1();     // Seccion de juego de todas las cartas del Player 1 (3 Secciones, 10 slots cada una)
+    slotDiscardP1();            // Slots de Descartes del Jugador 1     - DONE
+    handPlayer1();              // Mano del Jugador 1 (12 Slots)        -         
+    tableSection_Player1();     // Seccion de juego de todas las cartas del Player 1 (3 Secciones, 10 slots cada una)   -
+    deckPlayer1();              // Mazo del Jugador 1                   - 
 
     //PLAYER 2
-    slotDiscardP2();            // Slots de Descartes del Jugador 2
-    handPlayer2();              // Mano del Jugador 2 (12 Slots)
-    buffPlayer2();              // Buffs del Player 2 (3 secciones)
-    tableSection_Player2();     // Seccion de juego de todas las cartas del Player 2 (3 Secciones, 10 slots cada una)
+    slotDiscardP2();            // Slots de Descartes del Jugador 2     - DONE
+    handPlayer2();              // Mano del Jugador 2 (12 Slots)        - 
+    tableSection_Player2();     // Seccion de juego de todas las cartas del Player 2 (3 Secciones, 10 slots cada una)   -
+    deckPlayer2();              // Mazo del jugador 2                   - 
 }
 
 // Tamaño de la mesa
@@ -697,8 +699,8 @@ function tableSize()
 
 function slotDiscardP1 ()
 {
-    const xPos      = 120;
-    const yPos      = 60;
+    const xPos      = Player1_map_pos.PLAYER1_DISSCARD_XPOS;
+    const yPos      = Player1_map_pos.PLAYER1_DISSCARD_YPOS;
     const xSize     = 90;
     const ySize     = 100;
 
@@ -720,67 +722,133 @@ function slotDiscardP2 ()
 
 function climatologyZone ()
 {
-    const xPos      = 0;
-    const yPos      = 0;
-    const xSize     = 0;
-    const ySize     = 0;
+    const xPos      = Common_map_pos.CLIMATE_BOX_XPOS;
+    const yPos      = Common_map_pos.CLIMATE_BOX_YPOS;
+    const xSize     = 280;
+    const ySize     = 120;
 
     const slotClimatology = new gameZones(xPos, yPos, xSize, ySize);
+    globals.slots.push(slotClimatology);
 }
 
 // ECHAR UN OJO DE AQUI PARA ABAJO (AUTOMATIZAR LA CREACIÓN - MUCHA LINEA) - COMENTAR MAÑANA
 function handPlayer1 ()
 { 
-    const xPos      = 0;
-    const yPos      = 0;
-    const xSize     = 0;
-    const ySize     = 0;
+    const yPos      = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+    const xSize     = 75;
+    const ySize     = 90;
 
-    const slot1 = new gameZones(xPos, yPos, xSize, ySize);
+    const handSlot1     = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS,    yPos, xSize, ySize);
+    const handSlot2     = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND2_XPOS,    yPos, xSize, ySize);
+    const handSlot3     = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND3_XPOS,    yPos, xSize, ySize);
+    const handSlot4     = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND4_XPOS,    yPos, xSize, ySize);
+    const handSlot5     = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND5_XPOS,    yPos, xSize, ySize);
+    const handSlot6     = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND6_XPOS,    yPos, xSize, ySize);
+    const handSlot7     = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND7_XPOS,    yPos, xSize, ySize);
+    const handSlot8     = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND8_XPOS,    yPos, xSize, ySize);
+    const handSlot9     = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND9_XPOS,    yPos, xSize, ySize);
+    const handSlot10    = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND10_XPOS,   yPos, xSize, ySize);
+    const handSlot11    = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND11_XPOS,   yPos, xSize, ySize);
+    const handSlot12    = new gameZones(Player1_map_pos.PLAYER1_CARDS_IN_HAND12_XPOS,   yPos, xSize, ySize);
+
+    globals.slots.push(handSlot1, handSlot2, handSlot3, handSlot4, handSlot5, handSlot6, handSlot7, handSlot8, handSlot9, handSlot10, handSlot11, handSlot12);
     
 }
 
 function handPlayer2 ()
 {
-    const xPos      = 0;
-    const yPos      = 0;
-    const xSize     = 0;
-    const ySize     = 0;
+    const yPos      = Player2_map_pos.PLAYER2_CARDS_IN_HAND_YPOS;
+    const xSize     = 75;
+    const ySize     = 90;
 
-    const slotDiscard = new gameZones(xPos, yPos, xSize, ySize);
+    const handSlot1     = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND1_XPOS,    yPos, xSize, ySize);
+    const handSlot2     = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND2_XPOS,    yPos, xSize, ySize);
+    const handSlot3     = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND3_XPOS,    yPos, xSize, ySize);
+    const handSlot4     = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND4_XPOS,    yPos, xSize, ySize);
+    const handSlot5     = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND5_XPOS,    yPos, xSize, ySize);
+    const handSlot6     = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND6_XPOS,    yPos, xSize, ySize);
+    const handSlot7     = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND7_XPOS,    yPos, xSize, ySize);
+    const handSlot8     = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND8_XPOS,    yPos, xSize, ySize);
+    const handSlot9     = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND9_XPOS,    yPos, xSize, ySize);
+    const handSlot10    = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND10_XPOS,   yPos, xSize, ySize);
+    const handSlot11    = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND11_XPOS,   yPos, xSize, ySize);
+    const handSlot12    = new gameZones(Player2_map_pos.PLAYER2_CARDS_IN_HAND12_XPOS,   yPos, xSize, ySize);
+
+    globals.slots.push(handSlot1, handSlot2, handSlot3, handSlot4, handSlot5, handSlot6, handSlot7, handSlot8, handSlot9, handSlot10, handSlot11, handSlot12);
+    
 }
 
 function buffPlayer1 ()
 {
-    const xPos      = 0;
-    const yPos      = 0;
-    const xSize     = 0;
-    const ySize     = 0;
+     // 3 Secciones 
+     const xPos      = Player1_map_pos.PLAYER1_BUFF1_XPOS;
 
-    const slotDiscard = new gameZones(xPos, yPos, xSize, ySize);
+     const yPos1     = Player1_map_pos.PLAYER1_BUFF1_YPOS;
+     const yPos2     = Player1_map_pos.PLAYER1_BUFF2_YPOS;
+     const yPos3     = Player1_map_pos.PLAYER1_BUFF3_YPOS;
+ 
+     const xSize     = 100;
+     const ySize     = 90;
+ 
+     const slot_1_BuffPlayer1 = new gameZones(xPos, yPos1, xSize, ySize);
+     const slot_2_BuffPlayer1 = new gameZones(xPos, yPos2, xSize, ySize);
+     const slot_3_BuffPlayer1 = new gameZones(xPos, yPos3, xSize, ySize);
+ 
+     globals.slots.push(slot_1_BuffPlayer1, slot_2_BuffPlayer1, slot_3_BuffPlayer1);
 }
 
 function buffPlayer2 ()
 {
     // 3 Secciones 
-    const xPos      = 0;
-    const yPos      = 0;
-    const xSize     = 0;
-    const ySize     = 0;
+    const xPos      = Player2_map_pos.PLAYER2_BUFF1_XPOS;
 
-    const slotDiscard = new gameZones(xPos, yPos, xSize, ySize);
+    const yPos1     = Player2_map_pos.PLAYER2_BUFF1_YPOS;
+    const yPos2     = Player2_map_pos.PLAYER2_BUFF2_YPOS;
+    const yPos3     = Player2_map_pos.PLAYER2_BUFF3_YPOS;
+
+    const xSize     = 100;
+    const ySize     = 90;
+
+    const slot_1_BuffPlayer2 = new gameZones(xPos, yPos1, xSize, ySize);
+    const slot_2_BuffPlayer2 = new gameZones(xPos, yPos2, xSize, ySize);
+    const slot_3_BuffPlayer2 = new gameZones(xPos, yPos3, xSize, ySize);
+
+    globals.slots.push(slot_1_BuffPlayer2, slot_2_BuffPlayer2, slot_3_BuffPlayer2);
 }
 
 function tableSection_Player1()
 {
     // 3 Secciones - Fisico, Distancia, Asedio
-    // 10 Slots 
+    const yPos1     = Player2_map_pos.PLAYER2_BUFF1_YPOS;
+    const yPos2     = Player2_map_pos.PLAYER2_BUFF2_YPOS;
+    const yPos3     = Player2_map_pos.PLAYER2_BUFF3_YPOS;
+
+    const xSize     = 100;
+    const ySize     = 90;
+
+    const slot_1_BuffPlayer2 = new gameZones(xPos, yPos1, xSize, ySize);
+    const slot_2_BuffPlayer2 = new gameZones(xPos, yPos2, xSize, ySize);
+    const slot_3_BuffPlayer2 = new gameZones(xPos, yPos3, xSize, ySize);
+
+    globals.slots.push(slot_1_BuffPlayer2, slot_2_BuffPlayer2, slot_3_BuffPlayer2);
+    // 8 Slots 
+    // Meter un for
 }
 
 function tableSection_Player2()
 {
     // 3 Secciones - Fisico, Distancia, Asedio
-    // 10 Slots
+    // 8 Slots
+}
+
+function deckPlayer1()
+{
+    
+}
+
+function deckPlayer2()
+{
+
 }
 
 

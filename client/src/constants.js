@@ -119,12 +119,16 @@ const Card_img_quantity = {
 
 
 const CardSizes = {
-    SMALL_HEIGHT:   87,
-    SMALL_WIDTH:    85,
-    BIG_HEIGHT:     460,
-    BIG_WIDTH:      360,
-    TOKEN_HEIGHT:   106,
-    TOKEN_WIDHT:    85
+    SMALL_HEIGHT:           87,
+    SMALL_WIDTH:            85,
+    
+    SMALL_ICON_HEIGHT:      0,
+    SMALL_ICON_WIDTH:       0,
+    
+    BIG_HEIGHT:             460,
+    BIG_WIDTH:              360,
+    TOKEN_HEIGHT:           106,
+    TOKEN_WIDHT:            85
 }
 
 const CARD_SIZE = 150;
@@ -142,7 +146,7 @@ const Common_map_pos = {
     PLAYER2_CARD_XPOS:  120,
     PLAYER2_CARD_YPOS:  60,
     CLIMATE_BOX_XPOS:   60,
-    CLIMATE_BOX_YPOS:   290,
+    CLIMATE_BOX_YPOS:   390,
     PLAYER1_CARD_XPOS:  120,
     PLAYER1_CARD_YPOS:  750
 }
@@ -150,8 +154,10 @@ const Common_map_pos = {
 const Player1_map_pos = {
     PLAYER1_BUFF1_XPOS:             500,
     PLAYER1_BUFF1_YPOS:             450,
+
     PLAYER1_BUFF2_XPOS:             500,
     PLAYER1_BUFF2_YPOS:             550,
+
     PLAYER1_BUFF3_XPOS:             500,
     PLAYER1_BUFF3_YPOS:             650,
 
@@ -186,14 +192,19 @@ const Player1_map_pos = {
     PLAYER1_CARDS_IN_HAND12_XPOS:   1255,
 
     PLAYER1_DECK_XPOS:              1340,
-    PLAYER1_DECK_YPOS:              750            
+    PLAYER1_DECK_YPOS:              750,
+    
+    PLAYER1_DISSCARD_XPOS:          120,
+    PLAYER1_DISSCARD_YPOS:          60,
 }
 
 const Player2_map_pos = {
     PLAYER2_BUFF1_XPOS:             500,
     PLAYER2_BUFF1_YPOS:             330,
+
     PLAYER2_BUFF2_XPOS:             500,
     PLAYER2_BUFF2_YPOS:             230,
+
     PLAYER2_BUFF3_XPOS:             500,
     PLAYER2_BUFF3_YPOS:             130,
 
