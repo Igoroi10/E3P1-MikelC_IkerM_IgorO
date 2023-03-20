@@ -6,7 +6,7 @@ import { Key } from "./constants.js";
 
 //Creacion de Evento para el raton
 
-export function btnStartDown (event)
+export function btnStartDown ()
 {
     // console.log("OK");
 
@@ -24,7 +24,7 @@ export function btnStartDown (event)
 }
 
 //Boton de Start a Over
-export function btnStartOver (event)
+export function btnStartOver ()
 {
     //cambiamos el texto 
     // console.log("entraa");
@@ -36,6 +36,15 @@ export function btnStartOut (event)
 {
     //Recuperamos tento original 
     document.getElementById("btnStart").innerHTML = "START";
+}
+
+export function btnStartAdmin()
+{
+    console.log("entra en adminbtn");
+    globals.buttonAdmin.style.visibility = "Hidden";
+
+    document.getElementById('divCanvas').style.display = "block";
+
 }
 
 export function canvasMousedownHandler(event)

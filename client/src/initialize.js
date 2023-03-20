@@ -30,8 +30,10 @@ function init()
     globals.buttonStart.addEventListener("mouseover",   btnStartOver,   false);
     globals.buttonStart.addEventListener("mouseout",    btnStartOut,    false);
 
-    globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);
+    //Inicializamos el boton del admin
+    globals.buttonStart.addEventListener("mousedown",   btnStartDown,   false);
 
+    globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);
 }
 
 function initHTMLelements()

@@ -18,7 +18,7 @@ export default function update()
             break;
 
         case State.ADMIN_MENU:
-            // playGame();
+            updateAdminScreen();
             break;
 
         case State.PLAYER_MENU:
@@ -50,12 +50,6 @@ export default function update()
             console.error("Error: Game State invalid");
     }
 }
-
-function displayDeck()
-{
-    
-}
-
 
 function playGame()
 {
@@ -112,7 +106,13 @@ function loading ()
     {   
         createExpertDeck();
         console.log(globals.cards.length);
-        globals.gameState           = State.PLAYING; 
+        globals.gameState           = State.ADMIN_MENU; 
         globals.action.enter        = false;
     }
+}
+
+function updateAdminScreen()
+{
+    // console.log("entra en adminScreen");
+    document.getElementById("adminScreen").style.display = "block";
 }
