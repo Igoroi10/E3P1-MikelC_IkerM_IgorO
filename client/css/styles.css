@@ -13,12 +13,13 @@ html {
     background-color: white;
 }
 
+
 #adminScreen {
     float: left;
     width: 300px;
-    height: 800px;
-    background-color: purple;
-margin: auto;
+    height: 300px;
+    /* background-color: purple; */
+    margin: auto;
     margin-top: 60px;
     margin-left: 60px;
 }
@@ -27,7 +28,7 @@ margin: auto;
     float: right;
     width: 1000px;
     height: 200px;
-    background-color: green;
+    /* background-color: green; */
     margin: auto;
     margin-top: 90px;
 }
@@ -39,23 +40,34 @@ margin: auto;
     background-color: green;
     margin: auto;
     margin-top: 10px;
+    margin-right: 5px;
 }
 
 #playerControl {
     float: right;
     width: 1000px;
     height: 200px;
-    background-color: green;
+    /* background-color: green; */
     margin: auto;
     margin-top: 10px;
 }
-#adminFooter {
+#playerRectangle {
     float: right;
     width: 1000px;
     height: 200px;
     background-color: green;
     margin: auto;
     margin-top: 10px;
+    margin-right: 5px;
+}
+
+#last30days{
+    width: 300px;
+    height: 500px;
+    /* background-color: #36395A; */
+    margin: auto;
+    margin-top: 370px;
+    margin-left: 60px;
 }
 
 #adminCanvas{
@@ -63,7 +75,7 @@ margin: auto;
     margin-top: 50px;
     width: 1664px; 
     height: 936px; 
-    background-color: red;
+    /* background-color: red; */
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
@@ -81,6 +93,10 @@ margin: auto;
 #secondTitle{
     font-size: 40px;
     padding-left: 22px;
+}
+
+#a30days{
+    font-size: 30px;
 }
 
 /* #boton{
