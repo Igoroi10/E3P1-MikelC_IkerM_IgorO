@@ -14,13 +14,14 @@ html {
 }
 
 #adminScreen {
-    padding-top: 130px;
+    padding-top: 100px;
     padding-left: 60px;
 }
 
 #dechControl {
     text-align: center;
-    padding-left: 50;
+    padding-left: 50px;
+    padding-top: 0px;
 }
 
 #adminCanvas{
@@ -33,4 +34,9 @@ html {
     width: 1664px; 
     height: 936px; 
     border: 3px solid rgb(0, 0, 0);
+}
+
+#adminName{
+    font-size: 60px;
+    padding-left: 22px;
 }
