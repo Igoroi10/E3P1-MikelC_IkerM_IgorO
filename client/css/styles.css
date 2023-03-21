@@ -13,7 +13,9 @@ html {
     background-color: white;
 }
 
-
+/* //////////////////////////////////////////////////////////////////////////////////// 
+///////     ADMIN SCREEN
+//////////////////////////////////////////////////////////////////////////////////////*/
 #adminScreen {
     float: left;
     width: 300px;
@@ -130,7 +132,7 @@ html {
     background-color: #FCFCFD;
     border-radius: 4px;
     border-width: 0;
-    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#3d7ac4 0 -3px 0 inset;
     box-sizing: border-box;
     color: #36395A;
     cursor: pointer;
@@ -153,6 +155,7 @@ html {
     white-space: nowrap;
     will-change: box-shadow,transform;
     font-size: 18px;
+    background-image: url("../images/background.png");
 }
 
 #boton:focus {
@@ -162,4 +165,154 @@ html {
 #boton:active {
   box-shadow: #D6D6E7 0 3px 7px inset;
   transform: translateY(2px);
+}
+
+
+/* //////////////////////////////////////////////////////////////////////////////////// 
+///////     PLAYER SCREEN
+//////////////////////////////////////////////////////////////////////////////////////*/
+
+
+#playerCanvas{
+    background-image: url("../images/background.png");
+    margin: auto;
+    margin-top: 50px;
+    width: 1664px; 
+    height: 936px; 
+    /* background-color: red; */
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0px;
+    display: block;
+    border: 3px solid rgb(0, 0, 0);
+}
+
+#playerScreen {
+    float: left;
+    width: 300px;
+    height: 300px;
+    /* background-color: purple; */
+    margin: auto;
+    margin-top: 80px;
+    margin-left: 300px;
+}
+
+#winrate{
+    /* float: left; */
+    width: 500px;
+    height: 60px;
+    /* background-color: rgb(120, 27, 27); */
+    margin-top: 450px;
+    margin-left: 200px;
+    font-family: "JetBrains Mono",monospace;
+    font-size: 30px;
+}
+
+#gamesWon{
+    /* float: left; */
+    width: 500px;
+    height: 60px;
+    /* background-color: rgb(120, 27, 27); */
+    margin-top: 70px;
+    margin-left: 200px;
+    font-family: "JetBrains Mono",monospace;
+    font-size: 30px;
+    
+}
+#totalGames{
+    /* float: left; */
+    width: 500px;
+    height: 60px;
+    /* background-color: rgb(120, 27, 27); */
+    margin-top: 70px;
+    margin-left: 200px;
+    font-family: "JetBrains Mono",monospace;
+    font-size: 30px;
+}
+
+#selectRival{
+    float: right;
+    width: 400px;
+    height: 700px;
+    /* background-color: #36395A; */
+    margin: auto;
+    margin-top: 90px;
+    margin-right: 200px;
+    padding: 20px;
+    box-shadow:
+         inset 0 -3em 3em rgba(0,0,0,0.1),
+               0 0  0 2px rgb(255,255,255),
+               0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+#logOutButton{
+    float: right;
+    margin-top: 30px;
+    margin-right: 30px;
+}
+
+#selectDifficult{
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+#playerPicture{
+    margin-left: 65px;
+}
+
+#playerName{
+    font-family: "JetBrains Mono",monospace;
+    font-size: 60px;
+    padding-left: 20px;
+}
+
+#rivalLetter{
+    font-family: "JetBrains Mono",monospace;
+    font-size: 30px;
+    margin-left: 45px;
+}
+
+#difficultButton{
+    align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#3d7ac4 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+    background-image: url("../images/background.png");
+    margin-left: 60px;
+}
+
+p{
+    padding-left: 10px;
+}
+
+h3{
+    font-family: "JetBrains Mono",monospace;
+    font-size: 23px;
+    margin-left: 25px;
 }
