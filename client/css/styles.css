@@ -21,7 +21,7 @@ html {
     /* background-color: purple; */
     margin: auto;
     margin-top: 60px;
-    margin-left: 60px;
+    margin-left: 200px;
 }
 
 #dechControl {
@@ -35,10 +35,12 @@ html {
 
 #dechRectangle{
     float: right;
-    width: 1000px;
+    width: 995px;
     height: 200px;
-    background-color: green;
-    margin: auto;
+    box-shadow:
+         inset 0 -3em 3em rgba(0,0,0,0.1),
+               0 0  0 1px rgb(231, 227, 227),
+               0.3em 0.3em 1em rgba(0,0,0,0.3);
     margin-top: 10px;
     margin-right: 5px;
 }
@@ -49,16 +51,19 @@ html {
     height: 200px;
     /* background-color: green; */
     margin: auto;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 #playerRectangle {
     float: right;
-    width: 1000px;
+    width: 995px;
     height: 200px;
-    background-color: green;
+    box-shadow:
+         inset 0 -3em 3em rgba(0,0,0,0.1),
+               0 0  0 1px rgb(255, 255, 255),
+               0.3em 0.3em 1em rgba(0,0,0,0.3);
     margin: auto;
     margin-top: 10px;
-    margin-right: 5px;
+    margin-right: 10px;
 }
 
 #last30days{
@@ -66,11 +71,17 @@ html {
     height: 500px;
     /* background-color: #36395A; */
     margin: auto;
-    margin-top: 370px;
-    margin-left: 60px;
+    margin-top: 390px;
+    margin-left: 130px;
+    padding: 20px;
+    box-shadow:
+         inset 0 -3em 3em rgba(0,0,0,0.1),
+               0 0  0 1px rgb(255,255,255),
+               0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
 
 #adminCanvas{
+    background-image: url("../images/background.jpg");
     margin: auto;
     margin-top: 50px;
     width: 1664px; 
@@ -86,17 +97,30 @@ html {
 }
 
 #adminName{
+    font-family: "JetBrains Mono",monospace;
     font-size: 60px;
-    padding-left: 22px;
+    padding-left: 20px;
+    color: white;
 }
 
 #secondTitle{
+    font-family: "JetBrains Mono",monospace;
     font-size: 40px;
     padding-left: 22px;
+    color: white;
 }
 
 #a30days{
+    font-family: "JetBrains Mono",monospace;
     font-size: 30px;
+    margin-left: 25px;
+    color: white;
+}
+
+#barra{
+    font-family: "JetBrains Mono",monospace;
+    font-size: 30px;
+    color: white;
 }
 
 /* #boton{
@@ -105,34 +129,35 @@ html {
 } */
 /* CSS */
 #boton {
-  align-items: center;
-  appearance: none;
-  background-color: #FCFCFD;
-  border-radius: 4px;
-  border-width: 0;
-  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#D6D6E7 0 -3px 0 inset;
-  box-sizing: border-box;
-  color: #36395A;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: "JetBrains Mono",monospace;
-  height: 48px;
-  justify-content: center;
-  line-height: 1;
-  list-style: none;
-  overflow: hidden;
-  padding-left: 16px;
-  padding-right: 16px;
-  position: relative;
-  text-align: left;
-  text-decoration: none;
-  transition: box-shadow .15s,transform .15s;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
-  white-space: nowrap;
-  will-change: box-shadow,transform;
-  font-size: 18px;
+    align-items: center;
+    appearance: none;
+    background-color: #000000;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#5858af 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #8990dd;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px; 
+    background-image: url("../images/background.jpg");
 }
 
 #boton:focus {
