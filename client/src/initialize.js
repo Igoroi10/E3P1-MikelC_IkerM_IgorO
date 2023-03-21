@@ -1,4 +1,4 @@
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer,canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -14,9 +14,10 @@ window.onload = init;
 
 function init()
 {
-    globals.buttonStart = document.getElementById('btnStart');
-    globals.buttonAdmin = document.getElementById('btnAdmin');
-    globals.buttonAdd = document.getElementById('btnAdd');
+    globals.buttonStart  = document.getElementById('btnStart');
+    globals.buttonAdmin  = document.getElementById('btnAdmin');
+    globals.buttonPlayer = document.getElementById('btnPlayer');
+    globals.buttonAdd    = document.getElementById('btnAdd');
 
     //Get a reference to the canvas
     globals.canvas = document.getElementById('gameScreen');
@@ -33,6 +34,7 @@ function init()
 
     //Inicializamos el boton del admin
     globals.buttonAdmin.addEventListener("mousedown",   btnStartAdmin,   false);
+    globals.buttonPlayer.addEventListener("mousedown",  btnStartPlayer, false);
 
     globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);
 }
@@ -42,6 +44,7 @@ function initHTMLelements()
     //Falta crear la global
     globals.buttonStart     = document.getElementById('btnStart');
     globals.buttonAdmin     = document.getElementById('btnAdmin');
+    globals.buttonPlayer    = document.getElementById('btnPlayer');
 
     //Get A reference to the canvas 
     globals.canvas = document.getElementById('gameScreen');
@@ -52,10 +55,11 @@ function initHTMLelements()
     globals.ctx = globals.canvas.getContext('2d');
 
     //Inicializamos listeners
-    globals.buttonStart.addEventListener("mousedown", btnStartDown, false);
+    globals.buttonStart.addEventListener("mousedown",   btnStartDown, false);
     globals.buttonStart.addEventListener("mouseover",   btnStartOver,   false);
     globals.buttonStart.addEventListener("moseout",     btnStartOut,    false);
     globals.buttonAdmin.addEventListener("mousedown",   btnStartAdmin,  false);
+    globals.buttonPlayer.addEventListener("mousedown",   btnStartPlayer,  false);
 
 }
 

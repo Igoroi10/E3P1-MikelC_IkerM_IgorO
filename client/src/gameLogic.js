@@ -106,13 +106,18 @@ function loading ()
     {   
         createExpertDeck();
         console.log(globals.cards.length);
-        globals.gameState           = State.ADMIN_MENU; 
+        globals.gameState           = State.PLAYER_MENU; 
         globals.action.enter        = false;
     }
 }
 
-function updateAdminScreen()
-{
-    // console.log("entra en adminScreen");
-    document.getElementById("adminScreen").style.display = "block";
-}
+// function updateAdminScreen()
+// {
+//     // console.log("entra en adminScreen");
+//     document.getElementById("adminScreen").style.display = "block";
+// }
+
+// function updatePlayerScreen()
+// {
+//     document.getElementById("playerScreen").style.display = "block";
+// }

@@ -10,6 +10,7 @@
 <body>
     <button id = "btnStart" class = "btn btn-primary"> START</button>
     <button id = "btnAdmin" class="btn btn-primary"> ADMIN</button>
+    <button id = "btnPlayer" class="btn btn-primary">PLAYER</button>
 
     <div id = "divCanvas">
         <canvas id="gameScreen" width="1664" height="936">
@@ -18,38 +19,69 @@
     </div>
 
     <div id="adminCanvas" style="display:none;">
-        <div id = "adminScreen">
-            <img src="./images/profile.png" width="150" height="150">
-            <h1 id="adminName"><b>Igor</b></h1>
-        </div>
-       
-        <div id="dechControl">
-            <h2 id="secondTitle">Deck Control</h2>
-            <button id="boton" type="button">add</button>  <i id="barra">/</i>  
-            <button id="boton" type="button">remove</button>  <i id="barra">/</i>   
-            <button id="boton" type="button">edit</button>  <i id="barra">/</i>  
-            <input id="boton" type="text" value placeholder="Search">
-        </div>
-        <div id="dechRectangle">
+            <div id = "adminScreen">
+                    <img src="./images/profile.png" width="150" height="150">
+                    <h1 id="adminName"><b>Igor</b></h1>
+            </div>
+        
+            <div id="dechControl">
+                    <h2 id="secondTitle">Deck Control</h2>
+                    <button id="boton" type="button">add</button>  <i id="barra">/</i>  
+                    <button id="boton" type="button">remove</button>  <i id="barra">/</i>   
+                    <button id="boton" type="button">edit</button>  <i id="barra">/</i>  
+                    <input id="boton" type="text" value placeholder="Search">
+            </div>
+            <div id="dechRectangle">
 
-        </div>
-        <div id="playerControl">
-            <h2 id="secondTitle">Player Control</h2>
-            <button id="boton" type="button">add</button>  <i id="barra">/</i>  
-            <button id="boton" type="button">remove</button>  <i id="barra">/</i>   
-            <button id="boton" type="button">edit</button>  <i id="barra">/</i>  
-            <input id="boton" type="text" value placeholder="Search">
-        </div>
-        <div id="playerRectangle">
+            </div>
+            <div id="playerControl">
+                    <h2 id="secondTitle">Player Control</h2>
+                    <button id="boton" type="button">add</button>  <i id="barra">/</i>  
+                    <button id="boton" type="button">remove</button>  <i id="barra">/</i>   
+                    <button id="boton" type="button">edit</button>  <i id="barra">/</i>  
+                    <input id="boton" type="text" value placeholder="Search">
+            </div>
+            <div id="playerRectangle">
 
-        </div>
-         <div id="last30days">
-            <h3 id="a30days">Active players</h3>
-            <h3 id="a30days">(last 30 days)</h3>
-        </div>
+            </div>
+            <div id="last30days">
+                    <h3 id="a30days">Active players</h3>
+                    <h3 id="a30days">(last 30 days)</h3>
+            </div>
     </div>
-    </canvas>
+    
+    <div id="playerCanvas" style="display: none;">
+            <div id = "playerScreen">
+                    <img src="./images/profile.png" width="150" height="150">
+                    <h1 id="playerName"><b>Igor</b></h1>
+            </div>
+        
+            <div id="dechControl">
+                    <h2 id="secondTitle">Deck Control</h2>
+                    <button id="boton" type="button">add</button>  <i id="barra">/</i>  
+                    <button id="boton" type="button">remove</button>  <i id="barra">/</i>   
+                    <button id="boton" type="button">edit</button>  <i id="barra">/</i>  
+                    <input id="boton" type="text" value placeholder="Search">
+            </div>
+            <div id="dechRectangle">
 
+            </div>
+            <div id="playerControl">
+                    <h2 id="secondTitle">Player Control</h2>
+                    <button id="boton" type="button">add</button>  <i id="barra">/</i>  
+                    <button id="boton" type="button">remove</button>  <i id="barra">/</i>   
+                    <button id="boton" type="button">edit</button>  <i id="barra">/</i>  
+                    <input id="boton" type="text" value placeholder="Search">
+            </div>
+            <div id="playerRectangle">
+
+            </div>
+            <div id="last30days">
+                    <h3 id="a30days">Active players</h3>
+                    <h3 id="a30days">(last 30 days)</h3>
+            </div>
+    </div>
+    
     <label id = "txtPruebas"> </label>
 
     <script type = "module" src = "./src/initialize.js"></script>

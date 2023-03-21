@@ -24,6 +24,8 @@ export default
 
     buttonAdmin: {},
 
+    buttonPlayer: {},
+
     //Array de Cartas
     cards: [],
 
