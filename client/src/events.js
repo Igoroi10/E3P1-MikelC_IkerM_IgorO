@@ -19,6 +19,7 @@ export function btnStartDown ()
 
     //Ocultamos el boton de Start
     globals.buttonStart.style.visibility = "Hidden";
+    globals.buttonAdmin.style.visibility = "Hidden";
 
     document.getElementById('divCanvas').style.display = "block";
 }
@@ -32,7 +33,7 @@ export function btnStartOver ()
 
 }
 
-export function btnStartOut (event)
+export function btnStartOut ()
 {
     //Recuperamos tento original 
     document.getElementById("btnStart").innerHTML = "START";
@@ -40,14 +41,14 @@ export function btnStartOut (event)
 
 export function btnStartAdmin()
 {
-    console.log("entra en adminbtn");
+    // console.log("entra en adminbtn");
+    globals.buttonStart.style.visibility = "Hidden";
     globals.buttonAdmin.style.visibility = "Hidden";
-
-    document.getElementById('divCanvas').style.display = "block";
+    document.getElementById('adminCanvas').style.display = "block";
 
 }
 
-export function canvasMousedownHandler(event)
+export function canvasMousedownHandler()
 {
     globals.action.mousePressed = true;
 }

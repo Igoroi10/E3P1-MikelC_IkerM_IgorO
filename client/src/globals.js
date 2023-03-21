@@ -22,6 +22,8 @@ export default
     //Boton de inicio
     buttonStart: {},
 
+    buttonAdmin: {},
+
     //Array de Cartas
     cards: [],
 
