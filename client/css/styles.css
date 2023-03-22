@@ -13,6 +13,123 @@ html {
     background-color: white;
 }
 
+/*//////////////////////////////////////////////////////////////////////////////////// 
+///////     ADMIN SCREEN
+//////////////////////////////////////////////////////////////////////////////////////*/
+
+#btnStart {
+    --b: 3px;   /* border thickness */
+    --s: .15em; /* size of the corner */
+    --c: #BD5532;
+    
+    padding: calc(.05em + var(--s)) calc(.3em + var(--s));
+    color: var(--c);
+    --_p: var(--s);
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--c) 0)
+      var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .2em;
+  }
+  #btnStart:hover,
+  #btnStart:focus-visible{
+    --_p: 0px;
+    outline-color: var(--c);
+    outline-offset: .05em;
+  }
+  #btnStart:active {
+    background: var(--c);
+    color: #fff;
+  }
+/*   
+  body {
+    height: 100vh;
+    margin: 0;
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 20px;
+    place-content: center; */
+    /* background: #DAEDFB;
+  } */
+  #btnStart {
+    font-family: system-ui, sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    margin: .1em;
+  }
+
+
+#btnAdmin {
+    --b: 3px;   /* border thickness */
+    --s: .15em; /* size of the corner */
+    --c: #BD5532;
+    
+    padding: calc(.05em + var(--s)) calc(.3em + var(--s));
+    color: var(--c);
+    --_p: var(--s);
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--c) 0)
+      var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .2em;
+  }
+  #btnAdmin:hover,
+  #btnStart:focus-visible{
+    --_p: 0px;
+    outline-color: var(--c);
+    outline-offset: .05em;
+  }
+  #btnAdmin:active {
+    background: var(--c);
+    color: #fff;
+  }
+  #btnAdmin {
+    font-family: system-ui, sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    margin: .1em;
+  }
+
+#btnPlayer {
+    --b: 3px;   /* border thickness */
+    --s: .15em; /* size of the corner */
+    --c: #BD5532;
+    
+    padding: calc(.05em + var(--s)) calc(.3em + var(--s));
+    color: var(--c);
+    --_p: var(--s);
+    background:
+      conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--c) 0)
+      var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
+    transition: .3s linear, color 0s, background-color 0s;
+    outline: var(--b) solid #0000;
+    outline-offset: .2em;
+  }
+  #btnPlayer:hover,
+  #btnPlayer:focus-visible{
+    --_p: 0px;
+    outline-color: var(--c);
+    outline-offset: .05em;
+  }
+  #btnPlayer:active {
+    background: var(--c);
+    color: #fff;
+  }
+  #btnPlayer {
+    font-family: system-ui, sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    margin: .1em;
+  }
+
 /* //////////////////////////////////////////////////////////////////////////////////// 
 ///////     ADMIN SCREEN
 //////////////////////////////////////////////////////////////////////////////////////*/
@@ -134,7 +251,7 @@ html {
     border-width: 0;
     box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#3d7ac4 0 -3px 0 inset;
     box-sizing: border-box;
-    color: #36395A;
+    color: #000000;
     cursor: pointer;
     display: inline-flex;
     font-family: "JetBrains Mono",monospace;
@@ -315,4 +432,14 @@ h3{
     font-family: "JetBrains Mono",monospace;
     font-size: 23px;
     margin-left: 25px;
+}
+
+
+#difficultButton:focus {
+    box-shadow: #a9a9f3 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #acacfc 0 -3px 0 inset;
+  }
+  
+#difficultButton:active {
+    box-shadow: #b1b1ff 0 3px 7px inset;
+    transform: translateY(2px);
 }
