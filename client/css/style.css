@@ -129,3 +129,19 @@ button{
 html {
     background-color: white;
 }
+
+#lblError{
+    color: red;
+    font-weight: bold;
+}
+
+#lblSessionUser{
+    font-weight: bold;
+}
+
+#btnStart{
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 16px;
+}

@@ -1,38 +1,60 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang = "en">
 <head>
-  <link rel="stylesheet" href="./css/style.css">
-  <title>Login</title>
+    <meta charset="UIF-8">
+    <meta http-equiva="X-UA-Conpatíble" content="IE=eedge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <!-- aqui antes habia un link a boostrap (Esta en el tuto) -->
+    <link rel="stylesheet" href="./css/style.css">
+    
+    <title> Ajax form example </title>
 </head>
+    
 <body>
-    <section>
-        <div class="form-box">
-            <div class="form-value">
-                <form action="">
-                    <h2>Login</h2>
-                    <div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required>
-                        <label for="">Email</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
-                        <label for="">Password</label>
-                    </div>
-                    <div class="forget">
-                        <label for=""><a href="#">Forget Password</a></label>
-                      
-                    </div>
-                    <button>Log in</button>
-                    <div class="register">
-                        <p>Don't have a account <a href="#">Register</a></p>
-                    </div>
-                </form>
+    <div class="contatner">
+    
+        <!-- texto Log in user> -->
+        <div class="row">
+            <div class="col">
+                <label id = "lblSessionUser"></label>
             </div>
         </div>
-    </section>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+        <!-- Formulario log in -->
+        <section>
+            <div class = "row">
+                <div class = "col" id = "logInForm">
+                    <label id="lblError"></label>
+                    <br>
+                    <!-- Form LOG IN -->
+                    <label for="id_name">First Name:</label>
+                    <input type="text" name="name" id="id_name" placeholder="Jhon" requiered> <br/><br/>
+                    <label for="id_last_name">Last name: </label>
+                    <input type="text" name="last_name" id="id_last_name" placeholder="Smith" required> <br/><br/>
+                    <button id="btnLogin" class="btn btn-primary">LOG IN</button>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Seccion PLAY -->
+        <section id="sectionPlay">
+            <div class="row">
+                <div class="col">
+                    <button id="btnPlay" class = "btn btn-primary">PLAY</button>
+
+                </div>
+
+            </div>
+        </section>
+   
+
+
+    </div>
+
+    <script type = "module" src= "./src/initialize.js"></script>
+
 </body>
-</html>
+</htmt>
+    
+    

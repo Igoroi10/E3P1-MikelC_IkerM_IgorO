@@ -78,5 +78,22 @@ export default
     
     mouseHasCollidedWithTheCard: false,
     //Array donde se almacenaran los slots / huevos donde se pondran las cartas
-    slots: []
+    slots: [],
+
+
+    // ====================
+    //      LOGIN
+    // ====================
+
+    btnLogin:       {},
+    inputName:      {},
+    inputLastName:  {},
+    lblSessionUser: {},
+    lblError:       {},
+    sectionLogIn:   {},
+    sectionPlay:    {},
+
+    
+
+    
 }
