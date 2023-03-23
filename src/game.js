@@ -27,11 +27,8 @@ function init()
     //Funcion de Obejtos
     initFakeCards();
 
-    //Inicializamos la base de datos
-    // initCardInfo();
-    // initCardLinks();
+    initCardInfo();
 
-    window.requestAnimationFrame(gameLoop);
 }
 
 

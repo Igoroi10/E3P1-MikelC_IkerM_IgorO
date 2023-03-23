@@ -274,6 +274,7 @@ function loadHandler()
 
         console.log("Assets finished loading");
 
+        globals.gameState = State.PLAYING;
 
     }
 }
@@ -853,16 +854,16 @@ function initCardInfo()
                     
                     // console.log("Entra");
                     const resultJSON = JSON.parse(this.responseText);
-                    globals.get_checks++;
                     
                     //Guardamos los datos del resultJSON
                     globals.cardInfo = resultJSON;
                     
-                    //Iniciamos los datos del juego
-                    // initGame(resultJSON);
+                    initCardLinks();
 
-                    console.log(globals.cardInfo);
-                    // console.log("this.responetext" + this.responseText);
+
+                    console.log("Card info loaded");
+                   
+                    console.log("this.responetext" + this.responseText);
 
                 }
                 else  
@@ -898,16 +899,14 @@ function initCardLinks()
                     
                     // console.log("Entra");
                     const resultJSON = JSON.parse(this.responseText);
-                    globals.get_checks++;
                     
                     //Guardamos los datos del resultJSON
                     globals.img_url = resultJSON;
                     
-                    //Iniciamos los datos del juego
-                    // initGame(resultJSON);
+                    loadAssets();
 
-                    console.log(globals.img_url);
-                    // console.log("this.responetext" + this.responseText);
+                    console.log("get links loaded");
+                    console.log("this.responetext" + this.responseText);
 
                 }
                 else  
@@ -922,6 +921,7 @@ function initCardLinks()
     request.responseType = "text";
     request.send();
 }
+
 
 
 
