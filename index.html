@@ -85,44 +85,9 @@
     <label id = "txtPruebas"> </label>
     <!-- <label id = "txtPruebas"> </label> -->
     
-    <!-- VISUAL LOGIN PAGE  -->
-
-    <section>
-        <div class="form-box">
-            <div class="form-value">
-                <form action="">
-                    <h2>Login</h2>
-                    <div class="inputbox">
-                        <ion-icon name="mail-outline"></ion-icon>
-                        <input type="email" required>
-                        <label for="">Email</label>
-                    </div>
-                    <div class="inputbox">
-                        <ion-icon name="lock-closed-outline"></ion-icon>
-                        <input type="password" required>
-                        <label for="">Password</label>
-                    </div>
-                    <div class="forget">
-                        <label for=""><a href="#">Forget Password</a></label>
-                      
-                    </div>
-                    <button class="LogInbutton">Log in</button>
-                    <div class="register">
-                        <p>Don't have a account <a href="#">Register</a></p>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    
-    
-    
     <!-- LOGIN "FUNCIONAL" -->
 
-    <div class="contatner">
-    
+    <div class="container">
         <!-- texto Log in user> -->
         <div class="row">
             <div class="col">
@@ -133,37 +98,47 @@
         <!-- Formulario log in -->
             <section>
                 <div class="form-box">  
-                    <div class = "row">
-                        <div class = "col" id = "logInForm">
-                            <form action="">
-                                <h2>Login</h2>
+                    <div class="form-value">
+                        <form action="">
+                            <h2>Login</h2>
+                            <div class="inputbox">
+                                <label id="lblError"></label>
+                                <br>
+
+                                <!-- Form LOG IN -->
                                 <div class="inputbox">
-                                    <label id="lblError"></label>
-                                    <br>
-
-                                    <!-- Form LOG IN -->
-                                    <div class="inputbox">
-                                        <ion-icon name="mail-outline"></ion-icon>
-                                        <label for="id_name">Mail:</label>
-                                        <input type="email" name="name" id="id_name" placeholder="example@domain.com" requiered>
-                                    </div>
-
-                                    <div class="inputbox">
-                                        <label for="id_last_name">Last name: </label>
-                                        <input type="text" name="last_name" id="id_last_name" placeholder="Smith" required> <br/><br/>
-                                    </div>
-                                    <button id="btnLogin" class="btn btn-primary">LOG IN</button>
+                                    <ion-icon name="mail-outline"></ion-icon>
+                                    <!-- <label for="id_name">Email:</label> -->
+                                    <input type="email" name="email" id="Emaila" placeholder="example@domain.com" requiered>
+                                    <label for="">Email</label>
                                 </div>
-                            </form>
-                            
-                        </div>
+
+                                <!-- Form PassWord -->
+                                <div class="inputbox">
+                                    <ion-icon name="lock-closed-outline"></ion-icon>
+                                    <input type="text" name="password" id="password" placeholder="" required> 
+                                    <label for="password">Password</label>
+                                </div>
+
+                                <!-- Form Forget -->
+                                <div class="forget">
+                                    <label for=""><a href="#">Forget Password</a></label>
+                                </div>
+
+                                <button id="btnLogin" class="btn btn-primary">LOG IN</button>
+
+                            </div>
+                        </form>
                     </div>
                 </div>
-                
             </section>
-        
+            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+
+
+
         <!-- Seccion PLAY -->
-        <section id="sectionPlay">
+        <!-- <section id="sectionPlay">
             <div class="row">
                 <div class="col">
                     <button id="btnPlay" class = "btn btn-primary">PLAY</button>
@@ -171,7 +146,7 @@
                 </div>
 
             </div>
-        </section>
+        </section> -->
 
     </div>
 
