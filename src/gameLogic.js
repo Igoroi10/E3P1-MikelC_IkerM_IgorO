@@ -58,32 +58,6 @@ function playGame()
 
 }
 
-function loading ()
-{
-    if(globals.get_checks < 2){
-        initCardInfo();
-        initCardLinks();
-    }
-
-    // console.log(globals.img_url);
-    if(globals.get_checks === 2){
-        loadAssets();
-        globals.get_checks++;
-    }
-
-
-    console.log("assets cargados: " + globals.assetsLoaded)
-    console.log("Get loaded succesfully");
-    console.log("checks: "+globals.get_checks);
-
-    if (globals.assetsLoaded === globals.img_url.length && globals.get_checks === 3)
-    {   
-        createExpertDeck();
-        console.log(globals.cards.length);
-        globals.gameState           = State.PLAYER_MENU; 
-        globals.action.enter        = false;
-    }
-}
 
 function checkStates(){
    //Change what the game is doing based on the game state
