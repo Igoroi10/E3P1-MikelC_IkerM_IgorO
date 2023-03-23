@@ -2,6 +2,7 @@ import globals from "./globals.js";
 import { initEvents, initFakeCards, initHTMLelements, initVars, loadAssets, initCardInfo, initCardLinks, initSlots} from "./initialize.js";
 import update from "./gameLogic.js";
 import { render } from "./gameRender.js";
+import { State } from "./constants.js";
 
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -27,11 +28,8 @@ function init()
     //Funcion de Obejtos
     initFakeCards();
 
-    //Inicializamos la base de datos
-    // initCardInfo();
-    // initCardLinks();
+    initCardInfo();
 
-    window.requestAnimationFrame(gameLoop);
 }
 
 
@@ -44,7 +42,6 @@ function gameLoop(timeStamp)
 {
     // console.log("gameloop");
     //Keep requesting new frames
-    window.requestAnimationFrame(gameLoop, globals.canvas);
 
     //Tiempo real de ciclo de ejecución 
     const elapsedCycleSeconds = (timeStamp - globals.previousCycleMilliseconds) / 1000;
@@ -58,7 +55,7 @@ function gameLoop(timeStamp)
 
     if(globals.deltaTime >= globals.frameTimeObj)
     {
-        // console.log("tra");
+        // console.log("entra en gameLoop if");
         //Update the game logic. gameLogic.js
         update();
 
@@ -69,6 +66,18 @@ function gameLoop(timeStamp)
         globals.deltaTime -= globals.frameTimeObj;
     }
 
+    if(globals.gameState === State.PLAYING)
+    {
+        requestAnimationFrame(gameLoop);
+    }
+
+    else
+        cancelAnimationFrame(gameLoop);
 
 }
 
+
+export 
+{
+    gameLoop
+}

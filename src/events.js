@@ -3,6 +3,7 @@ import { initGame } from "./initialize.js";
 
 import { Key } from "./constants.js";
 
+import { gameLoop } from "./game.js";
 
 //Creacion de Evento para el raton
 
@@ -23,6 +24,8 @@ export function btnStartDown ()
     globals.buttonPlayer.style.visibility = "Hidden";
 
     document.getElementById('divCanvas').style.display = "block";
+
+    requestAnimationFrame(gameLoop);
 }
 
 //Boton de Start a Over

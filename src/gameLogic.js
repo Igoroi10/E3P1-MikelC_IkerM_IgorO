@@ -13,38 +13,12 @@ export default function update()
             loading();
             break;
         
-        case State.LOG_IN:
-            // playGame();
-            break;
-
-        case State.ADMIN_MENU:
-            updateAdminScreen();
-            break;
-
-        case State.PLAYER_MENU:
-            // playGame();
-            break;
-
-        case State.LOAD_GAME:
-            // playGame();
-            break;
 
         case State.PLAYING:
             // console.log("Colocolo")
             playGame();
             break;
 
-        case State.STATS:
-            // playGame();
-            break;
-        
-        case State.ROUND_END:
-            // playGame();
-            break;
-
-        case State.GAME_END:
-            // playGame();
-            break;        
 
         default:
             console.error("Error: Game State invalid");
@@ -84,40 +58,89 @@ function playGame()
 
 }
 
-function loading ()
-{
-    if(globals.get_checks < 2){
-        initCardInfo();
-        initCardLinks();
-    }
 
-    // console.log(globals.img_url);
-    if(globals.get_checks === 2){
-        loadAssets();
-        globals.get_checks++;
-    }
+function checkStates(){
+   //Change what the game is doing based on the game state
+   switch(globals.gameState)
+   {
+       case State.LOADING:
+           initialLoad();
+           makeThisScreenVisible(State.LOADING);
+           break;
 
+       case State.LOG_IN:
+            makeThisScreenVisible(State.LOG_IN);
+           break;
 
-    // console.log("assets cargados: " + globals.assetsLoaded)
-    // console.log("Get loaded succesfully");
-    // console.log("checks: "+globals.get_checks);
+       case State.ADMIN_MENU:
+            makeThisScreenVisible(State.ADMIN_MENU);
+           break;
 
-    if (globals.assetsLoaded === globals.img_url.length && globals.get_checks === 3)
-    {   
-        createExpertDeck();
-        // console.log(globals.cards.length);
-        globals.gameState           = State.PLAYER_MENU; 
-        globals.action.enter        = false;
-    }
+       case State.PLAYER_MENU:
+            makeThisScreenVisible(State.PLAYER_MENU);
+           break;
+
+       case State.LOAD_GAME:
+            initGameLoad();
+           break;
+
+       case State.PLAYING:
+           // console.log("Colocolo")
+           //playGame();
+           break;
+
+       case State.STATS:
+            makeThisScreenVisible(State.STATS);
+           break;
+
+       case State.ROUND_END:
+            makeThisScreenVisible(State.ROUND_END);
+           break;
+
+       case State.GAME_END:
+            makeThisScreenVisible(State.GAME_END);
+           break;        
+
+       default:
+           console.error("Error: Game State invalid");
+   }
 }
 
-// function updateAdminScreen()
-// {
-//     // console.log("entra en adminScreen");
-//     document.getElementById("adminScreen").style.display = "block";
-// }
+function makeThisScreenVisible(screen){
+    let visibleDiv;
+    switch(screen){
+        case State.LOG_IN:
+            visibleDiv = "container";
+            break;
 
-// function updatePlayerScreen()
-// {
-//     document.getElementById("playerScreen").style.display = "block";
-// }
+        case State.PLAYER_MENU:
+            visibleDiv = "playerCanvas";
+            break;
+        
+        case State.ADMIN_MENU:
+            visibleDiv = "adminCanvas";
+            break;
+
+        case State.PLAYING:
+            visibleDiv = "divCanvas";
+            break;
+    }
+
+    const logInDiv      = document.getElementById("container");
+    const playerMenu    = document.getElementById("playerCanvas");
+    const adminMenu     = document.getElementById("adminCanvas");
+    const playingScreen = document.getElementById("divCanvas");
+    
+    logInDiv.style.display      = "none";
+    playerMenu.style.display    = "none";
+    adminMenu.style.display     = "none";
+    playingScreen.style.display = "none";
+
+    visibleDiv.style.display    = "block";
+
+}
+
+
+export {
+    checkStates,
+}
