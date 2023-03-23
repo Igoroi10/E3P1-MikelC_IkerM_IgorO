@@ -133,6 +133,36 @@ function checkStates(){
 }
 
 function makeThisScreenVisible(screen){
+    let visibleDiv;
+    switch(screen){
+        case State.LOG_IN:
+            visibleDiv = "container";
+            break;
+
+        case State.PLAYER_MENU:
+            visibleDiv = "playerCanvas";
+            break;
+        
+        case State.ADMIN_MENU:
+            visibleDiv = "adminCanvas";
+            break;
+
+        case State.PLAYING:
+            visibleDiv = "divCanvas";
+            break;
+    }
+
+    const logInDiv      = document.getElementById("container");
+    const playerMenu    = document.getElementById("playerCanvas");
+    const adminMenu     = document.getElementById("adminCanvas");
+    const playingScreen = document.getElementById("divCanvas");
+    
+    logInDiv.style.display      = "none";
+    playerMenu.style.display    = "none";
+    adminMenu.style.display     = "none";
+    playingScreen.style.display = "none";
+
+    visibleDiv.style.display    = "block";
 
 }
 
