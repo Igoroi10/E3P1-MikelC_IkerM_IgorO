@@ -28,20 +28,20 @@
         
             <div id="dechControl">
                     <h2 id="secondTitle">Deck Control</h2>
-                    <button id="boton" type="button">add</button>  <i id="barra">/</i>  
-                    <button id="boton" type="button">remove</button>  <i id="barra">/</i>   
-                    <button id="boton" type="button">edit</button>  <i id="barra">/</i>  
-                    <input id="boton" type="text" value placeholder="Search">
+                    <button class="boton" type="button">add</button>  <i id="barra">/</i>  
+                    <button class="boton" type="button">remove</button>  <i id="barra">/</i>   
+                    <button class="boton" type="button">edit</button>  <i id="barra">/</i>  
+                    <input class="boton" type="text" value placeholder="Search">
             </div>
             <div id="dechRectangle">
 
             </div>
             <div id="playerControl">
                     <h2 id="secondTitle">Player Control</h2>
-                    <button id="boton" type="button">add</button>  <i id="barra">/</i>  
-                    <button id="boton" type="button">remove</button>  <i id="barra">/</i>   
-                    <button id="boton" type="button">edit</button>  <i id="barra">/</i>  
-                    <input id="boton" type="text" value placeholder="Search">
+                    <button class="boton" type="button">add</button>  <i id="barra">/</i>  
+                    <button class="boton" type="button">remove</button>  <i id="barra">/</i>   
+                    <button class="boton" type="button">edit</button>  <i id="barra">/</i>  
+                    <input class="boton" type="text" value placeholder="Search">
             </div>
             <div id="playerRectangle">
 
@@ -51,6 +51,8 @@
                     <h3 id="a30days">(last 30 days)</h3>
             </div>
     </div>
+    
+    <!-- PLAYER PAGE -->
     
     <div id="playerCanvas" style="display: none;">
             <div id = "playerScreen">
@@ -129,22 +131,37 @@
         </div>
 
         <!-- Formulario log in -->
-        <section>
-            <div class = "row">
-                <div class = "col" id = "logInForm">
-                    <label id="lblError"></label>
-                    <br>
-                    <!-- Form LOG IN -->
-                    <label for="id_name">First Name:</label>
-                    <input type="text" name="name" id="id_name" placeholder="Jhon" requiered> <br/><br/>
-                    <label for="id_last_name">Last name: </label>
-                    <input type="text" name="last_name" id="id_last_name" placeholder="Smith" required> <br/><br/>
-                    <button id="btnLogin" class="btn btn-primary">LOG IN</button>
+            <section>
+                <div class="form-box">  
+                    <div class = "row">
+                        <div class = "col" id = "logInForm">
+                            <form action="">
+                                <h2>Login</h2>
+                                <div class="inputbox">
+                                    <label id="lblError"></label>
+                                    <br>
 
+                                    <!-- Form LOG IN -->
+                                    <div class="inputbox">
+                                        <ion-icon name="mail-outline"></ion-icon>
+                                        <label for="id_name">Mail:</label>
+                                        <input type="email" name="name" id="id_name" placeholder="example@domain.com" requiered>
+                                    </div>
+
+                                    <div class="inputbox">
+                                        <label for="id_last_name">Last name: </label>
+                                        <input type="text" name="last_name" id="id_last_name" placeholder="Smith" required> <br/><br/>
+                                    </div>
+                                    <button id="btnLogin" class="btn btn-primary">LOG IN</button>
+                                </div>
+                            </form>
+                            
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </section>
-
+                
+            </section>
+        
         <!-- Seccion PLAY -->
         <section id="sectionPlay">
             <div class="row">
