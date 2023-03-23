@@ -23,7 +23,7 @@ section{
     min-height: 100vh;
     width: 100%;
     
-    background: url('../images/background6.jpg')no-repeat;
+    background: url('../images/background.jpg')no-repeat;
     background-position: center;
     background-size: cover;
 }
@@ -423,7 +423,7 @@ html {
     white-space: nowrap;
     will-change: box-shadow,transform;
     font-size: 18px;
-    background-image: url("../images/background.png");
+    background-image: url("../images/background.jpg");
 }
 
 #boton:focus {
@@ -442,7 +442,7 @@ html {
 
 
 #playerCanvas{
-    background-image: url("../images/background6.jpg");
+    background-image: url("../images/background.jpg");
     margin: auto;
     margin-top: 50px;
     width: 1664px; 
@@ -556,7 +556,7 @@ html {
     border-width: 0;
     box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#3d7ac4 0 -3px 0 inset;
     box-sizing: border-box;
-    color: #000000;
+    color: white;
     cursor: pointer;
     display: inline-flex;
     font-family: "JetBrains Mono",monospace;
@@ -577,7 +577,7 @@ html {
     white-space: nowrap;
     will-change: box-shadow,transform;
     font-size: 18px;
-    background-image: url("../images/background.png");
+    background-image: url("../images/background.jpg");
     margin-left: 50px;
     margin-top: 5px;
 }
