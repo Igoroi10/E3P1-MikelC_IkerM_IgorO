@@ -37,6 +37,22 @@ function init()
     globals.buttonPlayer.addEventListener("mousedown",  btnStartPlayer, false);
 
     globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);
+
+    globals.btnLogin.addEventListener("mousedown", logInHandler, false);
+
+
+    //Elementos
+    globals.btnLogin        = document.getElementById('btnLogin'); 
+    globals.inputName       = document.getElementById('id_name');
+    globals.inputLastName   = document.getElementById('id_last_name');
+    globals.lblSessionUser  = document.getElementById('lblSessionUser');
+    globals.lblError        = document.getElementById('lblError');
+    globals.sectionLogIn    = document.getElementById('sectionLogIn');
+    globals.sectionPlay     = document.getElementById('sectionPlay');
+
+    //Mostramos la pantalla de Log In
+    globals.sectionLogIn.style.display  = "block";
+    globals.sectionPlay.style.display   = "none";
 }
 
 function initHTMLelements()
@@ -260,6 +276,93 @@ function loadHandler()
 
 
     }
+}
+
+function logInHandler(event)
+{
+    console.log("Send Button Pressed");
+
+    //Send data
+    const objectToSend = {
+        name: globals.inputName.value,
+        lastName: globals.inputLastName.value
+    }
+
+    const dataToSend = 'name=' + objectToSend.name + '&lastName=' + objectToSend.lastName;
+
+    console.log(dataToSend);
+
+    //Ruta relativa al fichero que hace la petición (verifyUser.php)
+    const url = "./server/routes/verifyUser.php";
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                    console.log(this.responseText);
+                    const userData = JSON.parse(this.responseText);
+                    console.log(userData);
+
+                    manageLogin(userData);
+                }
+                else
+                    alert("Comunication error: No data received");
+            }
+            else
+                alert( "Comunication error: " + this.statusText);
+        }
+    }
+
+    request.responseType = "text";
+    request.send(dataToSend);
+}
+
+function manageLogin(userData)
+{
+    if (userData.name !== "" && userData.lastName !== "")
+    {
+        //Usuario logueado
+
+        //ACtivamos el menú de play y ocultamos el de logIn
+        globals.sectionLogIn.style.display  = "none";
+        globals.sectionPlay.style.display   = "block";
+
+        //No hay mesajes de eror
+        lblError.innerHTML = "";
+    }
+
+    else
+    {
+        if(userData.error !== "")
+        {
+            //Mostramos el mensaje de error
+            globals.lblError.innerHTML = userData.error;
+        }
+    }
+
+    //Pintamos el texto logIN
+    updateUserText(userData);
+}
+
+function updateUserText(user)
+{
+    if (user.name !== "" && user.lastName!== "")
+    {
+        globals.lblSessionUser.innerHTML = "Logged in as: " + user.name + " " + user.lastName;
+    }
+
+    else
+    {
+        globals.lblSessionUser.innerHTML = "";
+    }
+
 }
 
 

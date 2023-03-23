@@ -1,4 +1,6 @@
-#gameScreen{
+
+/* #gameScreen{
+>>>>>>> master
     padding-left: 0;
     padding-right: 0;
     margin-left: auto;
@@ -6,11 +8,153 @@
     margin-top: 0px;
     display: block;
     background-image: url("../images/Mesa.png");
+} */
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins',sans-serif;
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    width: 100%;
+    
+    background: url('../images/background6.jpg')no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+.form-box{
+    position: relative;
+    width: 400px;
+    height: 450px;
+    background: transparent;
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+h2{
+    font-size: 2em;
+    color: #fff;
+    text-align: center;
+}
+.inputbox{
+    position: relative;
+    margin: 30px 0;
+    width: 310px;
+    border-bottom: 2px solid #fff;
+}
+.inputbox label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 1em;
+    pointer-events: none;
+    transition: .5s;
+}
+input:focus ~ label,
+input:valid ~ label{
+top: -5px;
+}
+.inputbox input {
+    width: 100%;
+    height: 50px;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    padding:0 35px 0 5px;
+    color: #fff;
+}
+.inputbox ion-icon{
+    position: absolute;
+    right: 8px;
+    color: #fff;
+    font-size: 1.2em;
+    top: 20px;
+}
+.forget{
+    margin: -15px 0 15px ;
+    font-size: .9em;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;  
+}
+
+.forget label input{
+    margin-right: 3px;
+    
+}
+.forget label a{
+    color: #fff;
+    text-decoration: none;
+}
+.forget label a:hover{
+    text-decoration: underline;
+}
+.LogInbutton{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.register{
+    font-size: .9em;
+    color: #fff;
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.register p a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+}
+.register p a:hover{
+    text-decoration: underline;
 }
 
 html {
     background-color: white;
+}
+
+/* FUNCIONAL */
+#btnLogin{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btnPlay{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
 }
 
 /*//////////////////////////////////////////////////////////////////////////////////// 
@@ -158,7 +302,7 @@ html {
     height: 200px;
     box-shadow:
          inset 0 -3em 3em rgba(0,0,0,0.1),
-               0 0  0 2px rgb(231, 227, 227),
+               0 0  0 1px rgb(231, 227, 227),
                0.3em 0.3em 1em rgba(0,0,0,0.3);
     margin-top: 10px;
     margin-right: 5px;
@@ -178,7 +322,7 @@ html {
     height: 200px;
     box-shadow:
          inset 0 -3em 3em rgba(0,0,0,0.1),
-               0 0  0 2px rgb(255,255,255),
+               0 0  0 1px rgb(255, 255, 255),
                0.3em 0.3em 1em rgba(0,0,0,0.3);
     margin: auto;
     margin-top: 10px;
@@ -195,12 +339,12 @@ html {
     padding: 20px;
     box-shadow:
          inset 0 -3em 3em rgba(0,0,0,0.1),
-               0 0  0 2px rgb(255,255,255),
+               0 0  0 1px rgb(255,255,255),
                0.3em 0.3em 1em rgba(0,0,0,0.3);
 }
 
 #adminCanvas{
-    background-image: url("../images/background.png");
+    background-image: url("../images/background.jpg");
     margin: auto;
     margin-top: 50px;
     width: 1664px; 
@@ -219,39 +363,46 @@ html {
     font-family: "JetBrains Mono",monospace;
     font-size: 60px;
     padding-left: 20px;
+    color: white;
 }
 
 #secondTitle{
     font-family: "JetBrains Mono",monospace;
     font-size: 40px;
     padding-left: 22px;
+    color: white;
 }
 
 #a30days{
     font-family: "JetBrains Mono",monospace;
     font-size: 30px;
     margin-left: 25px;
+    color: white;
+
 }
 
 #barra{
     font-family: "JetBrains Mono",monospace;
     font-size: 30px;
+    margin-left: 25px;
+    color: white;
 }
+
 
 /* #boton{
     font-size: 25px;
     padding-left: 5px;
-} */
+}  */
 /* CSS */
 #boton {
     align-items: center;
     appearance: none;
-    background-color: #FCFCFD;
     border-radius: 4px;
     border-width: 0;
-    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#3d7ac4 0 -3px 0 inset;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#5858af 0 -3px 0 inset;
     box-sizing: border-box;
-    color: #000000;
+    color: #8990dd;
+    background-color: #FCFCFD;
     cursor: pointer;
     display: inline-flex;
     font-family: "JetBrains Mono",monospace;
@@ -291,7 +442,7 @@ html {
 
 
 #playerCanvas{
-    background-image: url("../images/background.png");
+    background-image: url("../images/background6.jpg");
     margin: auto;
     margin-top: 50px;
     width: 1664px; 
@@ -324,7 +475,7 @@ html {
     margin-top: 450px;
     margin-left: 200px;
     font-family: "JetBrains Mono",monospace;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 #gamesWon{
@@ -335,7 +486,7 @@ html {
     margin-top: 70px;
     margin-left: 200px;
     font-family: "JetBrains Mono",monospace;
-    font-size: 30px;
+    font-size: 20px;
     
 }
 #totalGames{
@@ -346,7 +497,7 @@ html {
     margin-top: 70px;
     margin-left: 200px;
     font-family: "JetBrains Mono",monospace;
-    font-size: 30px;
+    font-size: 20px;
 }
 
 #selectRival{
@@ -371,8 +522,10 @@ html {
 }
 
 #selectDifficult{
-    margin-left: 40px;
-    margin-top: 30px;
+    margin-left: 950px;
+    margin-top: 40px;
+    color: white;
+    font-size: 10;
 }
 
 #playerPicture{
@@ -383,13 +536,17 @@ html {
     font-family: "JetBrains Mono",monospace;
     font-size: 60px;
     padding-left: 20px;
+    color: white;
 }
 
 #rivalLetter{
     font-family: "JetBrains Mono",monospace;
     font-size: 30px;
     margin-left: 45px;
+    color: white;
 }
+
+
 
 #difficultButton{
     align-items: center;
@@ -421,11 +578,13 @@ html {
     will-change: box-shadow,transform;
     font-size: 18px;
     background-image: url("../images/background.png");
-    margin-left: 60px;
+    margin-left: 50px;
+    margin-top: 5px;
 }
 
 p{
     padding-left: 10px;
+    color: white;
 }
 
 h3{
@@ -442,4 +601,20 @@ h3{
 #difficultButton:active {
     box-shadow: #b1b1ff 0 3px 7px inset;
     transform: translateY(2px);
+
 }
+#lblError{
+    color: red;
+    font-weight: bold;
+}
+
+#lblSessionUser{
+    font-weight: bold;
+}
+
+/* #btnStart{
+    margin: auto;
+    width: 50%;
+    border: 3px solid green;
+    padding: 16px;
+} */
