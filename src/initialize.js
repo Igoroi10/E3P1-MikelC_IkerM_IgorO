@@ -46,10 +46,12 @@ function initHTMLelements()
 
     globals.lblSessionUser  = document.getElementById('lblSessionUser');
     globals.lblError        = document.getElementById('lblError');
-    globals.sectionLogIn    = document.getElementsByClassName('sectionLogIn');
+    globals.sectionLogIn    = document.getElementById('sectionLogIn');
     globals.sectionPlay     = document.getElementById('sectionPlay');
 
     //Mostramos la pantalla de Log In
+    document.getElementById('sectionLogIn').style.display = "flex";
+    document.getElementById('sectionPlay').style.display = "none";
     // globals.sectionLogIn.style.display  = "block";
     // globals.sectionPlay.style.display   = "none";
 
@@ -308,6 +310,8 @@ function manageLogin(userData)
         //Usuario logueado
 
         //ACtivamos el menú de play y ocultamos el de logIn
+        document.getElementById('sectionLogIn').style.display = "none";
+        document.getElementById('sectionPlay').style.display = "flex";
         // globals.sectionLogIn.style.display  = "none";
         // globals.sectionPlay.style.display   = "block";
 
@@ -330,9 +334,10 @@ function manageLogin(userData)
 
 function updateUserText(user)
 {
-    if (user.email !== "" && user.password !== "")
+    if (user.emaila !== "" && user.pasahitza !== "")
     {
-        globals.lblSessionUser.innerHTML = "Logged in as: " + user.email + " " + user.password;
+        // globals.lblSessionUser.innerHTML = "Logged in as: " + user.emaila + " " + user.pasahitza;
+        globals.lblSessionUser.innerHTML = "Logged in as: " + user.emaila;
     }
 
     else
