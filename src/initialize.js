@@ -10,57 +10,13 @@ import ImageSet from "./ImageSet.js";
 import { Player1_map_pos, Player2_map_pos, Common_map_pos } from "./constants.js";
 
 
-window.onload = init;
-
-function init()
-{
-    globals.buttonStart  = document.getElementById('btnStart');
-    globals.buttonAdmin  = document.getElementById('btnAdmin');
-    globals.buttonPlayer = document.getElementById('btnPlayer');
-    globals.buttonAdd    = document.getElementById('btnAdd');
-
-    //Get a reference to the canvas
-    globals.canvas = document.getElementById('gameScreen');
-    
-    // document.getElementById('divCanvas').style.display = "none";
-
-    //Context
-    globals.ctx = globals.canvas.getContext('2d');
-
-    //Inicializamos listeners
-    globals.buttonStart.addEventListener("mousedown",   btnStartDown,   false);
-    globals.buttonStart.addEventListener("mouseover",   btnStartOver,   false);
-    globals.buttonStart.addEventListener("mouseout",    btnStartOut,    false);
-
-    //Inicializamos el boton del admin
-    globals.buttonAdmin.addEventListener("mousedown",   btnStartAdmin,   false);
-    globals.buttonPlayer.addEventListener("mousedown",  btnStartPlayer, false);
-
-    globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);
-
-    globals.btnLogin.addEventListener("mousedown", logInHandler, false);
-
-
-    //Elementos
-    globals.btnLogin        = document.getElementById('btnLogin'); 
-    globals.inputName       = document.getElementById('id_name');
-    globals.inputLastName   = document.getElementById('id_last_name');
-    globals.lblSessionUser  = document.getElementById('lblSessionUser');
-    globals.lblError        = document.getElementById('lblError');
-    globals.sectionLogIn    = document.getElementById('sectionLogIn');
-    globals.sectionPlay     = document.getElementById('sectionPlay');
-
-    //Mostramos la pantalla de Log In
-    globals.sectionLogIn.style.display  = "block";
-    globals.sectionPlay.style.display   = "none";
-}
-
 function initHTMLelements()
 {
     //Falta crear la global
     globals.buttonStart     = document.getElementById('btnStart');
     globals.buttonAdmin     = document.getElementById('btnAdmin');
     globals.buttonPlayer    = document.getElementById('btnPlayer');
+    globals.buttonAdd       = document.getElementById('btnAdd');
 
     //Get A reference to the canvas 
     globals.canvas = document.getElementById('gameScreen');
@@ -71,12 +27,33 @@ function initHTMLelements()
     globals.ctx = globals.canvas.getContext('2d');
 
     //Inicializamos listeners
-    globals.buttonStart.addEventListener("mousedown",   btnStartDown, false);
-    globals.buttonStart.addEventListener("mouseover",   btnStartOver,   false);
-    globals.buttonStart.addEventListener("moseout",     btnStartOut,    false);
-    globals.buttonAdmin.addEventListener("mousedown",   btnStartAdmin,  false);
-    globals.buttonPlayer.addEventListener("mousedown",   btnStartPlayer,  false);
+    globals.buttonStart.addEventListener("mousedown",       btnStartDown,       false);
+    globals.buttonStart.addEventListener("mouseover",       btnStartOver,       false);
+    globals.buttonStart.addEventListener("mouseout",        btnStartOut,        false);
+    globals.buttonAdmin.addEventListener("mousedown",       btnStartAdmin,      false);
+    globals.buttonPlayer.addEventListener("mousedown",      btnStartPlayer,     false);
 
+
+    // globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);
+
+    
+
+
+    //Elementos
+    globals.btnLogin        = document.getElementById('btnLogin'); 
+    globals.inputEmail      = document.getElementById('Emaila');
+    globals.inputPassword   = document.getElementById('Password');
+
+    globals.lblSessionUser  = document.getElementById('lblSessionUser');
+    globals.lblError        = document.getElementById('lblError');
+    globals.sectionLogIn    = document.getElementById('sectionLogIn');
+    globals.sectionPlay     = document.getElementById('sectionPlay');
+
+    //Mostramos la pantalla de Log In
+    // globals.sectionLogIn.style.display  = "block";
+    // globals.sectionPlay.style.display   = "none";
+
+    globals.btnLogin.addEventListener("mousedown", logInHandler, false);
 }
 
 export function initGame(data)
@@ -227,8 +204,8 @@ function loadHandler()
 {
     
     globals.assetsLoaded++; 
-    console.log ("Assets loaded: " + globals.assetsLoaded);
-    console.log ("Assets to load: " + globals.assetsToLoad.length);
+    // console.log ("Assets loaded: " + globals.assetsLoaded);
+    // console.log ("Assets to load: " + globals.assetsToLoad.length);
 
     
     //Una vez se han cargado todos los activos pasamos
@@ -272,7 +249,7 @@ function loadHandler()
         }
 
 
-        console.log("Assets finished loading");
+        // console.log("Assets finished loading");
 
 
     }
@@ -284,16 +261,16 @@ function logInHandler(event)
 
     //Send data
     const objectToSend = {
-        name: globals.inputName.value,
-        lastName: globals.inputLastName.value
+        email: globals.inputEmail.value,
+        password: globals.inputPassword.value
     }
 
-    const dataToSend = 'name=' + objectToSend.name + '&lastName=' + objectToSend.lastName;
+    const dataToSend = 'email=' + objectToSend.email + '&password=' + objectToSend.password;
 
     console.log(dataToSend);
 
     //Ruta relativa al fichero que hace la petición (verifyUser.php)
-    const url = "./server/routes/verifyUser.php";
+    const url = "../server/routes/verifyUser.php";
     const request = new XMLHttpRequest();
     request.open('POST', url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -326,7 +303,7 @@ function logInHandler(event)
 
 function manageLogin(userData)
 {
-    if (userData.name !== "" && userData.lastName !== "")
+    if (userData.email !== "" && userData.password !== "")
     {
         //Usuario logueado
 
@@ -353,9 +330,9 @@ function manageLogin(userData)
 
 function updateUserText(user)
 {
-    if (user.name !== "" && user.lastName!== "")
+    if (user.email !== "" && user.password !== "")
     {
-        globals.lblSessionUser.innerHTML = "Logged in as: " + user.name + " " + user.lastName;
+        globals.lblSessionUser.innerHTML = "Logged in as: " + user.email + " " + user.password;
     }
 
     else

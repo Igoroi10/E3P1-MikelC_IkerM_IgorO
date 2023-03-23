@@ -90,8 +90,10 @@ export default
     // ====================
 
     btnLogin:       {},
-    inputName:      {},
-    inputLastName:  {},
+
+    inputEmail:     {},
+    inputPassword:  {},
+    
     lblSessionUser: {},
     lblError:       {},
     sectionLogIn:   {},

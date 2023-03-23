@@ -9,7 +9,7 @@ export default function update()
     switch(globals.gameState)
     {
         case State.LOADING:
-            console.log("Loading assets...");
+            // console.log("Loading assets...");
             loading();
             break;
         
@@ -98,14 +98,14 @@ function loading ()
     }
 
 
-    console.log("assets cargados: " + globals.assetsLoaded)
-    console.log("Get loaded succesfully");
-    console.log("checks: "+globals.get_checks);
+    // console.log("assets cargados: " + globals.assetsLoaded)
+    // console.log("Get loaded succesfully");
+    // console.log("checks: "+globals.get_checks);
 
     if (globals.assetsLoaded === globals.img_url.length && globals.get_checks === 3)
     {   
         createExpertDeck();
-        console.log(globals.cards.length);
+        // console.log(globals.cards.length);
         globals.gameState           = State.PLAYER_MENU; 
         globals.action.enter        = false;
     }
