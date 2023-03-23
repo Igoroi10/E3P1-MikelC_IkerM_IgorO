@@ -46,7 +46,7 @@ function initHTMLelements()
 
     globals.lblSessionUser  = document.getElementById('lblSessionUser');
     globals.lblError        = document.getElementById('lblError');
-    globals.sectionLogIn    = document.getElementById('sectionLogIn');
+    globals.sectionLogIn    = document.getElementsByClassName('sectionLogIn');
     globals.sectionPlay     = document.getElementById('sectionPlay');
 
     //Mostramos la pantalla de Log In
@@ -308,8 +308,8 @@ function manageLogin(userData)
         //Usuario logueado
 
         //ACtivamos el menú de play y ocultamos el de logIn
-        globals.sectionLogIn.style.display  = "none";
-        globals.sectionPlay.style.display   = "block";
+        // globals.sectionLogIn.style.display  = "none";
+        // globals.sectionPlay.style.display   = "block";
 
         //No hay mesajes de eror
         lblError.innerHTML = "";
