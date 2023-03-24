@@ -28,6 +28,7 @@ export function btnStartDown ()
     document.getElementById('divCanvas').style.display = "block";
     document.getElementById('sectionLogIn').style.display = "none";
     document.getElementById('sectionPlay').style.display = "none";
+    document.getElementById('playerCanvas').style.display = "none";
     // checkStates();
 
     requestAnimationFrame(gameLoop);

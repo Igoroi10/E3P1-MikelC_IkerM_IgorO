@@ -314,7 +314,7 @@ function manageLogin(userData)
 
         //ACtivamos el menú de play y ocultamos el de logIn
         document.getElementById('sectionLogIn').style.display = "none";
-        document.getElementById('sectionPlay').style.display = "flex";
+        document.getElementById('playerCanvas').style.display = "block";
         // globals.sectionLogIn.style.display  = "none";
         // globals.sectionPlay.style.display   = "block";
 
