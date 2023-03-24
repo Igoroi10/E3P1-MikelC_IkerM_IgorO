@@ -1,9 +1,11 @@
 import globals from "./globals.js";
 import { initGame } from "./initialize.js";
 
-import { Key } from "./constants.js";
+import { Key, State } from "./constants.js";
 
 import { gameLoop } from "./game.js";
+import { checkStates } from "./gameLogic.js";
+
 
 //Creacion de Evento para el raton
 
@@ -24,6 +26,8 @@ export function btnStartDown ()
     globals.buttonPlayer.style.visibility = "Hidden";
 
     document.getElementById('divCanvas').style.display = "block";
+    document.getElementById('sectionLogIn').style.display = "none";
+    // checkStates();
 
     requestAnimationFrame(gameLoop);
 }
@@ -34,6 +38,8 @@ export function btnStartOver ()
     //cambiamos el texto 
     // console.log("entraa");
     document.getElementById("btnStart").innerHTML = "OVER";
+    document.getElementById('sectionLogIn').style.display = "none";
+    // document.getElementById('sectionPlay').style.display = "none";
 
 }
 
@@ -41,15 +47,23 @@ export function btnStartOut ()
 {
     //Recuperamos tento original 
     document.getElementById("btnStart").innerHTML = "START";
+    document.getElementById('sectionLogIn').style.display = "none";
+    document.getElementById('sectionPlay').style.display = "none";
 }
 
 export function btnStartAdmin()
 {
     // console.log("entra en adminbtn");
+    globals.gameState = State.ADMIN_MENU
     globals.buttonStart.style.visibility = "Hidden";
     globals.buttonAdmin.style.visibility = "Hidden";
     globals.buttonPlayer.style.visibility = "Hidden";
     document.getElementById('adminCanvas').style.display = "block";
+    document.getElementById('sectionLogIn').style.display = "none";
+    
+
+    // checkStates();
+    
 
 }
 
@@ -61,6 +75,7 @@ export function btnStartPlayer()
     globals.buttonPlayer.style.visibility = "Hidden";
 
     document.getElementById('playerCanvas').style.display = "block";
+    document.getElementById('sectionLogIn').style.display = "none";
 }
 
 export function canvasMousedownHandler()

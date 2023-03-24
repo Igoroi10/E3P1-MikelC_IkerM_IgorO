@@ -128,7 +128,7 @@ function makeThisScreenVisible(screen){
             break;
     }
 
-    const logInDiv      = document.getElementById("container");
+    const logInDiv      = document.getElementById("sectionLogIn");
     const playerMenu    = document.getElementById("playerCanvas");
     const adminMenu     = document.getElementById("adminCanvas");
     const playingScreen = document.getElementById("divCanvas");
