@@ -845,9 +845,9 @@ function initCardInfo()
                     initCardLinks();
 
 
-                    console.log("Card info loaded");
+                    // console.log("Card info loaded");
                    
-                    console.log("this.responetext" + this.responseText);
+                    // console.log("this.responetext" + this.responseText);
 
                 }
                 else  
@@ -889,8 +889,8 @@ function initCardLinks()
                     
                     loadAssets();
 
-                    console.log("get links loaded");
-                    console.log("this.responetext" + this.responseText);
+                    // console.log("get links loaded");
+                    // console.log("this.responetext" + this.responseText);
 
                 }
                 else  

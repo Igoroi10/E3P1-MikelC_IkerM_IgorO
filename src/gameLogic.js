@@ -32,6 +32,8 @@ function playGame()
 
     if (globals.action.enter)
     {   
+        createExpertDeck();
+        
         for(let i = 0; i < globals.cards.length; i++){
             console.log(globals.cards[i]);
         }
