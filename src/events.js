@@ -27,6 +27,7 @@ export function btnStartDown ()
 
     document.getElementById('divCanvas').style.display = "block";
     document.getElementById('sectionLogIn').style.display = "none";
+    document.getElementById('sectionPlay').style.display = "none";
     // checkStates();
 
     requestAnimationFrame(gameLoop);
@@ -48,7 +49,7 @@ export function btnStartOut ()
     //Recuperamos tento original 
     document.getElementById("btnStart").innerHTML = "START";
     document.getElementById('sectionLogIn').style.display = "none";
-    document.getElementById('sectionPlay').style.display = "none";
+    // document.getElementById('sectionPlay').style.display = "none";
 }
 
 export function btnStartAdmin()
