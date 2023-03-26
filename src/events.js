@@ -124,6 +124,14 @@ export function keydownHandler(event)
             // console.log("Entra en C");
             globals.action.c        = true;
             break;
+
+        //TECLA "E"
+        case Key.EXAMINE:
+            // console.log("Entra en C");
+            globals.action.e        = true;
+            break;
+
+        
     }
 
 }
@@ -149,6 +157,10 @@ export function keyupHandler(event)
             // console.log("Sale en C");
             globals.action.c        = false;
             break;
+
+        case Key.EXAMINE:
+            globals.action.e        = false;
+            break;        
     }
 
 }
