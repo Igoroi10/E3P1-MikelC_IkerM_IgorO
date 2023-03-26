@@ -44,6 +44,10 @@ function playGame()
     //   displayDeck();
     }
 
+    if(globals.action.d){
+        console.log(globals.cards.length);
+    }
+
     //... ANTERIOR
 
    

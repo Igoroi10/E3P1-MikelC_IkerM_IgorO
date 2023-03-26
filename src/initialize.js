@@ -389,7 +389,7 @@ function addOneOfEach(){
 function insertCard(i){
 
     //FUncion de imageSet que tengan la anchura y altura carta grande - La paso a loadCardImages 
-    CardSize();
+    //CardSize();
     //Toquens medida Especial
     // Generar un fondo en el CSS
 
@@ -845,9 +845,9 @@ function initCardInfo()
                     initCardLinks();
 
 
-                    // console.log("Card info loaded");
+                    console.log("Card info loaded");
                    
-                    // console.log("this.responetext" + this.responseText);
+                    console.log(resultJSON);
 
                 }
                 else  
