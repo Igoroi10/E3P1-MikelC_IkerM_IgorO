@@ -72,7 +72,7 @@ export function btnStartAdmin()
 export function btnStartPlayer()
 {
     console.log("entra en btnPlayer");
-    globals.buttonStart.style.visibility = "Hidden";
+    // globals.buttonStart.style.visibility = "Hidden";
     globals.buttonAdmin.style.visibility = "Hidden";
     globals.buttonPlayer.style.visibility = "Hidden";
 
