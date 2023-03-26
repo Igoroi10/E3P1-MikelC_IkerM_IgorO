@@ -629,6 +629,17 @@ h3{
     font-weight: bold;
 }
 
+#userList{
+    float: right;
+    width: 400px;
+    height: 300px;
+    background-color: red;
+    margin: auto;
+    margin-top: 90px;
+    margin-right: 200px;
+    padding: 20px;
+}
+
 /* #btnStart{
     margin: auto;
     width: 50%;
