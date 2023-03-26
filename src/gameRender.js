@@ -28,6 +28,11 @@ function drawGame()
         
     }
 
+    if(globals.action.e){
+        globals.bigCard = 0;
+        renderBigCard();
+    }
+
     if (globals.action.c)
     {
         renderCards();
