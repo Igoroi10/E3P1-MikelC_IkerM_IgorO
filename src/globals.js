@@ -99,7 +99,7 @@ export default
     sectionLogIn:   {},
     sectionPlay:    {},
 
-    
+    bigCard:       -1,
 
     
 }
