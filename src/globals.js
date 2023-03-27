@@ -69,6 +69,7 @@ export default
 
 
 
+
     //rutas de imagenes
     images_routesLinks: [],
 
@@ -104,4 +105,23 @@ export default
     bigCard:       -1,
 
     fakeUsersArray: ['Iker Mendoza', 'Mikel Cruz', 'Igor Ocon', 'Asier Nogueria', 'Esther', 'Zarate'],
+
+
+    // Recoger puntuación de los jugadores:
+
+    player1Points : 0,
+    player2Points : 0,
+
+    player1PointTokens : {
+        hundredsToken:  [],
+        tensToken:      [],
+        unitsToken:     [],
+    },
+
+    player2PointTokens : {
+        hundredsToken:  [],
+        tensToken:      [],
+        unitsToken:     [],
+    },
+
 }

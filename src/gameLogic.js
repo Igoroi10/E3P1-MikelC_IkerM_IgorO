@@ -156,6 +156,12 @@ function updatePoints(){
 
     player1Points = calculatePoints(player1);
     player2Points = calculatePoints(player2);
+
+    globals.player1Points = player1Points;
+    globals.player2Points = player2Points;
+
+    createPointers(player1Points);
+    createPointers(player2Points);
 }
 
 function calculatePoints(player){
@@ -235,7 +241,7 @@ function calculatePoints(player){
         }
     }
 
-    
+    return points;
 }
 
 export {
