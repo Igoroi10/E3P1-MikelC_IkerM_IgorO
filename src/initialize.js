@@ -925,18 +925,14 @@ function getAllUsers()
                 // console.log (this.responseText);
                 if (this.responseText != null)
                 {
-
                     // console.log(this.responseText);
                     const resultJSON = JSON.parse(this.responseText);
                     // console.log(resultJSON);
                     //Guardamos los datos del resultJSON
                     globals.all_users = resultJSON;
                     
-
                     // console.log("this.responetext" + this.responseText);
                     // console.log(globals.all_users);
-
-
                 }
                 else  
                     alert("Comunication error: No data received");
