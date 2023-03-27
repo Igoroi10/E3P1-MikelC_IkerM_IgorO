@@ -254,9 +254,12 @@ const Player2_map_pos = {
     PLAYER2_DISSCARD_YPOS:          750,
 }
 
+//Player Turn
 const Turn ={
-    PLAYER1: 0,
-    PLAYER2: 1,
+    NO_TURN:    0,
+    PLAYER1:    1,
+    PLAYER2:    2,
+
 }
 
 

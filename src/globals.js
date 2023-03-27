@@ -30,8 +30,6 @@ export default
 
     buttonRound: {},
 
-    turnState: Turn.PLAYER1,
-
     //Array de Cartas
     cards: [],
 
@@ -110,4 +108,11 @@ export default
     bigCard:       -1,
 
     fakeUsersArray: ['Iker Mendoza', 'Mikel Cruz', 'Igor Ocon', 'Asier Nogueria', 'Esther', 'Zarate'],
+
+
+    //Turnos
+    turnState:                  Turn.PLAYER1,           //Comienza el jugador Uno siempre - Al menos ahora
+    checkRoundPlayer1:          false,                  //Inicializamos en falso = puede jugar el turno.
+    checkRoundPlayer2:          false,                  //Inicializamos en falso = Puede jugar el turno.
+    checkBothPlayerRound:       false,                  //Inicializamos en false = Ninguno de los dos a pasado la ronda.
 }

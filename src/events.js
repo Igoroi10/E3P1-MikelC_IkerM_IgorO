@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import { initGame } from "./initialize.js";
 
-import { Key, State } from "./constants.js";
+import { Key, State, Turn } from "./constants.js";
 
 import { gameLoop } from "./game.js";
 import { checkStates } from "./gameLogic.js";
@@ -96,14 +96,126 @@ export function btnStartPlayer()
     createList();
 }
 
+//Boton Que Pasa de turno
 export function btnStartTurn()
 {
-    console.log("Boton Turno Pulsado");
+    // console.log("Boton Turno Pulsado");
+
+    //Ahora Una vez pulsado el boton de turno deberemos de hacer un check para saber quien lo ha puslado y si le corresponde poder jugar en ese turno o no
+
+    checkIfTurnPass();
+
+    checkIfRoundPass();
+
 }
 
+//Boton para terminar la ronda
 export function btnEndRound()
 {
-    console.log("Boton Round Pulsado");
+    // console.log("Boton Round Pulsado");
+    
+    checkRoundState();
+    
+    checkIfRoundPass();
+}
+
+
+function checkIfTurnPass ()
+{
+    //CHECK DEL PLAYER 1
+    if (globals.turnState === Turn.PLAYER1)
+    {
+        // console.log("Turno del Jugador 1");
+        globals.turnState = Turn.PLAYER2;
+    }
+
+    //CHECK DEL PLAYER 2
+    else if (globals.turnState === Turn.PLAYER2)
+    {
+        // console.log("Turno del Jugador 2");
+        globals.turnState = Turn.PLAYER1;
+    }
+
+    //Le asignamos el estado de NO_TURN para que no pueda serguir jugando
+    else
+    {
+        globals.turnState = Turn.NO_TURN;
+    }
+
+}
+
+function checkIfRoundPass()
+{
+    //Si uno o ninguno de los jugadores a Pasado la Ronda 
+   if(!globals.checkBothPlayerRound)
+   {
+    //Deberemos de ver quien si alguno de los dos a pasado la Ronda o no 
+
+    //Si el Player a Pasado la Ronda
+    if (globals.checkRoundPlayer1)
+    {
+        console.log("Player 1 no puede jugar - PASO DE RONDA");
+        globals.turnState = Turn.PLAYER2;
+    }
+
+    //Si el Segundo Player a pasado la ronda
+    if (globals.checkRoundPlayer2)
+    {
+        console.log("Player 2 no puede jugar - PASO DE RONDA");
+        globals.turnState = Turn.PLAYER1;
+    }
+
+     //Si ninguno a pasado la Ronda
+     else if (globals.checkRoundPlayer1 && !globals.checkRoundPlayer2)
+     {
+        console.log("Solo puede jugar el jugador 1");
+     }
+
+      else if (!globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
+     {
+        console.log("Solo puede jugar el jugador 2");
+     }
+
+     else
+     {
+        console.log("Ambos Jugadores Pueden jugar - NINGUNO PASO DE RONDA");
+     }
+
+   }
+
+   //Los dos jugadores han pasado la ronda y deberemos de reiniciar el global de Ronda
+   else
+   {
+    console.log("LA RONDA A TERMINADO");
+    globals.turnState = Turn.NO_TURN;       // MAS ADELANTE CAMBIARLO - SOLO SE PUEDE JUGAR UNA RONDA
+    globals.checkBothPlayerRound = false;
+
+   }
+    
+}
+
+function checkRoundState()
+{
+    if (globals.turnState === Turn.PLAYER1)
+    {
+        console.log("EL JUGADOR 1 TERMINO LA RONDA");
+        globals.checkRoundPlayer1 = true;
+    }
+
+    if (globals.turnState != Turn.PLAYER1 && globals.turnState === Turn.PLAYER2)
+    {
+        console.log("EL JUGADOR 2 TERMINO LA RONDA");
+        globals.checkRoundPlayer2 = true;
+    }
+
+    if (globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
+    {
+        globals.checkBothPlayerRound = true;
+    }
+
+    else
+        console.log("ERROR");
+
 }
 
 export function canvasMousedownHandler()
