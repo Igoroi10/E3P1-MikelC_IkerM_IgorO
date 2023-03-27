@@ -101,5 +101,5 @@ export default
 
     bigCard:       -1,
 
-    
+    fakeUsersArray: ['Iker Mendoza', 'Mikel Cruz', 'Igor Ocon', 'Asier Nogueria', 'Esther', 'Zarate'],
 }
