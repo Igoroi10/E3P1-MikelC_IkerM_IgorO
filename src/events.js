@@ -28,7 +28,7 @@ export function btnStartDown ()
     document.getElementById('divCanvas').style.display = "block";
     document.getElementById('sectionLogIn').style.display = "none";
     document.getElementById('sectionPlay').style.display = "none";
-    document.getElementById('playerCanvas').style.display = "none";
+    document.getElementById('playerMenuScreen').style.display = "none";
     // checkStates();
 
     requestAnimationFrame(gameLoop);
@@ -60,7 +60,7 @@ export function btnStartAdmin()
     globals.buttonStart.style.visibility = "Hidden";
     globals.buttonAdmin.style.visibility = "Hidden";
     globals.buttonPlayer.style.visibility = "Hidden";
-    document.getElementById('adminCanvas').style.display = "block";
+    document.getElementById('adminMenuScreen').style.display = "block";
     document.getElementById('sectionLogIn').style.display = "none";
     
 
@@ -76,7 +76,7 @@ export function btnStartPlayer()
     globals.buttonAdmin.style.visibility = "Hidden";
     globals.buttonPlayer.style.visibility = "Hidden";
 
-    document.getElementById('playerCanvas').style.display = "block";
+    document.getElementById('playerMenuScreen').style.display = "block";
     document.getElementById('sectionLogIn').style.display = "none";
 }
 
