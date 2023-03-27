@@ -96,6 +96,11 @@ export function btnStartPlayer()
     createList();
 }
 
+export function btnStartTurn()
+{
+    console.log("Boton Turno Pulsado");
+}
+
 export function canvasMousedownHandler()
 {
     globals.action.mousePressed = true;

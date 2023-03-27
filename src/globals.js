@@ -1,5 +1,5 @@
 //Inicializamos el Array de cartas
-import{State} from "./constants.js";
+import{State, Turn} from "./constants.js";
 
 export default
 {
@@ -25,6 +25,10 @@ export default
     buttonAdmin: {},
 
     buttonPlayer: {},
+
+    buttonTurn: {},
+
+    turnState: Turn.PLAYER1,
 
     //Array de Cartas
     cards: [],

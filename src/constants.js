@@ -254,6 +254,11 @@ const Player2_map_pos = {
     PLAYER2_DISSCARD_YPOS:          750,
 }
 
+const Turn ={
+    PLAYER1: 0,
+    PLAYER2: 1,
+}
+
 
 
 export{
@@ -275,6 +280,7 @@ export{
     CardSlotsQuantity,
     Common_map_pos,
     Player1_map_pos,
-    Player2_map_pos
+    Player2_map_pos, 
+    Turn,
 }
 

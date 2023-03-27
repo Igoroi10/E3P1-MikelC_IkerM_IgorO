@@ -1,4 +1,4 @@
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer,canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -17,6 +17,7 @@ function initHTMLelements()
     globals.buttonAdmin     = document.getElementById('btnAdmin');
     globals.buttonPlayer    = document.getElementById('btnPlayer');
     globals.buttonAdd       = document.getElementById('btnAdd');
+    globals.buttonTurn      = document.getElementById('btnTurn');
 
     //Get A reference to the canvas 
     globals.canvas = document.getElementById('gameScreen');
@@ -32,6 +33,7 @@ function initHTMLelements()
     globals.buttonStart.addEventListener("mouseout",        btnStartOut,        false);
     globals.buttonAdmin.addEventListener("mousedown",       btnStartAdmin,      false);
     globals.buttonPlayer.addEventListener("mousedown",      btnStartPlayer,     false);
+    globals.buttonTurn.addEventListener("mousedown",        btnStartTurn,     false);
 
 
     // globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);
