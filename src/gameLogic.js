@@ -44,6 +44,10 @@ function playGame()
     //   displayDeck();
     }
 
+    if(globals.action.d){
+        console.log(globals.cards.length);
+    }
+
     //... ANTERIOR
 
    
@@ -116,11 +120,11 @@ function makeThisScreenVisible(screen){
             break;
 
         case State.PLAYER_MENU:
-            visibleDiv = "playerCanvas";
+            visibleDiv = "playerMenuScreen";
             break;
         
         case State.ADMIN_MENU:
-            visibleDiv = "adminCanvas";
+            visibleDiv = "adminMenuScreen";
             break;
 
         case State.PLAYING:
@@ -129,8 +133,8 @@ function makeThisScreenVisible(screen){
     }
 
     const logInDiv      = document.getElementById("sectionLogIn");
-    const playerMenu    = document.getElementById("playerCanvas");
-    const adminMenu     = document.getElementById("adminCanvas");
+    const playerMenu    = document.getElementById("playerMenuScreen");
+    const adminMenu     = document.getElementById("adminMenuScreen");
     const playingScreen = document.getElementById("divCanvas");
     
     logInDiv.style.display      = "none";

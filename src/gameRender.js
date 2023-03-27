@@ -1,6 +1,7 @@
 
 
 import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE } from "./constants.js";
+import { gameLoop } from "./game.js";
 import globals from "./globals.js";
 // import { GameZones } from "./GameZones.js";
 
@@ -25,6 +26,11 @@ function drawGame()
         // console.log("Entra accion D");
         drawSlots();
         
+    }
+
+    if(globals.action.e){
+        globals.bigCard = 0;
+        renderBigCard();
     }
 
     if (globals.action.c)
@@ -193,8 +199,11 @@ function renderCard(card){
     }
 }
 
-function renderBigCard(card){
+function renderBigCard(){
 
+    if(globals.bigCard <= 0){
+
+        const card = globals.cards[globals.bigCard];
 
         if(card.showBack !== true){
 
@@ -208,17 +217,80 @@ function renderBigCard(card){
         }
 
         else{
+
+            //Imagen de fondo
             globals.ctx.drawImage(
-                globals.assets.card_reverse[0],                          //archivo de la imagen
-                card.xPos, card.yPos,                            //Posición inicial x e y 
-                card.imageSet.xSize, sprite.imageSet.ySize, 
-                card.xPos, card.yPos,                            //fin de x e y
-                CardSizes.TOKEN_WIDHT, CardSizes.TOKEN_HEIGHT    //Final de anchura.       
-    
+                globals.assets.front_img[globals.cards[globals.bigCard].frontImg],                     //archivo de la imagen
+                0, 0,                                   //Posición inicial x e y 
+                CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT, 
+                card.xPos, card.yPos,                                   //fin de x e y
+                CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT             //Fin de anchura.       
+
+            )
+            //Frame
+            globals.ctx.drawImage(
+                globals.assets.card_frame[1],                           //archivo de la imagen
+                0, 0,                                                       //Posición inicial x e y 
+                CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT, 
+                card.xPos, card.yPos,                                   //fin de x e y
+                CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT             //Fin de anchura.       
+
             )
 
+            if(globals.cards[globals.bigCard].category === CardCategory.UNIT){
+                //Icono superior izquierda
+                globals.ctx.drawImage(
+                    globals.assets.card_type[globals.cards[globals.bigCard].type],                     //archivo de la imagen
+                    0, 0,                                   //Posición inicial x e y 
+                    CardSizes.BIG_HEIGHT, CardSizes.BIG_HEIGHT, 
+                    card.xPos, card.yPos,                             //fin de x e y
+                    65, 63                                                 //Fin de anchura.       
+
+                )
+                //Icono centro izquierda
+                globals.ctx.drawImage(
+                    globals.assets.card_value[card.value],                      //archivo de la imagen
+                    0, 0,                                                       //Posición inicial x e y 
+                    65, 63, 
+                    card.xPos, card.yPos + 60,                                  //fin de x e y
+                    65, 63                                                      //Fin de anchura.       
+
+                )
+            }
+
+            else{
+                globals.ctx.drawImage(
+                    globals.assets.card_category[globals.cards[globals.bigCard].card_category],                     //archivo de la imagen
+                    0, 0,                                                                                           //Posición inicial x e y 
+                    CardSizes.BIG_HEIGHT, CardSizes.BIG_HEIGHT, 
+                    card.xPos, card.yPos,                                                                           //fin de x e y
+                    65, 63                                                                                          //Fin de anchura.       
+
+                )
+
+            }
+
+            //Icono abajo izquierda
+            globals.ctx.drawImage(
+                globals.assets.card_effect[card.effect],                     //archivo de la imagen
+                0, 0,                                                        //Posición inicial x e y 
+                65, 54, 
+                card.xPos, card.yPos + 51,                                   //fin de x e y
+                65, 54                                                      //Fin de anchura.       
+
+            )
+
+            globals.ctx.font        = "8 px magicmedieval-prv1";
+            globals.ctx.fillStyle   = "black";
+            globals.ctx.fillText(card.cardName, card.xPos + 5, card.yPos + 300);
+
+
+            globals.ctx.font        = "8 px magicmedieval-prv1";
+            globals.ctx.fillStyle   = "black";
+            globals.ctx.fillText(card.description_eu, card.xPos + 5, card.yPos + 300);
+            
         }
-    
+    }
 
 }
 
