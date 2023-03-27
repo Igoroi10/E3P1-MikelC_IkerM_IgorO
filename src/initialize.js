@@ -909,32 +909,33 @@ function initCardLinks()
 
 function getAllUsers()
 {
-
+    // console.log("entra en getAllUsers");
     const url = "http://localhost/mythClash/server/routes/getAllUsers.php";
     const request = new XMLHttpRequest();
 
     request.onreadystatechange = function()
     {
-        // console.log("entra");
+
         if (this.readyState == 4)
         {
             if(this.status == 200)
             {
+
                 // console.log("entra");
                 // console.log (this.responseText);
                 if (this.responseText != null)
                 {
-                    
-                    // console.log("Entra");
+
+                    // console.log(this.responseText);
                     const resultJSON = JSON.parse(this.responseText);
-                    
+                    // console.log(resultJSON);
                     //Guardamos los datos del resultJSON
                     globals.all_users = resultJSON;
                     
-                    loadAssets();
 
-                    // console.log("get links loaded");
                     // console.log("this.responetext" + this.responseText);
+                    // console.log(globals.all_users);
+
 
                 }
                 else  
@@ -944,7 +945,6 @@ function getAllUsers()
                 alert ( "Communication error: " + this.statusText);
         }
     }
-
     request.open ('GET', url, true);
     request.responseType = "text";
     request.send();
