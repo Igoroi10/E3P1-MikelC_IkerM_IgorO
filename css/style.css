@@ -660,6 +660,18 @@ h3{
 
 }
 
+#btnRound{
+    color:white;
+    background-color: lightcoral;
+    margin: auto;
+    width: 100px;
+    margin-left: 1450px;
+    margin-top: 550px;
+    padding: 15px;
+    position:absolute;
+
+}
+
 /* #btnStart{
     margin: auto;
     width: 50%;

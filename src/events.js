@@ -101,6 +101,11 @@ export function btnStartTurn()
     console.log("Boton Turno Pulsado");
 }
 
+export function btnEndRound()
+{
+    console.log("Boton Round Pulsado");
+}
+
 export function canvasMousedownHandler()
 {
     globals.action.mousePressed = true;

@@ -28,6 +28,8 @@ export default
 
     buttonTurn: {},
 
+    buttonRound: {},
+
     turnState: Turn.PLAYER1,
 
     //Array de Cartas
