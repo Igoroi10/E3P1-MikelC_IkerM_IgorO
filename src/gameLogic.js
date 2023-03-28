@@ -322,7 +322,7 @@ function localStorageCheck(){
         }
     }
 
-    // checkStates();
+    checkStates();
 }
 
 

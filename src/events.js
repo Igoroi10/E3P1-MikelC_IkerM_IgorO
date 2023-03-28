@@ -87,6 +87,17 @@ function createList()
     }
 }
 
+function selectEnemy()
+{
+    let select = document.getElementById('selectUserList');
+    select.addEventListener('change', function(){
+    let selectedOption = this.options[select.selectedIndex];
+    globals.selectedEnemy = selectedOption.text;
+    console.log(globals.selectedEnemy);
+  });
+  
+}
+
 export function btnStartPlayer()
 {
     console.log("entra en btnPlayer");
@@ -309,4 +320,5 @@ export function keyupHandler(event)
 
 export {
     createList,
+    selectEnemy,
 }
