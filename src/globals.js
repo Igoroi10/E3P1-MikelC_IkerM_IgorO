@@ -1,5 +1,5 @@
 //Inicializamos el Array de cartas
-import{State} from "./constants.js";
+import{State, Turn} from "./constants.js";
 
 export default
 {
@@ -25,6 +25,10 @@ export default
     buttonAdmin: {},
 
     buttonPlayer: {},
+
+    buttonTurn: {},
+
+    buttonRound: {},
 
     //Array de Cartas
     cards: [],
@@ -107,6 +111,7 @@ export default
     fakeUsersArray: ['Iker Mendoza', 'Mikel Cruz', 'Igor Ocon', 'Asier Nogueria', 'Esther', 'Zarate'],
 
 
+
     // Recoger puntuación de los jugadores:
 
     player1Points : 0,
@@ -123,5 +128,12 @@ export default
         tensToken:      [],
         unitsToken:     [],
     },
+
+
+    //Turnos
+    turnState:                  Turn.PLAYER1,           //Comienza el jugador Uno siempre - Al menos ahora
+    checkRoundPlayer1:          false,                  //Inicializamos en falso = puede jugar el turno.
+    checkRoundPlayer2:          false,                  //Inicializamos en falso = Puede jugar el turno.
+    checkBothPlayerRound:       false,                  //Inicializamos en false = Ninguno de los dos a pasado la ronda.
 
 }

@@ -22,11 +22,37 @@ const Languages = {
 }
 
 const CardState = {
-    DISCARD:   0,
+
+    DISCARD:    0,
     HAND:       1,  
     GAME:       2,
     DECK:       3,
-    }
+    SELECTED:   4,
+
+}
+
+const GameStates = {
+
+    INITIAL:                0,
+
+    PLAYER_0_TURN:          1,
+    PLAYER_0_SELECTED_CARD: 2,
+    PLAYER_0_PLACE_CARD:    3,
+    PLAYER_0_DECOY:         4,
+    PLAYER_0_PASSED:        5,
+
+    PLAYER_1_TURN:          6,
+    PLAYER_1_SELECTED_CARD: 7,
+    PLAYER_1_PLACE_CARD:    8,
+    PLAYER_1_DECOY:         9,
+    PLAYER_1_PASSED:        10,
+
+    ROUND_END:              11,
+
+    PLAYER_0_WON_ROUND:     12,
+    PLAYER_1_WON_ROUND:     13,
+}
+
 
 const CardDisplaySize = {
 
@@ -35,7 +61,8 @@ const CardDisplaySize = {
 
 }
 
-const CardCategory ={
+const CardCategory = {
+
     UNIT:           0,
     INSTAEFFECT:    1,
     PERMAEFFECT:    2,
@@ -54,6 +81,7 @@ const CardQuantity = {
 }
 
 const GameMode = {
+
     NORMAL_MODE:    0,
     EXPERT_MODE:    1,
 }
@@ -96,7 +124,6 @@ const Type ={
     DISTANCE:       2,
     SIEGE:          3,
 
-
 }
 
 const Key = {
@@ -122,6 +149,7 @@ const Card_img_quantity = {
 
 
 const CardSizes = {
+
     TOKEN_HEIGHT:           87,
     TOKEN_WIDHT:            85,
     
@@ -136,12 +164,14 @@ const CardSizes = {
     BIG_WIDTH:              360,
     TOKEN_HEIGHT:           106,
     TOKEN_WIDHT:            85
+
 }
 
 const CARD_SIZE = 150;
 
 
 const CardSlotsQuantity = {
+
     HAND:       12,
     FIELD:      8,
     DECK:       1,
@@ -180,6 +210,7 @@ const SlotIdentificators = {
 }
 
 const Common_map_pos = {
+
     PLAYER2_CARD_XPOS:      120,
     PLAYER2_CARD_YPOS:      60,
 
@@ -192,6 +223,7 @@ const Common_map_pos = {
 }
 
 const Player1_map_pos = {
+
     PLAYER1_BUFF1_XPOS:             500,
     PLAYER1_BUFF1_YPOS:             450,
 
@@ -236,9 +268,11 @@ const Player1_map_pos = {
     
     PLAYER1_DISSCARD_XPOS:          120,
     PLAYER1_DISSCARD_YPOS:          60,
+
 }
 
 const Player2_map_pos = {
+
     PLAYER2_BUFF1_XPOS:             500,
     PLAYER2_BUFF1_YPOS:             330,
 
@@ -282,14 +316,23 @@ const Player2_map_pos = {
 
     PLAYER2_DISSCARD_XPOS:          120,
     PLAYER2_DISSCARD_YPOS:          750,
+
 }
 
+//Player Turn
+const Turn ={
+    NO_TURN:    0,
+    PLAYER1:    1,
+    PLAYER2:    2,
 
+}
 
 export{
+
     State,
     Languages,
     CardState,
+    GameStates,
     CardCategory,
     Rarity,
     Effect,
@@ -306,6 +349,7 @@ export{
     Common_map_pos,
     Player1_map_pos,
     Player2_map_pos,
-    SlotIdentificators
+    SlotIdentificators,
+    Turn,
 }
 

@@ -65,6 +65,7 @@ function gameLoop(timeStamp)
 
         //Corregimos los excesos de tiempo
         globals.deltaTime -= globals.frameTimeObj;
+        console.log("Turno Jugador: " + globals.turnState);
     }
 
     if(globals.gameState === State.PLAYING)
