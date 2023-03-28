@@ -9,12 +9,13 @@ import globals from "./globals.js";
 
 
 
-// export default function render()
-// {
-//     globals.ctx.clearRect(0,0,globals.canvas.width, globals.canvas.height);
+export default function render()
+{
+    globals.ctx.clearRect(0,0,globals.canvas.width, globals.canvas.height);
     drawGame();
 
-// }
+
+}
 
 function drawGame()
 {
@@ -39,6 +40,7 @@ function drawGame()
     }
 
     // renderBigCard(); //A CORREGIR
+    drawNames();
 }
 
 function renderMap ()
@@ -297,14 +299,7 @@ function renderBigCard(){
 
 
 
-// PREUBA 
 
-export default function render()
-{    
-    globals.ctx.clearRect(0,0,globals.canvas.width, globals.canvas.height);
-    drawGame();
-
-}
 
 // function renderCards()
 // {
@@ -387,6 +382,17 @@ function drawSlotRectangle(slot) //Funcion que crea un rectangulo alrededor del 
 }
 
 
+function drawNames()
+{
+    // console.log(globals.hostPlayerInfo);
+    globals.ctx.font = '18px Magicmedieval-pRV1'; 
+    globals.ctx.fillStyle = 'white';    
+    globals.ctx.fillText(globals.selectedEnemy, 225, 220); 
+    globals.ctx.fillText(globals.hostPlayerInfo.izena_abizena, 225, 660);
+    // globals.ctx.fillText()
+    
+    // globals.hostPlayerInfo.izen_abizena
+}
 
 
 
