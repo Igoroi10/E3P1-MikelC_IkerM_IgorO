@@ -138,4 +138,6 @@ export default
     checkRoundPlayer2:          false,                  //Inicializamos en falso = Puede jugar el turno.
     checkBothPlayerRound:       false,                  //Inicializamos en false = Ninguno de los dos a pasado la ronda.
 
+    //Enemigo seleccionado de la lista de enemigos
+    selectedEnemy: "",
 }

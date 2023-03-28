@@ -71,16 +71,31 @@ export function btnStartAdmin()
 
 function createList()
 {
-    const usersList = document.querySelector('ul');     // Guardamos en una Variable la lista que queremos seleccionar
-    const users = globals.fakeUsersArray;               // Le damos los valores (En nuestro caso sera un Fake Array para hacer Pruebas)
+    const usersList = document.querySelector('select');     // Guardamos en una Variable la lista que queremos seleccionar
+    const users = globals.all_users;                        // Le damos los valores (En nuestro caso sera un Fake Array para hacer Pruebas)
 
     //Creacion de la Lista - Automatizada 
     for(let i = 0; i < users.length; i++)
     {
-        const li = document.createElement('li');        // Creamos Una linea
-        li.textContent = users[i];                      // Asignamos cada valor del array a la linea correspondiente del ciclo
-        usersList.appendChild(li);                      // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
+        if(users[i]['emaila'] !== globals.hostPlayerInfo.emaila){
+
+            const li = document.createElement('option');            // Creamos Una linea
+            li.textContent = users[i]['izen_abizena'];                      // Asignamos cada valor del array a la linea correspondiente del ciclo
+            usersList.appendChild(li);                      // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
+        }
+
     }
+}
+
+function selectEnemy()
+{
+    let select = document.getElementById('selectUserList');
+    select.addEventListener('change', function(){
+    let selectedOption = this.options[select.selectedIndex];
+    globals.selectedEnemy = selectedOption.text;
+    console.log(globals.selectedEnemy);
+  });
+  
 }
 
 export function btnStartPlayer()
@@ -93,7 +108,7 @@ export function btnStartPlayer()
     document.getElementById('playerMenuScreen').style.display = "block";
     document.getElementById('sectionLogIn').style.display = "none";
 
-    createList();
+
 }
 
 //Boton Que Pasa de turno
@@ -301,4 +316,9 @@ export function keyupHandler(event)
             break;        
     }
 
+}
+
+export {
+    createList,
+    selectEnemy,
 }
