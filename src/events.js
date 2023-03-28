@@ -233,6 +233,11 @@ function checkRoundState()
 
 }
 
+function canvasDobleClickHandler()
+{
+    console.log("entraenDobleclick");
+}
+
 export function canvasMousedownHandler()
 {
     globals.action.mousePressed = true;
@@ -321,4 +326,5 @@ export function keyupHandler(event)
 export {
     createList,
     selectEnemy,
+    canvasDobleClickHandler,
 }

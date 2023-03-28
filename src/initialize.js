@@ -1,4 +1,4 @@
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler, btnEndRound, createList, selectEnemy} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler, btnEndRound, createList, selectEnemy, canvasDobleClickHandler} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -60,6 +60,8 @@ function initHTMLelements()
     // globals.sectionPlay.style.display   = "none";
 
     globals.btnLogin.addEventListener("mousedown", logInHandler, false);
+
+    
 }
 
 export function initGame(data)
@@ -107,6 +109,9 @@ function initEvents()
     globals.canvas.addEventListener("mouseup",   canvasMouseupHandler, false);
     globals.canvas.addEventListener("mousedown", canvasMousedownHandler, false);
     globals.canvas.addEventListener("mousemove", canvasMousemoveHandler, false);
+
+    //doble click
+    globals.canvas.addEventListener("dblclick", canvasDobleClickHandler, false);
 }
 
 //===========================================

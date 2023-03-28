@@ -25,7 +25,7 @@ function init()
 
     initVars();
 
-    initEvents();
+    // initEvents();
 
     //Funcion de Obejtos
     initFakeCards();
