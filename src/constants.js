@@ -179,6 +179,36 @@ const CardSlotsQuantity = {
      
 }
 
+const SlotIdentificators = {
+    //Player 1 Buffs
+
+    PLAYER1_B1 :    0,
+    PLAYER1_B2:     1,
+    PLAYER1_B3:     2,
+    
+    //Player 2 Buffs:
+
+    PLAYER2_B1:     3,
+    PLAYER2_B2:     4,
+    PLAYER2_B3:     5,
+
+    //Player 1 Field:
+    PLAYER1_F1:     6,
+    PLAYER1_F2:     7,
+    PLAYER1_F3:     8,
+
+    //Player 2 Field:
+    PLAYER2_F1:     9,
+    PLAYER2_F2:     10,
+    PLAYER2_F3:     11,
+
+    //Climate control
+
+    CLIMATE_FIELD:  12
+
+
+}
+
 const Common_map_pos = {
 
     PLAYER2_CARD_XPOS:      120,
@@ -318,7 +348,8 @@ export{
     CardSlotsQuantity,
     Common_map_pos,
     Player1_map_pos,
-    Player2_map_pos, 
+    Player2_map_pos,
+    SlotIdentificators,
     Turn,
 }
 
