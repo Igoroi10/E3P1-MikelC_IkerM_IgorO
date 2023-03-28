@@ -258,7 +258,7 @@ function loadHandler()
         // console.log("Assets finished loading");
 
         globals.gameState = State.PLAYING;
-        console.log(globals.gameState);
+        // console.log(globals.gameState);
 
 
     }
@@ -296,6 +296,7 @@ function logInHandler(event)
                     const userData = JSON.parse(this.responseText);
                     console.log(userData);
 
+                    globals.hostPlayerInfo = userData;
                     manageLogin(userData);
                 }
                 else
@@ -851,7 +852,7 @@ function initCardInfo()
 
                     console.log("Card info loaded");
                    
-                    console.log(resultJSON);
+                    // console.log(resultJSON); 
 
                 }
                 else  

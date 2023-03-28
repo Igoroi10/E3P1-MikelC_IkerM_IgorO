@@ -50,6 +50,8 @@ export default
 
     all_users: [],
 
+    hostPlayerInfo: [],
+
     //Array de assets que guarda Datos de imagen
     assets: {
         front_img:          [],     // Imagen de la carta
