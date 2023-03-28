@@ -297,6 +297,8 @@ function logInHandler(event)
                     console.log(userData);
 
                     globals.hostPlayerInfo = userData;
+
+                    // console.log(globals.hostPlayerInfo.emaila);
                     manageLogin(userData);
                 }
                 else
