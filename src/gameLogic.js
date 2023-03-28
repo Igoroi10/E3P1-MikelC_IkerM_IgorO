@@ -116,7 +116,7 @@ function makeThisScreenVisible(screen){
     let visibleDiv;
     switch(screen){
         case State.LOG_IN:
-            visibleDiv = "container";
+            visibleDiv = "logInScreen";
             break;
 
         case State.PLAYER_MENU:
@@ -132,17 +132,15 @@ function makeThisScreenVisible(screen){
             break;
     }
 
-    const logInDiv      = document.getElementById("sectionLogIn");
-    const playerMenu    = document.getElementById("playerMenuScreen");
-    const adminMenu     = document.getElementById("adminMenuScreen");
-    const playingScreen = document.getElementById("divCanvas");
-    
-    logInDiv.style.display      = "none";
-    playerMenu.style.display    = "none";
-    adminMenu.style.display     = "none";
-    playingScreen.style.display = "none";
 
-    visibleDiv.style.display    = "block";
+
+
+    document.getElementById("logInScreen").style.display            = "none";
+    document.getElementById("playerMenuScreen").style.display       = "none";
+    document.getElementById("adminMenuScreen").style.display        = "none";
+    document.getElementById("divCanvas").style.display              = "none";
+
+    document.getElementById(visibleDiv).style.display    = "block";
 
 }
 
