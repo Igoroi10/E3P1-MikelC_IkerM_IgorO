@@ -71,15 +71,20 @@ export function btnStartAdmin()
 
 function createList()
 {
-    const usersList = document.querySelector('ul');     // Guardamos en una Variable la lista que queremos seleccionar
-    const users = globals.fakeUsersArray;               // Le damos los valores (En nuestro caso sera un Fake Array para hacer Pruebas)
+    const usersList = document.querySelector('select');     // Guardamos en una Variable la lista que queremos seleccionar
+    const users = globals.all_users;                        // Le damos los valores (En nuestro caso sera un Fake Array para hacer Pruebas)
 
+    console.log(users);
     //Creacion de la Lista - Automatizada 
     for(let i = 0; i < users.length; i++)
     {
-        const li = document.createElement('li');        // Creamos Una linea
-        li.textContent = users[i];                      // Asignamos cada valor del array a la linea correspondiente del ciclo
-        usersList.appendChild(li);                      // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
+        if(users[i]['emaila'] !== 'iker.mendoza@ikasle.aeg.eus'){
+
+            const li = document.createElement('option');        // Creamos Una linea
+            li.textContent = users[i]['izen_abizena'];                      // Asignamos cada valor del array a la linea correspondiente del ciclo
+            usersList.appendChild(li);                      // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
+        }
+
     }
 }
 
