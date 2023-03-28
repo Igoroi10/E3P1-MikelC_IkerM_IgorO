@@ -296,6 +296,7 @@ function logInHandler(event)
                     const userData = JSON.parse(this.responseText);
                     console.log(userData);
 
+                    //Guardado Global
                     globals.hostPlayerInfo = userData;
 
                     // console.log(globals.hostPlayerInfo.emaila);
