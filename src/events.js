@@ -74,13 +74,12 @@ function createList()
     const usersList = document.querySelector('select');     // Guardamos en una Variable la lista que queremos seleccionar
     const users = globals.all_users;                        // Le damos los valores (En nuestro caso sera un Fake Array para hacer Pruebas)
 
-    console.log(users);
     //Creacion de la Lista - Automatizada 
     for(let i = 0; i < users.length; i++)
     {
-        if(users[i]['emaila'] !== 'iker.mendoza@ikasle.aeg.eus'){
+        if(users[i]['emaila'] !== globals.hostPlayerInfo.emaila){
 
-            const li = document.createElement('option');        // Creamos Una linea
+            const li = document.createElement('option');            // Creamos Una linea
             li.textContent = users[i]['izen_abizena'];                      // Asignamos cada valor del array a la linea correspondiente del ciclo
             usersList.appendChild(li);                      // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
         }
@@ -98,7 +97,7 @@ export function btnStartPlayer()
     document.getElementById('playerMenuScreen').style.display = "block";
     document.getElementById('sectionLogIn').style.display = "none";
 
-    createList();
+
 }
 
 //Boton Que Pasa de turno
@@ -306,4 +305,8 @@ export function keyupHandler(event)
             break;        
     }
 
+}
+
+export {
+    createList,
 }
