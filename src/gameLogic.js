@@ -285,22 +285,23 @@ function createPointers(points, player){
 function createPointersToken(array, number){
 
     const imageSet = new ImageSet(CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT);
+    let index;
 
     switch(number){
         case 100:
-            let index = 36;
+            index = 36;
             const tokenCard = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
             array.hundreds.push(tokenCard);
             break;
         case 10:
-            let index = 35;
-            const tokenCard = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
-            array.tens.push(tokenCard);
+            index = 35;
+            const tokenCard2 = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
+            array.tens.push(tokenCard2);
             break;
         case 1:
-            let index = 34;
-            const tokenCard = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
-            array.units.push(tokenCard);
+            index = 34;
+            const tokenCard3 = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
+            array.units.push(tokenCard3);
             break;
     }
     
