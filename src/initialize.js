@@ -270,11 +270,11 @@ function logInHandler(event)
 
     //Send data
     const objectToSend = {
-        email: globals.inputEmail.value,
-        password: globals.inputPassword.value
+        emaila: globals.inputEmail.value,
+        pasahitza: globals.inputPassword.value
     }
 
-    const dataToSend = 'email=' + objectToSend.email + '&password=' + objectToSend.password;
+    const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
 
     console.log(dataToSend);
 
