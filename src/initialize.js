@@ -8,6 +8,7 @@ import { GameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
 import ImageSet from "./ImageSet.js";
 import { Player1_map_pos, Player2_map_pos, Common_map_pos } from "./constants.js";
+import { checkStates, localStorageUpdate } from "./gameLogic.js";
 
 
 function initHTMLelements()
@@ -318,11 +319,24 @@ function manageLogin(userData)
 {
     if (userData.email !== "" && userData.password !== "")
     {
+
+        if(userData.rol === "admin"){
+            globals.gameState = State.ADMIN_MENU;
+            localStorageUpdate();
+            checkStates();
+
+        }
+
+        else{
+            globals.gameState = State.PLAYER_MENU;
+            localStorageUpdate();
+            checkStates();
+        }
         //Usuario logueado
 
         //ACtivamos el menú de play y ocultamos el de logIn
-        document.getElementById('sectionLogIn').style.display = "none";
-        document.getElementById('playerMenuScreen').style.display = "block";
+        // document.getElementById('sectionLogIn').style.display = "none";
+        // document.getElementById('playerMenuScreen').style.display = "block";
         // globals.sectionLogIn.style.display  = "none";
         // globals.sectionPlay.style.display   = "block";
 
