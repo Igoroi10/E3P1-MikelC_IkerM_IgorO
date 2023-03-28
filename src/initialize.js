@@ -956,7 +956,7 @@ function getAllUsers()
                     // console.log(resultJSON);
                     //Guardamos los datos del resultJSON
                     globals.all_users = resultJSON;
-                    
+                    createList();
                     // console.log("this.responetext" + this.responseText);
                     // console.log(globals.all_users);
                 }
