@@ -363,7 +363,6 @@ function manageLogin(userData)
     //Pintamos el texto logIN
     updateUserText(userData);
     
-    createList();
     selectEnemy();
 }
 
