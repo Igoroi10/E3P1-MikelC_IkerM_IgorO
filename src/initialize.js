@@ -20,7 +20,7 @@ function initHTMLelements()
     globals.buttonAdd       = document.getElementById('btnAdd');
     globals.buttonTurn      = document.getElementById('btnTurn');
     globals.buttonRound      = document.getElementById('btnRound');
-    globals.buttonLogout    = document.getElementById('btnLogout');
+    globals.buttonLogout    = document.getElementsByClassName('btnLogout');
 
     //Get A reference to the canvas 
     globals.canvas = document.getElementById('gameScreen');
@@ -38,7 +38,11 @@ function initHTMLelements()
     globals.buttonPlayer.addEventListener("mousedown",      btnStartPlayer,     false);
     globals.buttonTurn.addEventListener("mousedown",        btnStartTurn,       false);
     globals.buttonRound.addEventListener("mousedown",       btnEndRound,        false);
-    globals.buttonLogout.addEventListener("mousedown",      btnLogOut,          false);
+        for(let i = 0; i < globals.buttonLogout.length; i++)
+        {
+            globals.buttonLogout[i].addEventListener("mousedown",      btnLogOut,          false);
+        }
+    
 
 
     // globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);
