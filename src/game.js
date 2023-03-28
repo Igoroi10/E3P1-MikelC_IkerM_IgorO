@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import { initEvents, initFakeCards, initHTMLelements, initVars, loadAssets, initCardInfo, initCardLinks, initSlots, getAllUsers } from "./initialize.js";
-import update from "./gameLogic.js";
+import {update, localStorageCheck} from "./gameLogic.js";
 import { render } from "./gameRender.js";
 import { State } from "./constants.js";
 
@@ -13,6 +13,8 @@ window.onload = init;
 
 function init()
 {
+    localStorageCheck();
+
     initHTMLelements();
 
     loadAssets();

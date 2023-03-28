@@ -3,7 +3,7 @@ import { State, SlotIdentificators, Effect } from "./constants.js";
 import { createExpertDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js";
 
-export default function update()
+function update()
 {
     //Change what the game is doing based on the game state
     switch(globals.gameState)
@@ -307,10 +307,29 @@ function createPointersToken(array, number){
     
 }
 
+function localStorageCheck(){
 
+    if(localStorage.getItem("logged") === null){
+        globals.gameState = State.LOG_IN;
+    }
+
+    else{
+        if(localStorage.getItem("rol") === "admin"){
+            globals.gameState = State.ADMIN_MENU;
+        }
+
+        else{
+            globals.gameState = State.PLAYER_MENU;
+        }
+    }
+
+    checkStates();
+}
 
 
 
 export {
+    update,
     checkStates,
+    localStorageCheck,
 }
