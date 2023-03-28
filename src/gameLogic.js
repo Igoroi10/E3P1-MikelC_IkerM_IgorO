@@ -160,8 +160,8 @@ function updatePoints(){
     globals.player1Points = player1Points;
     globals.player2Points = player2Points;
 
-    createPointers(player1Points);
-    createPointers(player2Points);
+    createPointers(player1Points, player1);
+    createPointers(player2Points, player2);
 }
 
 function calculatePoints(player){
@@ -243,6 +243,73 @@ function calculatePoints(player){
 
     return points;
 }
+
+function createPointers(points, player){
+    let PointersArray;
+    let pointsLeft = points;
+    let hundreds;
+    let tens;
+    let units;
+
+    if(player === 0){
+        PointersArray = globals.player1PointTokens;
+    }
+
+    else
+        PointersArray = globals.player2PointTokens;
+    
+    
+    hundreds = pointsLeft/100;
+
+    pointsLeft = pointsLeft%100;
+
+    tens = pointsLeft/10;
+
+    pointsLeft = pointsLeft%10;
+
+    units = pointsLeft;
+
+    for(let i = 0; i < hundreds; i++){
+        createPointersToken(PointersArray, 100);
+    }
+
+    for(let i = 0; i < tens; i++){
+        createPointersToken(PointersArray, 10);
+    }
+
+    for(let i = 0; i < units; i++){
+        createPointersToken(PointersArray, 1);
+    }
+}
+
+function createPointersToken(array, number){
+
+    const imageSet = new ImageSet(CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT);
+
+    switch(number){
+        case 100:
+            let index = 36;
+            const tokenCard = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
+            array.hundreds.push(tokenCard);
+            break;
+        case 10:
+            let index = 35;
+            const tokenCard = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
+            array.tens.push(tokenCard);
+            break;
+        case 1:
+            let index = 34;
+            const tokenCard = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
+            array.units.push(tokenCard);
+            break;
+    }
+    
+    
+}
+
+
+
+
 
 export {
     checkStates,
