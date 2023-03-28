@@ -144,6 +144,19 @@ html {
     font-weight: 600;
 }
 
+#btnLogout{
+    width: 100%;
+    height: 40px;
+    border-radius: 40px;
+    background: #fff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+
 #btnPlay{
     width: 100%;
     height: 40px;
