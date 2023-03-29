@@ -2,6 +2,7 @@ import globals from "./globals.js";
 import { State, SlotIdentificators, Effect } from "./constants.js";
 import { createExpertDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js";
+import { selectEnemy, createList} from "./events.js";
 
 function update()
 {
@@ -309,26 +310,46 @@ function createPointersToken(array, number){
 function localStorageCheck(){
 
     if(localStorage.getItem("logged") === null){
+        console.log("no logged")
         globals.gameState = State.LOG_IN;
     }
 
     else{
         if(localStorage.getItem("rol") === "admin"){
+            console.log("logged as admin")
+            globals.hostPlayerInfo.izena_abizena = localStorage.getItem('izena_abizena');
             globals.gameState = State.ADMIN_MENU;
         }
 
         else{
+            console.log("logged as player")
             globals.gameState = State.PLAYER_MENU;
+            globals.hostPlayerInfo.izena_abizena = localStorage.getItem('izena_abizena');
+            selectEnemy();
         }
     }
 
     checkStates();
 }
 
+function localStorageUpdate(){
+    localStorage.setItem('logged', 'true');
+    localStorage.setItem('rol', globals.hostPlayerInfo.rol);
+    localStorage.setItem('emaila', globals.hostPlayerInfo.emaila);
+    localStorage.setItem('izen_abizena', globals.hostPlayerInfo.izena_abizena)
+}
 
+function logOut(){
+    localStorage.clear();
+    globals.gameState = State.LOG_IN;
+    checkStates(); 
+
+}
 
 export {
     update,
     checkStates,
     localStorageCheck,
+    localStorageUpdate,
+    logOut,
 }

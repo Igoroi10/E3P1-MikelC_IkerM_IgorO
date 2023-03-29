@@ -30,6 +30,8 @@ export default
 
     buttonRound: {},
 
+    buttonLogout: {},
+
     //Array de Cartas
     cards: [],
 
@@ -99,6 +101,7 @@ export default
     // ====================
 
     btnLogin:       {},
+    btnLogout:      {},
 
     inputEmail:     {},
     inputPassword:  {},

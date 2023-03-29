@@ -4,7 +4,7 @@ import { initGame } from "./initialize.js";
 import { Key, State, Turn } from "./constants.js";
 
 import { gameLoop } from "./game.js";
-import { checkStates } from "./gameLogic.js";
+import { checkStates, localStorageUpdate, logOut } from "./gameLogic.js";
 
 
 //Creacion de Evento para el raton
@@ -51,6 +51,13 @@ export function btnStartOut ()
     document.getElementById("btnStart").innerHTML = "START";
     document.getElementById('sectionLogIn').style.display = "none";
     // document.getElementById('sectionPlay').style.display = "none";
+}
+
+export function btnLogOut ()
+{
+    console.log("Entra en logOut");
+    logOut();
+    checkStates();
 }
 
 export function btnStartAdmin()

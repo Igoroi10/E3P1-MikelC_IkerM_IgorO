@@ -1,4 +1,5 @@
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler, btnEndRound, createList, selectEnemy, canvasDobleClickHandler} from "./events.js";
+
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, canvasDobleClickHandler} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -8,6 +9,7 @@ import { GameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
 import ImageSet from "./ImageSet.js";
 import { Player1_map_pos, Player2_map_pos, Common_map_pos } from "./constants.js";
+import { checkStates, localStorageUpdate } from "./gameLogic.js";
 
 
 function initHTMLelements()
@@ -19,6 +21,7 @@ function initHTMLelements()
     globals.buttonAdd       = document.getElementById('btnAdd');
     globals.buttonTurn      = document.getElementById('btnTurn');
     globals.buttonRound      = document.getElementById('btnRound');
+    globals.buttonLogout    = document.getElementsByClassName('btnLogout');
 
     //Get A reference to the canvas 
     globals.canvas = document.getElementById('gameScreen');
@@ -36,6 +39,11 @@ function initHTMLelements()
     globals.buttonPlayer.addEventListener("mousedown",      btnStartPlayer,     false);
     globals.buttonTurn.addEventListener("mousedown",        btnStartTurn,       false);
     globals.buttonRound.addEventListener("mousedown",       btnEndRound,        false);
+        for(let i = 0; i < globals.buttonLogout.length; i++)
+        {
+            globals.buttonLogout[i].addEventListener("mousedown",      btnLogOut,          false);
+        }
+    
 
 
     // globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);
@@ -324,11 +332,24 @@ function manageLogin(userData)
 {
     if (userData.email !== "" && userData.password !== "")
     {
+
+        if(userData.rol === "admin"){
+            globals.gameState = State.ADMIN_MENU;
+            localStorageUpdate();
+            checkStates();
+
+        }
+
+        else{
+            globals.gameState = State.PLAYER_MENU;
+            localStorageUpdate();
+            checkStates();
+        }
         //Usuario logueado
 
         //ACtivamos el menú de play y ocultamos el de logIn
-        document.getElementById('sectionLogIn').style.display = "none";
-        document.getElementById('playerMenuScreen').style.display = "block";
+        // document.getElementById('sectionLogIn').style.display = "none";
+        // document.getElementById('playerMenuScreen').style.display = "block";
         // globals.sectionLogIn.style.display  = "none";
         // globals.sectionPlay.style.display   = "block";
 
@@ -348,7 +369,6 @@ function manageLogin(userData)
     //Pintamos el texto logIN
     updateUserText(userData);
     
-    createList();
     selectEnemy();
 }
 
@@ -947,7 +967,7 @@ function getAllUsers()
                     // console.log(resultJSON);
                     //Guardamos los datos del resultJSON
                     globals.all_users = resultJSON;
-                    
+                    createList();
                     // console.log("this.responetext" + this.responseText);
                     // console.log(globals.all_users);
                 }
