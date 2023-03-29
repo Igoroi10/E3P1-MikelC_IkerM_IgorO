@@ -96,7 +96,8 @@ function initVars()
 
     //Inicializamos los estados de las acciones
     globals.action = {
-        mousePressed: false
+        mousePressed: false,
+        doubleClick: false,
     };
 
     //Inicializamos el objeto mouse
@@ -411,7 +412,8 @@ function createExpertDeck(){
 
     cardsNeeded -= globals.cards.length;
 
-    addUnitCards(cardsNeeded);
+    //Comentada Funcion - DA ERROR 
+    // addUnitCards(cardsNeeded);
     
 
 }

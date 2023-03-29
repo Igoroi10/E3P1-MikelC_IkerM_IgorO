@@ -5,6 +5,7 @@ import { Key, State, Turn } from "./constants.js";
 
 import { gameLoop } from "./game.js";
 import { checkStates, localStorageUpdate, logOut } from "./gameLogic.js";
+import { renderBigCard } from "./gameRender.js";
 
 
 //Creacion de Evento para el raton
@@ -246,6 +247,8 @@ function canvasDobleClickHandler()
 {
     //Meter aqui la accion de la carta grande
     console.log("entra en la funcion canvasDobleClickHandler");
+    globals.action.doubleClick = true;
+    renderBigCard();
 }
 
 export function canvasMousedownHandler()

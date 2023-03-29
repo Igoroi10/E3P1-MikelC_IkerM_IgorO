@@ -398,4 +398,5 @@ function drawNames()
 
 export{
     render,
+    renderBigCard,
 }
