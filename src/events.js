@@ -41,6 +41,7 @@ export function btnStartOver ()
     // console.log("entraa");
     document.getElementById("btnStart").innerHTML = "OVER";
     document.getElementById('sectionLogIn').style.display = "none";
+    globals.gameState = State.PLAYING;
     // document.getElementById('sectionPlay').style.display = "none";
 
 }
@@ -72,6 +73,7 @@ export function btnStartAdmin()
     
 
     // checkStates();
+
     
 
 }
