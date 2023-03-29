@@ -235,7 +235,8 @@ function checkRoundState()
 
 function canvasDobleClickHandler()
 {
-    console.log("entraenDobleclick");
+    //Meter aqui la accion de la carta grande
+    console.log("entra en la funcion canvasDobleClickHandler");
 }
 
 export function canvasMousedownHandler()
