@@ -20,6 +20,7 @@ function detectCollisionBetweenMouseAndCards()
             {
                 globals.mouseHasCollidedWithTheCard = true;
                 
+                // globals.selectedCardId = i;
             }
             else
                 globals.mouseHasCollidedWithTheCard = false; 

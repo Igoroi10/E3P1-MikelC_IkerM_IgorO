@@ -248,7 +248,13 @@ function canvasDobleClickHandler()
     //Meter aqui la accion de la carta grande
     console.log("entra en la funcion canvasDobleClickHandler");
     globals.action.doubleClick = true;
-    renderBigCard();
+
+    //HAY QUE ECHARLE UN OJO
+    if (!globals.mouseHasCollidedWithTheCard)
+    {
+        renderBigCard();
+    }
+   
 }
 
 export function canvasMousedownHandler()
