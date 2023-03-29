@@ -91,7 +91,7 @@ function renderCard(card){
 
         //Imagen de fondo
         globals.ctx.drawImage(
-            globals.assets.front_img[card.front_img],                     //archivo de la imagen
+            globals.assets.front_img[card.frontImg],                     //archivo de la imagen
             0, 0,                                   //Posición inicial x e y 
             CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT, 
             card.xPos, card.yPos,                                   //fin de x e y
@@ -219,10 +219,10 @@ function renderBigCard(){
         }
 
         else{
-            console.log("patatas");
+
             //Imagen de fondo
             globals.ctx.drawImage(
-                globals.assets.front_img[globals.cards[globals.bigCard].front_img],                     //archivo de la imagen
+                globals.assets.front_img[globals.cards[globals.bigCard].frontImg],                     //archivo de la imagen
                 0, 0,                                   //Posición inicial x e y 
                 CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT, 
                 card.xPos, card.yPos,                                   //fin de x e y
@@ -241,9 +241,8 @@ function renderBigCard(){
 
             if(globals.cards[globals.bigCard].category === CardCategory.UNIT){
                 //Icono superior izquierda
-                console.log("Espinacas")
                 globals.ctx.drawImage(
-                    globals.assets.card_type[globals.cards[globals.bigCard].card_type],                     //archivo de la imagen
+                    globals.assets.card_type[globals.cards[globals.bigCard].type],                     //archivo de la imagen
                     0, 0,                                   //Posición inicial x e y 
                     CardSizes.BIG_HEIGHT, CardSizes.BIG_HEIGHT, 
                     card.xPos, card.yPos,                             //fin de x e y
@@ -262,7 +261,6 @@ function renderBigCard(){
             }
 
             else{
-                console.log("jengibre")
                 globals.ctx.drawImage(
                     globals.assets.card_category[globals.cards[globals.bigCard].card_category],                     //archivo de la imagen
                     0, 0,                                                                                           //Posición inicial x e y 
