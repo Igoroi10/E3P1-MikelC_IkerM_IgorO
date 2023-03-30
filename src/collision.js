@@ -19,7 +19,6 @@ function detectCollisionBetweenMouseAndCards()
             if(globals.mouse.x < (card.xPos + xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < (card.yPos + ySize) && globals.mouse.y > card.yPos)
             {
                 // console.log("ha entrado en el if");
-                // console.log(card);
                 globals.mouseHasCollidedWithTheCard = true;
                 globals.selectedCardId = i;
                 // console.log(globals.selectedCardId);
