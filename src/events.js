@@ -245,10 +245,10 @@ function checkRoundState()
 
 }
 
-function canvasDobleClickHandler()
+function canvasDoubleClickHandler()
 {
     //Meter aqui la accion de la carta grande
-    console.log("entra en la funcion canvasDobleClickHandler");
+    console.log("entra en la funcion canvasDoubleClickHandler");
     globals.action.doubleClick = true;
 
     //HAY QUE ECHARLE UN OJO
@@ -347,5 +347,5 @@ export function keyupHandler(event)
 export {
     createList,
     selectEnemy,
-    canvasDobleClickHandler,
+    canvasDoubleClickHandler,
 }

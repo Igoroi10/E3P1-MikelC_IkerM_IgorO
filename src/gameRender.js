@@ -19,8 +19,6 @@ export default function render()
 
 function drawGame()
 {
-    // renderMap();
-    // renderCards();
 
     if (globals.action.d)
     {
@@ -28,19 +26,15 @@ function drawGame()
         drawSlots();
         
     }
-
-    if(globals.action.e){
-        globals.bigCard = 0;
-        renderBigCard();
-    }
-
+    drawNames();
     if (globals.action.c)
     {
         renderCards();
     }
 
-    // renderBigCard(); //A CORREGIR
-    drawNames();
+
+    renderBigCard();
+
 }
 
 function renderMap ()
@@ -205,9 +199,9 @@ function renderBigCard(){
     let initialX = 652;
     let initialY = 238
 
-    if(globals.bigCard <= 0){
+    if(globals.selectedCardId >= 0){
 
-        const card = globals.cards[globals.bigCard];
+        const card = globals.cards[globals.selectedCardId];
 
         if(card.showBack){
 
@@ -224,7 +218,7 @@ function renderBigCard(){
 
             //Imagen de fondo
             globals.ctx.drawImage(
-                globals.assets.front_img[globals.cards[globals.bigCard].frontImg],                     //archivo de la imagen
+                globals.assets.front_img[card.frontImg],                     //archivo de la imagen
                 0, 0,                                                                       //Posición inicial x e y 
                 CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT, 
                 initialX, initialY,                                                      //fin de x e y
@@ -241,10 +235,10 @@ function renderBigCard(){
 
             )
 
-            if(globals.cards[globals.bigCard].categoryId === CardCategory.UNIT){
+            if(globals.cards[globals.selectedCardId].categoryId === CardCategory.UNIT){
                 //Icono superior izquierda
                 globals.ctx.drawImage(
-                    globals.assets.card_type[globals.cards[globals.bigCard].type],                     //archivo de la imagen
+                    globals.assets.card_type[card.type],                     //archivo de la imagen
                     0, 0,                                   //Posición inicial x e y 
                     CardSizes.BIG_HEIGHT, CardSizes.BIG_HEIGHT, 
                     initialX, initialY,                             //fin de x e y
@@ -264,7 +258,7 @@ function renderBigCard(){
 
             else{
                 globals.ctx.drawImage(
-                    globals.assets.card_category[globals.cards[globals.bigCard].card_category],                     //archivo de la imagen
+                    globals.assets.card_category[card.card_category],                     //archivo de la imagen
                     0, 0,                                                                                           //Posición inicial x e y 
                     CardSizes.BIG_HEIGHT, CardSizes.BIG_HEIGHT, 
                     initialX, initialY,                                                                           //fin de x e y

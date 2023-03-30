@@ -20,7 +20,12 @@ function detectCollisionBetweenMouseAndCards()
             {
                 // console.log("ha entrado en el if");
                 globals.mouseHasCollidedWithTheCard = true;
-                globals.selectedCardId = i;
+                
+                if(globals.selectedCardId === -1)
+                    globals.selectedCardId = i;
+                else
+                    globals.selectedCardId = -1;
+
                 // console.log(globals.selectedCardId);
                 break;
             }
@@ -34,10 +39,6 @@ function detectCollisionBetweenMouseAndCards()
         }
     }
 
-    if(globals.mouseHasCollidedWithTheCard === false)
-    {
-        globals.selectedCardId = -1;
-    }
     // else
     
     console.log(globals.selectedCardId);
