@@ -126,19 +126,19 @@ function renderCard(card){
 
         )
 
-        // //Icono abajo izquierda
-        // globals.ctx.drawImage(
-        //     globals.assets.card_effect[card.effect],                     //archivo de la imagen
-        //     0, 0,                                                        //Posición inicial x e y 
-        //     65, 54, 
-        //     card.xPos, card.yPos + 51,                                   //fin de x e y
-        //     19, 16                                                      //Fin de anchura.       
+        //Icono abajo izquierda
+        globals.ctx.drawImage(
+            globals.assets.card_effect[card.effect],                     //archivo de la imagen
+            0, 0,                                                        //Posición inicial x e y 
+            65, 54, 
+            card.xPos, card.yPos + 51,                                   //fin de x e y
+            19, 16                                                      //Fin de anchura.       
 
-        // )
+        )
 
     }
     //DIBUJO DEL ANVERSO DEL RESTO DE CARTAS EXCEPTO TOKEN
-    else if(card.category !== CardCategory.TOKEN){
+    else if(card.categoryId !== CardCategory.TOKEN){
         //Imagen de fondo
         globals.ctx.drawImage(
             globals.assets.front_img[card.frontImg],                     //archivo de la imagen
@@ -202,18 +202,20 @@ function renderCard(card){
 }
 
 function renderBigCard(){
+    let initialX = 652;
+    let initialY = 238
 
     if(globals.bigCard <= 0){
 
         const card = globals.cards[globals.bigCard];
 
-        if(!card.showBack){
+        if(card.showBack){
 
             globals.ctx.drawImage(
                 globals.assets.card_reverse[0],                     //archivo de la imagen
-                card.xPos, card.yPos,                                   //Posición inicial x e y 
+                0, card.yPos,                                   //Posición inicial x e y 
                 CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT, 
-                card.xPos, card.yPos,                                   //fin de x e y
+                initialX, initialY,                                   //fin de x e y
                 CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT             //Fin de anchura.       
             )
         }
@@ -223,10 +225,10 @@ function renderBigCard(){
             //Imagen de fondo
             globals.ctx.drawImage(
                 globals.assets.front_img[globals.cards[globals.bigCard].frontImg],                     //archivo de la imagen
-                0, 0,                                   //Posición inicial x e y 
+                0, 0,                                                                       //Posición inicial x e y 
                 CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT, 
-                card.xPos, card.yPos,                                   //fin de x e y
-                CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT             //Fin de anchura.       
+                initialX, initialY,                                                      //fin de x e y
+                CardSizes.BIG_CUT_FRAME_WIDTH, CardSizes.BIG_CUT_FRAME_HEIGHT             //Fin de anchura.       
 
             )
             //Frame
@@ -234,18 +236,18 @@ function renderBigCard(){
                 globals.assets.card_frame[1],                           //archivo de la imagen
                 0, 0,                                                       //Posición inicial x e y 
                 CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT, 
-                card.xPos, card.yPos,                                   //fin de x e y
+                initialX, initialY,                                   //fin de x e y
                 CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT             //Fin de anchura.       
 
             )
 
-            if(globals.cards[globals.bigCard].category === CardCategory.UNIT){
+            if(globals.cards[globals.bigCard].categoryId === CardCategory.UNIT){
                 //Icono superior izquierda
                 globals.ctx.drawImage(
                     globals.assets.card_type[globals.cards[globals.bigCard].type],                     //archivo de la imagen
                     0, 0,                                   //Posición inicial x e y 
                     CardSizes.BIG_HEIGHT, CardSizes.BIG_HEIGHT, 
-                    card.xPos, card.yPos,                             //fin de x e y
+                    initialX, initialY,                             //fin de x e y
                     65, 63                                                 //Fin de anchura.       
 
                 )
@@ -254,7 +256,7 @@ function renderBigCard(){
                     globals.assets.card_value[card.value],                      //archivo de la imagen
                     0, 0,                                                       //Posición inicial x e y 
                     65, 63, 
-                    card.xPos, card.yPos + 60,                                  //fin de x e y
+                    initialX, initialY + 154,                                  //fin de x e y
                     65, 63                                                      //Fin de anchura.       
 
                 )
@@ -265,7 +267,7 @@ function renderBigCard(){
                     globals.assets.card_category[globals.cards[globals.bigCard].card_category],                     //archivo de la imagen
                     0, 0,                                                                                           //Posición inicial x e y 
                     CardSizes.BIG_HEIGHT, CardSizes.BIG_HEIGHT, 
-                    card.xPos, card.yPos,                                                                           //fin de x e y
+                    initialX, initialY,                                                                           //fin de x e y
                     65, 63                                                                                          //Fin de anchura.       
 
                 )
@@ -276,20 +278,20 @@ function renderBigCard(){
             globals.ctx.drawImage(
                 globals.assets.card_effect[card.effect],                     //archivo de la imagen
                 0, 0,                                                        //Posición inicial x e y 
-                65, 54, 
-                card.xPos, card.yPos + 51,                                   //fin de x e y
-                65, 54                                                      //Fin de anchura.       
+                64, 64, 
+                initialX - 10, initialY + 240,                                   //fin de x e y
+                80, 80                                                     //Fin de anchura.       
 
             )
 
             globals.ctx.font        = "8 px magicmedieval-prv1";
             globals.ctx.fillStyle   = "black";
-            globals.ctx.fillText(card.cardName, card.xPos + 5, card.yPos + 300);
+            globals.ctx.fillText(card.cardName, initialX + 100, initialY + 300);
 
 
             globals.ctx.font        = "8 px magicmedieval-prv1";
             globals.ctx.fillStyle   = "black";
-            globals.ctx.fillText(card.description_eu, card.xPos + 5, card.yPos + 300);
+            globals.ctx.fillText(card.description_eu, initialX + 30, initialY + 330);
             
         }
     }
