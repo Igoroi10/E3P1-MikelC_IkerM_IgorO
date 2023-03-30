@@ -284,12 +284,12 @@ function renderBigCard(){
 
             )
 
-            globals.ctx.font        = "8 px magicmedieval-prv1";
+            globals.ctx.font        = "8 px magicmedieval";
             globals.ctx.fillStyle   = "black";
             globals.ctx.fillText(card.cardName, initialX + 100, initialY + 300);
 
 
-            globals.ctx.font        = "8 px magicmedieval-prv1";
+            globals.ctx.font        = "8 px magicmedieval";
             globals.ctx.fillStyle   = "black";
             globals.ctx.fillText(card.description_eu, initialX + 30, initialY + 330);
             
@@ -387,7 +387,7 @@ function drawSlotRectangle(slot) //Funcion que crea un rectangulo alrededor del 
 function drawNames()
 {
     // console.log(globals.hostPlayerInfo);
-    globals.ctx.font = '18px Magicmedieval-pRV1'; 
+    globals.ctx.font = '25px magicmedieval'; 
     globals.ctx.fillStyle = 'white';    
     globals.ctx.fillText(globals.selectedEnemy, 225, 220); 
     globals.ctx.fillText(globals.hostPlayerInfo.izena_abizena, 225, 660);
