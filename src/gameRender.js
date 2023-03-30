@@ -284,12 +284,12 @@ function renderBigCard(){
 
 
             let words = card.description_eu.split(" ");
-            let x = initialX + 30;
+            let x = initialX + 43;
             let y = initialY + 330;
-            let tamanoLetra = 8;
-            let limiteCarta = 926;
+            let tamanoLetra = 6;
+            let limiteCarta = 900;
 
-            globals.ctx.font        = "8 px magicmedieval";
+            globals.ctx.font        = "6 px magicmedieval";
             globals.ctx.fillStyle   = "black";
             
             for (let j = 0; j < words.length; j++) {
@@ -303,7 +303,7 @@ function renderBigCard(){
                     let nextWordLetter = words[j + 1].split("");
                     if (x + tamanoLetra * nextWordLetter.length >= limiteCarta) {
                         y += 16;
-                        x = initialX + 30;
+                        x = initialX + 43;
                     }
                 }
             }
