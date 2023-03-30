@@ -144,5 +144,5 @@ export default
     //Enemigo seleccionado de la lista de enemigos
     selectedEnemy: "",
 
-    // selectedCardId: -1,
+    selectedCardId: -1,
 }
