@@ -83,11 +83,13 @@ function createList()
 {
     const usersList = document.querySelector('select');     // Guardamos en una Variable la lista que queremos seleccionar
     const users = globals.all_users;                        // Le damos los valores (En nuestro caso sera un Fake Array para hacer Pruebas)
+    const hostEmail = localStorage.getItem('emaila');
+
 
     //Creacion de la Lista - Automatizada 
     for(let i = 0; i < users.length; i++)
     {
-        if(users[i]['emaila'] !== globals.hostPlayerInfo.emaila){
+        if(users[i]['emaila'] !== hostEmail){
 
             const li = document.createElement('option');            // Creamos Una linea
             li.textContent = users[i]['izen_abizena'];                      // Asignamos cada valor del array a la linea correspondiente del ciclo
