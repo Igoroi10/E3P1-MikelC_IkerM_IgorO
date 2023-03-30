@@ -283,10 +283,30 @@ function renderBigCard(){
             globals.ctx.fillText(card.cardName, initialX + 100, initialY + 300);
 
 
+            let words = card.description_eu.split(" ");
+            let x = initialX + 30;
+            let y = initialY + 330;
+            let tamanoLetra = 8;
+            let limiteCarta = 926;
+
             globals.ctx.font        = "8 px magicmedieval";
             globals.ctx.fillStyle   = "black";
-            globals.ctx.fillText(card.description_eu, initialX + 30, initialY + 330);
             
+            for (let j = 0; j < words.length; j++) {
+                let letter = words[j].split("");
+
+                globals.ctx.fillText(words[j], x, y);
+                x += ((letter.length + 1) * tamanoLetra);
+
+
+                if (j + 1 < words.length) {
+                    let nextWordLetter = words[j + 1].split("");
+                    if (x + tamanoLetra * nextWordLetter.length >= limiteCarta) {
+                        y += 16;
+                        x = initialX + 30;
+                    }
+                }
+            }
         }
     }
 
@@ -381,7 +401,7 @@ function drawNames()
 {
     const hostName = localStorage.getItem('izen_abizena');
     // console.log(globals.hostPlayerInfo);
-    globals.ctx.font = '18px Magicmedieval-pRV1'; 
+    globals.ctx.font = '18px magicmedieval'; 
     globals.ctx.fillStyle = 'white';    
     globals.ctx.fillText(globals.selectedEnemy, 225, 220); 
     globals.ctx.fillText(hostName, 225, 660);
