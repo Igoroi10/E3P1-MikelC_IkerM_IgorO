@@ -25,14 +25,22 @@ function detectCollisionBetweenMouseAndCards()
                 break;
             }
             else
+            {
                 globals.mouseHasCollidedWithTheCard = false; 
+            }
 
             globals.action.doubleClick = false;
             
         }
     }
+
+    if(globals.mouseHasCollidedWithTheCard === false)
+    {
+        globals.selectedCardId = -1;
+    }
+    // else
     
-    // console.log(globals.mouseHasCollidedWithTheCard);
+    console.log(globals.selectedCardId);
 
 }
 
