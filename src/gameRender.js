@@ -386,11 +386,12 @@ function drawSlotRectangle(slot) //Funcion que crea un rectangulo alrededor del 
 
 function drawNames()
 {
+    const hostName = localStorage.getItem('izen_abizena');
     // console.log(globals.hostPlayerInfo);
     globals.ctx.font = '18px Magicmedieval-pRV1'; 
     globals.ctx.fillStyle = 'white';    
     globals.ctx.fillText(globals.selectedEnemy, 225, 220); 
-    globals.ctx.fillText(globals.hostPlayerInfo.izena_abizena, 225, 660);
+    globals.ctx.fillText(hostName, 225, 660);
     // globals.ctx.fillText()
     
     // globals.hostPlayerInfo.izen_abizena
