@@ -4,32 +4,36 @@ import ImageSet from "./ImageSet.js";
 
 function detectCollisionBetweenMouseAndCards()
 {
-    let j = 0;
-    for(let i = 0; i < globals.cards.length; ++i)
+
+    if(globals.action.doubleClick)
     {
-        const card = globals.cards[i];
-        // console.log(globals.cards[1].xPos);
-        const xSize = 80;
-        const ySize = 100;
-        
-        // console.log("I : " + i);
-     
-        if(globals.action.doubleClick)
+        for(let i = 0; i < globals.cards.length; ++i)
         {
+            const card = globals.cards[i];
+            // console.log(globals.cards[i].xPos);
+            const xSize = 80;
+            const ySize = 100;
+            
+            // console.log(card.xPos);
+        
             if(globals.mouse.x < (card.xPos + xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < (card.yPos + ySize) && globals.mouse.y > card.yPos)
             {
+                // console.log("ha entrado en el if");
+                // console.log(card);
                 globals.mouseHasCollidedWithTheCard = true;
-                
-                // globals.selectedCardId = i;
+                globals.selectedCardId = i;
+                // console.log(globals.selectedCardId);
+                break;
             }
             else
                 globals.mouseHasCollidedWithTheCard = false; 
-                globals.action.doubleClick = false;
+
+            globals.action.doubleClick = false;
+            
         }
     }
-   
     
-    console.log(globals.mouseHasCollidedWithTheCard);
+    // console.log(globals.mouseHasCollidedWithTheCard);
 
 }
 
