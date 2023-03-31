@@ -41,7 +41,7 @@ function detectCollisionBetweenMouseAndCards()
 
     // else
     
-    console.log(globals.selectedCardId);
+    // console.log(globals.selectedCardId);
 
 }
 
