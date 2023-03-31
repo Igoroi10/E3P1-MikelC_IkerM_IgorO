@@ -1,6 +1,6 @@
 
 
-import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE } from "./constants.js";
+import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE , Turn} from "./constants.js";
 import { gameLoop } from "./game.js";
 import globals from "./globals.js";
 // import { GameZones } from "./GameZones.js";
@@ -410,8 +410,59 @@ function drawNames()
     // globals.hostPlayerInfo.izen_abizena
 }
 
+function drawMessages()
+{
+    // console.log("los dos han pasado" + globals.checkBothPlayerRound);
+    globals.checkRoundPlayer2;
+    const hostName = localStorage.getItem('izen_abizena');
+    if(globals.turnState === 1)
+    {
+
+        globals.ctx.font = '20px magicmedieval'; 
+        globals.ctx.fillStyle = 'black';   
+        globals.ctx.globalAlpha = 0.3;
+        globals.ctx.fillRect(50, 530, 310, 85);
+        globals.ctx.globalAlpha = 1.0; 
+        globals.ctx.fillStyle = 'yellow';    
+        globals.ctx.fillText(hostName + "'s turn.", 90, 585); 
+    }
+    else if(globals.turnState === 2)
+    {
+        globals.ctx.font = '20px magicmedieval'; 
+        globals.ctx.fillStyle = 'black';    
+        globals.ctx.globalAlpha = 0.3;
+        globals.ctx.fillRect(50, 530, 310, 85);
+        globals.ctx.globalAlpha = 1.0;
+        globals.ctx.fillStyle = 'yellow';    
+        globals.ctx.fillText(globals.selectedEnemy + "'s turn.", 90, 585); 
+    }
+    else
+    {
+        globals.ctx.font = '20px magicmedieval'; 
+        globals.ctx.fillStyle = 'black';    
+        globals.ctx.globalAlpha = 0.3;
+        globals.ctx.fillRect(50, 530, 310, 85);
+        globals.ctx.globalAlpha = 1.0;
+        globals.ctx.fillStyle = 'yellow';    
+        globals.ctx.fillText("The game has ended", 80, 585);
+    }
+
+    if(!globals.checkBothPlayerRound)
+   {
+        if (globals.checkRoundPlayer1 && !globals.checkRoundPlayer2)
+        {
+            globals.ctx.fillText("Solo puede jugar el jugador 1", 70, 555);
+        }
+
+        else if (!globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
+        {
+            globals.ctx.fillText("Solo puede jugar el jugador 2", 70, 555);
+        }
+   }
+}
 
 export{
     render,
     renderBigCard,
+    drawMessages,
 }
