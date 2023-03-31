@@ -273,8 +273,8 @@ function renderBigCard(){
                 globals.assets.card_effect[card.effect],                     //archivo de la imagen
                 0, 0,                                                        //Posición inicial x e y 
                 64, 64, 
-                initialX - 10, initialY + 240,                                   //fin de x e y
-                80, 80                                                     //Fin de anchura.       
+                initialX, initialY + 240,                                   //fin de x e y
+                50, 50                                                     //Fin de anchura.       
 
             )
 
