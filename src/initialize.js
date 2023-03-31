@@ -282,12 +282,11 @@ function logInHandler(event)
 {
     console.log("Send Button Pressed");
 
-    //Send data
     const objectToSend = {
         emaila: globals.inputEmail.value,
         pasahitza: globals.inputPassword.value
     }
-
+    
     const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
 
     console.log(dataToSend);
@@ -306,9 +305,9 @@ function logInHandler(event)
             {
                 if(this.responseText != null)
                 {
-                    console.log(this.responseText);
+                    // console.log(this.responseText);
                     const userData = JSON.parse(this.responseText);
-                    console.log(userData);
+                    // console.log(userData);
 
                     //Guardado Global
                     globals.hostPlayerInfo = userData;
@@ -331,9 +330,14 @@ function logInHandler(event)
 
 function manageLogin(userData)
 {
-    if (userData.email !== "" && userData.password !== "")
-    {
 
+    console.log("entra en manage");
+    // console.log("email..." + userData.email + "...");
+    // console.log("password..." + userData.password + "...");
+
+    if (userData.emaila !== "")
+    {
+        console.log("entraaaaaaaaaa")
         if(userData.rol === "admin"){
             globals.gameState = State.ADMIN_MENU;
             localStorageUpdate();
@@ -360,11 +364,13 @@ function manageLogin(userData)
 
     else
     {
-        if(userData.error !== "")
-        {
+        console.log("entra en reseteo a login")
+        // console.log("entra else");
+            // console.log("entra error data");
+            globals.gameState = State.LOG_IN;
             //Mostramos el mensaje de error
             globals.lblError.innerHTML = userData.error;
-        }
+            checkStates();
     }
 
     //Pintamos el texto logIN
