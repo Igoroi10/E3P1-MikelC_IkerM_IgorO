@@ -282,12 +282,11 @@ function logInHandler(event)
 {
     console.log("Send Button Pressed");
 
-    //Send data
     const objectToSend = {
         emaila: globals.inputEmail.value,
         pasahitza: globals.inputPassword.value
     }
-
+    
     const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
 
     console.log(dataToSend);
@@ -331,7 +330,10 @@ function logInHandler(event)
 
 function manageLogin(userData)
 {
-    if (userData.email !== "" && userData.password !== "")
+    // console.log("email..." + userData.email + "...");
+    // console.log("password..." + userData.password + "...");
+
+    if (userData.email !== undefined || userData.password !== undefined)
     {
 
         if(userData.rol === "admin"){
@@ -360,10 +362,14 @@ function manageLogin(userData)
 
     else
     {
-        if(userData.error !== "")
+        // console.log("entra else");
+        if(userData.password === undefined)
         {
+            // console.log("entra error data");
+            globals.gameState = State.LOG_IN;
             //Mostramos el mensaje de error
             globals.lblError.innerHTML = userData.error;
+            checkStates();
         }
     }
 
