@@ -100,6 +100,7 @@ function createList()
     }
 
     document.getElementById('playerName').innerHTML= '' + hostName;
+    document.getElementById('adminName').innerHTML= '' + hostName;
 
 }
 
