@@ -34,7 +34,8 @@ function drawGame()
 
 
     renderBigCard();
-
+    drawMessages();
+    gameOverScreen();
 }
 
 function renderMap ()
@@ -461,8 +462,30 @@ function drawMessages()
    }
 }
 
+function gameOverScreen()
+{
+    const hostName = localStorage.getItem('izen_abizena');
+    if(globals.turnState !== 1 && globals.turnState !== 2)
+    {
+
+        globals.ctx.fillStyle = 'black';    
+        globals.ctx.globalAlpha = 0.8;
+        globals.ctx.fillRect(0, 0, globals.canvas.width, globals.canvas.height);
+        globals.ctx.globalAlpha = 1;
+        var img = new Image();
+        img.src = "./images/gwent_win.png";
+        globals.ctx.drawImage(img, 570, 250);
+        globals.ctx.font = '45px magicmedieval'; 
+        globals.ctx.fillStyle = 'white';    
+        globals.ctx.fillText(hostName, 720, 685); 
+        document.getElementById('btnTurn').style.display = "none";
+        document.getElementById('btnRound').style.display = "none";
+    }
+
+} 
+
+
 export{
     render,
     renderBigCard,
-    drawMessages,
 }
