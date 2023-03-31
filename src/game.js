@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import { initEvents, initFakeCards, initHTMLelements, initVars, loadAssets, initCardInfo, initCardLinks, initSlots, getAllUsers } from "./initialize.js";
 import {update, localStorageCheck} from "./gameLogic.js";
-import { render } from "./gameRender.js";
+import { render,  drawMessages} from "./gameRender.js";
 import { State } from "./constants.js";
 
 
@@ -68,6 +68,8 @@ function gameLoop(timeStamp)
         //Corregimos los excesos de tiempo
         globals.deltaTime -= globals.frameTimeObj;
         console.log("Turno Jugador: " + globals.turnState);
+        console.log(globals.turnState);
+        drawMessages();
     }
 
     if(globals.gameState === State.PLAYING)
