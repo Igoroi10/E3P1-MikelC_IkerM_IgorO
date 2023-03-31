@@ -84,6 +84,7 @@ function createList()
     const usersList = document.querySelector('select');     // Guardamos en una Variable la lista que queremos seleccionar
     const users = globals.all_users;                        // Le damos los valores (En nuestro caso sera un Fake Array para hacer Pruebas)
     const hostEmail = localStorage.getItem('emaila');
+    const hostName = localStorage.getItem('izen_abizena');
 
 
     //Creacion de la Lista - Automatizada 
@@ -97,6 +98,9 @@ function createList()
         }
 
     }
+
+    document.getElementById('playerName').innerHTML= '' + hostName;
+
 }
 
 function selectEnemy()
