@@ -29,7 +29,7 @@ function update()
 function playGame()
 {
 
-
+    // console.log("Turno: " + globals.turnState);
 
     if (globals.action.enter)
     {   
