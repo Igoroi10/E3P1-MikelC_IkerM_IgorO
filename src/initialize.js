@@ -337,7 +337,7 @@ function manageLogin(userData)
 
     if (userData.emaila !== "")
     {
-        console.log("entraaaaaaaaaa")
+        console.log("entraaaaaaaaaa");
         if(userData.rol === "admin"){
             globals.gameState = State.ADMIN_MENU;
             localStorageUpdate();
@@ -349,8 +349,12 @@ function manageLogin(userData)
             globals.gameState = State.PLAYER_MENU;
             localStorageUpdate();
             checkStates();
+            console.log("entra en el else");
         }
         //Usuario logueado
+
+        console.log(localStorage.getItem("izen_abizena"));
+        createList();
 
         //ACtivamos el menú de play y ocultamos el de logIn
         // document.getElementById('sectionLogIn').style.display = "none";
