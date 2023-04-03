@@ -145,4 +145,11 @@ export default
     selectedEnemy: "",
 
     selectedCardId: -1,
+
+    actionsCounter: {
+
+        none:        0,
+        player1:     0,
+        player2:     0,
+    }
 }
