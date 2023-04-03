@@ -155,21 +155,24 @@ export function btnEndRound()
 function checkIfTurnPass ()
 {
     //CHECK DEL PLAYER 1
-    if (globals.turnState === Turn.PLAYER1)
+    actions();
+    // console.log(globals.turnState)
+
+    if (globals.turnState === Turn.PLAYER1 && globals.actionsCounter.player1 >= 2)
     {
         // console.log("Turno del Jugador 1");
         globals.turnState = Turn.PLAYER2;
     }
 
     //CHECK DEL PLAYER 2
-    else if (globals.turnState === Turn.PLAYER2)
+    if (globals.turnState === Turn.PLAYER2 && globals.actionsCounter.player2 >= 2)
     {
         // console.log("Turno del Jugador 2");
         globals.turnState = Turn.PLAYER1;
     }
 
     //Le asignamos el estado de NO_TURN para que no pueda serguir jugando
-    else
+    else if(globals.actionsCounter.player2 === 0 && globals.actionsCounter.player1 === 0)
     {
         globals.turnState = Turn.NO_TURN;
     }
@@ -250,6 +253,38 @@ function checkRoundState()
 
 }
 
+function actions()
+{
+    // console.log("entra en actions");
+    // console.log(globals.turnState);
+
+    // globals.Action Sera el estado que tendra un update constante para saber de quien es el turno en todo momento
+    // Cuando sea el turno correspondiente de alguno de los dos jugadores en algun turno en concreto se sumara a una globla actionPlayer ++ - Esta lo que hara sera
+    // Permitir que solo se puedan hacer dos actionPlayer es decir: si ActionPlayer >= 2 se resetea ese action Player y se pasa al siguiente turno:  
+
+    if (globals.turnState === Turn.PLAYER1)
+    {
+        globals.actionsCounter.player1 ++;
+        console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
+        globals.actionsCounter.player2 = 0;
+    }
+
+    if(globals.turnState === Turn.PLAYER2)
+    {
+        globals.actionsCounter.player2 ++;
+        console.log("Acccion: " + globals.actionsCounter.player2 + " Player 2");
+        globals.actionsCounter.player1 = 0;
+    }
+
+    else if (globals.turnState === Turn.NO_TURN)
+    {
+        console.log("NO TURN");
+        globals.actionsCounter.player1 = 0;
+        globals.actionsCounter.player2 = 0;
+    }
+}
+
+
 function canvasDoubleClickHandler()
 {
     //Meter aqui la accion de la carta grande
@@ -281,7 +316,7 @@ export function canvasMousemoveHandler(event)
     globals.mouse.x = event.pageX - globals.canvas.offsetLeft;
     globals.mouse.y = event.pageY - globals.canvas.offsetTop;
     
-    console.log("Mouse xPos: " + globals.mouse.x);
+    // console.log("Mouse xPos: " + globals.mouse.x);
     // console.log("Mouse yPos: " + globals.mouse.y);
 }
 
