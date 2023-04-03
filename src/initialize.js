@@ -366,11 +366,14 @@ function manageLogin(userData)
     {
         console.log("entra en reseteo a login")
         // console.log("entra else");
-            // console.log("entra error data");
-            globals.gameState = State.LOG_IN;
-            //Mostramos el mensaje de error
-            globals.lblError.innerHTML = userData.error;
-            checkStates();
+        // console.log("entra error data");
+        globals.gameState = State.LOG_IN;
+        //Mostramos el mensaje de error
+        globals.lblError.innerHTML = "Error! Something went wrong";
+        globals.inputEmail.value = "";
+        globals.inputPassword.value = "";
+        
+        checkStates();
     }
 
     //Pintamos el texto logIN
@@ -381,8 +384,10 @@ function manageLogin(userData)
 
 function updateUserText(user)
 {
+    // console.log(user.error);
     if (user.emaila !== "" && user.pasahitza !== "")
     {
+        console.log("colocolo");
         // globals.lblSessionUser.innerHTML = "Logged in as: " + user.emaila + " " + user.pasahitza;
         globals.lblSessionUser.innerHTML = "Logged in as: " + user.emaila;
     }
