@@ -460,7 +460,35 @@ function drawMessages()
             globals.ctx.fillText("Solo puede jugar el jugador 2", 70, 555);
         }
    }
+
+
+   //////////////////////////////////////////////////
+   ////// FRASES
+   //////////////////////////////////////////////////
+//    globals.ctx.fillText("Start of the round.", 90, 585); 
+
+//    globals.ctx.fillText(globals.selectedEnemy + "'s turn.", 90, 585); 
+//    globals.ctx.fillText(hostName + "'s turn.", 90, 585); 
+
+//    globals.ctx.fillText(globals.selectedEnemy + " passed, your turn.", 90, 585); 
+//    globals.ctx.fillText(hostName + " passed, your turn.", 90, 585); 
+
+//    globals.ctx.fillText(globals.selectedEnemy + " has won the round", 90, 585); 
+//    globals.ctx.fillText(hostName + " has won the round", 90, 585); 
+
+//    globals.ctx.fillText("Draw a card", 90, 585); 
+
+//    globals.ctx.fillText("Select an unit or effect card", 90, 585); 
+
+//    globals.ctx.fillText("Take one card from your table or end turn", 90, 585); 
+
+//    globals.ctx.fillText("Your turn is finished", 90, 585); 
+
+//    globals.ctx.fillText("Select where will be the card placed", 90, 585); 
+
+
 }
+
 
 function gameOverScreen()
 {
