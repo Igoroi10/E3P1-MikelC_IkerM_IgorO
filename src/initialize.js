@@ -8,7 +8,7 @@ import FakeCard from "./FakeCard.js";
 import { GameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
 import ImageSet from "./ImageSet.js";
-import { Player1_map_pos, Player2_map_pos, Common_map_pos } from "./constants.js";
+import { Player1_map_pos, Player2_map_pos, Common_map_pos, SlotIdentificators } from "./constants.js";
 import { checkStates, localStorageUpdate } from "./gameLogic.js";
 
 
@@ -713,9 +713,10 @@ function climatologyZone ()
     const yPos      = Common_map_pos.CLIMATE_BOX_YPOS;
     const xSize     = 140;
     const ySize     = 120;
+    const slotID    = SlotIdentificators.CLIMATE_FIELD;
 
-    const slotClimatology1 = new GameZones(xPos1, yPos, xSize, ySize);
-    const slotClimatology2 = new GameZones(xPos2, yPos, xSize, ySize);
+    const slotClimatology1 = new GameZones(xPos1, yPos, xSize, ySize, slotID);
+    const slotClimatology2 = new GameZones(xPos2, yPos, xSize, ySize, slotID);
     globals.slots.push(slotClimatology1, slotClimatology2);
 }
 
@@ -763,10 +764,14 @@ function buffPlayer1 ()
  
      const xSize     = 100;
      const ySize     = 90;
+
+     const slotID1      = SlotIdentificators.PLAYER1_B1;
+     const slotID2      = SlotIdentificators.PLAYER1_B2;
+     const slotID3      = SlotIdentificators.PLAYER1_B3;
  
-     const slot_1_BuffPlayer1 = new GameZones(xPos, yPos1, xSize, ySize);
-     const slot_2_BuffPlayer1 = new GameZones(xPos, yPos2, xSize, ySize);
-     const slot_3_BuffPlayer1 = new GameZones(xPos, yPos3, xSize, ySize);
+     const slot_1_BuffPlayer1 = new GameZones(xPos, yPos1, xSize, ySize, slotID1);
+     const slot_2_BuffPlayer1 = new GameZones(xPos, yPos2, xSize, ySize, slotID2);
+     const slot_3_BuffPlayer1 = new GameZones(xPos, yPos3, xSize, ySize, slotID3);
  
      globals.slots.push(slot_1_BuffPlayer1, slot_2_BuffPlayer1, slot_3_BuffPlayer1);
 }
@@ -783,9 +788,13 @@ function buffPlayer2 ()
     const xSize     = 100;
     const ySize     = 90;
 
-    const slot_1_BuffPlayer2 = new GameZones(xPos, yPos1, xSize, ySize);
-    const slot_2_BuffPlayer2 = new GameZones(xPos, yPos2, xSize, ySize);
-    const slot_3_BuffPlayer2 = new GameZones(xPos, yPos3, xSize, ySize);
+    const slotID1      = SlotIdentificators.PLAYER2_B1;
+    const slotID2      = SlotIdentificators.PLAYER2_B2;
+    const slotID3      = SlotIdentificators.PLAYER2_B3;
+
+    const slot_1_BuffPlayer2 = new GameZones(xPos, yPos1, xSize, ySize, slotID1);
+    const slot_2_BuffPlayer2 = new GameZones(xPos, yPos2, xSize, ySize, slotID2);
+    const slot_3_BuffPlayer2 = new GameZones(xPos, yPos3, xSize, ySize, slotID3);
 
     globals.slots.push(slot_1_BuffPlayer2, slot_2_BuffPlayer2, slot_3_BuffPlayer2);
 }
@@ -799,14 +808,14 @@ function tableSection_Player1()
     let xPos        = Player1_map_pos.PLAYER1_TABLE_SECTION1_XPOS;
     const xSize     = 87.5;
     const ySize     = 90;
+    const slotID    = SlotIdentificators.PLAYER1_F1 - 1;
     
     for (let i = 0; i < 3; i++)
     {
-        
-
+        slotID++;
         for (let j = 0; j < 8; j++)
         {
-            const slotsTable_Player1 = new GameZones(xPos, yPos, xSize, ySize);
+            const slotsTable_Player1 = new GameZones(xPos, yPos, xSize, ySize, slotID);
             globals.slots.push(slotsTable_Player1);
             xPos  += xSize;
 
@@ -827,14 +836,15 @@ function tableSection_Player2()
     let xPos        = Player2_map_pos.PLAYER2_TABLE_SECTION1_XPOS;
     const xSize     = 87.5;
     const ySize     = 90;
+    const slotID    = SlotIdentificators.PLAYER2_F1 - 1;
     
     for (let i = 0; i < 3; i++)
     {
         
-
+        slotID++;
         for (let j = 0; j < 8; j++)
         {
-            const slotsTable_Player2 = new GameZones(xPos, yPos, xSize, ySize);
+            const slotsTable_Player2 = new GameZones(xPos, yPos, xSize, ySize, slotID);
             globals.slots.push(slotsTable_Player2);
             xPos  += xSize;
 
