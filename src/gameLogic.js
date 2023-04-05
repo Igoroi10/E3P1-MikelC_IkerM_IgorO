@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { State, SlotIdentificators, Effect } from "./constants.js";
+import { State, SlotIdentificators, Effect, GameMode} from "./constants.js";
 import { createExpertDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js";
 import { selectEnemy, createList} from "./events.js";
@@ -28,16 +28,16 @@ function update()
 
 function playGame()
 {
-
     // console.log("Turno: " + globals.turnState);
+
 
     if (globals.action.enter)
     {   
         createExpertDeck();
         
-        for(let i = 0; i < globals.cards.length; i++){
-            console.log(globals.cards[i]);
-        }
+        // for(let i = 0; i < globals.cards.length; i++){
+        //     console.log(globals.cards[i]);
+        // }
 
         // for(let i = 0; i < globals.cardInfo.length; i++){
         //     console.log(globals.cardInfo[i].kategoria);
@@ -46,7 +46,11 @@ function playGame()
     }
 
     if(globals.action.d){
+        startingDeal(GameMode.NORMAL_MODE);
         console.log(globals.cards.length);
+        console.log(globals.tableSlots.player1);
+        console.log(globals.tableSlots.player2);
+
     }
 
     //... ANTERIOR
@@ -504,9 +508,51 @@ function cardStates(state) // Puede ser una global de estado o una constante
             console.log("ERROR");
 
     }
+}
+function startingDeal(mode){
+    let cardsToDraw
+    if(mode === GameMode.NORMAL_MODE){
+        cardsToDraw = 60;
+    }
+
+    else
+        cardsToDraw = 80;
+
+    shuffleDeck(globals.cards)
+
+    for(let i = 0; i < cardsToDraw; i++){
+        if(i % 2 === 0){
+            globals.tableSlots.player1.push(globals.cards[i]);
+        }
+
+        else
+            globals.tableSlots.player2.push(globals.cards[i]);
+    }
+
+    shuffleDeck(globals.tableSlots.player1);
+    shuffleDeck(globals.tableSlots.player2);
 
 }
 
+function shuffleDeck(deck){
+
+    let currentIndex = deck.length;
+    let randomIndex;
+
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+  
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+  
+      // And swap it with the current element.
+      [deck[currentIndex], deck[randomIndex]] = [
+        deck[randomIndex], deck[currentIndex]];
+
+    }
+
+}
 
 export {
     update,
