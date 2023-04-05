@@ -356,7 +356,7 @@ function startingDeal(mode){
     else
         cardsToDraw = 80;
 
-    //shuffle(globals.cards) a generar para la mezcla de cartas
+    shuffleDeck(globals.cards)
 
     for(i = 0; i < cardsToDraw; i++){
         if(i % 2 === 0){
@@ -366,6 +366,9 @@ function startingDeal(mode){
         else
             globals.tableSlots.player2.push(globals.cards[i]);
     }
+
+    shuffleDeck(globals.tableSlots.player1);
+    shuffleDeck(globals.tableSlots.player2);
 
 }
 
@@ -382,8 +385,8 @@ function shuffleDeck(deck){
       currentIndex--;
   
       // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+      [deck[currentIndex], deck[randomIndex]] = [
+        deck[randomIndex], deck[currentIndex]];
     }
 
 }
