@@ -47,6 +47,7 @@ function playGame()
 
     if(globals.action.d){
         console.log(globals.cards.length);
+        console.log(globals.assets);
     }
 
     //... ANTERIOR

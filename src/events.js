@@ -281,7 +281,7 @@ export function canvasMousemoveHandler(event)
     globals.mouse.x = event.pageX - globals.canvas.offsetLeft;
     globals.mouse.y = event.pageY - globals.canvas.offsetTop;
     
-    console.log("Mouse xPos: " + globals.mouse.x);
+    // console.log("Mouse xPos: " + globals.mouse.x);
     // console.log("Mouse yPos: " + globals.mouse.y);
 }
 
