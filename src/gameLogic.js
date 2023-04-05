@@ -48,8 +48,8 @@ function playGame()
     if(globals.action.d){
         startingDeal(GameMode.NORMAL_MODE);
         console.log(globals.cards.length);
-        console.log(globals.tableSlots.player1);
-        console.log(globals.tableSlots.player2);
+        console.log(globals.player.player1);
+        console.log(globals.player.player2);
 
     }
 
