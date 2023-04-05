@@ -418,12 +418,6 @@ function cardStates(state) // Puede ser una global de estado o una constante
                 state.DOUBLE_CLICK;
             }
 
-            else if (globals.decoy)
-            {
-                console.log("entra en decoy");
-                state.HAND;
-            }
-
             else if (globals.medic)
             {
                 console.log("Entra en medic");
