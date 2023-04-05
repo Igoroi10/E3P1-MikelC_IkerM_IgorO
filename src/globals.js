@@ -151,5 +151,19 @@ export default
         none:        0,
         player1:     0,
         player2:     0,
-    }
+    },
+
+    //Card States
+    draw: false,
+    double_click: false,
+    click: false,
+    selected: false,
+    disscard: false,
+    otherSelected: false,
+    decoy: false,
+    medic: false,
+    inmediateEffect: false,
+    effectFinished: false,
+
+
 }
