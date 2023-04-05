@@ -28,16 +28,13 @@ function update()
 
 function playGame()
 {
-
-
-
     if (globals.action.enter)
     {   
         createExpertDeck();
         
-        for(let i = 0; i < globals.cards.length; i++){
-            console.log(globals.cards[i]);
-        }
+        // for(let i = 0; i < globals.cards.length; i++){
+        //     console.log(globals.cards[i]);
+        // }
 
         // for(let i = 0; i < globals.cardInfo.length; i++){
         //     console.log(globals.cardInfo[i].kategoria);
@@ -46,8 +43,11 @@ function playGame()
     }
 
     if(globals.action.d){
+        startingDeal(GameMode.NORMAL_MODE);
         console.log(globals.cards.length);
-        console.log(globals.assets);
+        console.log(globals.tableSlots.player1);
+        console.log(globals.tableSlots.player2);
+
     }
 
     //... ANTERIOR
@@ -358,7 +358,7 @@ function startingDeal(mode){
 
     shuffleDeck(globals.cards)
 
-    for(i = 0; i < cardsToDraw; i++){
+    for(let i = 0; i < cardsToDraw; i++){
         if(i % 2 === 0){
             globals.tableSlots.player1.push(globals.cards[i]);
         }
