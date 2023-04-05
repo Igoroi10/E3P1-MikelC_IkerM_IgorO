@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { State, SlotIdentificators, Effect } from "./constants.js";
+import { State, SlotIdentificators, Effect, GameMode} from "./constants.js";
 import { createExpertDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js";
 import { selectEnemy, createList} from "./events.js";
@@ -344,6 +344,28 @@ function logOut(){
     localStorage.clear();
     globals.gameState = State.LOG_IN;
     checkStates(); 
+
+}
+
+function startingDeal(mode){
+    let cardsToDraw
+    if(mode === GameMode.NORMAL_MODE){
+        cardsToDraw = 60;
+    }
+
+    else
+        cardsToDraw = 80;
+
+    //shuffle(globals.cards) a generar para la mezcla de cartas
+
+    for(i = 0; i < cardsToDraw; i++){
+        if(i % 2 === 0){
+            globals.tableSlots.player1.push(globals.cards[i]);
+        }
+
+        else
+            globals.tableSlots.player2.push(globals.cards[i]);
+    }
 
 }
 
