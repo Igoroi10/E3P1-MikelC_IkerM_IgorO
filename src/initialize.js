@@ -808,7 +808,7 @@ function tableSection_Player1()
     let xPos        = Player1_map_pos.PLAYER1_TABLE_SECTION1_XPOS;
     const xSize     = 87.5;
     const ySize     = 90;
-    const slotID    = SlotIdentificators.PLAYER1_F1 - 1;
+    let slotID    = SlotIdentificators.PLAYER1_F1 - 1;
     
     for (let i = 0; i < 3; i++)
     {
@@ -836,7 +836,7 @@ function tableSection_Player2()
     let xPos        = Player2_map_pos.PLAYER2_TABLE_SECTION1_XPOS;
     const xSize     = 87.5;
     const ySize     = 90;
-    const slotID    = SlotIdentificators.PLAYER2_F1 - 1;
+    let slotID    = SlotIdentificators.PLAYER2_F1 - 1;
     
     for (let i = 0; i < 3; i++)
     {
