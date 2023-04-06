@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { State, SlotIdentificators, Effect, GameMode} from "./constants.js";
+import { State, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player2_map_pos} from "./constants.js";
 import { createExpertDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js";
 import { selectEnemy, createList} from "./events.js";
@@ -513,6 +513,7 @@ function startingDeal(mode){
     let cardsToDraw
     if(mode === GameMode.NORMAL_MODE){
         cardsToDraw = 60;
+        globals.cards.splice(cardsToDraw);
     }
 
     else
@@ -522,11 +523,18 @@ function startingDeal(mode){
 
     for(let i = 0; i < cardsToDraw; i++){
         if(i % 2 === 0){
+            globals.cards[i].xPos  = Player2_map_pos.PLAYER2_DECK_XPOS;
+            globals.cards[i].yPos  = Player2_map_pos.PLAYER2_DECK_YPOS;
             globals.tableSlots.player1.push(globals.cards[i]);
         }
 
         else
+        {
+            globals.cards[i].xPos  = Player1_map_pos.PLAYER1_DECK_XPOS;
+            globals.cards[i].yPos  = Player1_map_pos.PLAYER1_DECK_YPOS;
             globals.tableSlots.player2.push(globals.cards[i]);
+        }
+            
     }
 
     shuffleDeck(globals.tableSlots.player1);
