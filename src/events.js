@@ -1,11 +1,11 @@
 import globals from "./globals.js";
 import { initGame } from "./initialize.js";
 
-import { Key, State, Turn } from "./constants.js";
+import { Key, State, Turn, GameMode } from "./constants.js";
 
 import { gameLoop } from "./game.js";
-import { checkStates, localStorageUpdate, logOut } from "./gameLogic.js";
-import { renderBigCard } from "./gameRender.js";
+import { checkStates, localStorageUpdate, logOut, createExpertDeck, startingDeal } from "./gameLogic.js";
+import { renderBigCard, renderCards } from "./gameRender.js";
 
 
 //Creacion de Evento para el raton
@@ -45,9 +45,12 @@ export function btnStartOver ()
 
     
     // GENERAR EL MAZO 
+    createExpertDeck();
+    createExpertDeck();
+    createExpertDeck();
     // LLAMAR A LA FUNION STARTING DEAL
-    // CON ESE MAZO LLAMAR A RENDER Y QUE RENDERIZE LAS CARTAS
-
+    startingDeal(GameMode.NORMAL_MODE);
+    // CON ESE MAZO LLAMAR A RENDER Y QUE RENDERIZE LAS CARTAS - Esta en el update del drawGame
 
     globals.gameState = State.PLAYING;
     // document.getElementById('sectionPlay').style.display = "none";

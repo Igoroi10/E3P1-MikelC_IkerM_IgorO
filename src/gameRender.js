@@ -27,10 +27,10 @@ function drawGame()
         
     }
     drawNames();
-    if (globals.action.c)
-    {
+    // if (globals.action.c)
+    // {
         renderCards();
-    }
+    // }
 
 
     renderBigCard();
@@ -518,4 +518,5 @@ function gameOverScreen()
 export{
     render,
     renderBigCard,
+    renderCards,
 }
