@@ -48,8 +48,8 @@ function playGame()
     if(globals.action.d){
         startingDeal(GameMode.NORMAL_MODE);
         console.log(globals.cards.length);
-        console.log(globals.tableSlots.player1);
-        console.log(globals.tableSlots.player2);
+        console.log(globals.player.player1);
+        console.log(globals.player.player2);
 
     }
 
@@ -350,6 +350,165 @@ function logOut(){
 
 }
 
+// =========================
+//      CARD STATES
+// =========================
+
+function cardStates(state) // Puede ser una global de estado o una constante
+{
+    switch (state)  // Estado de la carta
+    {
+        case state.DECK:
+            console.log("entra en deck");
+            if(globals.draw)                        // Boleana globl que indica el estado de la carta
+            {
+                console.log("Entra en if DECK");
+                state.HAND;                          // Cambiamos el Estado
+            }
+            else;
+
+            break;
+
+
+        case state.HAND:
+            console.log("entra en hand");
+            if(globals.double_click)
+            {
+                console.log("Entra en if HAND");
+                state.DOUBLE_CLICK;
+            }
+
+            else if(globals.detectCollisionBetweenMouseAndCards && !globals.selected)
+            {
+                console.log("Entra en ElseIf 1");
+                state.HOVER;
+            }
+
+            else if (globals.disscard)
+            {
+                console.log("Entra en ElseIf 2");
+                state.DISSCARD;
+            }
+            else;
+
+            break;
+
+
+        case state.DOUBLE_CLICK:
+            console.log("entra en double_click");
+            //gestion de doble click - Entra a todos los estados excepto HOVER
+
+
+            break;
+
+
+        case state.SELECTED:
+            console.log("entra en selected");
+            if(globals.otherSelected)
+            {
+                console.log("entar en other selected");
+                //quitar la carta seleccionada de selected
+                // State. Previous State
+            }
+
+            else if (globals.decoy)
+            {
+                console.log("Entra en decoy");
+                state.HAND;
+            }
+            else if (globals.double_click)
+            {
+                console.log("entra en double_click");
+                state.DOUBLE_CLICK;
+            }
+
+            else if (globals.medic)
+            {
+                console.log("Entra en medic");
+                state.PLAYED
+            }
+            else;
+
+            break;
+
+
+        case state.HOVER:
+            console.log("entra en hover");
+            if(!globals.detectCollisionBetweenMouseAndCards)
+            {
+                console.log("entra en collision");
+                //Previous State
+            }
+
+            else if (globals.click)
+            {
+                console.log("entra en click");
+                state.SELECTED;
+            }
+
+            else if (globals.double_click)
+            {
+                console.log("entra en double click");
+                state.DOUBLE_CLICK;
+            }
+            else;
+
+            break;
+
+
+        case state.PLAYED:
+            console.log("entra en played");
+            if (globals.checkBothPlayerRound)
+            {
+                console.log("entra en endRound");
+                state.DISSCARD;
+            }
+
+            else if (globals.scorch)
+            {
+                console.log("entra en discard");
+                state.DISSCARD;
+            }
+
+            else if(globals.decoy)
+            {
+                console.log("entra en decoy");
+                state.SELECTED;
+            }
+
+            else if(globals.inmediateEffect && globals.effectFinished)
+            {
+                console.log("entra en effect && effect finished");
+                state.DISSCARD;
+            }
+            else;
+
+            break;
+
+
+        case state.DISSCARD:
+            console.log("entra en disscard");
+            if (globals.medic)
+            {
+                console.log("entra en medic");
+                state.SELECTED;
+            }
+
+            else if(globals.double_click)
+            {
+                console.log("entra en double click");
+                state.DOUBLE_CLICK;
+            }
+            else;
+
+            break;
+
+
+        default:
+            console.log("ERROR");
+
+    }
+}
 function startingDeal(mode){
     let cardsToDraw
     if(mode === GameMode.NORMAL_MODE){
@@ -390,6 +549,7 @@ function shuffleDeck(deck){
       // And swap it with the current element.
       [deck[currentIndex], deck[randomIndex]] = [
         deck[randomIndex], deck[currentIndex]];
+
     }
 
 }

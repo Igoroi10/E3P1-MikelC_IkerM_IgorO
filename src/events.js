@@ -20,7 +20,7 @@ export function btnStartDown ()
     // document.getElementById('divCanvas').style.display = "block";
 
     // console.log("OK");
-
+    
     //Ocultamos el boton de Start
     globals.buttonStart.style.visibility = "Hidden";
     globals.buttonAdmin.style.visibility = "Hidden";
@@ -42,6 +42,13 @@ export function btnStartOver ()
     // console.log("entraa");
     document.getElementById("btnStart").innerHTML = "OVER";
     document.getElementById('sectionLogIn').style.display = "none";
+
+    
+    // GENERAR EL MAZO 
+    // LLAMAR A LA FUNION STARTING DEAL
+    // CON ESE MAZO LLAMAR A RENDER Y QUE RENDERIZE LAS CARTAS
+
+
     globals.gameState = State.PLAYING;
     // document.getElementById('sectionPlay').style.display = "none";
 
