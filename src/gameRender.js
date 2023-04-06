@@ -45,25 +45,19 @@ function renderMap ()
 
 
 function renderCards(){
-    let xPos = 5;
-    let yPos = 5;
-    let cardsDrawed = 0;
-    for(let l = 0; l < 5; l++){
 
-        for(let i = 0; i < 16; i++){
-            globals.cards[cardsDrawed].xPos = xPos;
-            globals.cards[cardsDrawed].yPos = yPos;
-            renderCard(globals.cards[cardsDrawed]);
-            cardsDrawed++;
-            xPos += 95;   
+
+
+        for(let i = 0; i < globals.cards.length; i++){
+            renderCard(globals.cards[i]);
+
         }
-
-        xPos = 5;
-        yPos += 120; 
-    }
 
 
 }
+
+
+
 
 function renderCard(card){
 
