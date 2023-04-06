@@ -48,8 +48,8 @@ function playGame()
     if(globals.action.d){
         startingDeal(GameMode.NORMAL_MODE);
         console.log(globals.cards.length);
-        console.log(globals.player.player1);
-        console.log(globals.player.player2);
+        console.log(globals.player[0]);
+        console.log(globals.player[1]);
 
     }
 
@@ -560,4 +560,6 @@ export {
     localStorageCheck,
     localStorageUpdate,
     logOut,
+    createExpertDeck,
+    startingDeal,
 }
