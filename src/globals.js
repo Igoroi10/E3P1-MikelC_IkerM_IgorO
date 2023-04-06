@@ -165,11 +165,7 @@ export default
     inmediateEffect: false,
     effectFinished: false,
 
-    player: [
-        player1 = [],
-
-        player2 = [],
-    ],
+    player: [],
 
 
 
