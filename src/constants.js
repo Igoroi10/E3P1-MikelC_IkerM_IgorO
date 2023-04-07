@@ -211,15 +211,15 @@ const SlotIdentificators = {
 
 const Common_map_pos = {
 
-    PLAYER2_CARD_XPOS:      120,
-    PLAYER2_CARD_YPOS:      60,
+    PLAYER1_CARD_XPOS:      120,
+    PLAYER1_CARD_YPOS:      60,
 
     CLIMATE_BOX_1_XPOS:     60,
     CLIMATE_BOX_2_XPOS:     200,
     CLIMATE_BOX_YPOS:       390,
 
-    PLAYER1_CARD_XPOS:      120,
-    PLAYER1_CARD_YPOS:      750
+    PLAYER2_CARD_XPOS:      120,
+    PLAYER2_CARD_YPOS:      750
 }
 
 const Player2_map_pos = {

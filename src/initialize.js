@@ -821,7 +821,7 @@ function tableSection_Player1()
 
         }
         
-        yPos += 10 + ySize;
+        yPos -= 10 + ySize;
         xPos = Player1_map_pos.PLAYER1_TABLE_SECTION1_XPOS;
     }
     
@@ -850,7 +850,7 @@ function tableSection_Player2()
 
         }
         
-        yPos -= 10 + ySize;
+        yPos += 10 + ySize;
         xPos = Player1_map_pos.PLAYER1_TABLE_SECTION1_XPOS;
     }
 }
