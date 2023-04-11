@@ -30,7 +30,6 @@ function playGame()
 {
     // console.log("Turno: " + globals.turnState);
 
-
     if (globals.action.enter)
     {   
         createExpertDeck();
@@ -46,14 +45,17 @@ function playGame()
     }
 
     if(globals.action.d){
-        startingDeal(GameMode.NORMAL_MODE);
+        // REPARTIR A LA MANO - Un jugador
+        distributeHandCards();
+
         console.log(globals.cards.length);
-        console.log(globals.player[0]);
-        console.log(globals.player[1]);
+        // console.log(globals.player[0]);
+        // console.log(globals.player[1]);
 
     }
 
-    //... ANTERIOR
+    //Funcion que comprueba cosntantemente si un slot esta vacio o no
+    // updateSlots(globals.slots);
 
    
     //Sacamos en pantalla las coordenadas del ratón
@@ -562,6 +564,53 @@ function shuffleDeck(deck){
 
 }
 
+function updateSlots(slot, card)
+{
+
+}
+
+function distributeHandCards()
+{
+    // console.log("Entra en Distribute");
+    createDistribution();
+}
+
+function createDistribution()
+{
+    let cardsToDraw = 20;
+    let Player2HandxPos =  Player2_map_pos.PLAYER2_CARDS_IN_HAND1_XPOS;
+    let Player1HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
+
+    for(let i = 0; i < cardsToDraw; i++)
+    {
+        if(i % 2 === 0){
+            // console.log("entra player 2");
+            // console.log("Player 2 xPos : " + Player2HandxPos);
+            // console.log(globals.cards[i].xPos);
+
+            globals.cards[i].xPos  = Player2HandxPos;
+            globals.cards[i].yPos  = Player2_map_pos.PLAYER2_CARDS_IN_HAND_YPOS;
+            Player2HandxPos += 80;
+
+            // globals.cards[i].showBack = false;
+
+            console.log(globals.cards[i].xPos);
+            
+        }
+
+        else
+        {
+            // console.log("entra player 1");
+            globals.cards[i].xPos  = Player1HandxPos;
+            globals.cards[i].yPos  = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+            Player1HandxPos += 80;
+        }
+
+        
+       
+    }
+}
+
 export {
     update,
     checkStates,
@@ -570,4 +619,5 @@ export {
     logOut,
     createExpertDeck,
     startingDeal,
+    distributeHandCards,
 }
