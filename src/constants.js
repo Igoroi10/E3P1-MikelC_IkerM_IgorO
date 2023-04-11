@@ -136,7 +136,7 @@ const Key = {
 
 const Card_img_quantity = {
     
-    UNIT_CARD:          35,
+    UNIT_CARD:          34,
     EFFECT_CARDS:       46,
     VALUE_CARDS:        57,
     CATEGORY_CARDS:     60,
