@@ -27,12 +27,13 @@ function drawGame()
         
     }
     drawNames();
-    // if (globals.action.c)
-    // {
-        renderCards();
-    // }
+    if (globals.action.c)
+    {
+        console.log(globals.cards.length)
+        displayCards();
+    }
 
-
+    renderCards();
     renderBigCard();
     drawMessages();
     gameOverScreen();
@@ -45,9 +46,6 @@ function renderMap ()
 
 
 function renderCards(){
-
-
-
         for(let i = 0; i < globals.cards.length; i++){
             renderCard(globals.cards[i]);
 
@@ -56,6 +54,26 @@ function renderCards(){
 
 }
 
+function displayCards(){
+
+    let xPos = 5;
+    let yPos = 5;
+    let cardsDrawed = 0;
+    for(let l = 0; l < 5; l++){
+
+        for(let i = 0; i < 16; i++){
+            globals.cards[cardsDrawed].xPos = xPos;
+            globals.cards[cardsDrawed].yPos = yPos;
+            globals.cards[cardsDrawed].showBack = false;
+            renderCard(globals.cards[cardsDrawed]);
+            cardsDrawed++;
+            xPos += 95;   
+        }
+
+        xPos = 5;
+        yPos += 120;
+    }
+}
 
 
 
@@ -512,5 +530,5 @@ function gameOverScreen()
 export{
     render,
     renderBigCard,
-    renderCards,
+    displayCards,
 }

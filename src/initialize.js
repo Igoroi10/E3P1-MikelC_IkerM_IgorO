@@ -405,7 +405,7 @@ function updateUserText(user)
 
 
 function createNormalDeck(){
-    let cardsNeeded = 50;
+    let cardsNeeded = 60;
     const normalMode = GameMode.NORMAL_MODE;
     addPermaCards(normalMode);
     addInstaCards(normalMode);
@@ -425,10 +425,13 @@ function createExpertDeck(){
     // addInstaCards(expertMode);
     // addClimateCards();
 
+    console.log("cards.length after addOneEach: " + globals.cards.length);
+
     cardsNeeded -= globals.cards.length;
+    console.log("cardsNeeded after addOneOfEach: " + cardsNeeded);
 
     //Comentada Funcion - DA ERROR 
-    // addUnitCards(cardsNeeded);
+    addUnitCards(cardsNeeded);
     
 
 }
@@ -438,6 +441,7 @@ function addOneOfEach(){
     for(let i = 0; i < globals.cardInfo.length; i++){
                 insertCard(i);
     }
+    console.log("fin de addOneEach");
 }
 
 function insertCard(i){
@@ -579,25 +583,41 @@ function addUnitCards(cardsLeft){
 
     for(let i = 0; i < cardsLeft; i++){
         let chanceNumber = Math.random();
-        if(chanceNumber < 0.10)
+        if(chanceNumber < 0.10){
+            console.log("Entra en función para añadir carta ultra rara");
             addUltraRareCard();
-        else if(chanceNumber < 0.40)
+        }
+
+        else if(chanceNumber < 0.40){
+            console.log("Entra en función para añadir carta rara");
             AddRareCard();
-        else
+        }
+
+        else{
+            console.log("Entra en función para añadir carta común");
             AddCommonCard();
+        }
+
+
+        console.log(i);
     }
+
+    console.log(cardsLeft);
+
 }
 
 function addUltraRareCard(){
     let ultraRareQuantity = 5;
     let randomChoice = Math.floor(Math.random() * (ultraRareQuantity + 1));
     let checks = 0;
-    for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === Rarity.ULTRA_RARE){
-            checks++;
+    console.log("randomChoice: " + randomChoice)
+    for(let i = 0; i < globals.cardInfo.length; i++){
+        if(globals.cardInfo[i].urritasun_karta === Rarity.ULTRA_RARE){
             if(checks === randomChoice){
+                console.log("Añade carta ultra rara");
                 insertCard(i);
             }
+            checks++;
         }
     }
 
@@ -607,26 +627,30 @@ function AddRareCard(){
     let rareQuantity = 8;
     let randomChoice = Math.floor(Math.random() * (rareQuantity + 1));
     let checks = 0;
-    for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === Rarity.RARE){
-            checks++;
+    console.log("randomChoice: " + randomChoice)
+    for(let i = 0; i < globals.cardInfo.length; i++){
+        if(globals.cardInfo[i].urritasun_karta === Rarity.RARE){
             if(checks === randomChoice){
+                console.log("Añade carta rara");
                 insertCard(i);
             }
+            checks++;
         }
     }
 }
 
 function AddCommonCard(){
-    let commonQuantity = 25;
+    let commonQuantity = 12;
     let randomChoice = Math.floor(Math.random() * (commonQuantity + 1));
+    console.log("randomChoice: " + randomChoice)
     let checks = 0;
-    for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === Rarity.COMMON){
-            checks++;
+    for(let i = 0; i < globals.cardInfo.length; i++){
+        if(globals.cardInfo[i].urritasun_karta === Rarity.COMMON){
             if(checks === randomChoice){
+                console.log("Añade carta común");
                 insertCard(i);
             }
+            checks++;
         }
     }
 
