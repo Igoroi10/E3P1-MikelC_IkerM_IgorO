@@ -32,6 +32,7 @@ function detectCollisionBetweenMouseAndCards()
             else
             {
                 globals.mouseHasCollidedWithTheCard = false; 
+                globals.selectedCardId = -1;
             }
 
             globals.action.doubleClick = false;
