@@ -414,11 +414,21 @@ function drawNames()
     // globals.hostPlayerInfo.izen_abizena
 }
 
+function lifeSlots()
+{
+
+}
+
 function drawMessages()
 {
     // console.log("los dos han pasado" + globals.checkBothPlayerRound);
     globals.checkRoundPlayer2;
     const hostName = localStorage.getItem('izen_abizena');
+    globals.ctx.fillStyle = 'red'; 
+    globals.ctx.fillRect(50, 530, 310, 85);
+    globals.ctx.clearRect(53, 533, 305, 80);
+
+
     if(globals.turnState === 1)
     {
 
@@ -463,8 +473,18 @@ function drawMessages()
             globals.ctx.fillText("Solo puede jugar el jugador 2", 70, 555);
         }
    }
+//    225, 220
+//    225, 660
+//    globals.ctx.fillStyle = 'red'; 
+//    globals.ctx.fillRect(220, 680, 50, 50);
+//    globals.ctx.clearRect(223, 683, 45, 45);
+//    globals.ctx.fillRect(290, 680, 50, 50);
+//    globals.ctx.clearRect(293, 683, 45, 45);
 
-
+//    globals.ctx.fillRect(220, 235, 50, 50);
+//    globals.ctx.clearRect(223, 238, 45, 45);
+//    globals.ctx.fillRect(290, 235, 50, 50);
+//    globals.ctx.clearRect(293, 238, 45, 45);
    //////////////////////////////////////////////////
    ////// FRASES
    //////////////////////////////////////////////////
