@@ -405,7 +405,7 @@ function updateUserText(user)
 
 
 function createNormalDeck(){
-    let cardsNeeded = 50;
+    let cardsNeeded = 65;
     const normalMode = GameMode.NORMAL_MODE;
     addPermaCards(normalMode);
     addInstaCards(normalMode);
@@ -413,23 +413,27 @@ function createNormalDeck(){
     cardsNeeded -= globals.cards.length;
 
     addUnitCards(cardsNeeded,normalMode);
+    globals.cards.splice(60);
 }
 
 
 function createExpertDeck(){
 
-    let cardsNeeded = 80;
+    let cardsNeeded = 85;
     const expertMode = GameMode.EXPERT_MODE;
     addOneOfEach();
-    // addPermaCards(expertMode);
-    // addInstaCards(expertMode);
-    // addClimateCards();
+    addPermaCards(expertMode);
+    addInstaCards(expertMode);
+    addClimateCards();
+
+    console.log("cards.length after addOneEach: " + globals.cards.length);
 
     cardsNeeded -= globals.cards.length;
+    console.log("cardsNeeded after addOneOfEach: " + cardsNeeded);
 
     //Comentada Funcion - DA ERROR 
-    // addUnitCards(cardsNeeded);
-    
+    addUnitCards(cardsNeeded);
+    globals.cards.splice(80);
 
 }
 
@@ -438,6 +442,7 @@ function addOneOfEach(){
     for(let i = 0; i < globals.cardInfo.length; i++){
                 insertCard(i);
     }
+    console.log("fin de addOneEach");
 }
 
 function insertCard(i){
@@ -490,14 +495,6 @@ function insertCard(i){
     
 }
 
-function CardSize(card)
-{
-    // xSize, ySize
-    const xSize     = 0;
-    const ySize     = 0;
-
-    const cardImageSet = new ImageSet(xSize, ySize,)
-}
 
 
 
@@ -505,45 +502,44 @@ function CardSize(card)
 
 
 function addClimateCards(){
+    console.log("Entra en addClimateCards");
     for(let i = 0; i < CardQuantity.EXPERT_CLIMATE; i++){
         let randomChoice = Math.floor(Math.random() * (4 + 1));
-        let checks;
+        let checks = 0;
 
-        for(let l = 0; 0 < globals.cards.length; l++){
-            if(globals.cards[l].categoryId === CardCategory.CLIMATE){
-                checks++;
-
+        for(let l = 0; l < globals.cardInfo.length; l++){
+            if(globals.cardInfo[l].kategoria === "climate"){
+                console.log("entra en el de kategoria en clima")
                 if(checks === randomChoice){
                     insertCard(l);
-                    l = globals.cards.length;
-                }    
+                    l = globals.cardInfo.length;
+                    console.log("añadido carta de clima")
+                } 
+                checks++;   
             }
         }
     }
 }
 
 function addPermaCards(mode){
-
+    console.log("Entra en addPermaCards");
     let cardsToDraw;
     if(mode === GameMode.EXPERT_MODE)
         cardsToDraw = CardQuantity.EXPERT_PERMA;
     else
         cardsToDraw = CardQuantity.NORMAL_PERMA;
-
+        console.log(globals.cardInfo)
     for(let i = 0; i < cardsToDraw; i++){
-        let randomChoice = Math.floor(Math.random() * (2 + 1));
-        let checks;
+        let checks = 0;
 
-        for(let l = 0; 0 < globals.cards.length; l++){
+        for(let l = 0; l < globals.cardInfo.length; l++){
 
-            console.log(globals.cards[l].categoryId);
-            if(globals.cards[l].categoryId === CardCategory.PERMAEFFECT){
+            if(globals.cardInfo[l].kategoria === "permaeffect"){
+                console.log("entra en el de kategoria en perma")
+                insertCard(l);
+                l = globals.cardInfo.length;
+                console.log("añadido carta perma")   
                 checks++;
-                
-                if(checks === randomChoice){
-                    insertCard(l);
-                    l = globals.cards.length;
-                }    
             }
         }
     }
@@ -551,6 +547,7 @@ function addPermaCards(mode){
 
 
 function addInstaCards(mode){
+    console.log("Entra en addInstaCards");
     let cardsToDraw;
     if(mode === GameMode.EXPERT_MODE)
         cardsToDraw = CardQuantity.EXPERT_INSTA;
@@ -558,17 +555,20 @@ function addInstaCards(mode){
         cardsToDraw = CardQuantity.NORMAL_INSTA;
 
     for(let i = 0; i < cardsToDraw; i++){
-        let randomChoice = Math.floor(Math.random() * (3 + 1));
-        let checks;
+        let randomChoice = Math.floor(Math.random() * (2 + 1));
+        let checks = 0;
 
-        for(let l = 0; 0 < globals.cards.length; l++){
-            if(globals.cards[l].categoryId === CardCategory.INSTAEFFECT){
-                checks++;
+        for(let l = 0; l < globals.cardInfo.length; l++){
+
+            if(globals.cardInfo[l].kategoria === "instaeffect"){
+                console.log("entra en el de kategoria en insta")
                 
                 if(checks === randomChoice){
                     insertCard(l);
-                    l = globals.cards.length;
+                    l = globals.cardInfo.length;
+                    console.log("añadido carta de effect")
                 }    
+                checks++;
             }
         }
     }
@@ -579,25 +579,41 @@ function addUnitCards(cardsLeft){
 
     for(let i = 0; i < cardsLeft; i++){
         let chanceNumber = Math.random();
-        if(chanceNumber < 0.10)
+        if(chanceNumber < 0.10){
+            console.log("Entra en función para añadir carta ultra rara");
             addUltraRareCard();
-        else if(chanceNumber < 0.40)
+        }
+
+        else if(chanceNumber < 0.40){
+            console.log("Entra en función para añadir carta rara");
             AddRareCard();
-        else
+        }
+
+        else{
+            console.log("Entra en función para añadir carta común");
             AddCommonCard();
+        }
+
+
+        console.log(i);
     }
+
+    console.log(cardsLeft);
+
 }
 
 function addUltraRareCard(){
     let ultraRareQuantity = 5;
     let randomChoice = Math.floor(Math.random() * (ultraRareQuantity + 1));
     let checks = 0;
-    for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === Rarity.ULTRA_RARE){
-            checks++;
+    console.log("randomChoice: " + randomChoice)
+    for(let i = 0; i < globals.cardInfo.length; i++){
+        if(globals.cardInfo[i].urritasun_karta === Rarity.ULTRA_RARE){
             if(checks === randomChoice){
+                console.log("Añade carta ultra rara");
                 insertCard(i);
             }
+            checks++;
         }
     }
 
@@ -607,26 +623,30 @@ function AddRareCard(){
     let rareQuantity = 8;
     let randomChoice = Math.floor(Math.random() * (rareQuantity + 1));
     let checks = 0;
-    for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === Rarity.RARE){
-            checks++;
+    console.log("randomChoice: " + randomChoice)
+    for(let i = 0; i < globals.cardInfo.length; i++){
+        if(globals.cardInfo[i].urritasun_karta === Rarity.RARE){
             if(checks === randomChoice){
+                console.log("Añade carta rara");
                 insertCard(i);
             }
+            checks++;
         }
     }
 }
 
 function AddCommonCard(){
-    let commonQuantity = 25;
+    let commonQuantity = 12;
     let randomChoice = Math.floor(Math.random() * (commonQuantity + 1));
+    console.log("randomChoice: " + randomChoice)
     let checks = 0;
-    for(let i = 0; i < globals.cards.length; i++){
-        if(globals.cards[i].rarity === Rarity.COMMON){
-            checks++;
+    for(let i = 0; i < globals.cardInfo.length; i++){
+        if(globals.cardInfo[i].urritasun_karta === Rarity.COMMON){
             if(checks === randomChoice){
+                console.log("Añade carta común");
                 insertCard(i);
             }
+            checks++;
         }
     }
 
