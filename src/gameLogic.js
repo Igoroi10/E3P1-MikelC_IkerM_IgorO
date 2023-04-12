@@ -46,9 +46,11 @@ function playGame()
     //   displayDeck();
     }
 
+    distributeHandCards();
+    
     if(globals.action.d){
         // REPARTIR A LA MANO - Un jugador
-        distributeHandCards();
+        
 
         console.log(globals.cards.length);
         // console.log(globals.player[0]);
