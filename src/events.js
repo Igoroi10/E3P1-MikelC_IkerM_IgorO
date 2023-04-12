@@ -45,8 +45,6 @@ export function btnStartOver ()
     
     // GENERAR EL MAZO 
     createExpertDeck();
-    createExpertDeck();
-    createExpertDeck();
 
     // REPARTIR A LA MANO - Un jugador
     // distributeHandCards();
