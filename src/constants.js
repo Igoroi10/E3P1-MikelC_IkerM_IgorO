@@ -9,7 +9,8 @@ const State = {
     PLAYING:        5,
     STATS:          6,
     ROUND_END:      7,
-    GAME_END:       8
+    GAME_END:       8, 
+    GAME_START:     9,
     
 }  
 
