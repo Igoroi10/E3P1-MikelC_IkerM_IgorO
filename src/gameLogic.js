@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import { State, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player2_map_pos, Turn} from "./constants.js";
-import { createExpertDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
+import { createExpertDeck, createNormalDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js";
 import { selectEnemy, createList} from "./events.js";
 
@@ -46,7 +46,7 @@ function playGame()
     //   displayDeck();
     }
 
-    distributeHandCards();
+
     
     if(globals.action.d){
         // REPARTIR A LA MANO - Un jugador
@@ -119,8 +119,13 @@ function checkStates(){
            break;        
 
         case State.GAME_START:
+            // GENERAR EL MAZO 
+            createNormalDeck();
+
             // LLAMAR A LA FUNION STARTING DEAL y CAMBIAMOS EL ESTADO DEL JUEGO
             startingDeal(GameMode.NORMAL_MODE);
+            distributeHandCards();
+            
             globals.gameState = State.PLAYING;
            break; 
 
