@@ -394,6 +394,21 @@ export function keyupHandler(event)
 
 }
 
+function selectedCard()
+{
+    if (globals.mousePressed)
+    {   
+        
+    }
+
+    else
+    {
+
+    }
+}
+
+
+
 export {
     createList,
     selectEnemy,

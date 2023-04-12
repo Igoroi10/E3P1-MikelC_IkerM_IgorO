@@ -35,6 +35,7 @@ function playGame()
     //updateSlots();
     
     updateCards();
+    updateSelectedCard();
 
     // checkEndRound();
 
@@ -654,6 +655,43 @@ function cardsHide(j)
         // console.log(globals.player[0][i].showBack);
         globals.player[j][i].showBack = true;
     }
+}
+
+function updateSelectedCard()
+{
+    if (globals.action.mousePressed)
+    {
+        for(let i = 0; i < globals.cards.length; ++i)
+        {
+            const card = globals.cards[i];
+            const xSize = 80;
+            const ySize = 100;
+        
+            if(globals.mouse.x < (card.xPos + xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < (card.yPos + ySize) && globals.mouse.y > card.yPos)
+            {
+                // console.log("Entra if");
+                globals.mouseSelectedCard = true;
+                
+                if(globals.selectedCardId_Click === -1)
+                    globals.selectedCardId_Click = i;
+                else
+                    globals.selectedCardId_Click = -1;
+
+                    console.log(globals.selectedCardId_Click);
+                break;
+            }
+            else
+            {
+                globals.mouseSelectedCard = false; 
+                globals.selectedCardId_Click = -1;
+            }
+            
+
+            globals.action.mousePressed = false;
+        }
+    }
+    
+
 }
 
 
