@@ -388,8 +388,8 @@ function drawSlots()
         //TEST: Dibujado de rectangulo alrededor del Slot
         drawSlotRectangle(slot);
 
-        //Funcion para renderizar los slots (NO SE SI LA UTILIZAREMOS)
-        // renderSlots(slot);
+        // Funcion para renderizar los slots - todos a false ( Se actualizara con el update Slots de gameLogic)
+        renderSlots(slot);
     }
 }
 
@@ -412,6 +412,13 @@ function drawSlotRectangle(slot) //Funcion que crea un rectangulo alrededor del 
 
 }
 
+function renderSlots(slot)
+{
+    // console.log("Entra en RenderSlots");
+    slot.placed_cards = false;
+    // console.log(slot.placed_cards);
+}
+
 function drawNames()
 {
     const hostName = localStorage.getItem('izen_abizena');
@@ -425,11 +432,21 @@ function drawNames()
     // globals.hostPlayerInfo.izen_abizena
 }
 
+function lifeSlots()
+{
+
+}
+
 function drawMessages()
 {
     // console.log("los dos han pasado" + globals.checkBothPlayerRound);
     globals.checkRoundPlayer2;
     const hostName = localStorage.getItem('izen_abizena');
+    globals.ctx.fillStyle = 'red'; 
+    globals.ctx.fillRect(50, 530, 310, 85);
+    globals.ctx.clearRect(53, 533, 305, 80);
+
+
     if(globals.turnState === 1)
     {
 
@@ -474,8 +491,18 @@ function drawMessages()
             globals.ctx.fillText("Solo puede jugar el jugador 2", 70, 555);
         }
    }
+//    225, 220
+//    225, 660
+//    globals.ctx.fillStyle = 'red'; 
+//    globals.ctx.fillRect(220, 680, 50, 50);
+//    globals.ctx.clearRect(223, 683, 45, 45);
+//    globals.ctx.fillRect(290, 680, 50, 50);
+//    globals.ctx.clearRect(293, 683, 45, 45);
 
-
+//    globals.ctx.fillRect(220, 235, 50, 50);
+//    globals.ctx.clearRect(223, 238, 45, 45);
+//    globals.ctx.fillRect(290, 235, 50, 50);
+//    globals.ctx.clearRect(293, 238, 45, 45);
    //////////////////////////////////////////////////
    ////// FRASES
    //////////////////////////////////////////////////

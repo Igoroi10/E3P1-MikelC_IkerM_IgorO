@@ -1,11 +1,10 @@
 import globals from "./globals.js";
 import { initGame } from "./initialize.js";
-
 import { Key, State, Turn, GameMode } from "./constants.js";
-
 import { gameLoop } from "./game.js";
-import { checkStates, localStorageUpdate, logOut, createExpertDeck, startingDeal } from "./gameLogic.js";
 import { renderBigCard } from "./gameRender.js";
+import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal } from "./gameLogic.js";
+
 
 
 //Creacion de Evento para el raton
@@ -46,8 +45,12 @@ export function btnStartOver ()
     
     // GENERAR EL MAZO 
     createExpertDeck();
-    // createExpertDeck();
-    // createExpertDeck();
+    createExpertDeck();
+    createExpertDeck();
+
+    // REPARTIR A LA MANO - Un jugador
+    // distributeHandCards();
+
     // LLAMAR A LA FUNION STARTING DEAL
     startingDeal(GameMode.NORMAL_MODE);
     // CON ESE MAZO LLAMAR A RENDER Y QUE RENDERIZE LAS CARTAS - Esta en el update del drawGame
