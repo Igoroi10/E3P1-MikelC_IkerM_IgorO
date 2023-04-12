@@ -221,16 +221,14 @@ const Common_map_pos = {
     PLAYER1_CARD_XPOS:      120,
     PLAYER1_CARD_YPOS:      750,
 
-    PLAYER1_LIVE1_XPOS:             220,
-    PLAYER1_LIVE2_XPOS:             220,
-    PLAYER1_LIVE1_YPOS:             680,
-    PLAYER1_LIVE2_YPOS:             680,
+    PLAYER1_LIVE1_XPOS:     220,
+    PLAYER1_LIVE2_XPOS:     220,
+    PLAYER1_LIVE_YPOS:      670,
 
     
-    PLAYER2_LIVE1_XPOS:             220,
-    PLAYER2_LIVE1_XPOS:             290,
-    PLAYER2_LIVE2_YPOS:             235,
-    PLAYER2_LIVE2_YPOS:             235,
+    PLAYER2_LIVE1_XPOS:     220,
+    PLAYER2_LIVE2_XPOS:     290,
+    PLAYER2_LIVE1_YPOS:     235,
 }
 
 const Player1_map_pos = {
