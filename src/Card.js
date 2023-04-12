@@ -15,6 +15,7 @@ class Card{
         this.showBack       = showBack;
         this.imageSet       = imageSet;
         this.Size           = CardDisplaySize.SMALL;
+        this.previousState  = -1;
 
     }
 }

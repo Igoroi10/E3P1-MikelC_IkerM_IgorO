@@ -178,7 +178,8 @@ function updateCard(card) // Puede ser una global de estado o una constante
         case CardState.DECK:
             if(globals.draw)                        // Boleana globl que indica el estado de la carta
             {
-                CardState.HAND;                          // Cambiamos el Estado
+                CardState.HAND;  
+                card.previousState = CardState.DECK;                        // Cambiamos el Estado
             }
             else;
 
@@ -189,16 +190,19 @@ function updateCard(card) // Puede ser una global de estado o una constante
             if(globals.double_click)
             {
                 CardState.DOUBLE_CLICK;
+                card.previousState = CardState.HAND;      
             }
 
             else if(globals.detectCollisionBetweenMouseAndCards && !globals.selected)
             {
                 CardState.HOVER;
+                card.previousState = CardState.HAND;      
             }
 
             else if (globals.disscard)
             {
-                CardState.DISSCARD;
+                CardState.DISCARD;
+                card.previousState = CardState.HAND;    
             }
             else;
 
@@ -215,8 +219,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
         case CardState.SELECTED:
             if(globals.otherSelected)
             {
-                //quitar la carta seleccionada de selected
-                // State. Previous State
+                card.state = card.previousState;
             }
 
             else if (globals.decoy)
@@ -230,7 +233,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
             else if (globals.medic)
             {
-                CardState.PLAYED
+                CardState.GAME;
             }
             else;
 
@@ -240,18 +243,17 @@ function updateCard(card) // Puede ser una global de estado o una constante
         case CardState.HOVER:
             if(!globals.detectCollisionBetweenMouseAndCards)
             {
-                //Previous State
+                card.state = card.previousState;
             }
 
-            else if (globals.click)
+            else if (globals.action.click)
             {
-
-                CardState.SELECTED;
+                card.state = CardState.SELECTED;
             }
 
             else if (globals.double_click)
             {
-                CardState.DOUBLE_CLICK;
+                card.state = CardState.DOUBLE_CLICK;
             }
             else;
 
@@ -261,12 +263,12 @@ function updateCard(card) // Puede ser una global de estado o una constante
         case CardState.GAME:
             if (globals.checkBothPlayerRound)
             {
-                CardState.DISSCARD;
+                CardState.DISCARD;
             }
 
             else if (globals.scorch)
             {
-                CardState.DISSCARD;
+                CardState.DISCARD;
             }
 
             else if(globals.decoy)
@@ -276,15 +278,15 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
             else if(globals.inmediateEffect && globals.effectFinished)
             {
-                CardState.DISSCARD;
+                CardState.DISCARD;
             }
             else;
 
             break;
 
 
-        case state.DISSCARD:
-            if (globals.medic)
+        case CardState.DISCARD:
+            if (globals.medic && globals.action.click)
             {
                 CardState.SELECTED;
             }
