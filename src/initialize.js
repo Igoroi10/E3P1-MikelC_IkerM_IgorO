@@ -720,6 +720,17 @@ function climatologyZone ()
     globals.slots.push(slotClimatology1, slotClimatology2);
 }
 
+function liveZone()
+{
+    const xPos1     = Common_map_pos.PLAYER1_LIVE1_XPOS;
+    const xPos2     = Common_map_pos.PLAYER1_LIVE2_XPOS;
+
+    const yPos      = Common_map_pos.PLAYER1_LIVE1_YPOS;
+    const xSize     = 2;
+    const ySize     = 2;
+    
+}
+
 function handPlayer1 ()
 { 
     const yPos      = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
