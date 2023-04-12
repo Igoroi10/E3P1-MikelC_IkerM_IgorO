@@ -39,8 +39,7 @@ function playGame()
     checkEndRound();
 
 
-    // distributeHandCards();
-    
+
     if(globals.action.d){
         // REPARTIR A LA MANO - Un jugador
         
@@ -112,8 +111,13 @@ function checkStates(){
            break;        
 
         case State.GAME_START:
+            // GENERAR EL MAZO 
+            createNormalDeck();
+
             // LLAMAR A LA FUNION STARTING DEAL y CAMBIAMOS EL ESTADO DEL JUEGO
             startingDeal(GameMode.NORMAL_MODE);
+            distributeHandCards();
+            
             globals.gameState = State.PLAYING;
            break; 
 

@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { initGame } from "./initialize.js";
+import { createNormalDeck, initGame } from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
@@ -42,9 +42,7 @@ export function btnStartOver ()
     document.getElementById("btnStart").innerHTML = "OVER";
     document.getElementById('sectionLogIn').style.display = "none";
 
-    
-    // GENERAR EL MAZO 
-    createExpertDeck();
+
 
     // REPARTIR A LA MANO - Un jugador
     // distributeHandCards();
