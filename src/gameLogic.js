@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { State, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player2_map_pos} from "./constants.js";
+import { State, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player2_map_pos, Turn} from "./constants.js";
 import { createExpertDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js";
 import { selectEnemy, createList} from "./events.js";
@@ -29,6 +29,8 @@ function update()
 function playGame()
 {
     // console.log("Turno: " + globals.turnState);
+
+    updateTurn();
 
     if (globals.action.enter)
     {   
@@ -527,14 +529,14 @@ function startingDeal(mode){
         if(i % 2 === 0){
             globals.cards[i].xPos  = Player2_map_pos.PLAYER2_DECK_XPOS;
             globals.cards[i].yPos  = Player2_map_pos.PLAYER2_DECK_YPOS;
-            globals.tableSlots.player1.push(globals.cards[i]);
+            globals.player[0].push(globals.cards[i]); //Array que almacena las cartas para el player 1
         }
 
         else
         {
             globals.cards[i].xPos  = Player1_map_pos.PLAYER1_DECK_XPOS;
             globals.cards[i].yPos  = Player1_map_pos.PLAYER1_DECK_YPOS;
-            globals.tableSlots.player2.push(globals.cards[i]);
+            globals.player[1].push(globals.cards[i]); //Array que almacena las cartas para el player 2
         }
             
     }
@@ -590,11 +592,12 @@ function createDistribution()
 
             globals.cards[i].xPos  = Player2HandxPos;
             globals.cards[i].yPos  = Player2_map_pos.PLAYER2_CARDS_IN_HAND_YPOS;
+            globals.player[0].push(globals.cards[i]); 
             Player2HandxPos += 80;
 
             // globals.cards[i].showBack = false;
 
-            console.log(globals.cards[i].xPos);
+            // console.log(globals.cards[i].xPos);
             
         }
 
@@ -603,6 +606,7 @@ function createDistribution()
             // console.log("entra player 1");
             globals.cards[i].xPos  = Player1HandxPos;
             globals.cards[i].yPos  = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+            globals.player[1].push(globals.cards[i]);
             Player1HandxPos += 80;
         }
 
@@ -610,6 +614,57 @@ function createDistribution()
        
     }
 }
+
+function updateTurn()
+{
+    let player1 = 0;
+    let player2 = 1;
+
+    if (globals.turnState === Turn.PLAYER1)
+    {
+        // console.log("Entra en Turno Player 1");
+        cardsHide(player2); // Ocultamos las cartas del jugador anterior
+
+        cardsInHand(player1);
+        
+    }
+
+    else if (globals.turnState === Turn.PLAYER2)
+    {
+        // console.log("Entra en Turno Player 2");
+        cardsHide(player1); // Ocultamos las cartas del jugador anterior
+
+        cardsInHand(player2);
+    }
+
+    else
+        console.log("No es turno de ninguno de los dos");
+}
+
+function cardsInHand(j)
+{   
+    // console.log("Entra en cardsInHandP1");
+    let cardsInHand = 10; // FALTA UNA GLOBAL QUE SE ACTUALIZE PARA SABER LAS CARTAS DE LA MANO CONSTANTEMENTE
+
+    for (let i = 0; i < cardsInHand; i++)
+    {
+        // console.log(globals.player[0][i].showBack);
+        globals.player[j][i].showBack = false;
+    }
+}
+
+function cardsHide(j)
+{
+    let cardsInHand = 10; // FALTA UNA GLOBAL QUE SE ACTUALIZE PARA SABER LAS CARTAS DE LA MANO CONSTANTEMENTE
+
+    for (let i = 0; i < cardsInHand; i++)
+    {
+        // console.log(globals.player[0][i].showBack);
+        globals.player[j][i].showBack = true;
+    }
+}
+
+
 
 export {
     update,
