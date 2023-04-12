@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import { State, CardState, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player2_map_pos, Turn} from "./constants.js";
-import { createExpertDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
+import { createExpertDeck, createNormalDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js";
 import { selectEnemy, createList} from "./events.js";
 
@@ -36,7 +36,7 @@ function playGame()
     
     updateCards();
 
-    checkEndRound();
+    // checkEndRound();
 
 
 
@@ -165,7 +165,7 @@ function makeThisScreenVisible(screen){
 function updateCards(){
 
     for(let i = 0; i < globals.cards.length; i++){
-        const card = globals.card[i];
+        const card = globals.cards[i];
         updateCard(card);
     }
 }
