@@ -116,6 +116,12 @@ function checkStates(){
             makeThisScreenVisible(State.GAME_END);
            break;        
 
+        case State.GAME_START:
+            // LLAMAR A LA FUNION STARTING DEAL y CAMBIAMOS EL ESTADO DEL JUEGO
+            startingDeal(GameMode.NORMAL_MODE);
+            globals.gameState = State.PLAYING;
+           break; 
+
        default:
            console.error("Error: Game State invalid");
    }

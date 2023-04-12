@@ -52,11 +52,12 @@ export function btnStartOver ()
     // REPARTIR A LA MANO - Un jugador
     // distributeHandCards();
 
-    // LLAMAR A LA FUNION STARTING DEAL
-    startingDeal(GameMode.NORMAL_MODE);
+    
     // CON ESE MAZO LLAMAR A RENDER Y QUE RENDERIZE LAS CARTAS - Esta en el update del drawGame
 
-    globals.gameState = State.PLAYING;
+    globals.gameState = State.GAME_START;
+    
+    checkStates();
     // document.getElementById('sectionPlay').style.display = "none";
 
 }
