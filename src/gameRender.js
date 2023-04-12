@@ -370,8 +370,8 @@ function drawSlots()
         //TEST: Dibujado de rectangulo alrededor del Slot
         drawSlotRectangle(slot);
 
-        //Funcion para renderizar los slots (NO SE SI LA UTILIZAREMOS)
-        // renderSlots(slot);
+        // Funcion para renderizar los slots - todos a false ( Se actualizara con el update Slots de gameLogic)
+        renderSlots(slot);
     }
 }
 
@@ -392,6 +392,13 @@ function drawSlotRectangle(slot) //Funcion que crea un rectangulo alrededor del 
     globals.ctx.strokeStyle = "red";
     globals.ctx.strokeRect(x1, y1, w1, h1);
 
+}
+
+function renderSlots(slot)
+{
+    // console.log("Entra en RenderSlots");
+    slot.placed_cards = false;
+    // console.log(slot.placed_cards);
 }
 
 function drawNames()

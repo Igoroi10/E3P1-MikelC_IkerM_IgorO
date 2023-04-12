@@ -165,7 +165,7 @@ export default
     inmediateEffect: false,
     effectFinished: false,
 
-    player: [],
+    player: [[],[]],
 
 
 

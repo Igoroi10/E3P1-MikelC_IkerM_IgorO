@@ -4,7 +4,7 @@ import { initGame } from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 
 import { gameLoop } from "./game.js";
-import { checkStates, localStorageUpdate, logOut, createExpertDeck, startingDeal } from "./gameLogic.js";
+import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal } from "./gameLogic.js";
 import { renderBigCard, renderCards } from "./gameRender.js";
 
 
@@ -48,6 +48,10 @@ export function btnStartOver ()
     createExpertDeck();
     createExpertDeck();
     createExpertDeck();
+
+    // REPARTIR A LA MANO - Un jugador
+    // distributeHandCards();
+
     // LLAMAR A LA FUNION STARTING DEAL
     startingDeal(GameMode.NORMAL_MODE);
     // CON ESE MAZO LLAMAR A RENDER Y QUE RENDERIZE LAS CARTAS - Esta en el update del drawGame
