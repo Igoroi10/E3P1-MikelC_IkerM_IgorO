@@ -384,8 +384,6 @@ function drawSlotRectangle(slot) //Funcion que crea un rectangulo alrededor del 
     const w1 = slot.xSize;
     const h1 = slot.ySize;
 
-    console.log(slot.xPos);
-
     // const x1 = Math.floor(slot.xPos);
     // const y1 = Math.floor(slot.yPos);
     // const w1 = slot.xSize;
