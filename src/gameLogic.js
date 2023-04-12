@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { State, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player2_map_pos, Turn} from "./constants.js";
+import { State, CardState, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player2_map_pos, Turn} from "./constants.js";
 import { createExpertDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js";
 import { selectEnemy, createList} from "./events.js";
@@ -32,21 +32,14 @@ function playGame()
 
     updateTurn();
 
-    if (globals.action.enter)
-    {   
+    //updateSlots();
+    
+    updateCards();
 
-        
-        // for(let i = 0; i < globals.cards.length; i++){
-        //     console.log(globals.cards[i]);
-        // }
+    checkEndRound();
 
-        // for(let i = 0; i < globals.cardInfo.length; i++){
-        //     console.log(globals.cardInfo[i].kategoria);
-        // }
-    //   displayDeck();
-    }
 
-    distributeHandCards();
+    // distributeHandCards();
     
     if(globals.action.d){
         // REPARTIR A LA MANO - Un jugador
@@ -159,6 +152,174 @@ function makeThisScreenVisible(screen){
 
     document.getElementById(visibleDiv).style.display    = "block";
 
+}
+
+// =========================
+//      UPDATE CARD
+// =========================
+
+function updateCards(){
+
+    for(let i = 0; i < globals.cards.length; i++){
+        const card = globals.card[i];
+        updateCard(card);
+    }
+}
+
+function updateCard(card) // Puede ser una global de estado o una constante
+{
+    switch (card.state)  // Estado de la carta
+    {
+        case CardState.DECK:
+            console.log("entra en deck");
+            if(globals.draw)                        // Boleana globl que indica el estado de la carta
+            {
+                console.log("Entra en if DECK");
+                CardState.HAND;                          // Cambiamos el Estado
+            }
+            else;
+
+            break;
+
+
+        case CardState.HAND:
+            console.log("entra en hand");
+            if(globals.double_click)
+            {
+                console.log("Entra en if HAND");
+                CardState.DOUBLE_CLICK;
+            }
+
+            else if(globals.detectCollisionBetweenMouseAndCards && !globals.selected)
+            {
+                console.log("Entra en ElseIf 1");
+                CardState.HOVER;
+            }
+
+            else if (globals.disscard)
+            {
+                console.log("Entra en ElseIf 2");
+                CardState.DISSCARD;
+            }
+            else;
+
+            break;
+
+
+        case CardState.DOUBLE_CLICK:
+            console.log("entra en double_click");
+            //gestion de doble click - Entra a todos los estados excepto HOVER
+
+
+            break;
+
+
+        case CardState.SELECTED:
+            console.log("entra en selected");
+            if(globals.otherSelected)
+            {
+                console.log("entar en other selected");
+                //quitar la carta seleccionada de selected
+                // State. Previous State
+            }
+
+            else if (globals.decoy)
+            {
+                console.log("Entra en decoy");
+                CardState.HAND;
+            }
+            else if (globals.double_click)
+            {
+                console.log("entra en double_click");
+                CardState.DOUBLE_CLICK;
+            }
+
+            else if (globals.medic)
+            {
+                console.log("Entra en medic");
+                CardState.PLAYED
+            }
+            else;
+
+            break;
+
+
+        case CardState.HOVER:
+            console.log("entra en hover");
+            if(!globals.detectCollisionBetweenMouseAndCards)
+            {
+                console.log("entra en collision");
+                //Previous State
+            }
+
+            else if (globals.click)
+            {
+                console.log("entra en click");
+                CardState.SELECTED;
+            }
+
+            else if (globals.double_click)
+            {
+                console.log("entra en double click");
+                CardState.DOUBLE_CLICK;
+            }
+            else;
+
+            break;
+
+
+        case CardState.GAME:
+            console.log("entra en played");
+            if (globals.checkBothPlayerRound)
+            {
+                console.log("entra en endRound");
+                CardState.DISSCARD;
+            }
+
+            else if (globals.scorch)
+            {
+                console.log("entra en discard");
+                CardState.DISSCARD;
+            }
+
+            else if(globals.decoy)
+            {
+                console.log("entra en decoy");
+                CardState.SELECTED;
+            }
+
+            else if(globals.inmediateEffect && globals.effectFinished)
+            {
+                console.log("entra en effect && effect finished");
+                CardState.DISSCARD;
+            }
+            else;
+
+            break;
+
+
+        case state.DISSCARD:
+            console.log("entra en disscard");
+            if (globals.medic)
+            {
+                console.log("entra en medic");
+                CardState.SELECTED;
+            }
+
+            else if(globals.double_click)
+            {
+                console.log("entra en double click");
+                CardState.DOUBLE_CLICK;
+            }
+            else;
+
+            break;
+
+
+        default:
+            console.log("ERROR");
+
+    }
 }
 
 
@@ -362,165 +523,7 @@ function logOut(){
 
 }
 
-// =========================
-//      CARD STATES
-// =========================
 
-function cardStates(state) // Puede ser una global de estado o una constante
-{
-    switch (state)  // Estado de la carta
-    {
-        case state.DECK:
-            console.log("entra en deck");
-            if(globals.draw)                        // Boleana globl que indica el estado de la carta
-            {
-                console.log("Entra en if DECK");
-                state.HAND;                          // Cambiamos el Estado
-            }
-            else;
-
-            break;
-
-
-        case state.HAND:
-            console.log("entra en hand");
-            if(globals.double_click)
-            {
-                console.log("Entra en if HAND");
-                state.DOUBLE_CLICK;
-            }
-
-            else if(globals.detectCollisionBetweenMouseAndCards && !globals.selected)
-            {
-                console.log("Entra en ElseIf 1");
-                state.HOVER;
-            }
-
-            else if (globals.disscard)
-            {
-                console.log("Entra en ElseIf 2");
-                state.DISSCARD;
-            }
-            else;
-
-            break;
-
-
-        case state.DOUBLE_CLICK:
-            console.log("entra en double_click");
-            //gestion de doble click - Entra a todos los estados excepto HOVER
-
-
-            break;
-
-
-        case state.SELECTED:
-            console.log("entra en selected");
-            if(globals.otherSelected)
-            {
-                console.log("entar en other selected");
-                //quitar la carta seleccionada de selected
-                // State. Previous State
-            }
-
-            else if (globals.decoy)
-            {
-                console.log("Entra en decoy");
-                state.HAND;
-            }
-            else if (globals.double_click)
-            {
-                console.log("entra en double_click");
-                state.DOUBLE_CLICK;
-            }
-
-            else if (globals.medic)
-            {
-                console.log("Entra en medic");
-                state.PLAYED
-            }
-            else;
-
-            break;
-
-
-        case state.HOVER:
-            console.log("entra en hover");
-            if(!globals.detectCollisionBetweenMouseAndCards)
-            {
-                console.log("entra en collision");
-                //Previous State
-            }
-
-            else if (globals.click)
-            {
-                console.log("entra en click");
-                state.SELECTED;
-            }
-
-            else if (globals.double_click)
-            {
-                console.log("entra en double click");
-                state.DOUBLE_CLICK;
-            }
-            else;
-
-            break;
-
-
-        case state.PLAYED:
-            console.log("entra en played");
-            if (globals.checkBothPlayerRound)
-            {
-                console.log("entra en endRound");
-                state.DISSCARD;
-            }
-
-            else if (globals.scorch)
-            {
-                console.log("entra en discard");
-                state.DISSCARD;
-            }
-
-            else if(globals.decoy)
-            {
-                console.log("entra en decoy");
-                state.SELECTED;
-            }
-
-            else if(globals.inmediateEffect && globals.effectFinished)
-            {
-                console.log("entra en effect && effect finished");
-                state.DISSCARD;
-            }
-            else;
-
-            break;
-
-
-        case state.DISSCARD:
-            console.log("entra en disscard");
-            if (globals.medic)
-            {
-                console.log("entra en medic");
-                state.SELECTED;
-            }
-
-            else if(globals.double_click)
-            {
-                console.log("entra en double click");
-                state.DOUBLE_CLICK;
-            }
-            else;
-
-            break;
-
-
-        default:
-            console.log("ERROR");
-
-    }
-}
 function startingDeal(mode){
     let cardsToDraw
     if(mode === GameMode.NORMAL_MODE){

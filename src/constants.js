@@ -24,11 +24,14 @@ const Languages = {
 
 const CardState = {
 
-    DISCARD:    0,
-    HAND:       1,  
-    GAME:       2,
-    DECK:       3,
-    SELECTED:   4,
+    DISCARD:        0,
+    HAND:           1,  
+    GAME:           2,
+    DECK:           3,
+    SELECTED:       4,
+    DOUBLE_CLICK:   5,
+    HOVER:          6,
+
 
 }
 
