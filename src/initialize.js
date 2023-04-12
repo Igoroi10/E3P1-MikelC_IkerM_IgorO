@@ -654,7 +654,8 @@ function initSlots()
     climatologyZone();          // Slots de Cartas de Clima             - DONE
     buffPlayer1();              // Buffs del Player 1 (3 secciones)     - DONE
     buffPlayer2();              // Buffs del Player 2 (3 secciones)     - DONE
-    liveZone();                 // Slots de las vidas                   
+    liveZone1();                // Slots de las vidas                   
+    liveZone2();  
 
     //PLAYER 1
     slotDiscardP1();            // Slots de Descartes del Jugador 1     - DONE
@@ -721,12 +722,26 @@ function climatologyZone ()
     globals.slots.push(slotClimatology1, slotClimatology2);
 }
 
-function liveZone()
+function liveZone1()
 {
     const xPos1     = Common_map_pos.PLAYER1_LIVE1_XPOS;
     const xPos2     = Common_map_pos.PLAYER1_LIVE2_XPOS;
 
     const yPos      = Common_map_pos.PLAYER1_LIVE_YPOS;
+    const xSize     = 65;
+    const ySize     = 62;
+
+    const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize);
+    const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize);
+    globals.slots.push(slotLive1, slotLive2);
+}
+
+function liveZone2()
+{
+    const xPos1     = Common_map_pos.PLAYER2_LIVE1_XPOS;
+    const xPos2     = Common_map_pos.PLAYER2_LIVE2_XPOS;
+
+    const yPos      = Common_map_pos.PLAYER2_LIVE1_YPOS;
     const xSize     = 65;
     const ySize     = 62;
 
