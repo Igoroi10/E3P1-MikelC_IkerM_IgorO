@@ -346,17 +346,22 @@ function checkCardEffect(card){
             medicEffect(card);
             break;
         case Effect.MORALE_BOOST:
+            //efecto de puntuación
             break;
         case Effect.MUSTER:
+            musterEffect(card)
             break;
         case Effect.SPY:
+            spyEffect(card)
             break;
         case Effect.TIGHT_BOND:
+            //efecto de puntuación
             break;
         case Effect.COMMANDERS_HORN:
+            //efecto de puntuación
             break;
         case Effect.DECOY:
-            decoyEffect()
+            decoyEffect(card)
             break;
         case Effect.SCORCH:
             scorchEffect(card);
@@ -439,19 +444,60 @@ function medicEffect(card){
 
 }
 
+function decoyEffect(card){
+
+}
+
+function spyEffect(card){
+
+}
+
+function musterEffect(card){
+    let nameToSearch = "";
+    let playerNum;
+
+    if(card.slotIdentificators < SlotIdentificators.PLAYER0_F1)
+        playerNum = 0;
+    else
+        playerNum = 1;
+
+    
+    switch (card.name){
+        case "Akerbeltz":
+            nameToSearch = "Akerbeltz_morroi";
+            break;
+        case "Sorgina":
+            nameToSearch = "Sorginak";
+            break;
+    }
+
+    for(let i = 0; i < globals.player[playerNum].length; i++){
+        let searchingCard = globals.player[playerNum][i];
+
+        if(searchingCard.name === card.name || searchingCard.name === nameToSearch){
+
+            if(searchingCard.state === CardState.DECK){
+                searchingCard.slotIdentificator = card.slotIdentificator;
+                checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum)
+            }
+        }
+    }
+
+}
+
 
 function checkIfSlotAvailable(effect, card, playerNum){
     switch(effect){
         case Effect.MEDIC:
-            let checks = 0;
+            let medicChecks = 0;
             for(let i = 0; i < globals.slots.length; i++){
                 if(globals.player[playerNum][i].SlotIdentificator === card.slotIdentificator)
-                    checks++  
+                    medicChecks++  
             }
 
-            if(checks < 8){
+            if(medicChecks < 8){
                 for(let i = 0; i < globals.player[playerNum].length; i++){
-                    if(card.slotIdentificator === card.slotIdentificator && card.state === CardState.DISCARD){
+                    if(globals.player[playerNum][i].name === card.name && globals.player[playerNum][i].state === CardState.DISCARD){
                         for(let l = 0; l < globals.slots.length; l++){
                             if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator){
 
@@ -466,11 +512,31 @@ function checkIfSlotAvailable(effect, card, playerNum){
                 }
             }
 
-            else 
-                card.slotIdentificators = -1;
             break;
 
         case Effect.MUSTER:
+            let effectChecks = 0;
+            for(let i = 0; i < globals.slots.length; i++){
+                if(globals.player[playerNum][i].SlotIdentificator === card.slotIdentificator)
+                effectChecks++  
+            }
+
+            if(effectChecks < 8){
+                for(let i = 0; i < globals.player[playerNum].length; i++){
+                    if(globals.player[playerNum][i].name === card.name && globals.player[playerNum][i].state === CardState.DISCARD){
+                        for(let l = 0; l < globals.slots.length; l++){
+                            if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === card.slotIdentificator){
+
+                                card.xPos = globals.slots[i].xPos;
+                                card.yPos = globals.slots[i].yPos;
+                                card.state = CardState.GAME;
+                                card.showBack = false;
+                            }
+                        }
+
+                    }
+                }
+            }
             break;
         case Effect.SPY:
             break;
