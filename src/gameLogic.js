@@ -319,12 +319,27 @@ function updateCard(card) // Puede ser una global de estado o una constante
 }
 
 
-function discardCards(){
-    for(let i = 0; i < 2; i++){
-        for(let l = 0; l < globals.player[i].length; l++){
-            if(globals.player[i][l].state === CardState.DISCARD){
-                if(i === 0){
-                    globals.player[i][l].xPos = Player0_map_pos
+function discardCards()
+{
+    console.log("entra en funcion discardCards");
+    for(let i = 0; i < 2; i++)
+    {
+        for(let k = 0; k < globals.player[i].length; k++)
+        {
+            if(globals.player[i][k].state === CardState.DISCARD)
+            {
+                console.log("ENTRA EN EL IF");
+
+                if(i === 0)
+                {
+                    globals.player[i][k].xPos = Player0_map_pos.PLAYER0_DISCARD_XPOS;
+                    globals.player[i][k].yPos = Player0_map_pos.PLAYER0_DISCARD_YPOS;
+                }
+
+                else 
+                {   
+                    globals.player[i][k].xPos = Player1_map_pos.PLAYER1_DISCARD_XPOS;
+                    globals.player[i][k].yPos = Player1_map_pos.PLAYER1_DISCARD_YPOS;
                 }
             }
         }
@@ -1069,4 +1084,5 @@ export {
     distributeHandCards,
     detectCollisionBetweenMouseAndSlots,
     placeCard,
+    discardCards,
 }
