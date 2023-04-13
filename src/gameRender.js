@@ -493,13 +493,13 @@ function drawMessages()
         }
    }
 
-   if(globals.actionsCounter.player1 === 1 || globals.actionsCounter.player2 === 1)
+   if(globals.actionsCounter.player1 === 2 || globals.actionsCounter.player2 === 2)
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
         globals.ctx.fillText("Select a card and put it on the table", 60, 585);
    }
-   else if(globals.actionsCounter.player1 === 2 || globals.actionsCounter.player2 == 2)
+   else if(globals.actionsCounter.player1 === 1 || globals.actionsCounter.player2 == 1)
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
