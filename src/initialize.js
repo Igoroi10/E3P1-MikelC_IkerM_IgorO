@@ -821,12 +821,13 @@ function handPlayer1 ()
     const yPos      = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
     const xSize     = 75;
     const ySize     = 90;
+    const slotID    = SlotIdentificators.PLAYER1_HAND;
 
     let xPos = Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
 
     for (let i = 0; i < 12; i++)
     {
-        const handSlots = new GameZones(xPos, yPos, xSize, ySize)
+        const handSlots = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(handSlots);
         xPos += 75;
     }
@@ -838,12 +839,13 @@ function handPlayer2 ()
     const yPos      = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
     const xSize     = 75;
     const ySize     = 90;
+    const slotID    = SlotIdentificators.PLAYER0_HAND;
 
     let xPos = Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
 
     for (let i = 0; i < 12; i++)
     {
-        const handSlots = new GameZones(xPos, yPos, xSize, ySize)
+        const handSlots = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(handSlots);
         xPos += 75;
     }
@@ -957,8 +959,9 @@ function deckPlayer1()
     const yPos      = Player1_map_pos.PLAYER1_DECK_YPOS;
     const xSize     = 90;
     const ySize     = 100;
+    const slotID    = SlotIdentificators.PLAYER1_DECK
 
-    const deckSlot = new GameZones(xPos, yPos, xSize, ySize);
+    const deckSlot = new GameZones(xPos, yPos, xSize, ySize, slotID);
     globals.slots.push(deckSlot);
 }
 
@@ -968,8 +971,9 @@ function deckPlayer2()
     const yPos      = Player0_map_pos.PLAYER0_DECK_YPOS;
     const xSize     = 90;
     const ySize     = 100;
+    const slotID    = SlotIdentificators.PLAYER0_DECK
 
-    const deckSlot = new GameZones(xPos, yPos, xSize, ySize);
+    const deckSlot = new GameZones(xPos, yPos, xSize, ySize, slotID);
     globals.slots.push(deckSlot);
 }
 
