@@ -37,9 +37,11 @@ function playGame()
     updateSlots();
     
     updateCards();
+
     updateSelectedCard();
 
     detectCollisionBetweenMouseAndSlots();
+
     placeCard();
 
     updateTokenPlacement();
@@ -1012,6 +1014,7 @@ function createDistribution()
 
             globals.cards[i].xPos  = Player2HandxPos;
             globals.cards[i].yPos  = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
+            globals.cards[i].state = CardState.HAND;
             globals.player[0].push(globals.cards[i]); 
             Player2HandxPos += 75;
 
@@ -1026,8 +1029,10 @@ function createDistribution()
             // console.log("entra player 1");
             globals.cards[i].xPos  = Player1HandxPos;
             globals.cards[i].yPos  = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+            globals.cards[i].state = CardState.HAND;
             globals.player[1].push(globals.cards[i]);
             Player1HandxPos += 75;
+            
         }
 
         
@@ -1037,11 +1042,14 @@ function createDistribution()
 
 function updateTurn()
 {
+    console.log("entra en update");
+
     let player1 = 0;
     let player2 = 1;
 
     if (globals.turnState === Turn.PLAYER1)
-    {
+    {  
+        console.log("turno player1")
         // console.log("Entra en Turno Player 1");
         cardsHide(player2); // Ocultamos las cartas del jugador anterior
 
@@ -1061,26 +1069,32 @@ function updateTurn()
         console.log("No es turno de ninguno de los dos");
 }
 
-function cardsInHand(j)
+function cardsInHand(playerNum)
 {   
-    // console.log("Entra en cardsInHandP1");
-    let cardsInHand = 10; // FALTA UNA GLOBAL QUE SE ACTUALIZE PARA SABER LAS CARTAS DE LA MANO CONSTANTEMENTE
-
-    for (let i = 0; i < cardsInHand; i++)
+    console.log("Entra en cardsInHand")
+    for (let i = 0; i < globals.player[playerNum]; i++)
     {
-        // console.log(globals.player[0][i].showBack);
-        globals.player[j][i].showBack = false;
+        let card = globals.player[playerNum][i];
+        if(card.state === CardState.HAND){
+            console.log("Entra en if de hand")
+            card.showBack = false;
+        }
+
     }
 }
 
-function cardsHide(j)
+function cardsHide(playerNum)
 {
-    let cardsInHand = 10; // FALTA UNA GLOBAL QUE SE ACTUALIZE PARA SABER LAS CARTAS DE LA MANO CONSTANTEMENTE
-
-    for (let i = 0; i < cardsInHand; i++)
+    console.log("Entra en cardsHide")
+    for (let i = 0; i < globals.player[playerNum]; i++)
     {
-        // console.log(globals.player[0][i].showBack);
-        globals.player[j][i].showBack = true;
+        let card = globals.player[playerNum][i];
+
+        if(card.state === CardState.HAND){
+            console.log("Entra en if de hide")
+            card.showBack = true;
+        }
+
     }
 }
 
