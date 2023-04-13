@@ -22,8 +22,8 @@ export function btnStartDown ()
     
     //Ocultamos el boton de Start
     globals.buttonStart.style.visibility = "Hidden";
-    globals.buttonAdmin.style.visibility = "Hidden";
-    globals.buttonPlayer.style.visibility = "Hidden";
+    // globals.buttonAdmin.style.visibility = "Hidden";
+    // globals.buttonPlayer.style.visibility = "Hidden";
 
     document.getElementById('divCanvas').style.display = "block";
     document.getElementById('sectionLogIn').style.display = "none";

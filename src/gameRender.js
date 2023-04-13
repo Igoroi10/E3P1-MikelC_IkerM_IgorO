@@ -556,7 +556,7 @@ function drawMessages()
 function gameOverScreen()
 {
     const hostName = localStorage.getItem('izen_abizena');
-    if(globals.turnState !== 1 && globals.turnState !== 2)
+    if(globals.turnState !== Turn.PLAYER1 && globals.turnState !== Turn.PLAYER2)
     {
 
         globals.ctx.fillStyle = 'black';    
