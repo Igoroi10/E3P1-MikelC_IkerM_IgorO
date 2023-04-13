@@ -146,6 +146,7 @@ export default
 
     selectedCardId: -1,
     selectedCardId_Click: -1,
+    selectedSlotId: -1,
 
     actionsCounter: {
 
@@ -169,6 +170,7 @@ export default
     player: [[],[]],
 
     mouseSelectedCard: false,
+    mouseSelectedSlot: false,
 
 
 
