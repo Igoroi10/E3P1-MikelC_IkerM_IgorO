@@ -40,6 +40,8 @@ function playGame()
     detectCollisionBetweenMouseAndSlots();
     placeCard();
 
+    updateTokenPlacement();
+
     // checkEndRound();
 
 
@@ -624,7 +626,8 @@ function startingDeal(mode){
 
 function startingTokensDeal()
 {
-    for(let i = 0; i < 5; i++){
+    
+    for(let i = 0; i < globals.tokens.length; i++){
         if(i === 1)
         {
             globals.tokens[i].xPos  = Common_map_pos.PLAYER1_LIVE1_XPOS;
@@ -651,8 +654,25 @@ function startingTokensDeal()
         }
         else
         {
-            globals.tokens[i].xPos = Common_map_pos.PLAYER1_TURN_TOKEN_XPOS;        //está en fake
-            globals.tokens[i].yPos = 0;       //está en fake
+            globals.tokens[i].xPos = Common_map_pos.PLAYER1_TURN_TOKEN_XPOS;
+            globals.tokens[i].yPos = 0;
+        }
+    }
+ 
+}
+
+function updateTokenPlacement()
+{
+    for(let i = 0; i < globals.tokens.length; i++)
+    {
+        console.log(globals.turnState);
+        if(globals.turnState === Turn.PLAYER1)
+        {
+            globals.tokens[0].yPos = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
+        }
+        else if(globals.turnState === Turn.PLAYER2)
+        {
+            globals.tokens[0].yPos = Common_map_pos.PLAYER2_TURN_TOKEN_YPOS;
         }
     }
 }
