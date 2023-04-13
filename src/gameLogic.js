@@ -1,7 +1,7 @@
 import globals from "./globals.js";
-import { State, CardState, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player0_map_pos, Turn} from "./constants.js";
+import { State, CardState, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player0_map_pos, Turn, Common_map_pos, Type, CardCategory} from "./constants.js";
 import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
-import {detectCollisionBetweenMouseAndCards } from "./collision.js";
+import {detectCollisionBetweenMouseAndCards } from "./collision.js"; 
 import { selectEnemy, createList} from "./events.js";
 import { Card } from "./Card.js";
 
@@ -30,16 +30,19 @@ function update()
 function playGame()
 {
     // console.log("Turno: " + globals.turnState);
+    // console.log(globals.cards);
 
     updateTurn();
 
-    //updateSlots();
+    updateSlots();
     
     updateCards();
     updateSelectedCard();
 
     detectCollisionBetweenMouseAndSlots();
     placeCard();
+
+    updateTokenPlacement();
 
     // checkEndRound();
 
@@ -49,7 +52,7 @@ function playGame()
         // REPARTIR A LA MANO - Un jugador
         
 
-        console.log(globals.cards.length);
+        // console.log(globals.cards.length);
         // console.log(globals.player[0]);
         // console.log(globals.player[1]);
 
@@ -122,6 +125,7 @@ function checkStates(){
             // LLAMAR A LA FUNION STARTING DEAL y CAMBIAMOS EL ESTADO DEL JUEGO
             startingDeal(GameMode.NORMAL_MODE);
             distributeHandCards();
+            startingTokensDeal();
             
             globals.gameState = State.PLAYING;
            break; 
@@ -323,12 +327,27 @@ function updateCard(card) // Puede ser una global de estado o una constante
 }
 
 
-function discardCards(){
-    for(let i = 0; i < 2; i++){
-        for(let l = 0; l < globals.player[i].length; l++){
-            if(globals.player[i][l].state === CardState.DISCARD){
-                if(i === 0){
-                    globals.player[i][l].xPos = Player0_map_pos
+function discardCards()
+{
+    console.log("entra en funcion discardCards");
+    for(let i = 0; i < 2; i++)
+    {
+        for(let k = 0; k < globals.player[i].length; k++)
+        {
+            if(globals.player[i][k].state === CardState.DISCARD)
+            {
+                console.log("ENTRA EN EL IF");
+
+                if(i === 0)
+                {
+                    globals.player[i][k].xPos = Player0_map_pos.PLAYER0_DISCARD_XPOS;
+                    globals.player[i][k].yPos = Player0_map_pos.PLAYER0_DISCARD_YPOS;
+                }
+
+                else 
+                {   
+                    globals.player[i][k].xPos = Player1_map_pos.PLAYER1_DISCARD_XPOS;
+                    globals.player[i][k].yPos = Player1_map_pos.PLAYER1_DISCARD_YPOS;
                 }
             }
         }
@@ -800,7 +819,7 @@ function createPointersToken(array, number){
 function localStorageCheck(){
 
     if(localStorage.getItem("logged") === null){
-        console.log("no logged")
+        // console.log("no logged")
         globals.gameState = State.LOG_IN;
     }
 
@@ -870,6 +889,59 @@ function startingDeal(mode){
 
 }
 
+function startingTokensDeal()
+{
+    
+    for(let i = 0; i < globals.tokens.length; i++){
+        if(i === 1)
+        {
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER1_LIVE1_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER1_LIVE_YPOS;
+            globals.playerTokens[0].push(globals.tokens[i]); //Array que almacena las cartas para el player 1
+        }
+        else if(i === 2)
+        {
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER1_LIVE2_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER1_LIVE_YPOS;
+            globals.playerTokens[0].push(globals.tokens[i]); //Array que almacena las cartas para el player 2
+        }
+        else if(i === 3)
+        {
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER0_LIVE1_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER0_LIVE1_YPOS;
+            globals.playerTokens[1].push(globals.tokens[i]); //Array que almacena las cartas para el player 2
+        }
+        else if(i === 4)
+        {
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER0_LIVE2_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER0_LIVE1_YPOS;
+            globals.playerTokens[1].push(globals.tokens[i]); //Array que almacena las cartas para el player 2
+        }
+        else
+        {
+            globals.tokens[i].xPos = Common_map_pos.PLAYER1_TURN_TOKEN_XPOS;
+            globals.tokens[i].yPos = 0;
+        }
+    }
+ 
+}
+
+function updateTokenPlacement()
+{
+    for(let i = 0; i < globals.tokens.length; i++)
+    {
+        console.log(globals.turnState);
+        if(globals.turnState === Turn.PLAYER2)
+        {
+            globals.tokens[0].yPos = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
+        }
+        else if(globals.turnState === Turn.PLAYER1)
+        {
+            globals.tokens[0].yPos = Common_map_pos.PLAYER0_TURN_TOKEN_YPOS;
+        }
+    }
+}
+
 function shuffleDeck(deck){
 
     let currentIndex = deck.length;
@@ -892,6 +964,30 @@ function shuffleDeck(deck){
 
 function updateSlots(slot, card)
 {
+    // Mire a ver si slot esta vacio o no
+    // Asignarle el id de la carta en el globlas.cards la "i"
+    // Y asignarle a la carta el identificador de ese slot
+    
+    console.log(globals.cards[0].slotIdentificator)
+
+    for (let i = 0; i < globals.cards.length; i++)
+    {
+        for (let j = 0; j < globals.slots.length; j++)
+        {
+            if (globals.cards[i].xPos === globals.slots[j].xPos && globals.cards[i].yPos === globals.slots[j].yPos )
+            {
+                globals.cards[i].slotIdentificator = globals.slots[j].slotIdentificator;
+                globals.slots[j].placed_cards = i;
+            }
+
+            else
+            {
+                globals.cards[i].slotIdentificator = -1
+                globals.slots[j].placed_cards = -1;
+            }
+        }
+
+    }
 
 }
 
@@ -917,7 +1013,7 @@ function createDistribution()
             globals.cards[i].xPos  = Player2HandxPos;
             globals.cards[i].yPos  = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
             globals.player[0].push(globals.cards[i]); 
-            Player2HandxPos += 80;
+            Player2HandxPos += 75;
 
             // globals.cards[i].showBack = false;
 
@@ -931,7 +1027,7 @@ function createDistribution()
             globals.cards[i].xPos  = Player1HandxPos;
             globals.cards[i].yPos  = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
             globals.player[1].push(globals.cards[i]);
-            Player1HandxPos += 80;
+            Player1HandxPos += 75;
         }
 
         
@@ -1008,7 +1104,7 @@ function updateSelectedCard()
                 else
                     globals.selectedCardId_Click = -1;
 
-                    console.log(globals.selectedCardId_Click);
+                    // console.log(globals.selectedCardId_Click);
                 break;
             }
             else
@@ -1031,7 +1127,7 @@ function detectCollisionBetweenMouseAndSlots()
     // console.log(globals.action.mousePressed);
     if (true)
     {
-        console.log("Entra en if Slots")
+        // console.log("Entra en if Slots")
         for(let i = 0; i < globals.slots.length; ++i)
         {
             const slot = globals.slots[i];
@@ -1048,7 +1144,8 @@ function detectCollisionBetweenMouseAndSlots()
                 else
                     globals.selectedSlotId = -1;
 
-                    console.log("Slot: " + globals.selectedSlotId);
+                    // console.log("Slot: " + globals.selectedSlotId);
+                    // console.log("Slot: " + slot.slotIdentificator);
                 break;
             }
             else
@@ -1067,12 +1164,121 @@ function detectCollisionBetweenMouseAndSlots()
 
 function placeCard()
 {
+    // console.log(globals.cards[globals.selectedCardId_Click]);
     if(globals.selectedCardId_Click != -1 && globals.selectedSlotId != -1 )
     {
         const selectedCard      = globals.cards[globals.selectedCardId_Click];
         const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
-        selectedCard.xPos = selectedSlotId.xPos;
-        selectedCard.yPos = selectedSlotId.yPos;
+        const slotIdentificator = globals.slots[globals.selectedSlotId].slotIdentificator;
+        // console.log("Entrra en Place Card Slot: " + slotIdentificator);
+        // ==============
+        //     CLIMATE
+        // ==============
+        
+        if ( slotIdentificator === SlotIdentificators.CLIMATE_FIELD)
+        {   
+            if(selectedCard.categoryId === CardCategory.CLIMATE)
+            {
+                // console.log("Entra en doble if");
+                selectedCard.xPos = selectedSlotId.xPos;
+                selectedCard.yPos = selectedSlotId.yPos;
+            }
+            
+        }
+        
+        // PLAYER 1
+        if (globals.turnState === Turn.PLAYER2)
+        {
+            // ==============
+            //     UNITS
+            // ==============
+
+            //BUFFS PLAYER 1
+            if (slotIdentificator === SlotIdentificators.PLAYER1_B1 || slotIdentificator === SlotIdentificators.PLAYER1_B2 || slotIdentificator === SlotIdentificators.PLAYER1_B3)
+            {
+                if(selectedCard.categoryId === CardCategory.PERMAEFFECT)
+                {
+                    selectedCard.xPos = selectedSlotId.xPos;
+                    selectedCard.yPos = selectedSlotId.yPos;
+                }
+            }
+
+            //FIELDS PLAYER 1
+            else if (slotIdentificator === SlotIdentificators.PLAYER1_F1 || slotIdentificator === SlotIdentificators.PLAYER1_F2 || slotIdentificator === SlotIdentificators.PLAYER1_F3)
+            {
+                if(selectedCard.categoryId === CardCategory.UNIT)
+                {
+                    // METER IF DE TIPO CARTA:
+                    // CUEPRO A CUERPO
+                    if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
+                    {
+                        selectedCard.xPos = selectedSlotId.xPos;
+                        selectedCard.yPos = selectedSlotId.yPos;
+                    }
+
+                    // DISTANCIA 
+                    else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER1_F2)
+                    {
+                        selectedCard.xPos = selectedSlotId.xPos;
+                        selectedCard.yPos = selectedSlotId.yPos;
+                    }
+                    // ASEDIO
+                    else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
+                    {
+                        selectedCard.xPos = selectedSlotId.xPos;
+                        selectedCard.yPos = selectedSlotId.yPos;
+                    }
+
+                    
+                }
+            }        
+        }
+
+        //PLAYER 2
+        else if (globals.turnState === Turn.PLAYER1)
+        {
+            // ==============
+            //     UNITS
+            // ==============
+
+            //BUFFS PLAYER 2
+            if (slotIdentificator === SlotIdentificators.PLAYER0_B1 || slotIdentificator === SlotIdentificators.PLAYER0_B2 || slotIdentificator === SlotIdentificators.PLAYER0_B3)
+            {
+                if(selectedCard.categoryId === CardCategory.PERMAEFFECT)
+                {
+                    selectedCard.xPos = selectedSlotId.xPos;
+                    selectedCard.yPos = selectedSlotId.yPos;
+                }
+            }
+
+            //FIELDS PLAYER 2
+            else if (slotIdentificator === SlotIdentificators.PLAYER0_F1 || slotIdentificator === SlotIdentificators.PLAYER0_F2 || slotIdentificator === SlotIdentificators.PLAYER0_F3)
+            {
+                if(selectedCard.categoryId === CardCategory.UNIT)
+                {
+                    // METER IF DE TIPO CARTA:
+                     // CUEPRO A CUERPO
+                     if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
+                     {
+                         selectedCard.xPos = selectedSlotId.xPos;
+                         selectedCard.yPos = selectedSlotId.yPos;
+                     }
+ 
+                     // DISTANCIA 
+                     else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER0_F2)
+                     {
+                         selectedCard.xPos = selectedSlotId.xPos;
+                         selectedCard.yPos = selectedSlotId.yPos;
+                     }
+                     // ASEDIO
+                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
+                     {
+                         selectedCard.xPos = selectedSlotId.xPos;
+                         selectedCard.yPos = selectedSlotId.yPos;
+                     }
+                }
+            }        
+        }
     }
 }
 
@@ -1089,4 +1295,5 @@ export {
     distributeHandCards,
     detectCollisionBetweenMouseAndSlots,
     placeCard,
+    discardCards,
 }

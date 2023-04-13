@@ -35,8 +35,8 @@ function initHTMLelements()
     globals.buttonStart.addEventListener("mousedown",       btnStartDown,       false);
     globals.buttonStart.addEventListener("mouseover",       btnStartOver,       false);
     globals.buttonStart.addEventListener("mouseout",        btnStartOut,        false);
-    globals.buttonAdmin.addEventListener("mousedown",       btnStartAdmin,      false);
-    globals.buttonPlayer.addEventListener("mousedown",      btnStartPlayer,     false);
+    // globals.buttonAdmin.addEventListener("mousedown",       btnStartAdmin,      false);
+    // globals.buttonPlayer.addEventListener("mousedown",      btnStartPlayer,     false);
     globals.buttonTurn.addEventListener("mousedown",        btnStartTurn,       false);
     globals.buttonRound.addEventListener("mousedown",       btnEndRound,        false);
         for(let i = 0; i < globals.buttonLogout.length; i++)
@@ -280,7 +280,7 @@ function loadHandler()
 
 function logInHandler(event)
 {
-    console.log("Send Button Pressed");
+    // console.log("Send Button Pressed");
 
     const objectToSend = {
         emaila: globals.inputEmail.value,
@@ -289,7 +289,7 @@ function logInHandler(event)
     
     const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
 
-    console.log(dataToSend);
+    // console.log(dataToSend);
 
     //Ruta relativa al fichero que hace la petición (verifyUser.php)
     const url = "../server/routes/verifyUser.php";
@@ -331,13 +331,13 @@ function logInHandler(event)
 function manageLogin(userData)
 {
 
-    console.log("entra en manage");
+    // console.log("entra en manage");
     // console.log("email..." + userData.email + "...");
     // console.log("password..." + userData.password + "...");
 
     if (userData.emaila !== "")
     {
-        console.log("entraaaaaaaaaa");
+        // console.log("entraaaaaaaaaa");
         if(userData.rol === "admin"){
             globals.gameState = State.ADMIN_MENU;
             localStorageUpdate();
@@ -349,7 +349,7 @@ function manageLogin(userData)
             globals.gameState = State.PLAYER_MENU;
             localStorageUpdate();
             checkStates();
-            console.log("entra en el else");
+            // console.log("entra en el else");
         }
         //Usuario logueado
 
@@ -368,7 +368,7 @@ function manageLogin(userData)
 
     else
     {
-        console.log("entra en reseteo a login")
+        // console.log("entra en reseteo a login")
         // console.log("entra else");
         // console.log("entra error data");
         globals.gameState = State.LOG_IN;
@@ -391,7 +391,6 @@ function updateUserText(user)
     // console.log(user.error);
     if (user.emaila !== "" && user.pasahitza !== "")
     {
-        console.log("colocolo");
         // globals.lblSessionUser.innerHTML = "Logged in as: " + user.emaila + " " + user.pasahitza;
         globals.lblSessionUser.innerHTML = "Logged in as: " + user.emaila;
     }
@@ -407,6 +406,7 @@ function updateUserText(user)
 function createNormalDeck(){
     let cardsNeeded = 65;
     const normalMode = GameMode.NORMAL_MODE;
+    AddTokenCard();
     addPermaCards(normalMode);
     addInstaCards(normalMode);
 
@@ -425,11 +425,12 @@ function createExpertDeck(){
     addPermaCards(expertMode);
     addInstaCards(expertMode);
     addClimateCards();
+    AddTokenCard();
 
-    console.log("cards.length after addOneEach: " + globals.cards.length);
+    // console.log("cards.length after addOneEach: " + globals.cards.length);
 
     cardsNeeded -= globals.cards.length;
-    console.log("cardsNeeded after addOneOfEach: " + cardsNeeded);
+    // console.log("cardsNeeded after addOneOfEach: " + cardsNeeded);
 
     //Comentada Funcion - DA ERROR 
     addUnitCards(cardsNeeded);
@@ -442,7 +443,7 @@ function addOneOfEach(){
     for(let i = 0; i < globals.cardInfo.length; i++){
                 insertCard(i);
     }
-    console.log("fin de addOneEach");
+    // console.log("fin de addOneEach");
 }
 
 function insertCard(i){
@@ -502,18 +503,18 @@ function insertCard(i){
 
 
 function addClimateCards(){
-    console.log("Entra en addClimateCards");
+    // console.log("Entra en addClimateCards");
     for(let i = 0; i < CardQuantity.EXPERT_CLIMATE; i++){
         let randomChoice = Math.floor(Math.random() * (4 + 1));
         let checks = 0;
 
         for(let l = 0; l < globals.cardInfo.length; l++){
             if(globals.cardInfo[l].kategoria === "climate"){
-                console.log("entra en el de kategoria en clima")
+                // console.log("entra en el de kategoria en clima")
                 if(checks === randomChoice){
                     insertCard(l);
                     l = globals.cardInfo.length;
-                    console.log("añadido carta de clima")
+                    // console.log("añadido carta de clima")
                 } 
                 checks++;   
             }
@@ -522,23 +523,23 @@ function addClimateCards(){
 }
  
 function addPermaCards(mode){
-    console.log("Entra en addPermaCards");
+    // console.log("Entra en addPermaCards");
     let cardsToDraw;
     if(mode === GameMode.EXPERT_MODE)
         cardsToDraw = CardQuantity.EXPERT_PERMA;
     else
         cardsToDraw = CardQuantity.NORMAL_PERMA;
-        console.log(globals.cardInfo)
+        // console.log(globals.cardInfo)
     for(let i = 0; i < cardsToDraw; i++){
         let checks = 0;
 
         for(let l = 0; l < globals.cardInfo.length; l++){
 
             if(globals.cardInfo[l].kategoria === "permaeffect"){
-                console.log("entra en el de kategoria en perma")
+                // console.log("entra en el de kategoria en perma")
                 insertCard(l);
                 l = globals.cardInfo.length;
-                console.log("añadido carta perma")   
+                // console.log("añadido carta perma")   
                 checks++;
             }
         }
@@ -547,7 +548,7 @@ function addPermaCards(mode){
 
 
 function addInstaCards(mode){
-    console.log("Entra en addInstaCards");
+    // console.log("Entra en addInstaCards");
     let cardsToDraw;
     if(mode === GameMode.EXPERT_MODE)
         cardsToDraw = CardQuantity.EXPERT_INSTA;
@@ -561,12 +562,12 @@ function addInstaCards(mode){
         for(let l = 0; l < globals.cardInfo.length; l++){
 
             if(globals.cardInfo[l].kategoria === "instaeffect"){
-                console.log("entra en el de kategoria en insta")
+                // console.log("entra en el de kategoria en insta")
                 
                 if(checks === randomChoice){
                     insertCard(l);
                     l = globals.cardInfo.length;
-                    console.log("añadido carta de effect")
+                    // console.log("añadido carta de effect")
                 }    
                 checks++;
             }
@@ -580,25 +581,25 @@ function addUnitCards(cardsLeft){
     for(let i = 0; i < cardsLeft; i++){
         let chanceNumber = Math.random();
         if(chanceNumber < 0.10){
-            console.log("Entra en función para añadir carta ultra rara");
+            // console.log("Entra en función para añadir carta ultra rara");
             addUltraRareCard();
         }
 
         else if(chanceNumber < 0.40){
-            console.log("Entra en función para añadir carta rara");
+            // console.log("Entra en función para añadir carta rara");
             AddRareCard();
         }
 
         else{
-            console.log("Entra en función para añadir carta común");
+            // console.log("Entra en función para añadir carta común");
             AddCommonCard();
         }
 
 
-        console.log(i);
+        // console.log(i);
     }
 
-    console.log(cardsLeft);
+    // console.log(cardsLeft);
 
 }
 
@@ -606,11 +607,11 @@ function addUltraRareCard(){
     let ultraRareQuantity = 5;
     let randomChoice = Math.floor(Math.random() * (ultraRareQuantity + 1));
     let checks = 0;
-    console.log("randomChoice: " + randomChoice)
+    // console.log("randomChoice: " + randomChoice)
     for(let i = 0; i < globals.cardInfo.length; i++){
         if(globals.cardInfo[i].urritasun_karta === Rarity.ULTRA_RARE){
             if(checks === randomChoice){
-                console.log("Añade carta ultra rara");
+                // console.log("Añade carta ultra rara");
                 insertCard(i);
             }
             checks++;
@@ -623,11 +624,11 @@ function AddRareCard(){
     let rareQuantity = 8;
     let randomChoice = Math.floor(Math.random() * (rareQuantity + 1));
     let checks = 0;
-    console.log("randomChoice: " + randomChoice)
+    // console.log("randomChoice: " + randomChoice)
     for(let i = 0; i < globals.cardInfo.length; i++){
         if(globals.cardInfo[i].urritasun_karta === Rarity.RARE){
             if(checks === randomChoice){
-                console.log("Añade carta rara");
+                // console.log("Añade carta rara");
                 insertCard(i);
             }
             checks++;
@@ -638,18 +639,39 @@ function AddRareCard(){
 function AddCommonCard(){
     let commonQuantity = 12;
     let randomChoice = Math.floor(Math.random() * (commonQuantity + 1));
-    console.log("randomChoice: " + randomChoice)
+    // console.log("randomChoice: " + randomChoice)
     let checks = 0;
     for(let i = 0; i < globals.cardInfo.length; i++){
         if(globals.cardInfo[i].urritasun_karta === Rarity.COMMON){
             if(checks === randomChoice){
-                console.log("Añade carta común");
+                // console.log("Añade carta común");
                 insertCard(i);
             }
             checks++;
         }
     }
 
+}
+
+function AddTokenCard()
+{
+    globals.tokens.splice(0);
+    for(let i = 0; i < globals.cardInfo.length; i++)
+    {
+        if(globals.cardInfo[i].kategoria === 'token')
+        {
+            insertCard(i);
+            if(globals.cardInfo[i].izena === 'Health_token')
+            {
+                for(let j = 0; j < 3; j++)
+                {
+                    console.log(globals.cardInfo[i]);
+                    insertCard(i);
+                }
+            }
+        }
+    }
+    console.log(globals.tokens);
 }
 
 function initFakeCards ()
@@ -676,6 +698,8 @@ function initSlots()
     buffPlayer2();              // Buffs del Player 2 (3 secciones)     - DONE
     liveZone1();                // Slots de las vidas                   
     liveZone2();  
+    tokenZone1();
+    tokenZone2();
 
     //PLAYER 1
     slotDiscardP1();            // Slots de Descartes del Jugador 1     - DONE
@@ -748,8 +772,8 @@ function liveZone1()
     const xPos2     = Common_map_pos.PLAYER1_LIVE2_XPOS;
 
     const yPos      = Common_map_pos.PLAYER1_LIVE_YPOS;
-    const xSize     = 65;
-    const ySize     = 62;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
 
     const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize);
     const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize);
@@ -762,12 +786,34 @@ function liveZone2()
     const xPos2     = Common_map_pos.PLAYER0_LIVE2_XPOS;
 
     const yPos      = Common_map_pos.PLAYER0_LIVE1_YPOS;
-    const xSize     = 65;
-    const ySize     = 62;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
 
     const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize);
     const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize);
     globals.slots.push(slotLive1, slotLive2);
+}
+
+function tokenZone1()
+{
+    const xPos1     = Common_map_pos.PLAYER1_TURN_TOKEN_XPOS;
+    const yPos      = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
+
+    const slotToken = new GameZones(xPos1, yPos, xSize, ySize);
+    globals.slots.push(slotToken);
+}
+
+function tokenZone2()
+{
+    const xPos1     = Common_map_pos.PLAYER0_TURN_TOKEN_XPOS;
+    const yPos      = Common_map_pos.PLAYER0_TURN_TOKEN_YPOS;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
+
+    const slotToken = new GameZones(xPos1, yPos, xSize, ySize);
+    globals.slots.push(slotToken);
 }
 
 function handPlayer1 ()
@@ -775,12 +821,13 @@ function handPlayer1 ()
     const yPos      = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
     const xSize     = 75;
     const ySize     = 90;
+    const slotID    = SlotIdentificators.PLAYER1_HAND;
 
     let xPos = Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
 
     for (let i = 0; i < 12; i++)
     {
-        const handSlots = new GameZones(xPos, yPos, xSize, ySize)
+        const handSlots = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(handSlots);
         xPos += 75;
     }
@@ -792,12 +839,13 @@ function handPlayer2 ()
     const yPos      = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
     const xSize     = 75;
     const ySize     = 90;
+    const slotID    = SlotIdentificators.PLAYER0_HAND;
 
     let xPos = Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
 
     for (let i = 0; i < 12; i++)
     {
-        const handSlots = new GameZones(xPos, yPos, xSize, ySize)
+        const handSlots = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(handSlots);
         xPos += 75;
     }
@@ -911,8 +959,9 @@ function deckPlayer1()
     const yPos      = Player1_map_pos.PLAYER1_DECK_YPOS;
     const xSize     = 90;
     const ySize     = 100;
+    const slotID    = SlotIdentificators.PLAYER1_DECK
 
-    const deckSlot = new GameZones(xPos, yPos, xSize, ySize);
+    const deckSlot = new GameZones(xPos, yPos, xSize, ySize, slotID);
     globals.slots.push(deckSlot);
 }
 
@@ -922,8 +971,9 @@ function deckPlayer2()
     const yPos      = Player0_map_pos.PLAYER0_DECK_YPOS;
     const xSize     = 90;
     const ySize     = 100;
+    const slotID    = SlotIdentificators.PLAYER0_DECK
 
-    const deckSlot = new GameZones(xPos, yPos, xSize, ySize);
+    const deckSlot = new GameZones(xPos, yPos, xSize, ySize, slotID);
     globals.slots.push(deckSlot);
 }
 

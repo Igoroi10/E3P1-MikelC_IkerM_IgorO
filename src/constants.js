@@ -123,9 +123,9 @@ const Effect ={
 
 const Type ={
 
-    PHYSICAL:       1,
-    DISTANCE:       2,
-    SIEGE:          3,
+    PHYSICAL:       "1",
+    DISTANCE:       "2",
+    SIEGE:          "3",
 
 }
 
@@ -165,8 +165,6 @@ const CardSizes = {
 
     BIG_HEIGHT:             460,
     BIG_WIDTH:              360,
-    TOKEN_HEIGHT:           106,
-    TOKEN_WIDHT:            85
 
 }
 
@@ -207,8 +205,14 @@ const SlotIdentificators = {
 
     //Climate control
 
-    CLIMATE_FIELD:  12
+    CLIMATE_FIELD:  12, 
 
+
+    PLAYER1_HAND:   13,
+    PLAYER1_DECK:   14,
+    
+    PLAYER0_HAND:   15,
+    PLAYER0_DECK:   16,
 
 }
 
@@ -224,14 +228,17 @@ const Common_map_pos = {
     PLAYER1_CARD_XPOS:      120,
     PLAYER1_CARD_YPOS:      750,
 
-    PLAYER1_LIVE1_XPOS:     220,
-    PLAYER1_LIVE2_XPOS:     290,
+    PLAYER1_LIVE1_XPOS:     205,
+    PLAYER1_LIVE2_XPOS:     295,
     PLAYER1_LIVE_YPOS:      670,
-
+    PLAYER1_TURN_TOKEN_XPOS: 15,
+    PLAYER1_TURN_TOKEN_YPOS: 620,
     
-    PLAYER0_LIVE1_XPOS:     220,
-    PLAYER0_LIVE2_XPOS:     290,
+    PLAYER0_LIVE1_XPOS:     205,
+    PLAYER0_LIVE2_XPOS:     295,
     PLAYER0_LIVE1_YPOS:     230,
+    PLAYER0_TURN_TOKEN_XPOS: 15,
+    PLAYER0_TURN_TOKEN_YPOS: 190,
 }
 
 const Player1_map_pos = {
@@ -336,9 +343,9 @@ const Player0_map_pos = {
 
 //Player Turn
 const Turn ={
-    NO_TURN:    0,
-    PLAYER1:    1,
-    PLAYER2:    2,
+    PLAYER1:    0,
+    PLAYER2:    1,
+    NO_TURN:    2,
 
 }
 
