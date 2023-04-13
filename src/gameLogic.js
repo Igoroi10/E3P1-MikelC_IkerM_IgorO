@@ -647,7 +647,7 @@ function createPointersToken(array, number){
 function localStorageCheck(){
 
     if(localStorage.getItem("logged") === null){
-        console.log("no logged")
+        // console.log("no logged")
         globals.gameState = State.LOG_IN;
     }
 
@@ -855,7 +855,7 @@ function updateSelectedCard()
                 else
                     globals.selectedCardId_Click = -1;
 
-                    console.log(globals.selectedCardId_Click);
+                    // console.log(globals.selectedCardId_Click);
                 break;
             }
             else
