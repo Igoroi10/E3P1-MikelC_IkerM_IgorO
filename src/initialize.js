@@ -35,8 +35,8 @@ function initHTMLelements()
     globals.buttonStart.addEventListener("mousedown",       btnStartDown,       false);
     globals.buttonStart.addEventListener("mouseover",       btnStartOver,       false);
     globals.buttonStart.addEventListener("mouseout",        btnStartOut,        false);
-    globals.buttonAdmin.addEventListener("mousedown",       btnStartAdmin,      false);
-    globals.buttonPlayer.addEventListener("mousedown",      btnStartPlayer,     false);
+    // globals.buttonAdmin.addEventListener("mousedown",       btnStartAdmin,      false);
+    // globals.buttonPlayer.addEventListener("mousedown",      btnStartPlayer,     false);
     globals.buttonTurn.addEventListener("mousedown",        btnStartTurn,       false);
     globals.buttonRound.addEventListener("mousedown",       btnEndRound,        false);
         for(let i = 0; i < globals.buttonLogout.length; i++)
@@ -289,7 +289,7 @@ function logInHandler(event)
     
     const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
 
-    console.log(dataToSend);
+    // console.log(dataToSend);
 
     //Ruta relativa al fichero que hace la petición (verifyUser.php)
     const url = "../server/routes/verifyUser.php";
