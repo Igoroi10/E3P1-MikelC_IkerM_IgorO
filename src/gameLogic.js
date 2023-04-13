@@ -199,7 +199,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 card.previousState = CardState.HAND;      
             }
 
-            else if (globals.disscard)
+            else if (globals.discard)
             {
                 CardState.DISCARD;
                 card.previousState = CardState.HAND;    
@@ -235,7 +235,11 @@ function updateCard(card) // Puede ser una global de estado o una constante
             {
                 CardState.GAME;
             }
-            else;
+            //CASO DE COLOCAR AL PRINCIPIO Y REALIZAR EFECTO
+            else if(globals.action.clickSlot){ 
+                checkCardEffect(card);
+            }
+
 
             break;
 
@@ -306,6 +310,79 @@ function updateCard(card) // Puede ser una global de estado o una constante
     }
 }
 
+// =========================
+//     END OF UPDATE CARD
+// =========================
+
+
+
+// =========================
+//      EFFECTS
+// =========================
+
+function checkCardEffect(card){
+
+    switch(card.effect){
+        case Effect.MEDIC:
+            break;
+        case Effect.MORALE_BOOST:
+            break;
+        case Effect.MUSTER:
+            break;
+        case Effect.SPY:
+            break;
+        case Effect.TIGHT_BOND:
+            break;
+        case Effect.COMMANDERS_HORN:
+            break;
+        case Effect.DECOY:
+            break;
+        case Effect.SCORCH:
+            scorchEffect(card);
+            break;
+    //Estos a implementar en modo experto
+        case Effect.BITTING_FROST:
+            break;
+        case Effect.CLEAR_WEATHER:
+            break;
+        case Effect.IMPENETRABLE_FOG:
+            break;
+        case Effect.TORRENTIAL_RAIN:
+            break;
+        case Effect.SCORCH_INMUNE:
+            break;
+                                                            
+        
+    }
+
+}
+
+function scorchEffect(card){
+    const typeToScorch = card.type;
+    const fieldID      = card.SlotIdentificators;
+    let valueToScorch = -1;
+
+    for(let i = 0; i < globals.cards.length; i++){
+        let cardToCompare = globals.cards[i];
+        if(cardToCompare.type === typeToScorch && cardToCompare.SlotIdentificators !== fieldID){
+            if(cardToCompare.value > valueToScorch)
+                valueToScorch = cardToCompare.value;
+        }
+    }
+
+    for(let i = 0; i < globals.cards.length; i++){
+        let cardToCompare = globals.cards[i];
+        if(cardToCompare.value === valueToScorch && cardToCompare.SlotIdentificators !== fieldID){
+            cardToCompare.state = CardState.DISCARD;
+        }
+    }
+
+
+}
+
+// =========================
+//      END OF EFFECTS
+// =========================
 
 function updatePoints(){
     const player1 = 0;

@@ -101,24 +101,23 @@ const Rarity = {
 const Effect ={
     
     //HABILITY
-    SCORCH_INMUNE:      0,
-    SCORCH:             1,
-    COMMANDERS_HORN:    2,
-    DEMORALIZE:         3,
-    DECOY:              4,
+    SCORCH_INMUNE:      "12",
+    SCORCH:             "7",
+    COMMANDERS_HORN:    "5",
+    DECOY:              "6",
     
     //WEATHER 
-    BITTING_FROST:      5,
-    CLEAR_WEATHER:      6,
-    IMPENETRABLE_FOG:   7,
-    TORRENTIAL_RAIN:    8,
+    BITTING_FROST:      "8",
+    CLEAR_WEATHER:      "9",
+    IMPENETRABLE_FOG:   "10",
+    TORRENTIAL_RAIN:    "11",
     
     //UNIT HABILITY
-    MEDIC:              9,
-    MORALE_BOOST:       10,
-    MUSTER:             11,
-    SPY:                12,
-    TIGHT_BOND:         13,
+    MEDIC:              "0",
+    MORALE_BOOST:       "1",
+    MUSTER:             "2",
+    SPY:                "3",
+    TIGHT_BOND:         "4",
     
 }
 
