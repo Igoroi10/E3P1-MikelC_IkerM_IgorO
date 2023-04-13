@@ -364,7 +364,7 @@ function checkCardEffect(card){
 
 function scorchEffect(card){
     const typeToScorch = card.type;
-    const fieldID      = card.SlotIdentificators;
+    const fieldID      = card.slotIdentificators;
     let valueToScorch = -1;
 
     for(let i = 0; i < globals.cards.length; i++){
@@ -381,6 +381,8 @@ function scorchEffect(card){
             cardToCompare.state = CardState.DISCARD;
         }
     }
+    
+    card.state = CardState.DISCARD;
 }
 
 function medicEffect(card){
@@ -388,7 +390,7 @@ function medicEffect(card){
     let playerNum;
     let valueToMedic = -1;
 
-    if(card.SlotIdentificators < SlotIdentificators.PLAYER2_F1)
+    if(card.slotIdentificators < SlotIdentificators.PLAYER2_F1)
         playerNum = 0;
     else
         playerNum = 1;
@@ -407,13 +409,53 @@ function medicEffect(card){
     for(let i = 0; i < playerarray.length; i++){
         let cardToCompare = playerarray[i];
         if(cardToCompare.value === valueToMedic && cardToCompare.state === CardState.DISCARD){
-            checkIfSlotAvailable(Effect.MEDIC, typeToMedic)
+            cardToCompare.slotIdentificator = card.slotIdentificator;
+            checkIfSlotAvailable(Effect.MEDIC, cardToCompare, playerNum);
             i = playerarray.length;
         }
     }
 
 }
 
+
+function checkIfSlotAvailable(effect, card, playerNum){
+    switch(effect){
+        case Effect.MEDIC:
+            let checks = 0;
+            for(let i = 0; i < globals.slots.length; i++){
+                if(globals.player[playerNum][i].SlotIdentificator === card.slotIdentificator)
+                    checks++  
+            }
+
+            if(checks < 8){
+                for(let i = 0; i < globals.player[playerNum].length; i++){
+                    if(card.slotIdentificator === card.slotIdentificator && card.state === CardState.DISCARD){
+                        for(let l = 0; l < globals.slots.length; l++){
+                            if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator){
+
+                                card.xPos = globals.slots[i].xPos;
+                                card.yPos = globals.slots[i].yPos;
+                                card.state = CardState.GAME;
+                                card.showBack = false;
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            else 
+                card.slotIdentificators = -1;
+            break;
+
+        case Effect.MUSTER:
+            break;
+        case Effect.SPY:
+            break;
+        case Effect.DECOY:
+            break;
+    }
+}
 // =========================
 //      END OF EFFECTS
 // =========================
