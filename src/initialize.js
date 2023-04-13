@@ -8,7 +8,7 @@ import FakeCard from "./FakeCard.js";
 import { GameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
 import ImageSet from "./ImageSet.js";
-import { Player1_map_pos, Player2_map_pos, Common_map_pos, SlotIdentificators } from "./constants.js";
+import { Player1_map_pos, Player0_map_pos, Common_map_pos, SlotIdentificators } from "./constants.js";
 import { checkStates, localStorageUpdate } from "./gameLogic.js";
 
 
@@ -522,7 +522,7 @@ function addClimateCards(){
         }
     }
 }
-
+ 
 function addPermaCards(mode){
     console.log("Entra en addPermaCards");
     let cardsToDraw;
@@ -731,8 +731,8 @@ function tableSize()
 
 function slotDiscardP1 ()
 {
-    const xPos      = Player1_map_pos.PLAYER1_DISSCARD_XPOS;
-    const yPos      = Player1_map_pos.PLAYER1_DISSCARD_YPOS;
+    const xPos      = Player1_map_pos.PLAYER1_DISCARD_XPOS;
+    const yPos      = Player1_map_pos.PLAYER1_DISCARD_YPOS;
     const xSize     = 90;
     const ySize     = 100;
 
@@ -743,8 +743,8 @@ function slotDiscardP1 ()
 
 function slotDiscardP2 ()
 {
-    const xPos      = Player2_map_pos.PLAYER2_DISSCARD_XPOS;
-    const yPos      = Player2_map_pos.PLAYER2_DISSCARD_YPOS;
+    const xPos      = Player0_map_pos.PLAYER0_DISCARD_XPOS;
+    const yPos      = Player0_map_pos.PLAYER0_DISCARD_YPOS;
     const xSize     = 90;
     const ySize     = 100;
 
@@ -783,10 +783,10 @@ function liveZone1()
 
 function liveZone2()
 {
-    const xPos1     = Common_map_pos.PLAYER2_LIVE1_XPOS;
-    const xPos2     = Common_map_pos.PLAYER2_LIVE2_XPOS;
+    const xPos1     = Common_map_pos.PLAYER0_LIVE1_XPOS;
+    const xPos2     = Common_map_pos.PLAYER0_LIVE2_XPOS;
 
-    const yPos      = Common_map_pos.PLAYER2_LIVE1_YPOS;
+    const yPos      = Common_map_pos.PLAYER0_LIVE1_YPOS;
     const xSize     = CardSizes.TOKEN_WIDHT;
     const ySize     = CardSizes.TOKEN_HEIGHT;
 
@@ -836,11 +836,11 @@ function handPlayer1 ()
 
 function handPlayer2 ()
 {
-    const yPos      = Player2_map_pos.PLAYER2_CARDS_IN_HAND_YPOS;
+    const yPos      = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
     const xSize     = 75;
     const ySize     = 90;
 
-    let xPos = Player2_map_pos.PLAYER2_CARDS_IN_HAND1_XPOS;
+    let xPos = Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
 
     for (let i = 0; i < 12; i++)
     {
@@ -876,18 +876,18 @@ function buffPlayer1 ()
 function buffPlayer2 ()
 {
     // 3 Secciones 
-    const xPos      = Player2_map_pos.PLAYER2_BUFF1_XPOS;
+    const xPos      = Player0_map_pos.PLAYER0_BUFF1_XPOS;
 
-    const yPos1     = Player2_map_pos.PLAYER2_BUFF1_YPOS;
-    const yPos2     = Player2_map_pos.PLAYER2_BUFF2_YPOS;
-    const yPos3     = Player2_map_pos.PLAYER2_BUFF3_YPOS;
+    const yPos1     = Player0_map_pos.PLAYER0_BUFF1_YPOS;
+    const yPos2     = Player0_map_pos.PLAYER0_BUFF2_YPOS;
+    const yPos3     = Player0_map_pos.PLAYER0_BUFF3_YPOS;
 
     const xSize     = 100;
     const ySize     = 90;
 
-    const slotID1      = SlotIdentificators.PLAYER2_B1;
-    const slotID2      = SlotIdentificators.PLAYER2_B2;
-    const slotID3      = SlotIdentificators.PLAYER2_B3;
+    const slotID1      = SlotIdentificators.PLAYER0_B1;
+    const slotID2      = SlotIdentificators.PLAYER0_B2;
+    const slotID3      = SlotIdentificators.PLAYER0_B3;
 
     const slot_1_BuffPlayer2 = new GameZones(xPos, yPos1, xSize, ySize, slotID1);
     const slot_2_BuffPlayer2 = new GameZones(xPos, yPos2, xSize, ySize, slotID2);
@@ -929,11 +929,11 @@ function tableSection_Player2()
    // 3 Secciones - Fisico, Distancia, Asedio
     // 8 Slots 
     
-    let yPos        = Player2_map_pos.PLAYER2_TABLE_SECTION1_YPOS;
-    let xPos        = Player2_map_pos.PLAYER2_TABLE_SECTION1_XPOS;
+    let yPos        = Player0_map_pos.PLAYER0_TABLE_SECTION1_YPOS;
+    let xPos        = Player0_map_pos.PLAYER0_TABLE_SECTION1_XPOS;
     const xSize     = 87.5;
     const ySize     = 90;
-    let slotID    = SlotIdentificators.PLAYER2_F1 - 1;
+    let slotID    = SlotIdentificators.PLAYER0_F1 - 1;
     
     for (let i = 0; i < 3; i++)
     {
@@ -965,8 +965,8 @@ function deckPlayer1()
 
 function deckPlayer2()
 {
-    const xPos      = Player2_map_pos.PLAYER2_DECK_XPOS;
-    const yPos      = Player2_map_pos.PLAYER2_DECK_YPOS;
+    const xPos      = Player0_map_pos.PLAYER0_DECK_XPOS;
+    const yPos      = Player0_map_pos.PLAYER0_DECK_YPOS;
     const xSize     = 90;
     const ySize     = 100;
 

@@ -160,7 +160,7 @@ export default
     double_click: false,
     click: false,
     selected: false,
-    disscard: false,
+    DISCARD: false,
     otherSelected: false,
     decoy: false,
     medic: false,

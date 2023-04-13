@@ -4,19 +4,19 @@ class Card{
 
     constructor(frontImg, cardName, state, showBack, imageSet){
 
-        this.xPos           = 0;
-        this.yPos           = 0;
-        this.frontImg       = frontImg;
-        this.frameImg       = 3;
-        this.backImg        = 0;
-        this.cardName       = cardName;
-        this.categoryId     = CardCategory.TOKEN;
-        this.state          = state;
-        this.showBack       = showBack;
-        this.imageSet       = imageSet;
-        this.Size           = CardDisplaySize.SMALL;
-        this.previousState  = -1;
-
+        this.xPos               = 0;
+        this.yPos               = 0;
+        this.frontImg           = frontImg;
+        this.frameImg           = 3;
+        this.backImg            = 0;
+        this.cardName           = cardName;
+        this.categoryId         = CardCategory.TOKEN;
+        this.state              = state;
+        this.showBack           = showBack;
+        this.imageSet           = imageSet;
+        this.Size               = CardDisplaySize.SMALL;
+        this.previousState      = -1;
+        this.slotIdentificator  = -1
     }
 }
 
