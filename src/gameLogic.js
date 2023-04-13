@@ -668,7 +668,7 @@ function createDistribution()
             globals.cards[i].xPos  = Player2HandxPos;
             globals.cards[i].yPos  = Player2_map_pos.PLAYER2_CARDS_IN_HAND_YPOS;
             globals.player[0].push(globals.cards[i]); 
-            Player2HandxPos += 80;
+            Player2HandxPos += 75;
 
             // globals.cards[i].showBack = false;
 
@@ -682,7 +682,7 @@ function createDistribution()
             globals.cards[i].xPos  = Player1HandxPos;
             globals.cards[i].yPos  = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
             globals.player[1].push(globals.cards[i]);
-            Player1HandxPos += 80;
+            Player1HandxPos += 75;
         }
 
         
