@@ -699,6 +699,8 @@ function initSlots()
     buffPlayer2();              // Buffs del Player 2 (3 secciones)     - DONE
     liveZone1();                // Slots de las vidas                   
     liveZone2();  
+    tokenZone1();
+    tokenZone2();
 
     //PLAYER 1
     slotDiscardP1();            // Slots de Descartes del Jugador 1     - DONE
@@ -791,6 +793,28 @@ function liveZone2()
     const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize);
     const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize);
     globals.slots.push(slotLive1, slotLive2);
+}
+
+function tokenZone1()
+{
+    const xPos1     = Common_map_pos.PLAYER1_TURN_TOKEN_XPOS;
+    const yPos      = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
+
+    const slotToken = new GameZones(xPos1, yPos, xSize, ySize);
+    globals.slots.push(slotToken);
+}
+
+function tokenZone2()
+{
+    const xPos1     = Common_map_pos.PLAYER2_TURN_TOKEN_XPOS;
+    const yPos      = Common_map_pos.PLAYER2_TURN_TOKEN_YPOS;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
+
+    const slotToken = new GameZones(xPos1, yPos, xSize, ySize);
+    globals.slots.push(slotToken);
 }
 
 function handPlayer1 ()
