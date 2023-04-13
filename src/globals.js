@@ -169,6 +169,8 @@ export default
 
     player: [[],[]],
 
+    playerTokens: [[],[]],
+
     mouseSelectedCard: false,
     mouseSelectedSlot: false,
 
