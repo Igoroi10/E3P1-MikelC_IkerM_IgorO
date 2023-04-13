@@ -406,6 +406,7 @@ function updateUserText(user)
 function createNormalDeck(){
     let cardsNeeded = 65;
     const normalMode = GameMode.NORMAL_MODE;
+    AddTokenCard();
     addPermaCards(normalMode);
     addInstaCards(normalMode);
 
@@ -424,6 +425,7 @@ function createExpertDeck(){
     addPermaCards(expertMode);
     addInstaCards(expertMode);
     addClimateCards();
+    AddTokenCard();
 
     // console.log("cards.length after addOneEach: " + globals.cards.length);
 
@@ -651,6 +653,27 @@ function AddCommonCard(){
 
 }
 
+function AddTokenCard()
+{
+    globals.tokens.splice(0);
+    for(let i = 0; i < globals.cardInfo.length; i++)
+    {
+        if(globals.cardInfo[i].kategoria === 'token')
+        {
+            insertCard(i);
+            if(globals.cardInfo[i].izena === 'Health_token')
+            {
+                for(let j = 0; j < 3; j++)
+                {
+                    console.log(globals.cardInfo[i]);
+                    insertCard(i);
+                }
+            }
+        }
+    }
+    console.log(globals.tokens);
+}
+
 function initFakeCards ()
 {
     fakeCardCreation_1;
@@ -675,6 +698,8 @@ function initSlots()
     buffPlayer2();              // Buffs del Player 2 (3 secciones)     - DONE
     liveZone1();                // Slots de las vidas                   
     liveZone2();  
+    tokenZone1();
+    tokenZone2();
 
     //PLAYER 1
     slotDiscardP1();            // Slots de Descartes del Jugador 1     - DONE
@@ -747,8 +772,8 @@ function liveZone1()
     const xPos2     = Common_map_pos.PLAYER1_LIVE2_XPOS;
 
     const yPos      = Common_map_pos.PLAYER1_LIVE_YPOS;
-    const xSize     = 65;
-    const ySize     = 62;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
 
     const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize);
     const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize);
@@ -761,12 +786,34 @@ function liveZone2()
     const xPos2     = Common_map_pos.PLAYER0_LIVE2_XPOS;
 
     const yPos      = Common_map_pos.PLAYER0_LIVE1_YPOS;
-    const xSize     = 65;
-    const ySize     = 62;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
 
     const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize);
     const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize);
     globals.slots.push(slotLive1, slotLive2);
+}
+
+function tokenZone1()
+{
+    const xPos1     = Common_map_pos.PLAYER1_TURN_TOKEN_XPOS;
+    const yPos      = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
+
+    const slotToken = new GameZones(xPos1, yPos, xSize, ySize);
+    globals.slots.push(slotToken);
+}
+
+function tokenZone2()
+{
+    const xPos1     = Common_map_pos.PLAYER0_TURN_TOKEN_XPOS;
+    const yPos      = Common_map_pos.PLAYER0_TURN_TOKEN_YPOS;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
+
+    const slotToken = new GameZones(xPos1, yPos, xSize, ySize);
+    globals.slots.push(slotToken);
 }
 
 function handPlayer1 ()

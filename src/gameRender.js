@@ -34,8 +34,9 @@ function drawGame()
     }
 
     renderCards();
-    renderBigCard();
     drawMessages();
+    drawTokens();
+    renderBigCard();
     gameOverScreen();
 }
 
@@ -72,6 +73,14 @@ function displayCards(){
 
         xPos = 5;
         yPos += 120;
+    }
+}
+
+function drawTokens()
+{
+    for(let i = 0; i < globals.tokens.length; i++)
+    {
+        renderCard(globals.tokens[i]);
     }
 }
 
@@ -189,7 +198,7 @@ function renderCard(card){
     else{
         //Imagen de fondo
         globals.ctx.drawImage(
-            globals.assets.card_reverse[cards[i].reverse],                     //archivo de la imagen
+            globals.assets.front_img[card.frontImg],                     //archivo de la imagen
             0, 0,                                                    //Posición inicial x e y 
             CardSizes.BIG_WIDTH, CardSizes.BIG_HEIGHT, 
             card.xPos, card.yPos,                                   //fin de x e y
@@ -416,7 +425,6 @@ function renderSlots(slot)
 {
     // console.log("Entra en RenderSlots");
     slot.placed_cards = false;
-    // console.log(slot.placed_cards);
 }
 
 function drawNames()

@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { State, CardState, SlotIdentificators, CardCategory, Effect, GameMode, Player1_map_pos, Player0_map_pos, Turn, Type} from "./constants.js";
+import { State, CardState, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player0_map_pos, Turn, Common_map_pos, Type, CardCategory} from "./constants.js";
 import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js"; 
 import { selectEnemy, createList} from "./events.js";
@@ -41,6 +41,8 @@ function playGame()
 
     detectCollisionBetweenMouseAndSlots();
     placeCard();
+
+    updateTokenPlacement();
 
     // checkEndRound();
 
@@ -123,6 +125,7 @@ function checkStates(){
             // LLAMAR A LA FUNION STARTING DEAL y CAMBIAMOS EL ESTADO DEL JUEGO
             startingDeal(GameMode.NORMAL_MODE);
             distributeHandCards();
+            startingTokensDeal();
             
             globals.gameState = State.PLAYING;
            break; 
@@ -732,6 +735,59 @@ function startingDeal(mode){
 
 }
 
+function startingTokensDeal()
+{
+    
+    for(let i = 0; i < globals.tokens.length; i++){
+        if(i === 1)
+        {
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER1_LIVE1_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER1_LIVE_YPOS;
+            globals.playerTokens[0].push(globals.tokens[i]); //Array que almacena las cartas para el player 1
+        }
+        else if(i === 2)
+        {
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER1_LIVE2_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER1_LIVE_YPOS;
+            globals.playerTokens[0].push(globals.tokens[i]); //Array que almacena las cartas para el player 2
+        }
+        else if(i === 3)
+        {
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER0_LIVE1_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER0_LIVE1_YPOS;
+            globals.playerTokens[1].push(globals.tokens[i]); //Array que almacena las cartas para el player 2
+        }
+        else if(i === 4)
+        {
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER0_LIVE2_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER0_LIVE1_YPOS;
+            globals.playerTokens[1].push(globals.tokens[i]); //Array que almacena las cartas para el player 2
+        }
+        else
+        {
+            globals.tokens[i].xPos = Common_map_pos.PLAYER1_TURN_TOKEN_XPOS;
+            globals.tokens[i].yPos = 0;
+        }
+    }
+ 
+}
+
+function updateTokenPlacement()
+{
+    for(let i = 0; i < globals.tokens.length; i++)
+    {
+        console.log(globals.turnState);
+        if(globals.turnState === Turn.PLAYER2)
+        {
+            globals.tokens[0].yPos = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
+        }
+        else if(globals.turnState === Turn.PLAYER1)
+        {
+            globals.tokens[0].yPos = Common_map_pos.PLAYER0_TURN_TOKEN_YPOS;
+        }
+    }
+}
+
 function shuffleDeck(deck){
 
     let currentIndex = deck.length;
@@ -934,6 +990,7 @@ function detectCollisionBetweenMouseAndSlots()
                 else
                     globals.selectedSlotId = -1;
 
+                    // console.log("Slot: " + globals.selectedSlotId);
                     // console.log("Slot: " + slot.slotIdentificator);
                 break;
             }
