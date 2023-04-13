@@ -771,8 +771,8 @@ function liveZone1()
     const xPos2     = Common_map_pos.PLAYER1_LIVE2_XPOS;
 
     const yPos      = Common_map_pos.PLAYER1_LIVE_YPOS;
-    const xSize     = 65;
-    const ySize     = 62;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
 
     const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize);
     const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize);
@@ -785,8 +785,8 @@ function liveZone2()
     const xPos2     = Common_map_pos.PLAYER2_LIVE2_XPOS;
 
     const yPos      = Common_map_pos.PLAYER2_LIVE1_YPOS;
-    const xSize     = 65;
-    const ySize     = 62;
+    const xSize     = CardSizes.TOKEN_WIDHT;
+    const ySize     = CardSizes.TOKEN_HEIGHT;
 
     const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize);
     const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize);
