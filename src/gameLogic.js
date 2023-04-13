@@ -228,6 +228,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
             else if (globals.decoy)
             {
+                checkIfSlotAvailable(Effect.DECOY, card, globals.turnState)
                 CardState.HAND;
             }
             else if (globals.double_click)
@@ -445,6 +446,9 @@ function medicEffect(card){
 }
 
 function decoyEffect(card){
+    globals.decoy = true;
+
+    card.state = CardState.DISCARD;
 
 }
 
@@ -541,6 +545,29 @@ function checkIfSlotAvailable(effect, card, playerNum){
         case Effect.SPY:
             break;
         case Effect.DECOY:
+            let decoyChecks = 0;
+            let handIdentificator;
+
+            if(playerNum === 0)
+                handIdentificator = SlotIdentificator.PLAYER0_HAND;
+            else
+            handIdentificator = SlotIdentificator.PLAYER1_HAND;
+
+            for(let i = 0; i < globals.slots.length; i++){
+                if(globals.player[playerNum][i].slotIdentificator === handIdentificator)
+                decoyChecks++  
+            }
+        
+            if(decoyChecks < 12){
+
+                if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === handIdentificator){
+
+                    card.xPos = globals.slots[i].xPos;
+                    card.yPos = globals.slots[i].yPos;
+                    card.state = CardState.HAND;
+                    card.showBack = false;
+                }
+            }
             break;
     }
 }
