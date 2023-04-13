@@ -3,6 +3,7 @@ import { State, CardState, SlotIdentificators, Effect, GameMode, Player1_map_pos
 import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js";
 import { selectEnemy, createList} from "./events.js";
+import { Card } from "./Card.js";
 
 function update()
 {
@@ -327,6 +328,7 @@ function checkCardEffect(card){
 
     switch(card.effect){
         case Effect.MEDIC:
+            medicEffect(card);
             break;
         case Effect.MORALE_BOOST:
             break;
@@ -367,7 +369,7 @@ function scorchEffect(card){
 
     for(let i = 0; i < globals.cards.length; i++){
         let cardToCompare = globals.cards[i];
-        if(cardToCompare.type === typeToScorch && cardToCompare.SlotIdentificators !== fieldID){
+        if(cardToCompare.type === typeToScorch && cardToCompare.SlotIdentificators !== fieldID && cardToCompare.state === CardState.GAME){
             if(cardToCompare.value > valueToScorch)
                 valueToScorch = cardToCompare.value;
         }
@@ -375,11 +377,40 @@ function scorchEffect(card){
 
     for(let i = 0; i < globals.cards.length; i++){
         let cardToCompare = globals.cards[i];
-        if(cardToCompare.value === valueToScorch && cardToCompare.SlotIdentificators !== fieldID){
+        if(cardToCompare.value === valueToScorch && cardToCompare.SlotIdentificators !== fieldID  && cardToCompare.state === CardState.GAME){
             cardToCompare.state = CardState.DISCARD;
         }
     }
+}
 
+function medicEffect(card){
+    const typeToMedic = card.type;
+    let playerNum;
+    let valueToMedic = -1;
+
+    if(card.SlotIdentificators < SlotIdentificators.PLAYER2_F1)
+        playerNum = 0;
+    else
+        playerNum = 1;
+
+    const playerarray = globals.player[playerNum];
+
+    for(let i = 0; i < playerarray.length; i++){
+        let cardToCompare = playerarray[i];
+
+        if(cardToCompare.type === typeToMedic && cardToCompare.state === CardState.DISCARD){
+            if(cardToCompare.value > valueToMedic)
+                valueToScorch = cardToCompare.value;
+        }
+    }
+
+    for(let i = 0; i < playerarray.length; i++){
+        let cardToCompare = playerarray[i];
+        if(cardToCompare.value === valueToMedic && cardToCompare.state === CardState.DISCARD){
+            checkIfSlotAvailable(Effect.MEDIC, typeToMedic)
+            i = playerarray.length;
+        }
+    }
 
 }
 
