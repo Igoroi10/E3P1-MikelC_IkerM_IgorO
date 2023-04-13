@@ -34,7 +34,7 @@ function playGame()
 
     updateTurn();
 
-    //updateSlots();
+    updateSlots();
     
     updateCards();
     updateSelectedCard();
@@ -739,6 +739,30 @@ function shuffleDeck(deck){
 
 function updateSlots(slot, card)
 {
+    // Mire a ver si slot esta vacio o no
+    // Asignarle el id de la carta en el globlas.cards la "i"
+    // Y asignarle a la carta el identificador de ese slot
+    
+    console.log(globals.cards[0].slotIdentificator)
+
+    for (let i = 0; i < globals.cards.length; i++)
+    {
+        for (let j = 0; j < globals.slots.length; j++)
+        {
+            if (globals.cards[i].xPos === globals.slots[j].xPos && globals.cards[i].yPos === globals.slots[j].yPos )
+            {
+                globals.cards[i].slotIdentificator = globals.slots[j].slotIdentificator;
+                globals.slots[j].placed_cards = i;
+            }
+
+            else
+            {
+                globals.cards[i].slotIdentificator = -1
+                globals.slots[j].placed_cards = -1;
+            }
+        }
+
+    }
 
 }
 
