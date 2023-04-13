@@ -416,7 +416,10 @@ function renderSlots(slot)
 {
     // console.log("Entra en RenderSlots");
     slot.placed_cards = false;
-    // console.log(slot.placed_cards);
+    globals.ctx.font = '18px magicmedieval'; 
+    globals.ctx.fillStyle = 'white';    
+    globals.ctx.fillText(globals.tokens, 500, 500); 
+    console.log(globals.tokens);
 }
 
 function drawNames()

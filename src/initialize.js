@@ -407,6 +407,7 @@ function updateUserText(user)
 function createNormalDeck(){
     let cardsNeeded = 65;
     const normalMode = GameMode.NORMAL_MODE;
+    AddTokenCard();
     addPermaCards(normalMode);
     addInstaCards(normalMode);
 
@@ -425,6 +426,7 @@ function createExpertDeck(){
     addPermaCards(expertMode);
     addInstaCards(expertMode);
     addClimateCards();
+    AddTokenCard();
 
     console.log("cards.length after addOneEach: " + globals.cards.length);
 
@@ -650,6 +652,27 @@ function AddCommonCard(){
         }
     }
 
+}
+
+function AddTokenCard()
+{
+    globals.tokens.splice(0);
+    for(let i = 0; i < globals.cardInfo.length; i++)
+    {
+        if(globals.cardInfo[i].kategoria === 'token')
+        {
+            insertCard(i);
+            if(globals.cardInfo[i].izena === 'Health_token')
+            {
+                for(let j = 0; j < 3; j++)
+                {
+                    console.log(globals.cardInfo[i]);
+                    insertCard(i);
+                }
+            }
+        }
+    }
+    console.log(globals.tokens);
 }
 
 function initFakeCards ()
