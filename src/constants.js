@@ -123,9 +123,9 @@ const Effect ={
 
 const Type ={
 
-    PHYSICAL:       1,
-    DISTANCE:       2,
-    SIEGE:          3,
+    PHYSICAL:       "1",
+    DISTANCE:       "2",
+    SIEGE:          "3",
 
 }
 
@@ -336,9 +336,9 @@ const Player2_map_pos = {
 
 //Player Turn
 const Turn ={
-    NO_TURN:    0,
-    PLAYER1:    1,
-    PLAYER2:    2,
+    PLAYER1:    0,
+    PLAYER2:    1,
+    NO_TURN:    2,
 
 }
 
