@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import { State, CardState, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player2_map_pos, Turn} from "./constants.js";
-import { createExpertDeck, createNormalDeck, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
+import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards } from "./collision.js";
 import { selectEnemy, createList} from "./events.js";
 
@@ -36,6 +36,9 @@ function playGame()
     
     updateCards();
     updateSelectedCard();
+
+    detectCollisionBetweenMouseAndSlots();
+    placeCard();
 
     // checkEndRound();
 
@@ -696,6 +699,57 @@ function updateSelectedCard()
 
 }
 
+function detectCollisionBetweenMouseAndSlots()
+{
+    // console.log("Entra en funcion Colision Slots")
+    // console.log(globals.action.mousePressed);
+    if (true)
+    {
+        console.log("Entra en if Slots")
+        for(let i = 0; i < globals.slots.length; ++i)
+        {
+            const slot = globals.slots[i];
+            const xSize = 80;
+            const ySize = 100;
+        
+            if(globals.mouse.x < (slot.xPos + xSize) && globals.mouse.x >= slot.xPos && globals.mouse.y < (slot.yPos + ySize) && globals.mouse.y > slot.yPos)
+            {
+                // console.log("Entra if");
+                globals.mouseSelectedSlot = true;
+                
+                if(globals.selectedSlotId === -1)
+                    globals.selectedSlotId = i;
+                else
+                    globals.selectedSlotId = -1;
+
+                    console.log("Slot: " + globals.selectedSlotId);
+                break;
+            }
+            else
+            {
+                globals.mouseSelectedSlot = false; 
+                globals.selectedSlotId = -1;
+            }
+            
+
+            globals.action.mousePressed = false;
+        }
+    }
+    
+
+}
+
+function placeCard()
+{
+    if(globals.selectedCardId_Click != -1 && globals.selectedSlotId != -1 )
+    {
+        const selectedCard      = globals.cards[globals.selectedCardId_Click];
+        const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
+        selectedCard.xPos = selectedSlotId.xPos;
+        selectedCard.yPos = selectedSlotId.yPos;
+    }
+}
+
 
 
 export {
@@ -707,4 +761,6 @@ export {
     createExpertDeck,
     startingDeal,
     distributeHandCards,
+    detectCollisionBetweenMouseAndSlots,
+    placeCard,
 }
