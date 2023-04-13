@@ -145,6 +145,7 @@ export default
     selectedEnemy: "",
 
     selectedCardId: -1,
+    selectedCardId_Click: -1,
 
     actionsCounter: {
 
@@ -166,6 +167,8 @@ export default
     effectFinished: false,
 
     player: [[],[]],
+
+    mouseSelectedCard: false,
 
 
 

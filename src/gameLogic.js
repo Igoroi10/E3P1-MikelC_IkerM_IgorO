@@ -35,6 +35,7 @@ function playGame()
     //updateSlots();
     
     updateCards();
+    updateSelectedCard();
 
     // checkEndRound();
 
@@ -175,11 +176,10 @@ function updateCard(card) // Puede ser una global de estado o una constante
     switch (card.state)  // Estado de la carta
     {
         case CardState.DECK:
-            console.log("entra en deck");
             if(globals.draw)                        // Boleana globl que indica el estado de la carta
             {
-                console.log("Entra en if DECK");
-                CardState.HAND;                          // Cambiamos el Estado
+                CardState.HAND;  
+                card.previousState = CardState.DECK;                        // Cambiamos el Estado
             }
             else;
 
@@ -187,23 +187,22 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 
         case CardState.HAND:
-            console.log("entra en hand");
             if(globals.double_click)
             {
-                console.log("Entra en if HAND");
                 CardState.DOUBLE_CLICK;
+                card.previousState = CardState.HAND;      
             }
 
             else if(globals.detectCollisionBetweenMouseAndCards && !globals.selected)
             {
-                console.log("Entra en ElseIf 1");
                 CardState.HOVER;
+                card.previousState = CardState.HAND;      
             }
 
             else if (globals.disscard)
             {
-                console.log("Entra en ElseIf 2");
-                CardState.DISSCARD;
+                CardState.DISCARD;
+                card.previousState = CardState.HAND;    
             }
             else;
 
@@ -211,7 +210,6 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 
         case CardState.DOUBLE_CLICK:
-            console.log("entra en double_click");
             //gestion de doble click - Entra a todos los estados excepto HOVER
 
 
@@ -219,29 +217,23 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 
         case CardState.SELECTED:
-            console.log("entra en selected");
             if(globals.otherSelected)
             {
-                console.log("entar en other selected");
-                //quitar la carta seleccionada de selected
-                // State. Previous State
+                card.state = card.previousState;
             }
 
             else if (globals.decoy)
             {
-                console.log("Entra en decoy");
                 CardState.HAND;
             }
             else if (globals.double_click)
             {
-                console.log("entra en double_click");
                 CardState.DOUBLE_CLICK;
             }
 
             else if (globals.medic)
             {
-                console.log("Entra en medic");
-                CardState.PLAYED
+                CardState.GAME;
             }
             else;
 
@@ -249,23 +241,19 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 
         case CardState.HOVER:
-            console.log("entra en hover");
             if(!globals.detectCollisionBetweenMouseAndCards)
             {
-                console.log("entra en collision");
-                //Previous State
+                card.state = card.previousState;
             }
 
-            else if (globals.click)
+            else if (globals.action.click)
             {
-                console.log("entra en click");
-                CardState.SELECTED;
+                card.state = CardState.SELECTED;
             }
 
             else if (globals.double_click)
             {
-                console.log("entra en double click");
-                CardState.DOUBLE_CLICK;
+                card.state = CardState.DOUBLE_CLICK;
             }
             else;
 
@@ -273,46 +261,38 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 
         case CardState.GAME:
-            console.log("entra en played");
             if (globals.checkBothPlayerRound)
             {
-                console.log("entra en endRound");
-                CardState.DISSCARD;
+                CardState.DISCARD;
             }
 
             else if (globals.scorch)
             {
-                console.log("entra en discard");
-                CardState.DISSCARD;
+                CardState.DISCARD;
             }
 
             else if(globals.decoy)
             {
-                console.log("entra en decoy");
                 CardState.SELECTED;
             }
 
             else if(globals.inmediateEffect && globals.effectFinished)
             {
-                console.log("entra en effect && effect finished");
-                CardState.DISSCARD;
+                CardState.DISCARD;
             }
             else;
 
             break;
 
 
-        case state.DISSCARD:
-            console.log("entra en disscard");
-            if (globals.medic)
+        case CardState.DISCARD:
+            if (globals.medic && globals.action.click)
             {
-                console.log("entra en medic");
                 CardState.SELECTED;
             }
 
             else if(globals.double_click)
             {
-                console.log("entra en double click");
                 CardState.DOUBLE_CLICK;
             }
             else;
@@ -677,6 +657,43 @@ function cardsHide(j)
         // console.log(globals.player[0][i].showBack);
         globals.player[j][i].showBack = true;
     }
+}
+
+function updateSelectedCard()
+{
+    if (globals.action.mousePressed)
+    {
+        for(let i = 0; i < globals.cards.length; ++i)
+        {
+            const card = globals.cards[i];
+            const xSize = 80;
+            const ySize = 100;
+        
+            if(globals.mouse.x < (card.xPos + xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < (card.yPos + ySize) && globals.mouse.y > card.yPos)
+            {
+                // console.log("Entra if");
+                globals.mouseSelectedCard = true;
+                
+                if(globals.selectedCardId_Click === -1)
+                    globals.selectedCardId_Click = i;
+                else
+                    globals.selectedCardId_Click = -1;
+
+                    console.log(globals.selectedCardId_Click);
+                break;
+            }
+            else
+            {
+                globals.mouseSelectedCard = false; 
+                globals.selectedCardId_Click = -1;
+            }
+            
+
+            globals.action.mousePressed = false;
+        }
+    }
+    
+
 }
 
 
