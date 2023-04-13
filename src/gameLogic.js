@@ -457,7 +457,7 @@ function decoyEffect(card){
 }
 
 function spyEffect(card){
-
+    checkIfSlotAvailable(Effect.SPY, card, globals.turnState)
 }
 
 function musterEffect(card){
@@ -547,6 +547,61 @@ function checkIfSlotAvailable(effect, card, playerNum){
             }
             break;
         case Effect.SPY:
+            
+            for(let k = 0; k < 2; k++){
+                let spyChecks = 0;
+                let handIdentificatorSpy;
+    
+                if(playerNum === 0)
+                    handIdentificatorSpy = SlotIdentificator.PLAYER0_HAND;
+                else
+                    handIdentificatorSpy = SlotIdentificator.PLAYER1_HAND;
+    
+                for(let i = 0; i < globals.slots.length; i++){
+                    if(globals.player[playerNum][i].slotIdentificator === handIdentificatorSpy)
+                    spyChecks++  
+                }
+            
+                if(spyChecks < 12){
+    
+                    for(let l = 0; l < globals.slots.length; l++){
+                        if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
+    
+                            card.xPos = globals.slots[i].xPos;
+                            card.yPos = globals.slots[i].yPos;
+                            card.state = CardState.HAND;
+                            card.showBack = false;
+                        }
+                    }
+                }
+                     
+            }
+            let spyChecks = 0;
+            let handIdentificatorSpy;
+
+            if(playerNum === 0)
+                handIdentificatorSpy = SlotIdentificator.PLAYER0_HAND;
+            else
+                handIdentificatorSpy = SlotIdentificator.PLAYER1_HAND;
+
+            for(let i = 0; i < globals.slots.length; i++){
+                if(globals.player[playerNum][i].slotIdentificator === handIdentificatorSpy)
+                spyChecks++  
+            }
+        
+            if(spyChecks < 12){
+
+                for(let l = 0; l < globals.slots.length; l++){
+                    if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
+
+                        card.xPos = globals.slots[i].xPos;
+                        card.yPos = globals.slots[i].yPos;
+                        card.state = CardState.HAND;
+                        card.showBack = false;
+                    }
+                }
+            }
+                
             break;
         case Effect.DECOY:
             let decoyChecks = 0;
