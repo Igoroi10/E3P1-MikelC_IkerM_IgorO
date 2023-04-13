@@ -624,8 +624,7 @@ function startingDeal(mode){
 
 function startingTokensDeal()
 {
-    let cardsToDraw = 5;
-    for(let i = 0; i < cardsToDraw; i++){
+    for(let i = 0; i < 5; i++){
         if(i === 1)
         {
             globals.tokens[i].xPos  = Common_map_pos.PLAYER1_LIVE1_XPOS;
@@ -652,11 +651,9 @@ function startingTokensDeal()
         }
         else
         {
-            globals.tokens[i].xPos = 20;        //está en fake
-            globals.tokens[i].yPos = 300;       //está en fake
-            globals.playerTokens[1].push(globals.tokens[i]);
+            globals.tokens[i].xPos = Common_map_pos.PLAYER1_TURN_TOKEN_XPOS;        //está en fake
+            globals.tokens[i].yPos = 0;       //está en fake
         }
-
     }
 }
 
