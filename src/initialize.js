@@ -520,7 +520,7 @@ function addClimateCards(){
         }
     }
 }
-
+ 
 function addPermaCards(mode){
     console.log("Entra en addPermaCards");
     let cardsToDraw;
