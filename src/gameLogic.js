@@ -52,6 +52,7 @@ function playGame()
     updateActions();
 
     // checkEndRound();
+    
 
 
 
@@ -1128,9 +1129,17 @@ function updateSelectedCard()
                 globals.mouseSelectedCard = true;
                 
                 if(globals.selectedCardId_Click === -1)
+                {
                     globals.selectedCardId_Click = i;
+                    globals.cards[i].state = CardState.SELECTED;
+                }
+
                 else
+                {
                     globals.selectedCardId_Click = -1;
+                    globals.cards[i].state = globals.cards[i].previousState;
+                }
+
 
                     // console.log(globals.selectedCardId_Click);
                 break;
