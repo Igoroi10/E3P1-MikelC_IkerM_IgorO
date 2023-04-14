@@ -4,6 +4,7 @@ import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLi
 import {detectCollisionBetweenMouseAndCards } from "./collision.js"; 
 import { selectEnemy, createList} from "./events.js";
 import { Card } from "./Card.js";
+import { renderCard } from "./gameRender.js";
 
 function update()
 {
@@ -43,6 +44,8 @@ function playGame()
     placeCard();
 
     updateTokenPlacement();
+    updateLives();
+    updateGameOver();
 
     // checkEndRound();
 
@@ -1302,7 +1305,39 @@ function placeCard()
     }
 }
 
+function updateGameOver()
+{
+    if(globals.playerTokens[0][0].showBack && globals.playerTokens[0][1].showBack)
+    {
+        globals.winner = globals.selectedEnemy;
+        globals.checkIfLives0 = true;
+    }
+    else if(globals.playerTokens[1][0].showBack && globals.playerTokens[1][1].showBack)
+    {
+        globals.winner = localStorage.getItem('izen_abizena');
+        globals.checkIfLives0 = true;
+    }
+}
 
+function updateLives()
+{
+    if(globals.actionsCounter.player1 > 0)
+    {
+        let liveNum = globals.actionsCounter.player1 -1;
+        globals.playerTokens[1][liveNum].showBack = true;
+        console.log(globals.actionsCounter.player1);
+        console.log(globals.playerTokens[1][liveNum]);
+        renderCard(globals.playerTokens[1][liveNum]);
+    }
+    else if(globals.actionsCounter.player2 > 0)
+    {
+        let liveNum = globals.actionsCounter.player2 -1;
+        globals.playerTokens[0][liveNum].showBack = true;
+        console.log(globals.actionsCounter.player1);
+        console.log(globals.playerTokens[0][liveNum]);
+        renderCard(globals.playerTokens[0][liveNum]);
+    }
+}
 
 export {
     update,

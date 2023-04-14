@@ -174,6 +174,7 @@ export default
     mouseSelectedCard: false,
     mouseSelectedSlot: false,
 
-
+    winner: "",
+    checkIfLives0: false,
 
 }
