@@ -1333,12 +1333,30 @@ function updateActions()
     // globals.Action Sera el estado que tendra un update constante para saber de quien es el turno en todo momento
     // Cuando sea el turno correspondiente de alguno de los dos jugadores en algun turno en concreto se sumara a una globla actionPlayer ++ - Esta lo que hara sera
     // Permitir que solo se puedan hacer dos actionPlayer es decir: si ActionPlayer >= 2 se resetea ese action Player y se pasa al siguiente turno:  
+    
+    // CHECK DE CAMBIO AUTOMATICO DE TURNO
+    if(globals.actionsCounter.player1 >= 2)
+    {
+        console.log("Entra en cambio de turno PLayer1 a Player2");
+        globals.turnState = Turn.PLAYER2;
+        globals.actionsCounter.player1 = 0;
+
+    }
+    else if (globals.actionsCounter.player2 >= 2)
+    {
+        console.log("Entra en cambio de turno PLayer2 a Player1");
+        globals.turnState = Turn.PLAYER1;
+        globals.actionsCounter.player1 = 0;
+    }
+
 
     if (globals.turnState === Turn.PLAYER1)
     {
+        // console.log("entra if Player1")
         globals.actionsCounter.player2 = 0;
-        if(globals.placedCard)
+        if(globals.placedCard && !globals.action.mousePressed)
         {
+            console.log("Entra en if de funcion UpdateActions")
             globals.actionsCounter.player1 ++;
             console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
             globals.placedCard = false;
@@ -1348,7 +1366,7 @@ function updateActions()
     if(globals.turnState === Turn.PLAYER2)
     {
         globals.actionsCounter.player1 = 0;
-        if(globals.placedCard)
+        if(globals.placedCard && !globals.action.mousePressed)
         {
             globals.actionsCounter.player2 ++;
             console.log("Acccion: " + globals.actionsCounter.player2 + " Player 2");
