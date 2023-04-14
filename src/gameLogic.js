@@ -44,7 +44,7 @@ function playGame()
     placeCard();
 
     updateTokenPlacement();
-    updateLives();
+    // updateLives();
     updateGameOver();
 
     // checkEndRound();
@@ -1167,7 +1167,7 @@ function detectCollisionBetweenMouseAndSlots()
 
 function placeCard()
 {
-    console.log(globals.cards[globals.selectedCardId_Click]);
+    // console.log(globals.cards[globals.selectedCardId_Click]);
     if(globals.selectedCardId_Click != -1 && globals.selectedSlotId != -1)
     {
         const selectedCard      = globals.cards[globals.selectedCardId_Click];
