@@ -46,6 +46,8 @@ function playGame()
 
     updateTokenPlacement();
 
+    updateActions();
+
     // checkEndRound();
 
 
@@ -1050,7 +1052,7 @@ function createDistribution()
 
 function updateTurn()
 {
-    console.log("entra en update");
+    // console.log("entra en update");
 
     let player1 = 0;
     let player2 = 1;
@@ -1079,13 +1081,13 @@ function updateTurn()
 
 function cardsInHand(playerNum)
 {   
-    console.log("Entra en cardsInHand")
+    // console.log("Entra en cardsInHand")
     for (let i = 0; i < globals.player[playerNum].length; i++)
     {
-        console.log("Entra en for de hand")
+        // console.log("Entra en for de hand")
         let card = globals.player[playerNum][i];
         if(card.state === CardState.HAND){
-            console.log("Entra en if de hand")
+            // console.log("Entra en if de hand")
             card.showBack = false;
         }
 
@@ -1094,13 +1096,13 @@ function cardsInHand(playerNum)
 
 function cardsHide(playerNum)
 {
-    console.log("Entra en cardsHide")
+    // console.log("Entra en cardsHide")
     for (let i = 0; i < globals.player[playerNum].length; i++)
     {
-        console.log("Entra en for de hide")
+        // console.log("Entra en for de hide")
         let card = globals.player[playerNum][i];
         if(card.state === CardState.HAND){
-            console.log("Entra en if de hide")
+            // console.log("Entra en if de hide")
             card.showBack = true;
         }
 
@@ -1187,7 +1189,7 @@ function detectCollisionBetweenMouseAndSlots()
 
 function placeCard()
 {
-    console.log(globals.cards[globals.selectedCardId_Click]);
+    // console.log(globals.cards[globals.selectedCardId_Click]);
     if(globals.selectedCardId_Click != -1 && globals.selectedSlotId != -1)
     {
         const selectedCard      = globals.cards[globals.selectedCardId_Click];
@@ -1313,15 +1315,53 @@ function placeCard()
             }        
         }
         
-        console.log(selectedCard);
+        // console.log(selectedCard);
         if(globals.action.mousePressed && globals.cards[globals.selectedCardId_Click].state === CardState.GAME)
         {
             // globals.mouseSelectedSlot = false;
-            console.log("entra en el if del ");
+            // console.log("entra en el if del ");
             // globals.mouseNotSelected = true;
             globals.selectedCardId_Click = -1 
             globals.selectedSlotId = -1
+            globals.placedCard = true;
         }
+    }
+}
+
+function updateActions()
+{
+    // globals.Action Sera el estado que tendra un update constante para saber de quien es el turno en todo momento
+    // Cuando sea el turno correspondiente de alguno de los dos jugadores en algun turno en concreto se sumara a una globla actionPlayer ++ - Esta lo que hara sera
+    // Permitir que solo se puedan hacer dos actionPlayer es decir: si ActionPlayer >= 2 se resetea ese action Player y se pasa al siguiente turno:  
+
+    if (globals.turnState === Turn.PLAYER1)
+    {
+        globals.actionsCounter.player2 = 0;
+        if(globals.placedCard)
+        {
+            globals.actionsCounter.player1 ++;
+            console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
+            globals.placedCard = false;
+        }
+    }
+
+    if(globals.turnState === Turn.PLAYER2)
+    {
+        globals.actionsCounter.player1 = 0;
+        if(globals.placedCard)
+        {
+            globals.actionsCounter.player2 ++;
+            console.log("Acccion: " + globals.actionsCounter.player2 + " Player 2");
+            globals.placedCard = false;
+        }
+        
+    }
+
+    else if (globals.turnState === Turn.NO_TURN)
+    {
+        console.log("NO TURN");
+        globals.actionsCounter.player1 = 0;
+        globals.actionsCounter.player2 = 0;
     }
 }
 

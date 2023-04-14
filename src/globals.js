@@ -174,6 +174,10 @@ export default
     mouseSelectedCard: false,
     mouseSelectedSlot: false,
 
-
+    placedCard: false,
+    
+    //Acciones para el cambio automatico de turno
+    Player1TwoActions: false,
+    Player2TwoActions: false,
 
 }
