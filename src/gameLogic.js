@@ -1042,8 +1042,6 @@ function createDistribution()
             globals.player[0][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
             globals.player[0][i].showBack   = false;
             globals.player[0][i].state      = CardState.HAND
-            globals.slots[i].xPos           = Player0HandxPos;
-            globals.slots[i].yPos           = player0HandyPos;
             Player0HandxPos += 75;
 
 
@@ -1061,8 +1059,6 @@ function createDistribution()
             globals.player[1][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
             globals.player[1][i].showBack   = false;
             globals.player[1][i].state      = CardState.HAND
-            globals.slots[i].xPos           = Player1HandxPos;
-            globals.slots[i].yPos           = player1HandyPos;
 
             Player1HandxPos += 75;
             
