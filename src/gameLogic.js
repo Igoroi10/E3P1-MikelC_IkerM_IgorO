@@ -1393,10 +1393,7 @@ function placeCard()
             }      
 
         }
-        
-        if(selectedCard.effect === Effect.SPY)
-        console.log(selectedCard);  
-
+       
         if(globals.action.mousePressed && globals.checkPlaced)
         {
             console.log("Entra en cancelacion de colocacion de carta");
