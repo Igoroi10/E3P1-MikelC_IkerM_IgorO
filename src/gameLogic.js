@@ -548,10 +548,15 @@ function checkIfSlotAvailable(effect, card, playerNum){
             console.log("Entra en muster effect para los slots")
             console.log("playerNum = " + playerNum);
             console.log(card)
+            
+            console.log("array 0")
+            console.log(globals.player[0])
+            console.log("array 1")
+            console.log(globals.player[1])
+        
             for(let i = 0; i < globals.cards.length; i++){
-
+                if(i === 0)
                 console.log(globals.player[playerNum]);
-                console.log("i : " + i)
                 if(globals.cards[i].slotIdentificator === card.slotIdentificator)
                 effectChecks++  
             }
@@ -892,8 +897,12 @@ function startingDeal(mode){
             
     }
 
-    shuffleDeck(globals.tableSlots.player1);
-    shuffleDeck(globals.tableSlots.player2);
+
+
+    shuffleDeck(globals.player[0]);
+    shuffleDeck(globals.player[1]);
+
+
 
 }
 
