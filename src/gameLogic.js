@@ -232,7 +232,12 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
             else if (globals.decoy)
             {
-                CardState.HAND;
+                for(let i = 0; i < globals.player[globals.turnState].length; i++){
+
+                    if(globals.player[globals.turnState].state = selected)
+                        checkIfSlotAvailable(Effect.DECOY, card, globals.turnState)
+                }
+                   
             }
             else if (globals.double_click)
             {
@@ -365,17 +370,22 @@ function checkCardEffect(card){
             medicEffect(card);
             break;
         case Effect.MORALE_BOOST:
+            //efecto de puntuación
             break;
         case Effect.MUSTER:
+            musterEffect(card)
             break;
         case Effect.SPY:
+            spyEffect(card)
             break;
         case Effect.TIGHT_BOND:
+            //efecto de puntuación
             break;
         case Effect.COMMANDERS_HORN:
+            //efecto de puntuación
             break;
         case Effect.DECOY:
-            decoyEffect()
+            decoyEffect(card)
             break;
         case Effect.SCORCH:
             scorchEffect(card);
@@ -458,19 +468,63 @@ function medicEffect(card){
 
 }
 
+function decoyEffect(card){
+    globals.decoy = true;
+
+    card.state = CardState.DISCARD;
+
+}
+
+function spyEffect(card){
+    checkIfSlotAvailable(Effect.SPY, card, globals.turnState)
+}
+
+function musterEffect(card){
+    let nameToSearch = "";
+    let playerNum;
+
+    if(card.slotIdentificators < SlotIdentificators.PLAYER0_F1)
+        playerNum = 0;
+    else
+        playerNum = 1;
+
+    
+    switch (card.name){
+        case "Akerbeltz":
+            nameToSearch = "Akerbeltz_morroi";
+            break;
+        case "Sorgina":
+            nameToSearch = "Sorginak";
+            break;
+    }
+
+    for(let i = 0; i < globals.player[playerNum].length; i++){
+        let searchingCard = globals.player[playerNum][i];
+
+        if(searchingCard.name === card.name || searchingCard.name === nameToSearch){
+
+            if(searchingCard.state === CardState.DECK){
+                searchingCard.slotIdentificator = card.slotIdentificator;
+                checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum)
+            }
+        }
+    }
+
+}
+
 
 function checkIfSlotAvailable(effect, card, playerNum){
     switch(effect){
         case Effect.MEDIC:
-            let checks = 0;
+            let medicChecks = 0;
             for(let i = 0; i < globals.slots.length; i++){
                 if(globals.player[playerNum][i].SlotIdentificator === card.slotIdentificator)
-                    checks++  
+                    medicChecks++  
             }
 
-            if(checks < 8){
+            if(medicChecks < 8){
                 for(let i = 0; i < globals.player[playerNum].length; i++){
-                    if(card.slotIdentificator === card.slotIdentificator && card.state === CardState.DISCARD){
+                    if(globals.player[playerNum][i].name === card.name && globals.player[playerNum][i].state === CardState.DISCARD){
                         for(let l = 0; l < globals.slots.length; l++){
                             if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator){
 
@@ -485,15 +539,115 @@ function checkIfSlotAvailable(effect, card, playerNum){
                 }
             }
 
-            else 
-                card.slotIdentificators = -1;
             break;
 
         case Effect.MUSTER:
+            let effectChecks = 0;
+            for(let i = 0; i < globals.slots.length; i++){
+                if(globals.player[playerNum][i].SlotIdentificator === card.slotIdentificator)
+                effectChecks++  
+            }
+
+            if(effectChecks < 8){
+                for(let i = 0; i < globals.player[playerNum].length; i++){
+                    if(globals.player[playerNum][i].name === card.name && globals.player[playerNum][i].state === CardState.DISCARD){
+                        for(let l = 0; l < globals.slots.length; l++){
+                            if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === card.slotIdentificator){
+
+                                card.xPos = globals.slots[i].xPos;
+                                card.yPos = globals.slots[i].yPos;
+                                card.state = CardState.GAME;
+                                card.showBack = false;
+                            }
+                        }
+
+                    }
+                }
+            }
             break;
         case Effect.SPY:
+            
+            for(let k = 0; k < 2; k++){
+                let spyChecks = 0;
+                let handIdentificatorSpy;
+    
+                if(playerNum === 0)
+                    handIdentificatorSpy = SlotIdentificator.PLAYER0_HAND;
+                else
+                    handIdentificatorSpy = SlotIdentificator.PLAYER1_HAND;
+    
+                for(let i = 0; i < globals.slots.length; i++){
+                    if(globals.player[playerNum][i].slotIdentificator === handIdentificatorSpy)
+                    spyChecks++  
+                }
+            
+                if(spyChecks < 12){
+    
+                    for(let l = 0; l < globals.slots.length; l++){
+                        if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
+    
+                            card.xPos = globals.slots[i].xPos;
+                            card.yPos = globals.slots[i].yPos;
+                            card.state = CardState.HAND;
+                            card.showBack = false;
+                        }
+                    }
+                }
+                     
+            }
+            let spyChecks = 0;
+            let handIdentificatorSpy;
+
+            if(playerNum === 0)
+                handIdentificatorSpy = SlotIdentificator.PLAYER0_HAND;
+            else
+                handIdentificatorSpy = SlotIdentificator.PLAYER1_HAND;
+
+            for(let i = 0; i < globals.slots.length; i++){
+                if(globals.player[playerNum][i].slotIdentificator === handIdentificatorSpy)
+                spyChecks++  
+            }
+        
+            if(spyChecks < 12){
+
+                for(let l = 0; l < globals.slots.length; l++){
+                    if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
+
+                        card.xPos = globals.slots[i].xPos;
+                        card.yPos = globals.slots[i].yPos;
+                        card.state = CardState.HAND;
+                        card.showBack = false;
+                    }
+                }
+            }
+                
             break;
         case Effect.DECOY:
+            let decoyChecks = 0;
+            let handIdentificator;
+
+            if(playerNum === 0)
+                handIdentificator = SlotIdentificator.PLAYER0_HAND;
+            else
+            handIdentificator = SlotIdentificator.PLAYER1_HAND;
+
+            for(let i = 0; i < globals.slots.length; i++){
+                if(globals.player[playerNum][i].slotIdentificator === handIdentificator)
+                decoyChecks++  
+            }
+        
+            if(decoyChecks < 12){
+
+                for(let l = 0; l < globals.slots.length; l++){
+                    if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === handIdentificator){
+
+                        card.xPos = globals.slots[i].xPos;
+                        card.yPos = globals.slots[i].yPos;
+                        card.state = CardState.HAND;
+                        card.showBack = false;
+                    }
+                }
+            }
             break;
     }
 }
@@ -776,7 +930,7 @@ function updateTokenPlacement()
 {
     for(let i = 0; i < globals.tokens.length; i++)
     {
-        console.log(globals.turnState);
+        // console.log(globals.turnState);
         if(globals.turnState === Turn.PLAYER2)
         {
             globals.tokens[0].yPos = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
@@ -966,7 +1120,7 @@ function updateSelectedCard()
             }
             
 
-            globals.action.mousePressed = false;
+            // globals.action.mousePressed = false;
         }
     }
     
@@ -1007,7 +1161,7 @@ function detectCollisionBetweenMouseAndSlots()
             }
             
 
-            globals.action.mousePressed = false;
+            // globals.action.mousePressed = false;
         }
     }
     
@@ -1016,8 +1170,8 @@ function detectCollisionBetweenMouseAndSlots()
 
 function placeCard()
 {
-    // console.log(globals.cards[globals.selectedCardId_Click]);
-    if(globals.selectedCardId_Click != -1 && globals.selectedSlotId != -1 )
+    console.log(globals.cards[globals.selectedCardId_Click]);
+    if(globals.selectedCardId_Click != -1 && globals.selectedSlotId != -1)
     {
         const selectedCard      = globals.cards[globals.selectedCardId_Click];
         const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
@@ -1034,6 +1188,7 @@ function placeCard()
                 // console.log("Entra en doble if");
                 selectedCard.xPos = selectedSlotId.xPos;
                 selectedCard.yPos = selectedSlotId.yPos;
+                selectedCard.state = CardState.GAME;
             }
             
         }
@@ -1052,6 +1207,7 @@ function placeCard()
                 {
                     selectedCard.xPos = selectedSlotId.xPos;
                     selectedCard.yPos = selectedSlotId.yPos;
+                    selectedCard.state = CardState.GAME;
                 }
             }
 
@@ -1066,6 +1222,7 @@ function placeCard()
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
+                        selectedCard.state = CardState.GAME;
                     }
 
                     // DISTANCIA 
@@ -1073,12 +1230,14 @@ function placeCard()
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
+                        selectedCard.state = CardState.GAME;
                     }
                     // ASEDIO
                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
+                        selectedCard.state = CardState.GAME;
                     }
 
                     
@@ -1100,6 +1259,7 @@ function placeCard()
                 {
                     selectedCard.xPos = selectedSlotId.xPos;
                     selectedCard.yPos = selectedSlotId.yPos;
+                    selectedCard.state = CardState.GAME;
                 }
             }
 
@@ -1114,6 +1274,7 @@ function placeCard()
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
+                         selectedCard.state = CardState.GAME;
                      }
  
                      // DISTANCIA 
@@ -1121,15 +1282,28 @@ function placeCard()
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
+                         selectedCard.state = CardState.GAME;
                      }
                      // ASEDIO
                      else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
+                         selectedCard.state = CardState.GAME;
+
                      }
                 }
             }        
+        }
+        
+        console.log(selectedCard);
+        if(globals.action.mousePressed && globals.cards[globals.selectedCardId_Click].state === CardState.GAME)
+        {
+            // globals.mouseSelectedSlot = false;
+            console.log("entra en el if del ");
+            // globals.mouseNotSelected = true;
+            globals.selectedCardId_Click = -1 
+            globals.selectedSlotId = -1
         }
     }
 }
