@@ -516,10 +516,25 @@ function musterEffect(card){
         if(searchingCard.cardName === card.cardName || searchingCard.cardName === nameToSearch){
             console.log(" entra en el if de nombres iguales");
             if(searchingCard.state !== CardState.GAME || searchingCard.state !== CardState.DISCARD ){
-                console.log("carta enviada a slots available desde master ")
-                console.log(searchingCard);
                 searchingCard.slotIdentificator = card.slotIdentificator;
                 checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum)
+            }
+        }
+    }
+
+    for(let i = 0; i < 2; i++){
+        for(let l = 0; l < globals.player[i].length; l++){
+            if( globals.player[i][l].slotIdentificator === card.slotIdentificator){
+                console.log(card)
+                console.log(globals.player[i][l]);
+                if(i === 0){
+                    console.log("lo sacamos del player 0 hulio")
+                }
+
+                else
+                    console.log("lo sacamos del 1 esta vez")
+
+                console.log("Y el array correcto es " + playerNum);
             }
         }
     }
@@ -890,15 +905,15 @@ function startingDeal(mode){
 
     for(let i = 0; i < cardsToDraw; i++){
         if(i % 2 === 0){
-            globals.cards[i].xPos  = Player1_map_pos.PLAYER1_DECK_XPOS;
-            globals.cards[i].yPos  = Player1_map_pos.PLAYER1_DECK_YPOS;
+            globals.cards[i].xPos  = Player0_map_pos.PLAYER0_DECK_XPOS;
+            globals.cards[i].yPos  = Player0_map_pos.PLAYER0_DECK_YPOS;
             globals.player[0].push(globals.cards[i]); //Array que almacena las cartas para el player 1
         }
 
         else
         {
-            globals.cards[i].xPos  = Player0_map_pos.PLAYER0_DECK_XPOS;
-            globals.cards[i].yPos  = Player0_map_pos.PLAYER0_DECK_YPOS;
+            globals.cards[i].xPos  = Player1_map_pos.PLAYER1_DECK_XPOS;
+            globals.cards[i].yPos  = Player1_map_pos.PLAYER1_DECK_YPOS;
             globals.player[1].push(globals.cards[i]); //Array que almacena las cartas para el player 2
         }
             
@@ -1033,7 +1048,7 @@ function createDistribution()
         if(i % 2 === 0)
         {
             globals.player[0][i].xPos       = Player0HandxPos;
-            globals.player[0][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+            globals.player[0][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
             globals.player[0][i].showBack   = false;
             globals.player[0][i].state      = CardState.HAND
             Player0HandxPos += 75;
@@ -1050,7 +1065,7 @@ function createDistribution()
             // console.log("entra player 1");
 
             globals.player[1][i].xPos       = Player1HandxPos;
-            globals.player[1][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
+            globals.player[1][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
             globals.player[1][i].showBack   = false;
             globals.player[1][i].state      = CardState.HAND
 
