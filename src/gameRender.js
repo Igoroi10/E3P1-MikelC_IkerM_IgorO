@@ -49,7 +49,6 @@ function renderMap ()
 function renderCards(){
         for(let i = 0; i < globals.cards.length; i++){
             renderCard(globals.cards[i]);
-
         }
 
 
@@ -555,10 +554,9 @@ function drawMessages()
 
 function gameOverScreen()
 {
-    const hostName = localStorage.getItem('izen_abizena');
-    if(globals.turnState !== Turn.PLAYER1 && globals.turnState !== Turn.PLAYER2)
-    {
 
+    if(globals.checkIfLives0)
+    {
         globals.ctx.fillStyle = 'black';    
         globals.ctx.globalAlpha = 0.8;
         globals.ctx.fillRect(0, 0, globals.canvas.width, globals.canvas.height);
@@ -568,11 +566,10 @@ function gameOverScreen()
         globals.ctx.drawImage(img, 570, 250);
         globals.ctx.font = '45px magicmedieval'; 
         globals.ctx.fillStyle = 'white';    
-        globals.ctx.fillText(hostName, 720, 685); 
+        globals.ctx.fillText(globals.winner, 720, 685); 
         document.getElementById('btnTurn').style.display = "none";
         document.getElementById('btnRound').style.display = "none";
     }
-
 } 
 
 
@@ -580,4 +577,5 @@ export{
     render,
     renderBigCard,
     displayCards,
+    renderCard,
 }
