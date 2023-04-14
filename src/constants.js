@@ -205,8 +205,14 @@ const SlotIdentificators = {
 
     //Climate control
 
-    CLIMATE_FIELD:  12
+    CLIMATE_FIELD:  12, 
 
+
+    PLAYER1_HAND:   13,
+    PLAYER1_DECK:   14,
+    
+    PLAYER0_HAND:   15,
+    PLAYER0_DECK:   16,
 
 }
 
