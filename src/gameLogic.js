@@ -34,6 +34,8 @@ function playGame()
 
     updateTurn();
 
+    placeCard();
+
     updateSlots();
     
     updateCards();
@@ -42,7 +44,7 @@ function playGame()
 
     detectCollisionBetweenMouseAndSlots();
 
-    placeCard();
+    
 
     updateTokenPlacement();
 
@@ -250,12 +252,6 @@ function updateCard(card) // Puede ser una global de estado o una constante
             {
                 CardState.GAME;
             }
-            //CASO DE COLOCAR AL PRINCIPIO Y REALIZAR EFECTO
-            else if(globals.placedCard){ 
-                globals.placedCard = false;
-                checkCardEffect(card);
-            }
-
 
             break;
 
@@ -294,6 +290,12 @@ function updateCard(card) // Puede ser una global de estado o una constante
             else if(globals.decoy)
             {
                 CardState.SELECTED;
+            }
+
+            else if(globals.placedCard){ 
+                console.log("Entra en el if para ejecutar el efecto")
+                globals.placedCard = false;
+                checkCardEffect(card);
             }
 
             else;
@@ -364,6 +366,7 @@ function discardCards()
 
 function checkCardEffect(card){
 
+    console.log("entra en placed card")
     switch(card.effect){
         case Effect.MEDIC:
             medicEffect(card);
@@ -413,7 +416,7 @@ function scorchEffect(card){
 
     for(let i = 0; i < globals.cards.length; i++){
         let cardToCompare = globals.cards[i];
-        if(cardToCompare.type === typeToScorch && cardToCompare.SlotIdentificators !== fieldID && cardToCompare.state === CardState.GAME){
+        if(cardToCompare.type === typeToScorch && cardToCompare.slotIdentificators !== fieldID && cardToCompare.state === CardState.GAME){
             if(cardToCompare.value > valueToScorch)
                 valueToScorch = cardToCompare.value;
         }
@@ -421,7 +424,7 @@ function scorchEffect(card){
 
     for(let i = 0; i < globals.cards.length; i++){
         let cardToCompare = globals.cards[i];
-        if(cardToCompare.value === valueToScorch && cardToCompare.SlotIdentificators !== fieldID  && cardToCompare.state === CardState.GAME){
+        if(cardToCompare.value === valueToScorch && cardToCompare.slotIdentificators !== fieldID  && cardToCompare.state === CardState.GAME){
             cardToCompare.state = CardState.DISCARD;
         }
     }
@@ -516,8 +519,8 @@ function checkIfSlotAvailable(effect, card, playerNum){
     switch(effect){
         case Effect.MEDIC:
             let medicChecks = 0;
-            for(let i = 0; i < globals.slots.length; i++){
-                if(globals.player[playerNum][i].SlotIdentificator === card.slotIdentificator)
+            for(let i = 0; i < globals.cards.length; i++){
+                if(globals.cards[i].slotIdentificator === card.slotIdentificator)
                     medicChecks++  
             }
 
@@ -526,7 +529,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     if(globals.player[playerNum][i].name === card.name && globals.player[playerNum][i].state === CardState.DISCARD){
                         for(let l = 0; l < globals.slots.length; l++){
                             if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator){
-
+                                
                                 card.xPos = globals.slots[i].xPos;
                                 card.yPos = globals.slots[i].yPos;
                                 card.state = CardState.GAME;
@@ -542,8 +545,14 @@ function checkIfSlotAvailable(effect, card, playerNum){
 
         case Effect.MUSTER:
             let effectChecks = 0;
-            for(let i = 0; i < globals.slots.length; i++){
-                if(globals.player[playerNum][i].SlotIdentificator === card.slotIdentificator)
+            console.log("Entra en muster effect para los slots")
+            console.log("playerNum = " + playerNum);
+            console.log(card)
+            for(let i = 0; i < globals.cards.length; i++){
+
+                console.log(globals.player[playerNum]);
+                console.log("i : " + i)
+                if(globals.cards[i].slotIdentificator === card.slotIdentificator)
                 effectChecks++  
             }
 
@@ -552,7 +561,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     if(globals.player[playerNum][i].name === card.name && globals.player[playerNum][i].state === CardState.DISCARD){
                         for(let l = 0; l < globals.slots.length; l++){
                             if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === card.slotIdentificator){
-
+                                console.log("entra para colocar una carta en muster")
                                 card.xPos = globals.slots[i].xPos;
                                 card.yPos = globals.slots[i].yPos;
                                 card.state = CardState.GAME;
@@ -571,12 +580,12 @@ function checkIfSlotAvailable(effect, card, playerNum){
                 let handIdentificatorSpy;
     
                 if(playerNum === 0)
-                    handIdentificatorSpy = SlotIdentificator.PLAYER0_HAND;
+                    handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
                 else
-                    handIdentificatorSpy = SlotIdentificator.PLAYER1_HAND;
+                    handIdentificatorSpy = SlotIdentificators.PLAYER1_HAND;
     
-                for(let i = 0; i < globals.slots.length; i++){
-                    if(globals.player[playerNum][i].slotIdentificator === handIdentificatorSpy)
+                for(let i = 0; i < globals.cards.length; i++){
+                    if(globals.cards[i].slotIdentificator === handIdentificatorSpy)
                     spyChecks++  
                 }
             
@@ -598,12 +607,12 @@ function checkIfSlotAvailable(effect, card, playerNum){
             let handIdentificatorSpy;
 
             if(playerNum === 0)
-                handIdentificatorSpy = SlotIdentificator.PLAYER0_HAND;
+                handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
             else
-                handIdentificatorSpy = SlotIdentificator.PLAYER1_HAND;
+                handIdentificatorSpy = SlotIdentificators.PLAYER1_HAND;
 
-            for(let i = 0; i < globals.slots.length; i++){
-                if(globals.player[playerNum][i].slotIdentificator === handIdentificatorSpy)
+            for(let i = 0; i < globals.cards.length; i++){
+                if(globals.cards[i].slotIdentificator === handIdentificatorSpy)
                 spyChecks++  
             }
         
@@ -630,8 +639,8 @@ function checkIfSlotAvailable(effect, card, playerNum){
             else
             handIdentificator = SlotIdentificator.PLAYER1_HAND;
 
-            for(let i = 0; i < globals.slots.length; i++){
-                if(globals.player[playerNum][i].slotIdentificator === handIdentificator)
+            for(let i = 0; i < globals.cards.length; i++){
+                if(globals.cards[i].slotIdentificator === handIdentificator)
                 decoyChecks++  
             }
         
@@ -1184,7 +1193,7 @@ function detectCollisionBetweenMouseAndSlots()
 
 function placeCard()
 {
-    console.log(globals.cards[globals.selectedCardId_Click]);
+    // console.log(globals.cards[globals.selectedCardId_Click]);
     if(globals.selectedCardId_Click != -1 && globals.selectedSlotId != -1)
     {
         const selectedCard      = globals.cards[globals.selectedCardId_Click];

@@ -275,20 +275,20 @@ function actions()
     if (globals.turnState === Turn.PLAYER1)
     {
         globals.actionsCounter.player1 ++;
-        console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
+        // console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
         globals.actionsCounter.player2 = 0;
     }
 
     if(globals.turnState === Turn.PLAYER2)
     {
         globals.actionsCounter.player2 ++;
-        console.log("Acccion: " + globals.actionsCounter.player2 + " Player 2");
+        // console.log("Acccion: " + globals.actionsCounter.player2 + " Player 2");
         globals.actionsCounter.player1 = 0;
     }
 
     else if (globals.turnState === Turn.NO_TURN)
     {
-        console.log("NO TURN");
+        // console.log("NO TURN");
         globals.actionsCounter.player1 = 0;
         globals.actionsCounter.player2 = 0;
     }
@@ -298,7 +298,7 @@ function actions()
 function canvasDoubleClickHandler()
 {
     //Meter aqui la accion de la carta grande
-    console.log("entra en la funcion canvasDoubleClickHandler");
+    // console.log("entra en la funcion canvasDoubleClickHandler");
     globals.action.doubleClick = true;
 
     //HAY QUE ECHARLE UN OJO

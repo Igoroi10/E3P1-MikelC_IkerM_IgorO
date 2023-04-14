@@ -40,6 +40,8 @@ class UnitCard extends Card{
         this.rarity         = rarity;
         this.categoryId     = CardCategory.UNIT;
         this.type           = type;
+        this.previousState      = -1;
+        this.slotIdentificator  = -1
 
     }
 }
@@ -62,6 +64,8 @@ class SuddenCard extends Card {
         this.description_eu = description_eu;
         this.effect         = effect;
         this.categoryId     = CardCategory.INSTAEFFECT;
+        this.previousState      = -1;
+        this.slotIdentificator  = -1
     }
 }
 
@@ -84,6 +88,8 @@ class PermaCard extends Card{
         this.effect         = effect;
         this.categoryId     = CardCategory.PERMAEFFECT;
         this.type           = type;
+        this.previousState      = -1;
+        this.slotIdentificator  = -1
     }
 }
 
@@ -107,6 +113,8 @@ class ClimateCard extends Card{
         this.description_eu = description_eu
         this.categoryId     = CardCategory.CLIMATE;
         this.effect         = effect;
+        this.previousState      = -1;
+        this.slotIdentificator  = -1
     }
 }
 
