@@ -234,6 +234,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 
         case CardState.SELECTED:
+
             if(globals.otherSelected)
             {
                 card.state = card.previousState;
@@ -257,7 +258,12 @@ function updateCard(card) // Puede ser una global de estado o una constante
             {
                 CardState.GAME;
             }
-
+            
+            else if(globals.placedCard){ 
+                console.log("Entra en el if para ejecutar el efecto")
+                globals.placedCard = false;
+                checkCardEffect(card);
+            }
             break;
 
 
@@ -297,11 +303,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 CardState.SELECTED;
             }
 
-            else if(globals.placedCard){ 
-                console.log("Entra en el if para ejecutar el efecto")
-                globals.placedCard = false;
-                checkCardEffect(card);
-            }
+
 
             else;
 
