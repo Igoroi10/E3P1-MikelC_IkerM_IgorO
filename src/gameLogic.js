@@ -328,14 +328,14 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 function discardCards()
 {
-    console.log("entra en funcion discardCards");
+    // console.log("entra en funcion discardCards");
     for(let i = 0; i < 2; i++)
     {
         for(let k = 0; k < globals.player[i].length; k++)
         {
             if(globals.player[i][k].state === CardState.DISCARD)
             {
-                console.log("ENTRA EN EL IF");
+                // console.log("ENTRA EN EL IF");
 
                 if(i === 0)
                 {
@@ -824,13 +824,13 @@ function localStorageCheck(){
 
     else{
         if(localStorage.getItem("rol") === "admin"){
-            console.log("logged as admin")
+            // console.log("logged as admin")
             globals.hostPlayerInfo.izena_abizena = localStorage.getItem('izena_abizena');
             globals.gameState = State.ADMIN_MENU;
         }
 
         else{
-            console.log("logged as player")
+            // console.log("logged as player")
             globals.gameState = State.PLAYER_MENU;
             globals.hostPlayerInfo.izena_abizena = localStorage.getItem('izena_abizena');
             selectEnemy();
@@ -1047,14 +1047,14 @@ function createDistribution()
 
 function updateTurn()
 {
-    console.log("entra en update");
+    // console.log("entra en update");
 
     let player1 = 0;
     let player2 = 1;
 
     if (globals.turnState === Turn.PLAYER1)
     {  
-        console.log("turno player1")
+        // console.log("turno player1")
         // console.log("Entra en Turno Player 1");
         cardsHide(player2); // Ocultamos las cartas del jugador anterior
 
@@ -1064,7 +1064,7 @@ function updateTurn()
 
     else if (globals.turnState === Turn.PLAYER2)
     {
-        console.log("Entra en Turno Player 2");
+        // console.log("Entra en Turno Player 2");
         cardsHide(player1); // Ocultamos las cartas del jugador anterior
 
         cardsInHand(player2);
@@ -1076,13 +1076,13 @@ function updateTurn()
 
 function cardsInHand(playerNum)
 {   
-    console.log("Entra en cardsInHand")
+    // console.log("Entra en cardsInHand")
     for (let i = 0; i < globals.player[playerNum].length; i++)
     {
-        console.log("Entra en for de hand")
+        // console.log("Entra en for de hand")
         let card = globals.player[playerNum][i];
         if(card.state === CardState.HAND){
-            console.log("Entra en if de hand")
+            // console.log("Entra en if de hand")
             card.showBack = false;
         }
 
@@ -1091,13 +1091,13 @@ function cardsInHand(playerNum)
 
 function cardsHide(playerNum)
 {
-    console.log("Entra en cardsHide")
+    // console.log("Entra en cardsHide")
     for (let i = 0; i < globals.player[playerNum].length; i++)
     {
-        console.log("Entra en for de hide")
+        // console.log("Entra en for de hide")
         let card = globals.player[playerNum][i];
         if(card.state === CardState.HAND){
-            console.log("Entra en if de hide")
+            // console.log("Entra en if de hide")
             card.showBack = true;
         }
 
@@ -1310,11 +1310,11 @@ function placeCard()
             }        
         }
         
-        console.log(selectedCard);
+        // console.log(selectedCard);
         if(globals.action.mousePressed && globals.cards[globals.selectedCardId_Click].state === CardState.GAME)
         {
             // globals.mouseSelectedSlot = false;
-            console.log("entra en el if del ");
+            // console.log("entra en el if del ");
             // globals.mouseNotSelected = true;
             globals.selectedCardId_Click = -1 
             globals.selectedSlotId = -1

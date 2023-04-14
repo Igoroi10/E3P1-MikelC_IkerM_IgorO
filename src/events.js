@@ -231,7 +231,7 @@ function checkIfRoundPass()
    //Los dos jugadores han pasado la ronda y deberemos de reiniciar el global de Ronda
    else
    {
-    console.log("LA RONDA A TERMINADO");
+    ("LA RONDA A TERMINADO");
     globals.turnState = Turn.NO_TURN;       // MAS ADELANTE CAMBIARLO - SOLO SE PUEDE JUGAR UNA RONDA
     globals.checkBothPlayerRound = false;
 
