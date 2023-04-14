@@ -1207,7 +1207,8 @@ function placeCard()
                 // console.log("Entra en doble if");
                 selectedCard.xPos = selectedSlotId.xPos;
                 selectedCard.yPos = selectedSlotId.yPos;
-                selectedCard.state = CardState.GAME;
+                // selectedCard.state = CardState.GAME;
+                globals.checkPlaced = true;
             }
             
         }
@@ -1226,7 +1227,8 @@ function placeCard()
                 {
                     selectedCard.xPos = selectedSlotId.xPos;
                     selectedCard.yPos = selectedSlotId.yPos;
-                    selectedCard.state = CardState.GAME;
+                    // selectedCard.state = CardState.GAME;
+                    globals.checkPlaced = true;
                 }
             }
 
@@ -1241,7 +1243,8 @@ function placeCard()
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
-                        selectedCard.state = CardState.GAME;
+                        // selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
                     }
 
                     // DISTANCIA 
@@ -1249,14 +1252,16 @@ function placeCard()
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
-                        selectedCard.state = CardState.GAME;
+                        // selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
                     }
                     // ASEDIO
                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
-                        selectedCard.state = CardState.GAME;
+                        // selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
                     }
 
                     
@@ -1278,7 +1283,8 @@ function placeCard()
                 {
                     selectedCard.xPos = selectedSlotId.xPos;
                     selectedCard.yPos = selectedSlotId.yPos;
-                    selectedCard.state = CardState.GAME;
+                    // selectedCard.state = CardState.GAME;
+                    globals.checkPlaced = true;
                 }
             }
 
@@ -1293,7 +1299,8 @@ function placeCard()
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
-                         selectedCard.state = CardState.GAME;
+                        //  selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
                      }
  
                      // DISTANCIA 
@@ -1301,14 +1308,16 @@ function placeCard()
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
-                         selectedCard.state = CardState.GAME;
+                        //  selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
                      }
                      // ASEDIO
                      else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
-                         selectedCard.state = CardState.GAME;
+                        //  selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
 
                      }
                 }
@@ -1316,14 +1325,15 @@ function placeCard()
         }
         
         // console.log(selectedCard);
-        if(globals.action.mousePressed && globals.cards[globals.selectedCardId_Click].state === CardState.GAME)
+        if(globals.action.mousePressed && globals.checkPlaced)
         {
             // globals.mouseSelectedSlot = false;
             // console.log("entra en el if del ");
             // globals.mouseNotSelected = true;
-            globals.selectedCardId_Click = -1 
-            globals.selectedSlotId = -1
-            globals.placedCard = true;
+            globals.selectedCardId_Click    = -1 
+            globals.selectedSlotId          = -1
+            globals.placedCard              = true;
+            globals.checkPlaced             = false;
         }
     }
 }

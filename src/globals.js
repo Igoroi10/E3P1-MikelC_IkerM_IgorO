@@ -180,4 +180,6 @@ export default
     Player1TwoActions: false,
     Player2TwoActions: false,
 
+    checkPlaced: false,
+
 }
