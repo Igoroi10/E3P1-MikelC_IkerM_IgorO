@@ -38,14 +38,18 @@ function playGame()
     updateSlots();
     
     updateCards();
+
     updateSelectedCard();
 
     detectCollisionBetweenMouseAndSlots();
+
     placeCard();
 
     updateTokenPlacement();
     // updateLives();
     updateGameOver();
+
+    updateActions();
 
     // checkEndRound();
 
@@ -1003,20 +1007,25 @@ function distributeHandCards()
 function createDistribution()
 {
     let cardsToDraw = 20;
-    let Player2HandxPos =  Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
-    let Player1HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
+    let Player1HandxPos =  Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
+    let Player0HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
+
+    let player1HandyPos = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
+    let player0HandyPos = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
 
     for(let i = 0; i < cardsToDraw; i++)
     {
-        if(i % 2 === 0){
-            // console.log("entra player 2");
-            // console.log("Player 2 xPos : " + Player2HandxPos);
-            // console.log(globals.cards[i].xPos);
 
-            globals.cards[i].xPos  = Player2HandxPos;
-            globals.cards[i].yPos  = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
-            globals.player[0].push(globals.cards[i]); 
-            Player2HandxPos += 75;
+        if(i % 2 === 0)
+        {
+            globals.player[0][i].xPos       = Player0HandxPos;
+            globals.player[0][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
+            globals.player[0][i].showBack   = false;
+            globals.player[0][i].state      = CardState.HAND
+            globals.slots[i].xPos           = Player0HandxPos;
+            globals.slots[i].yPos           = player0HandyPos;
+            Player0HandxPos += 75;
+
 
             // globals.cards[i].showBack = false;
 
@@ -1027,10 +1036,16 @@ function createDistribution()
         else
         {
             // console.log("entra player 1");
-            globals.cards[i].xPos  = Player1HandxPos;
-            globals.cards[i].yPos  = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
-            globals.player[1].push(globals.cards[i]);
+
+            globals.player[1][i].xPos       = Player1HandxPos;
+            globals.player[1][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+            globals.player[1][i].showBack   = false;
+            globals.player[1][i].state      = CardState.HAND
+            globals.slots[i].xPos           = Player1HandxPos;
+            globals.slots[i].yPos           = player1HandyPos;
+
             Player1HandxPos += 75;
+            
         }
 
         
@@ -1040,11 +1055,14 @@ function createDistribution()
 
 function updateTurn()
 {
+    // console.log("entra en update");
+
     let player1 = 0;
     let player2 = 1;
 
     if (globals.turnState === Turn.PLAYER1)
-    {
+    {  
+        console.log("turno player1")
         // console.log("Entra en Turno Player 1");
         cardsHide(player2); // Ocultamos las cartas del jugador anterior
 
@@ -1054,7 +1072,7 @@ function updateTurn()
 
     else if (globals.turnState === Turn.PLAYER2)
     {
-        // console.log("Entra en Turno Player 2");
+        console.log("Entra en Turno Player 2");
         cardsHide(player1); // Ocultamos las cartas del jugador anterior
 
         cardsInHand(player2);
@@ -1064,26 +1082,33 @@ function updateTurn()
         console.log("No es turno de ninguno de los dos");
 }
 
-function cardsInHand(j)
+function cardsInHand(playerNum)
 {   
-    // console.log("Entra en cardsInHandP1");
-    let cardsInHand = 10; // FALTA UNA GLOBAL QUE SE ACTUALIZE PARA SABER LAS CARTAS DE LA MANO CONSTANTEMENTE
-
-    for (let i = 0; i < cardsInHand; i++)
+    // console.log("Entra en cardsInHand")
+    for (let i = 0; i < globals.player[playerNum].length; i++)
     {
-        // console.log(globals.player[0][i].showBack);
-        globals.player[j][i].showBack = false;
+        // console.log("Entra en for de hand")
+        let card = globals.player[playerNum][i];
+        if(card.state === CardState.HAND){
+            // console.log("Entra en if de hand")
+            card.showBack = false;
+        }
+
     }
 }
 
-function cardsHide(j)
+function cardsHide(playerNum)
 {
-    let cardsInHand = 10; // FALTA UNA GLOBAL QUE SE ACTUALIZE PARA SABER LAS CARTAS DE LA MANO CONSTANTEMENTE
-
-    for (let i = 0; i < cardsInHand; i++)
+    // console.log("Entra en cardsHide")
+    for (let i = 0; i < globals.player[playerNum].length; i++)
     {
-        // console.log(globals.player[0][i].showBack);
-        globals.player[j][i].showBack = true;
+        // console.log("Entra en for de hide")
+        let card = globals.player[playerNum][i];
+        if(card.state === CardState.HAND){
+            // console.log("Entra en if de hide")
+            card.showBack = true;
+        }
+
     }
 }
 
@@ -1185,7 +1210,8 @@ function placeCard()
                 // console.log("Entra en doble if");
                 selectedCard.xPos = selectedSlotId.xPos;
                 selectedCard.yPos = selectedSlotId.yPos;
-                selectedCard.state = CardState.GAME;
+                // selectedCard.state = CardState.GAME;
+                globals.checkPlaced = true;
             }
             
         }
@@ -1204,7 +1230,8 @@ function placeCard()
                 {
                     selectedCard.xPos = selectedSlotId.xPos;
                     selectedCard.yPos = selectedSlotId.yPos;
-                    selectedCard.state = CardState.GAME;
+                    // selectedCard.state = CardState.GAME;
+                    globals.checkPlaced = true;
                 }
             }
 
@@ -1219,7 +1246,8 @@ function placeCard()
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
-                        selectedCard.state = CardState.GAME;
+                        // selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
                     }
 
                     // DISTANCIA 
@@ -1227,14 +1255,16 @@ function placeCard()
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
-                        selectedCard.state = CardState.GAME;
+                        // selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
                     }
                     // ASEDIO
                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
-                        selectedCard.state = CardState.GAME;
+                        // selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
                     }
 
                     
@@ -1256,7 +1286,8 @@ function placeCard()
                 {
                     selectedCard.xPos = selectedSlotId.xPos;
                     selectedCard.yPos = selectedSlotId.yPos;
-                    selectedCard.state = CardState.GAME;
+                    // selectedCard.state = CardState.GAME;
+                    globals.checkPlaced = true;
                 }
             }
 
@@ -1271,7 +1302,8 @@ function placeCard()
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
-                         selectedCard.state = CardState.GAME;
+                        //  selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
                      }
  
                      // DISTANCIA 
@@ -1279,28 +1311,32 @@ function placeCard()
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
-                         selectedCard.state = CardState.GAME;
+                        //  selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
                      }
                      // ASEDIO
                      else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
-                         selectedCard.state = CardState.GAME;
+                        //  selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
 
                      }
                 }
             }        
         }
         
-        console.log(selectedCard);
-        if(globals.action.mousePressed && globals.cards[globals.selectedCardId_Click].state === CardState.GAME)
+        // console.log(selectedCard);
+        if(globals.action.mousePressed && globals.checkPlaced)
         {
             // globals.mouseSelectedSlot = false;
-            console.log("entra en el if del ");
+            // console.log("entra en el if del ");
             // globals.mouseNotSelected = true;
-            globals.selectedCardId_Click = -1 
-            globals.selectedSlotId = -1
+            globals.selectedCardId_Click    = -1 
+            globals.selectedSlotId          = -1
+            globals.placedCard              = true;
+            globals.checkPlaced             = false;
         }
     }
 }
@@ -1318,6 +1354,62 @@ function updateGameOver()
         globals.checkIfLives0 = true;
     }
 }
+
+function updateActions()
+{
+    // globals.Action Sera el estado que tendra un update constante para saber de quien es el turno en todo momento
+    // Cuando sea el turno correspondiente de alguno de los dos jugadores en algun turno en concreto se sumara a una globla actionPlayer ++ - Esta lo que hara sera
+    // Permitir que solo se puedan hacer dos actionPlayer es decir: si ActionPlayer >= 2 se resetea ese action Player y se pasa al siguiente turno:  
+    
+    // CHECK DE CAMBIO AUTOMATICO DE TURNO
+    if(globals.actionsCounter.player1 >= 2)
+    {
+        console.log("Entra en cambio de turno PLayer1 a Player2");
+        globals.turnState = Turn.PLAYER2;
+        globals.actionsCounter.player1 = 0;
+
+    }
+    else if (globals.actionsCounter.player2 >= 2)
+    {
+        console.log("Entra en cambio de turno PLayer2 a Player1");
+        globals.turnState = Turn.PLAYER1;
+        globals.actionsCounter.player1 = 0;
+    }
+
+
+    if (globals.turnState === Turn.PLAYER1)
+    {
+        // console.log("entra if Player1")
+        globals.actionsCounter.player2 = 0;
+        if(globals.placedCard && !globals.action.mousePressed)
+        {
+            console.log("Entra en if de funcion UpdateActions")
+            globals.actionsCounter.player1 ++;
+            console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
+            globals.placedCard = false;
+        }
+    }
+
+    if(globals.turnState === Turn.PLAYER2)
+    {
+        globals.actionsCounter.player1 = 0;
+        if(globals.placedCard && !globals.action.mousePressed)
+        {
+            globals.actionsCounter.player2 ++;
+            console.log("Acccion: " + globals.actionsCounter.player2 + " Player 2");
+            globals.placedCard = false;
+        }
+        
+    }
+
+    else if (globals.turnState === Turn.NO_TURN)
+    {
+        console.log("NO TURN");
+        globals.actionsCounter.player1 = 0;
+        globals.actionsCounter.player2 = 0;
+    }
+}
+
 
 function updateLives()
 {
