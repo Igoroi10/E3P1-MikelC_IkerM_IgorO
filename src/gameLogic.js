@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import { State, CardState, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player0_map_pos, Turn, Common_map_pos, Type, CardCategory} from "./constants.js";
 import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
-import {detectCollisionBetweenMouseAndCards } from "./collision.js"; 
+import {detectCollisionBetweenMouseAndCards, detectCollisionBetweenMouseAndSlots } from "./collision.js"; 
 import { selectEnemy, createList} from "./events.js";
 import { Card } from "./Card.js";
 
@@ -34,15 +34,17 @@ function playGame()
 
     updateTurn();
 
-    placeCard();
-
     updateSlots();
     
     updateCards();
 
+    detectCollisionBetweenMouseAndSlots();
+
+    detectCollisionBetweenMouseAndCards();
+
     updateSelectedCard();
 
-    detectCollisionBetweenMouseAndSlots();
+    placeCard();
 
     
 
@@ -50,7 +52,7 @@ function playGame()
     // updateLives();
     updateGameOver();
 
-    updateActions();
+   
 
     // checkEndRound();
     
@@ -80,7 +82,7 @@ function playGame()
     
     globals.txtPruebas.innerHTML = "X: " + globals.mouse.x + " Y: " + globals.mouse.y;
 
-    detectCollisionBetweenMouseAndCards();
+    
 
 }
 
@@ -260,8 +262,8 @@ function updateCard(card) // Puede ser una global de estado o una constante
             }
             
             else if(globals.placedCard){ 
-                console.log("Entra en el if para ejecutar el efecto")
-                globals.placedCard = false;
+                // console.log("Entra en el if para ejecutar el efecto")
+                // globals.placedCard = false;
                 checkCardEffect(card);
             }
             break;
@@ -373,7 +375,8 @@ function discardCards()
 
 function checkCardEffect(card){
 
-    console.log("entra en placed card")
+    // console.log("entra en placed card")
+    updateActions();
     switch(card.effect){
         case Effect.MEDIC:
             medicEffect(card);
@@ -1077,6 +1080,22 @@ function updateTurn()
     let player1 = 0;
     let player2 = 1;
 
+    if(globals.actionsCounter.player1 >= 2)
+    {
+        console.log("Entra en cambio de turno PLayer1 a Player2");
+        globals.turnState = Turn.PLAYER2;
+        globals.actionsCounter.player1 = 0;
+
+    }
+    else if (globals.actionsCounter.player2 >= 2)
+    {
+        console.log("Entra en cambio de turno PLayer2 a Player1");
+        globals.turnState = Turn.PLAYER1;
+        globals.actionsCounter.player1 = 0;
+    }
+
+    
+
     if (globals.turnState === Turn.PLAYER1)
     {  
         // console.log("turno player1")
@@ -1174,52 +1193,17 @@ function updateSelectedCard()
 
 }
 
-function detectCollisionBetweenMouseAndSlots()
-{
-    // console.log("Entra en funcion Colision Slots")
-    // console.log(globals.action.mousePressed);
-    if (true)
-    {
-        // console.log("Entra en if Slots")
-        for(let i = 0; i < globals.slots.length; ++i)
-        {
-            const slot = globals.slots[i];
-            const xSize = 80;
-            const ySize = 100;
-        
-            if(globals.mouse.x < (slot.xPos + xSize) && globals.mouse.x >= slot.xPos && globals.mouse.y < (slot.yPos + ySize) && globals.mouse.y > slot.yPos)
-            {
-                // console.log("Entra if");
-                globals.mouseSelectedSlot = true;
-                
-                if(globals.selectedSlotId === -1)
-                    globals.selectedSlotId = i;
-                else
-                    globals.selectedSlotId = -1;
 
-                    // console.log("Slot: " + globals.selectedSlotId);
-                    // console.log("Slot: " + slot.slotIdentificator);
-                break;
-            }
-            else
-            {
-                globals.mouseSelectedSlot = false; 
-                globals.selectedSlotId = -1;
-            }
-            
-
-            // globals.action.mousePressed = false;
-        }
-    }
-    
-
-}
 
 function placeCard()
 {
     // console.log(globals.cards[globals.selectedCardId_Click]);
+    // console.log("click: " + globals.selectedCardId_Click)
+    // console.log("cardId: " + globals.selectedSlotId);
+    
     if(globals.selectedCardId_Click != -1 && globals.selectedSlotId != -1)
     {
+        console.log("Entra placed card");
         const selectedCard      = globals.cards[globals.selectedCardId_Click];
         const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
         const slotIdentificator = globals.slots[globals.selectedSlotId].slotIdentificator;
@@ -1355,8 +1339,8 @@ function placeCard()
         // console.log(selectedCard);
 
         if(globals.action.mousePressed && globals.checkPlaced)
-
         {
+            console.log("Entra en cancelacion de colocacion de carta");
             // globals.mouseSelectedSlot = false;
             // console.log("entra en el if del ");
             // globals.mouseNotSelected = true;
@@ -1390,20 +1374,7 @@ function updateActions()
     // Permitir que solo se puedan hacer dos actionPlayer es decir: si ActionPlayer >= 2 se resetea ese action Player y se pasa al siguiente turno:  
     
     // CHECK DE CAMBIO AUTOMATICO DE TURNO
-    if(globals.actionsCounter.player1 >= 2)
-    {
-        console.log("Entra en cambio de turno PLayer1 a Player2");
-        globals.turnState = Turn.PLAYER2;
-        globals.actionsCounter.player1 = 0;
-
-    }
-    else if (globals.actionsCounter.player2 >= 2)
-    {
-        console.log("Entra en cambio de turno PLayer2 a Player1");
-        globals.turnState = Turn.PLAYER1;
-        globals.actionsCounter.player1 = 0;
-    }
-
+  
 
     if (globals.turnState === Turn.PLAYER1)
     {

@@ -46,6 +46,48 @@ function detectCollisionBetweenMouseAndCards()
 
 }
 
+function detectCollisionBetweenMouseAndSlots()
+{
+    // console.log("Entra en funcion Colision Slots")
+    // console.log(globals.action.mousePressed);
+    if (true)
+    {
+        // console.log("Entra en if Slots")
+        for(let i = 0; i < globals.slots.length; ++i)
+        {
+            const slot = globals.slots[i];
+            const xSize = 80;
+            const ySize = 100;
+        
+            if(globals.mouse.x < (slot.xPos + xSize) && globals.mouse.x >= slot.xPos && globals.mouse.y < (slot.yPos + ySize) && globals.mouse.y > slot.yPos)
+            {
+                // console.log("Entra if");
+                globals.mouseSelectedSlot = true;
+                
+                if(globals.selectedSlotId === -1)
+                    globals.selectedSlotId = i;
+                else
+                    globals.selectedSlotId = -1;
+
+                    // console.log("Slot: " + globals.selectedSlotId);
+                    // console.log("Slot: " + slot.slotIdentificator);
+                break;
+            }
+            else
+            {
+                globals.mouseSelectedSlot = false; 
+                globals.selectedSlotId = -1;
+            }
+            
+
+            // globals.action.mousePressed = false;
+        }
+    }
+    
+
+}
+
 export {
-    detectCollisionBetweenMouseAndCards
+    detectCollisionBetweenMouseAndCards,
+    detectCollisionBetweenMouseAndSlots
 }   
