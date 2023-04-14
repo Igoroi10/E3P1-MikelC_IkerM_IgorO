@@ -174,6 +174,8 @@ export default
     mouseSelectedCard: false,
     mouseSelectedSlot: false,
 
+    placedCard: false,
+
 
 
 }

@@ -251,7 +251,8 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 CardState.GAME;
             }
             //CASO DE COLOCAR AL PRINCIPIO Y REALIZAR EFECTO
-            else if(globals.action.clickSlot){ 
+            else if(globals.placedCard){ 
+                globals.placedCard = false;
                 checkCardEffect(card);
             }
 
@@ -295,10 +296,6 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 CardState.SELECTED;
             }
 
-            else if(globals.inmediateEffect && globals.effectFinished)
-            {
-                CardState.DISCARD;
-            }
             else;
 
             break;
@@ -1321,6 +1318,7 @@ function placeCard()
             // globals.mouseNotSelected = true;
             globals.selectedCardId_Click = -1 
             globals.selectedSlotId = -1
+            globals.placedCard = true;
         }
     }
 }
