@@ -33,8 +33,6 @@ function playGame()
     // console.log(globals.cards);
 
     updateTurn();
-
-    updateSlots();
     
     updateCards();
 
@@ -60,13 +58,10 @@ function playGame()
 
 
     if(globals.action.d){
-        // REPARTIR A LA MANO - Un jugador
-        
-
-        // console.log(globals.cards.length);
-        // console.log(globals.player[0]);
-        // console.log(globals.player[1]);
-
+        for(let i = 0; i <  globals.cards.length; i++){
+            console.log("slot identificator de cartas: " + globals.cards[i].slotIdentificator);
+        }
+        console.log("FIN DE SLOT IDENTIFICATOR")
     }
 
     //Funcion que comprueba cosntantemente si un slot esta vacio o no
@@ -246,7 +241,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
             {
                 for(let i = 0; i < globals.player[globals.turnState].length; i++){
 
-                    if(globals.player[globals.turnState].state = selected)
+                    if(globals.player[globals.turnState].state = CardState.SELECTED)
                         checkIfSlotAvailable(Effect.DECOY, card, globals.turnState)
                 }
                    
@@ -264,6 +259,8 @@ function updateCard(card) // Puede ser una global de estado o una constante
             else if(globals.placedCard){ 
                 // console.log("Entra en el if para ejecutar el efecto")
                 // globals.placedCard = false;
+                console.log("carta enviada a efecto")
+                console.log(card)
                 checkCardEffect(card);
             }
             break;
@@ -494,16 +491,17 @@ function spyEffect(card){
 function musterEffect(card){
     let nameToSearch = "";
     let playerNum;
-
+    console.log("carta a principio de muster");
+    console.log(card)
     if(card.slotIdentificators < SlotIdentificators.PLAYER0_F1)
         playerNum = 0;
     else
         playerNum = 1;
 
     
-    switch (card.name){
+    switch (card.cardName){
         case "Akerbeltz":
-            nameToSearch = "Akerbeltz_morroi";
+            nameToSearch = "Akerbeltz_morro";
             break;
         case "Sorgina":
             nameToSearch = "Sorginak";
@@ -512,10 +510,14 @@ function musterEffect(card){
 
     for(let i = 0; i < globals.player[playerNum].length; i++){
         let searchingCard = globals.player[playerNum][i];
+        console.log("card name: " + card.cardName);
+        console.log("search name: " + searchingCard.cardName);
 
-        if(searchingCard.name === card.name || searchingCard.name === nameToSearch){
-
-            if(searchingCard.state === CardState.DECK){
+        if(searchingCard.cardName === card.cardName || searchingCard.cardName === nameToSearch){
+            console.log(" entra en el if de nombres iguales");
+            if(searchingCard.state !== CardState.GAME || searchingCard.state !== CardState.DISCARD ){
+                console.log("carta enviada a slots available desde master ")
+                console.log(searchingCard);
                 searchingCard.slotIdentificator = card.slotIdentificator;
                 checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum)
             }
@@ -536,8 +538,9 @@ function checkIfSlotAvailable(effect, card, playerNum){
 
             if(medicChecks < 8){
                 for(let i = 0; i < globals.player[playerNum].length; i++){
-                    if(globals.player[playerNum][i].name === card.name && globals.player[playerNum][i].state === CardState.DISCARD){
+                    if(globals.player[playerNum][i].cardName === card.cardName && globals.player[playerNum][i].state === CardState.DISCARD){
                         for(let l = 0; l < globals.slots.length; l++){
+
                             if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator){
                                 
                                 card.xPos = globals.slots[i].xPos;
@@ -556,31 +559,25 @@ function checkIfSlotAvailable(effect, card, playerNum){
         case Effect.MUSTER:
             let effectChecks = 0;
             console.log("Entra en muster effect para los slots")
-            console.log("playerNum = " + playerNum);
             console.log(card)
-            
-            console.log("array 0")
-            console.log(globals.player[0])
-            console.log("array 1")
-            console.log(globals.player[1])
-        
             for(let i = 0; i < globals.cards.length; i++){
                 if(i === 0)
-                console.log(globals.player[playerNum]);
                 if(globals.cards[i].slotIdentificator === card.slotIdentificator)
                 effectChecks++  
             }
 
             if(effectChecks < 8){
                 for(let i = 0; i < globals.player[playerNum].length; i++){
-                    if(globals.player[playerNum][i].name === card.name && globals.player[playerNum][i].state === CardState.DISCARD){
+                    if(globals.player[playerNum][i].cardName === card.cardName && globals.player[playerNum][i].state !== CardState.GAME && globals.player[playerNum][i].state !== CardState.DISCARD){
                         for(let l = 0; l < globals.slots.length; l++){
-                            if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === card.slotIdentificator){
+                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === card.slotIdentificator){
                                 console.log("entra para colocar una carta en muster")
-                                card.xPos = globals.slots[i].xPos;
-                                card.yPos = globals.slots[i].yPos;
-                                card.state = CardState.GAME;
-                                card.showBack = false;
+                                console.log("identificador de slot destino: " + globals.slots[l].slotIdentificator);
+                                globals.player[playerNum][i].xPos = globals.slots[l].xPos;
+                                globals.player[playerNum][i].yPos = globals.slots[l].yPos;
+                                globals.player[playerNum][i].state = CardState.GAME;
+                                globals.player[playerNum][i].showBack = false;
+                                l = globals.slots.length;
                             }
                         }
 
@@ -1001,20 +998,17 @@ function updateSlots(slot, card)
     {
         for (let j = 0; j < globals.slots.length; j++)
         {
+            globals.slots[j].placed_cards = -1;
+
             if (globals.cards[i].xPos === globals.slots[j].xPos && globals.cards[i].yPos === globals.slots[j].yPos )
             {
                 globals.cards[i].slotIdentificator = globals.slots[j].slotIdentificator;
                 globals.slots[j].placed_cards = i;
             }
-
-            else
-            {
-                globals.cards[i].slotIdentificator = -1
-                globals.slots[j].placed_cards = -1;
-            }
         }
 
     }
+
 
 }
 
@@ -1042,8 +1036,6 @@ function createDistribution()
             globals.player[0][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
             globals.player[0][i].showBack   = false;
             globals.player[0][i].state      = CardState.HAND
-            globals.slots[i].xPos           = Player0HandxPos;
-            globals.slots[i].yPos           = player0HandyPos;
             Player0HandxPos += 75;
 
 
@@ -1061,8 +1053,6 @@ function createDistribution()
             globals.player[1][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
             globals.player[1][i].showBack   = false;
             globals.player[1][i].state      = CardState.HAND
-            globals.slots[i].xPos           = Player1HandxPos;
-            globals.slots[i].yPos           = player1HandyPos;
 
             Player1HandxPos += 75;
             
@@ -1340,7 +1330,7 @@ function placeCard()
 
         if(globals.action.mousePressed && globals.checkPlaced)
         {
-            console.log("Entra en cancelacion de colocacion de carta");
+            console.log("Carta colocada");
             // globals.mouseSelectedSlot = false;
             // console.log("entra en el if del ");
             // globals.mouseNotSelected = true;
@@ -1349,6 +1339,7 @@ function placeCard()
             globals.selectedSlotId          = -1
             globals.placedCard              = true;
             globals.checkPlaced             = false;
+            
         }
     }
 }
@@ -1407,6 +1398,8 @@ function updateActions()
         globals.actionsCounter.player1 = 0;
         globals.actionsCounter.player2 = 0;
     }
+
+    updateSlots();
 }
 
 
