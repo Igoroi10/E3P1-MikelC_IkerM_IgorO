@@ -932,7 +932,7 @@ function updateTokenPlacement()
 {
     for(let i = 0; i < globals.tokens.length; i++)
     {
-        console.log(globals.turnState);
+        // console.log(globals.turnState);
         if(globals.turnState === Turn.PLAYER2)
         {
             globals.tokens[0].yPos = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
@@ -970,7 +970,7 @@ function updateSlots(slot, card)
     // Asignarle el id de la carta en el globlas.cards la "i"
     // Y asignarle a la carta el identificador de ese slot
     
-    console.log(globals.cards[0].slotIdentificator)
+    // console.log(globals.cards[0].slotIdentificator)
 
     for (let i = 0; i < globals.cards.length; i++)
     {
@@ -1002,21 +1002,25 @@ function distributeHandCards()
 function createDistribution()
 {
     let cardsToDraw = 20;
-    let Player2HandxPos =  Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
-    let Player1HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
+    let Player1HandxPos =  Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
+    let Player0HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
+
+    let player1HandyPos = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
+    let player0HandyPos = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
 
     for(let i = 0; i < cardsToDraw; i++)
     {
-        if(i % 2 === 0){
-            // console.log("entra player 2");
-            // console.log("Player 2 xPos : " + Player2HandxPos);
-            // console.log(globals.cards[i].xPos);
 
-            globals.cards[i].xPos  = Player2HandxPos;
-            globals.cards[i].yPos  = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
-            globals.cards[i].state = CardState.HAND;
-            globals.player[0].push(globals.cards[i]); 
-            Player2HandxPos += 75;
+        if(i % 2 === 0)
+        {
+            globals.player[0][i].xPos       = Player0HandxPos;
+            globals.player[0][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
+            globals.player[0][i].showBack   = false;
+            globals.player[0][i].state      = CardState.HAND
+            globals.slots[i].xPos           = Player0HandxPos;
+            globals.slots[i].yPos           = player0HandyPos;
+            Player0HandxPos += 75;
+
 
             // globals.cards[i].showBack = false;
 
@@ -1027,10 +1031,14 @@ function createDistribution()
         else
         {
             // console.log("entra player 1");
-            globals.cards[i].xPos  = Player1HandxPos;
-            globals.cards[i].yPos  = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
-            globals.cards[i].state = CardState.HAND;
-            globals.player[1].push(globals.cards[i]);
+
+            globals.player[1][i].xPos       = Player1HandxPos;
+            globals.player[1][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+            globals.player[1][i].showBack   = false;
+            globals.player[1][i].state      = CardState.HAND
+            globals.slots[i].xPos           = Player1HandxPos;
+            globals.slots[i].yPos           = player1HandyPos;
+
             Player1HandxPos += 75;
             
         }
@@ -1059,7 +1067,7 @@ function updateTurn()
 
     else if (globals.turnState === Turn.PLAYER2)
     {
-        // console.log("Entra en Turno Player 2");
+        console.log("Entra en Turno Player 2");
         cardsHide(player1); // Ocultamos las cartas del jugador anterior
 
         cardsInHand(player2);
@@ -1072,8 +1080,9 @@ function updateTurn()
 function cardsInHand(playerNum)
 {   
     console.log("Entra en cardsInHand")
-    for (let i = 0; i < globals.player[playerNum]; i++)
+    for (let i = 0; i < globals.player[playerNum].length; i++)
     {
+        console.log("Entra en for de hand")
         let card = globals.player[playerNum][i];
         if(card.state === CardState.HAND){
             console.log("Entra en if de hand")
@@ -1086,10 +1095,10 @@ function cardsInHand(playerNum)
 function cardsHide(playerNum)
 {
     console.log("Entra en cardsHide")
-    for (let i = 0; i < globals.player[playerNum]; i++)
+    for (let i = 0; i < globals.player[playerNum].length; i++)
     {
+        console.log("Entra en for de hide")
         let card = globals.player[playerNum][i];
-
         if(card.state === CardState.HAND){
             console.log("Entra en if de hide")
             card.showBack = true;
@@ -1128,7 +1137,7 @@ function updateSelectedCard()
             }
             
 
-            globals.action.mousePressed = false;
+            // globals.action.mousePressed = false;
         }
     }
     
@@ -1169,7 +1178,7 @@ function detectCollisionBetweenMouseAndSlots()
             }
             
 
-            globals.action.mousePressed = false;
+            // globals.action.mousePressed = false;
         }
     }
     
@@ -1178,8 +1187,8 @@ function detectCollisionBetweenMouseAndSlots()
 
 function placeCard()
 {
-    // console.log(globals.cards[globals.selectedCardId_Click]);
-    if(globals.selectedCardId_Click != -1 && globals.selectedSlotId != -1 )
+    console.log(globals.cards[globals.selectedCardId_Click]);
+    if(globals.selectedCardId_Click != -1 && globals.selectedSlotId != -1)
     {
         const selectedCard      = globals.cards[globals.selectedCardId_Click];
         const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
@@ -1196,6 +1205,7 @@ function placeCard()
                 // console.log("Entra en doble if");
                 selectedCard.xPos = selectedSlotId.xPos;
                 selectedCard.yPos = selectedSlotId.yPos;
+                selectedCard.state = CardState.GAME;
             }
             
         }
@@ -1214,6 +1224,7 @@ function placeCard()
                 {
                     selectedCard.xPos = selectedSlotId.xPos;
                     selectedCard.yPos = selectedSlotId.yPos;
+                    selectedCard.state = CardState.GAME;
                 }
             }
 
@@ -1228,6 +1239,7 @@ function placeCard()
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
+                        selectedCard.state = CardState.GAME;
                     }
 
                     // DISTANCIA 
@@ -1235,12 +1247,14 @@ function placeCard()
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
+                        selectedCard.state = CardState.GAME;
                     }
                     // ASEDIO
                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
+                        selectedCard.state = CardState.GAME;
                     }
 
                     
@@ -1262,6 +1276,7 @@ function placeCard()
                 {
                     selectedCard.xPos = selectedSlotId.xPos;
                     selectedCard.yPos = selectedSlotId.yPos;
+                    selectedCard.state = CardState.GAME;
                 }
             }
 
@@ -1276,6 +1291,7 @@ function placeCard()
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
+                         selectedCard.state = CardState.GAME;
                      }
  
                      // DISTANCIA 
@@ -1283,15 +1299,28 @@ function placeCard()
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
+                         selectedCard.state = CardState.GAME;
                      }
                      // ASEDIO
                      else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
+                         selectedCard.state = CardState.GAME;
+
                      }
                 }
             }        
+        }
+        
+        console.log(selectedCard);
+        if(globals.action.mousePressed && globals.cards[globals.selectedCardId_Click].state === CardState.GAME)
+        {
+            // globals.mouseSelectedSlot = false;
+            console.log("entra en el if del ");
+            // globals.mouseNotSelected = true;
+            globals.selectedCardId_Click = -1 
+            globals.selectedSlotId = -1
         }
     }
 }
