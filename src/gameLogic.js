@@ -1243,7 +1243,35 @@ function placeCard()
                     globals.checkPlaced = true;
                 }
             }
+            
+            if(selectedCard.effect === Effect.SPY) {
+                if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
+                     {
+                         selectedCard.xPos = selectedSlotId.xPos;
+                         selectedCard.yPos = selectedSlotId.yPos;
+                        //  selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
+                     }
+ 
+                     // DISTANCIA 
+                     else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER0_F2)
+                     {
+                         selectedCard.xPos = selectedSlotId.xPos;
+                         selectedCard.yPos = selectedSlotId.yPos;
+                        //  selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
+                     }
+                     // ASEDIO
+                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
+                     {
+                         selectedCard.xPos = selectedSlotId.xPos;
+                         selectedCard.yPos = selectedSlotId.yPos;
+                        //  selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
 
+                     }
+            }
+            
             //FIELDS PLAYER 1
             else if (slotIdentificator === SlotIdentificators.PLAYER1_F1 || slotIdentificator === SlotIdentificators.PLAYER1_F2 || slotIdentificator === SlotIdentificators.PLAYER1_F3)
             {
@@ -1276,9 +1304,10 @@ function placeCard()
                         globals.checkPlaced = true;
                     }
 
-                    
+                    // console.log(selectedCard);
                 }
-            }        
+            }   
+
         }
 
         //PLAYER 2
@@ -1297,6 +1326,34 @@ function placeCard()
                     selectedCard.yPos = selectedSlotId.yPos;
                     // selectedCard.state = CardState.GAME;
                     globals.checkPlaced = true;
+                }
+            }
+
+            if(selectedCard.effect === Effect.SPY) {
+                if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
+                {
+                    selectedCard.xPos = selectedSlotId.xPos;
+                    selectedCard.yPos = selectedSlotId.yPos;
+                    //  selectedCard.state = CardState.GAME;
+                    globals.checkPlaced = true;
+                }
+
+                // DISTANCIA 
+                else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER1_F2)
+                {
+                    selectedCard.xPos = selectedSlotId.xPos;
+                    selectedCard.yPos = selectedSlotId.yPos;
+                    //  selectedCard.state = CardState.GAME;
+                    globals.checkPlaced = true;
+                }
+                // ASEDIO
+                else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
+                {
+                    selectedCard.xPos = selectedSlotId.xPos;
+                    selectedCard.yPos = selectedSlotId.yPos;
+                    //  selectedCard.state = CardState.GAME;
+                    globals.checkPlaced = true;
+
                 }
             }
 
@@ -1333,10 +1390,12 @@ function placeCard()
 
                      }
                 }
-            }        
+            }      
+
         }
         
-        // console.log(selectedCard);
+        if(selectedCard.effect === Effect.SPY)
+        console.log(selectedCard);  
 
         if(globals.action.mousePressed && globals.checkPlaced)
         {
