@@ -814,7 +814,7 @@ function updateSlots(slot, card)
     // Asignarle el id de la carta en el globlas.cards la "i"
     // Y asignarle a la carta el identificador de ese slot
     
-    console.log(globals.cards[0].slotIdentificator)
+    // console.log(globals.cards[0].slotIdentificator)
 
     for (let i = 0; i < globals.cards.length; i++)
     {
@@ -846,20 +846,23 @@ function distributeHandCards()
 function createDistribution()
 {
     let cardsToDraw = 20;
-    let Player2HandxPos =  Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
-    let Player1HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
+    let Player1HandxPos =  Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
+    let Player0HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
+
+    let player1HandyPos = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
+    let player0HandyPos = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
 
     for(let i = 0; i < cardsToDraw; i++)
     {
-        if(i % 2 === 0){
-            // console.log("entra player 2");
-            // console.log("Player 2 xPos : " + Player2HandxPos);
-            // console.log(globals.cards[i].xPos);
-
-            globals.cards[i].xPos  = Player2HandxPos;
-            globals.cards[i].yPos  = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
-            globals.player[0].push(globals.cards[i]); 
-            Player2HandxPos += 75;
+        if(i % 2 === 0)
+        {
+            globals.player[0][i].xPos       = Player0HandxPos;
+            globals.player[0][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
+            globals.player[0][i].showBack   = false;
+            globals.player[0][i].state      = CardState.HAND
+            globals.slots[i].xPos           = Player0HandxPos;
+            globals.slots[i].yPos           = player0HandyPos;
+            Player0HandxPos += 75;
 
             // globals.cards[i].showBack = false;
 
@@ -870,9 +873,12 @@ function createDistribution()
         else
         {
             // console.log("entra player 1");
-            globals.cards[i].xPos  = Player1HandxPos;
-            globals.cards[i].yPos  = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
-            globals.player[1].push(globals.cards[i]);
+            globals.player[1][i].xPos       = Player1HandxPos;
+            globals.player[1][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+            globals.player[1][i].showBack   = false;
+            globals.player[1][i].state      = CardState.HAND
+            globals.slots[i].xPos           = Player1HandxPos;
+            globals.slots[i].yPos           = player1HandyPos;
             Player1HandxPos += 75;
         }
 
