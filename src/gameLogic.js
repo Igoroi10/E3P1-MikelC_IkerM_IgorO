@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { State, CardState, SlotIdentificators, Effect, GameMode, Player1_map_pos, Player0_map_pos, Turn, Common_map_pos, Type, CardCategory} from "./constants.js";
+import { State, CardState, SlotIdentificators, Effect, GameMode, Player0_map_pos, Player1_map_pos, Turn, Common_map_pos, Type, CardCategory} from "./constants.js";
 import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards, detectCollisionBetweenMouseAndSlots } from "./collision.js"; 
 import { selectEnemy, createList} from "./events.js";
@@ -347,14 +347,14 @@ function discardCards()
 
                 if(i === 0)
                 {
-                    globals.player[i][k].xPos = Player0_map_pos.PLAYER0_DISCARD_XPOS;
-                    globals.player[i][k].yPos = Player0_map_pos.PLAYER0_DISCARD_YPOS;
+                    globals.player[i][k].xPos = Player1_map_pos.PLAYER1_DISCARD_XPOS;
+                    globals.player[i][k].yPos = Player1_map_pos.PLAYER1_DISCARD_YPOS;
                 }
 
                 else 
                 {   
-                    globals.player[i][k].xPos = Player1_map_pos.PLAYER1_DISCARD_XPOS;
-                    globals.player[i][k].yPos = Player1_map_pos.PLAYER1_DISCARD_YPOS;
+                    globals.player[i][k].xPos = Player0_map_pos.PLAYER0_DISCARD_XPOS;
+                    globals.player[i][k].yPos = Player0_map_pos.PLAYER0_DISCARD_YPOS;
                 }
             }
         }
@@ -447,7 +447,7 @@ function medicEffect(card){
     let valueToMedic = -1;
 
 
-    if(card.slotIdentificators < SlotIdentificators.PLAYER0_F1)
+    if(card.slotIdentificators < SlotIdentificators.PLAYER1_F1)
 
         playerNum = 0;
     else
@@ -493,7 +493,7 @@ function musterEffect(card){
     let playerNum;
     console.log("carta a principio de muster");
     console.log(card)
-    if(card.slotIdentificators < SlotIdentificators.PLAYER0_F1)
+    if(card.slotIdentificators < SlotIdentificators.PLAYER1_F1)
         playerNum = 0;
     else
         playerNum = 1;
@@ -592,9 +592,9 @@ function checkIfSlotAvailable(effect, card, playerNum){
                 let handIdentificatorSpy;
     
                 if(playerNum === 0)
-                    handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
-                else
                     handIdentificatorSpy = SlotIdentificators.PLAYER1_HAND;
+                else
+                    handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
     
                 for(let i = 0; i < globals.cards.length; i++){
                     if(globals.cards[i].slotIdentificator === handIdentificatorSpy)
@@ -619,9 +619,9 @@ function checkIfSlotAvailable(effect, card, playerNum){
             let handIdentificatorSpy;
 
             if(playerNum === 0)
-                handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
-            else
                 handIdentificatorSpy = SlotIdentificators.PLAYER1_HAND;
+            else
+                handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
 
             for(let i = 0; i < globals.cards.length; i++){
                 if(globals.cards[i].slotIdentificator === handIdentificatorSpy)
@@ -647,9 +647,9 @@ function checkIfSlotAvailable(effect, card, playerNum){
             let handIdentificator;
 
             if(playerNum === 0)
-                handIdentificator = SlotIdentificator.PLAYER0_HAND;
+                handIdentificator = SlotIdentificator.PLAYER1_HAND;
             else
-            handIdentificator = SlotIdentificator.PLAYER1_HAND;
+            handIdentificator = SlotIdentificator.PLAYER0_HAND;
 
             for(let i = 0; i < globals.cards.length; i++){
                 if(globals.cards[i].slotIdentificator === handIdentificator)
@@ -709,22 +709,22 @@ function calculatePoints(player){
 
     if(player === 0){
 
-        buff1   = SlotIdentificators.PLAYER1_B1;
-        buff2   = SlotIdentificators.PLAYER1_B2;
-        buff3   = SlotIdentificators.PLAYER1_B3;
-        field1  = SlotIdentificators.PLAYER1_F1;
-        field2  = SlotIdentificators.PLAYER1_F2;
-        field3  = SlotIdentificators.PLAYER1_F3;
-    }
-
-    else{
-
         buff1   = SlotIdentificators.PLAYER0_B1;
         buff2   = SlotIdentificators.PLAYER0_B2;
         buff3   = SlotIdentificators.PLAYER0_B3;
         field1  = SlotIdentificators.PLAYER0_F1;
         field2  = SlotIdentificators.PLAYER0_F2;
         field3  = SlotIdentificators.PLAYER0_F3;
+    }
+
+    else{
+
+        buff1   = SlotIdentificators.PLAYER1_B1;
+        buff2   = SlotIdentificators.PLAYER1_B2;
+        buff3   = SlotIdentificators.PLAYER1_B3;
+        field1  = SlotIdentificators.PLAYER1_F1;
+        field2  = SlotIdentificators.PLAYER1_F2;
+        field3  = SlotIdentificators.PLAYER1_F3;
     }
 
     //Efectos climate (a implementar en un futuro para el modo expert)
@@ -890,15 +890,15 @@ function startingDeal(mode){
 
     for(let i = 0; i < cardsToDraw; i++){
         if(i % 2 === 0){
-            globals.cards[i].xPos  = Player0_map_pos.PLAYER0_DECK_XPOS;
-            globals.cards[i].yPos  = Player0_map_pos.PLAYER0_DECK_YPOS;
+            globals.cards[i].xPos  = Player1_map_pos.PLAYER1_DECK_XPOS;
+            globals.cards[i].yPos  = Player1_map_pos.PLAYER1_DECK_YPOS;
             globals.player[0].push(globals.cards[i]); //Array que almacena las cartas para el player 1
         }
 
         else
         {
-            globals.cards[i].xPos  = Player1_map_pos.PLAYER1_DECK_XPOS;
-            globals.cards[i].yPos  = Player1_map_pos.PLAYER1_DECK_YPOS;
+            globals.cards[i].xPos  = Player0_map_pos.PLAYER0_DECK_XPOS;
+            globals.cards[i].yPos  = Player0_map_pos.PLAYER0_DECK_YPOS;
             globals.player[1].push(globals.cards[i]); //Array que almacena las cartas para el player 2
         }
             
@@ -919,31 +919,31 @@ function startingTokensDeal()
     for(let i = 0; i < globals.tokens.length; i++){
         if(i === 1)
         {
-            globals.tokens[i].xPos  = Common_map_pos.PLAYER1_LIVE1_XPOS;
-            globals.tokens[i].yPos  = Common_map_pos.PLAYER1_LIVE_YPOS;
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER0_LIVE1_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER0_LIVE_YPOS;
             globals.playerTokens[0].push(globals.tokens[i]); //Array que almacena las cartas para el player 1
         }
         else if(i === 2)
         {
-            globals.tokens[i].xPos  = Common_map_pos.PLAYER1_LIVE2_XPOS;
-            globals.tokens[i].yPos  = Common_map_pos.PLAYER1_LIVE_YPOS;
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER0_LIVE2_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER0_LIVE_YPOS;
             globals.playerTokens[0].push(globals.tokens[i]); //Array que almacena las cartas para el player 2
         }
         else if(i === 3)
         {
-            globals.tokens[i].xPos  = Common_map_pos.PLAYER0_LIVE1_XPOS;
-            globals.tokens[i].yPos  = Common_map_pos.PLAYER0_LIVE1_YPOS;
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER1_LIVE1_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER1_LIVE1_YPOS;
             globals.playerTokens[1].push(globals.tokens[i]); //Array que almacena las cartas para el player 2
         }
         else if(i === 4)
         {
-            globals.tokens[i].xPos  = Common_map_pos.PLAYER0_LIVE2_XPOS;
-            globals.tokens[i].yPos  = Common_map_pos.PLAYER0_LIVE1_YPOS;
+            globals.tokens[i].xPos  = Common_map_pos.PLAYER1_LIVE2_XPOS;
+            globals.tokens[i].yPos  = Common_map_pos.PLAYER1_LIVE1_YPOS;
             globals.playerTokens[1].push(globals.tokens[i]); //Array que almacena las cartas para el player 2
         }
         else
         {
-            globals.tokens[i].xPos = Common_map_pos.PLAYER1_TURN_TOKEN_XPOS;
+            globals.tokens[i].xPos = Common_map_pos.PLAYER0_TURN_TOKEN_XPOS;
             globals.tokens[i].yPos = 0;
         }
     }
@@ -957,11 +957,11 @@ function updateTokenPlacement()
         // console.log(globals.turnState);
         if(globals.turnState === Turn.PLAYER2)
         {
-            globals.tokens[0].yPos = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
+            globals.tokens[0].yPos = Common_map_pos.PLAYER0_TURN_TOKEN_YPOS;
         }
         else if(globals.turnState === Turn.PLAYER1)
         {
-            globals.tokens[0].yPos = Common_map_pos.PLAYER0_TURN_TOKEN_YPOS;
+            globals.tokens[0].yPos = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
         }
     }
 }
@@ -1021,11 +1021,11 @@ function distributeHandCards()
 function createDistribution()
 {
     let cardsToDraw = 20;
-    let Player1HandxPos =  Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
-    let Player0HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
+    let Player1HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
+    let Player0HandxPos =  Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
 
-    let player1HandyPos = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
-    let player0HandyPos = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+    let player1HandyPos = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+    let player0HandyPos = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
 
     for(let i = 0; i < cardsToDraw; i++)
     {
@@ -1033,7 +1033,7 @@ function createDistribution()
         if(i % 2 === 0)
         {
             globals.player[0][i].xPos       = Player0HandxPos;
-            globals.player[0][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
+            globals.player[0][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
             globals.player[0][i].showBack   = false;
             globals.player[0][i].state      = CardState.HAND
             Player0HandxPos += 75;
@@ -1050,7 +1050,7 @@ function createDistribution()
             // console.log("entra player 1");
 
             globals.player[1][i].xPos       = Player1HandxPos;
-            globals.player[1][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+            globals.player[1][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
             globals.player[1][i].showBack   = false;
             globals.player[1][i].state      = CardState.HAND
 
@@ -1223,7 +1223,7 @@ function placeCard()
             // ==============
 
             //BUFFS PLAYER 1
-            if (slotIdentificator === SlotIdentificators.PLAYER1_B1 || slotIdentificator === SlotIdentificators.PLAYER1_B2 || slotIdentificator === SlotIdentificators.PLAYER1_B3)
+            if (slotIdentificator === SlotIdentificators.PLAYER0_B1 || slotIdentificator === SlotIdentificators.PLAYER0_B2 || slotIdentificator === SlotIdentificators.PLAYER0_B3)
             {
                 if(selectedCard.categoryId === CardCategory.PERMAEFFECT)
                 {
@@ -1235,7 +1235,7 @@ function placeCard()
             }
             
             if(selectedCard.effect === Effect.SPY) {
-                if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
+                if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
@@ -1244,7 +1244,7 @@ function placeCard()
                      }
  
                      // DISTANCIA 
-                     else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER0_F2)
+                     else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER1_F2)
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
@@ -1252,7 +1252,7 @@ function placeCard()
                         globals.checkPlaced = true;
                      }
                      // ASEDIO
-                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
+                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
@@ -1263,13 +1263,13 @@ function placeCard()
             }
             
             //FIELDS PLAYER 1
-            else if (slotIdentificator === SlotIdentificators.PLAYER1_F1 || slotIdentificator === SlotIdentificators.PLAYER1_F2 || slotIdentificator === SlotIdentificators.PLAYER1_F3)
+            else if (slotIdentificator === SlotIdentificators.PLAYER0_F1 || slotIdentificator === SlotIdentificators.PLAYER0_F2 || slotIdentificator === SlotIdentificators.PLAYER0_F3)
             {
                 if(selectedCard.categoryId === CardCategory.UNIT)
                 {
                     // METER IF DE TIPO CARTA:
                     // CUEPRO A CUERPO
-                    if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
+                    if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
@@ -1278,7 +1278,7 @@ function placeCard()
                     }
 
                     // DISTANCIA 
-                    else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER1_F2)
+                    else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER0_F2)
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
@@ -1286,7 +1286,7 @@ function placeCard()
                         globals.checkPlaced = true;
                     }
                     // ASEDIO
-                    else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
+                    else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
                     {
                         selectedCard.xPos = selectedSlotId.xPos;
                         selectedCard.yPos = selectedSlotId.yPos;
@@ -1308,7 +1308,7 @@ function placeCard()
             // ==============
 
             //BUFFS PLAYER 2
-            if (slotIdentificator === SlotIdentificators.PLAYER0_B1 || slotIdentificator === SlotIdentificators.PLAYER0_B2 || slotIdentificator === SlotIdentificators.PLAYER0_B3)
+            if (slotIdentificator === SlotIdentificators.PLAYER1_B1 || slotIdentificator === SlotIdentificators.PLAYER1_B2 || slotIdentificator === SlotIdentificators.PLAYER1_B3)
             {
                 if(selectedCard.categoryId === CardCategory.PERMAEFFECT)
                 {
@@ -1320,7 +1320,7 @@ function placeCard()
             }
 
             if(selectedCard.effect === Effect.SPY) {
-                if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
+                if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
                 {
                     selectedCard.xPos = selectedSlotId.xPos;
                     selectedCard.yPos = selectedSlotId.yPos;
@@ -1329,7 +1329,7 @@ function placeCard()
                 }
 
                 // DISTANCIA 
-                else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER1_F2)
+                else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER0_F2)
                 {
                     selectedCard.xPos = selectedSlotId.xPos;
                     selectedCard.yPos = selectedSlotId.yPos;
@@ -1337,7 +1337,7 @@ function placeCard()
                     globals.checkPlaced = true;
                 }
                 // ASEDIO
-                else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
+                else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
                 {
                     selectedCard.xPos = selectedSlotId.xPos;
                     selectedCard.yPos = selectedSlotId.yPos;
@@ -1348,13 +1348,13 @@ function placeCard()
             }
 
             //FIELDS PLAYER 2
-            else if (slotIdentificator === SlotIdentificators.PLAYER0_F1 || slotIdentificator === SlotIdentificators.PLAYER0_F2 || slotIdentificator === SlotIdentificators.PLAYER0_F3)
+            else if (slotIdentificator === SlotIdentificators.PLAYER1_F1 || slotIdentificator === SlotIdentificators.PLAYER1_F2 || slotIdentificator === SlotIdentificators.PLAYER1_F3)
             {
                 if(selectedCard.categoryId === CardCategory.UNIT)
                 {
                     // METER IF DE TIPO CARTA:
                      // CUEPRO A CUERPO
-                     if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
+                     if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
@@ -1363,7 +1363,7 @@ function placeCard()
                      }
  
                      // DISTANCIA 
-                     else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER0_F2)
+                     else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER1_F2)
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
@@ -1371,7 +1371,7 @@ function placeCard()
                         globals.checkPlaced = true;
                      }
                      // ASEDIO
-                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
+                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
                      {
                          selectedCard.xPos = selectedSlotId.xPos;
                          selectedCard.yPos = selectedSlotId.yPos;
