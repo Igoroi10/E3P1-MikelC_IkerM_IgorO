@@ -1,7 +1,9 @@
 import globals from "./globals.js";
-import { CardSizes, CARD_SIZE } from "./constants.js";
+import { CardState } from "./constants.js";
 import ImageSet from "./ImageSet.js";
+import { updateSelectedCard } from "./gameLogic.js";
 
+//DOBLE CLICK
 function detectCollisionBetweenMouseAndCards()
 {
 
@@ -87,7 +89,48 @@ function detectCollisionBetweenMouseAndSlots()
 
 }
 
+//Funcion que detecta que carta hemos seleccionado para colocar
+function detectCollisionBetweenMouseAndCards_Click()
+{
+    if (globals.action.mousePressed)
+    {
+        for(let i = 0; i < globals.cards.length; ++i)
+        {
+            const card = globals.cards[i];
+            const xSize = 80;
+            const ySize = 100;
+        
+            if(globals.mouse.x < (card.xPos + xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < (card.yPos + ySize) && globals.mouse.y > card.yPos)
+            {
+                // console.log(card.state);
+                globals.mouseSelectedCard = true;
+                
+                if(globals.selectedCardId_Click === -1)
+                {
+                    globals.selectedCardId_Click = i;
+                    updateSelectedCard(card);
+                }
+                    
+                else
+                globals.selectedSlotId = -1;
+
+                break;
+            }
+
+            else
+            {
+                globals.mouseSelectedCard = false; 
+                globals.selectedCardId_Click = -1;
+            }
+            
+            
+            // globals.action.mousePressed = false;
+        }
+    }
+}
+
 export {
     detectCollisionBetweenMouseAndCards,
-    detectCollisionBetweenMouseAndSlots
+    detectCollisionBetweenMouseAndSlots,
+    detectCollisionBetweenMouseAndCards_Click,
 }   

@@ -671,7 +671,7 @@ function AddTokenCard()
             }
         }
     }
-    console.log(globals.tokens);
+    // console.log(globals.tokens);
 }
 
 function initFakeCards ()
@@ -700,6 +700,7 @@ function initSlots()
     liveZone2();  
     tokenZone1();
     tokenZone2();
+    messageZone();
 
     //PLAYER 1
     slotDiscardP1();            // Slots de Descartes del Jugador 1     - DONE
@@ -734,8 +735,9 @@ function slotDiscardP1 ()
     const yPos      = Player0_map_pos.PLAYER0_DISCARD_YPOS;
     const xSize     = 90;
     const ySize     = 100;
+    const slotID    = SlotIdentificators.PLAYER0_DISCARD;
 
-    const slotDiscardP1 = new GameZones(xPos, yPos, xSize, ySize);
+    const slotDiscardP1 = new GameZones(xPos, yPos, xSize, ySize, slotID);
     globals.slots.push(slotDiscardP1);
     //Se hara un push a un array globals de Slots para almacenar todos los slots y despues renderizarlos
 }
@@ -746,8 +748,9 @@ function slotDiscardP2 ()
     const yPos      = Player1_map_pos.PLAYER1_DISCARD_YPOS;
     const xSize     = 90;
     const ySize     = 100;
+    const slotID    = SlotIdentificators.PLAYER1_DISCARD
 
-    const slotDiscardP2 = new GameZones(xPos, yPos, xSize, ySize);
+    const slotDiscardP2 = new GameZones(xPos, yPos, xSize, ySize, slotID);
     globals.slots.push(slotDiscardP2);
 }
 
@@ -774,9 +777,12 @@ function liveZone1()
     const yPos      = Common_map_pos.PLAYER0_LIVE_YPOS;
     const xSize     = CardSizes.TOKEN_WIDHT;
     const ySize     = CardSizes.TOKEN_HEIGHT;
+    const slotID1   = SlotIdentificators.PLAYER0_TOKEN1;
+    const slotID2   = SlotIdentificators.PLAYER0_TOKEN2;
 
-    const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize);
-    const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize);
+
+    const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize, slotID1);
+    const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize, slotID2);
     globals.slots.push(slotLive1, slotLive2);
 }
 
@@ -789,8 +795,11 @@ function liveZone2()
     const xSize     = CardSizes.TOKEN_WIDHT;
     const ySize     = CardSizes.TOKEN_HEIGHT;
 
-    const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize);
-    const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize);
+    const slotID1   = SlotIdentificators.PLAYER1_TOKEN1;
+    const slotID2   = SlotIdentificators.PLAYER1_TOKEN2;
+
+    const slotLive1 = new GameZones(xPos1, yPos, xSize, ySize, slotID1);
+    const slotLive2 = new GameZones(xPos2, yPos, xSize, ySize, slotID2);
     globals.slots.push(slotLive1, slotLive2);
 }
 
@@ -814,6 +823,17 @@ function tokenZone2()
 
     const slotToken = new GameZones(xPos1, yPos, xSize, ySize);
     globals.slots.push(slotToken);
+}
+
+function messageZone()
+{
+    const xPos1     = Common_map_pos.MESSAGE_XPOS;
+    const yPos      = Common_map_pos.MESSAGE_YPOS;
+    const xSize     = Common_map_pos.MESSAGE_XSIZE;
+    const ySize     = Common_map_pos.MESSAGE_YSIZE;
+
+    const slotMessage = new GameZones(xPos1, yPos, xSize, ySize);
+    globals.slots.push(slotMessage);
 }
 
 function handPlayer1 ()

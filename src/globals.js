@@ -179,9 +179,6 @@ export default
 
     winner: "",
     checkIfLives0: false,
-
-
-    placedCard: false,
     
     //Acciones para el cambio automatico de turno
     Player1TwoActions: false,

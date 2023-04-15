@@ -439,23 +439,18 @@ function drawNames()
     // globals.hostPlayerInfo.izen_abizena
 }
 
-function lifeSlots()
-{
-
-}
-
 function drawMessages()
 {
     // console.log(globals.turnState);
     // console.log("los dos han pasado" + globals.checkBothPlayerRound);
     globals.checkRoundPlayer2;
     const hostName = localStorage.getItem('izen_abizena');
-    globals.ctx.fillStyle = 'red'; 
-    globals.ctx.fillRect(50, 530, 310, 85);
-    globals.ctx.clearRect(53, 533, 305, 80);
+    // globals.ctx.fillStyle = 'red'; 
+    // globals.ctx.fillRect(50, 530, 310, 85);
+    // globals.ctx.clearRect(53, 533, 305, 80);
 
 
-    if(globals.turnState === 1)
+    if(globals.turnState === Turn.PLAYER1)
     {
 
         globals.ctx.font = '20px magicmedieval'; 
@@ -466,7 +461,7 @@ function drawMessages()
         globals.ctx.fillStyle = 'yellow';    
         globals.ctx.fillText(globals.selectedEnemy+ "'s turn.", 90, 555); 
     }
-    else if(globals.turnState === 2)
+    else if(globals.turnState === Turn.PLAYER2)
     {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'black';    
@@ -499,19 +494,19 @@ function drawMessages()
             globals.ctx.fillText("Solo puede jugar el jugador 2", 70, 585);
         }
    }
-
-   if(globals.actionsCounter.player1 === 2 || globals.actionsCounter.player2 === 2)
-   {
-        globals.ctx.font = '20px magicmedieval'; 
-        globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText("Select a card and put it on the table", 60, 585);
-   }
-   else if(globals.actionsCounter.player1 === 1 || globals.actionsCounter.player2 == 1)
+    if(globals.actionsCounter.player1 === 1 || globals.actionsCounter.player2 == 1)
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
         globals.ctx.fillText("(Select a card to decoy)", 60, 585);
    }
+   else if(globals.actionsCounter.player2 === 2 || globals.actionsCounter.player1 === 0)
+   {
+        globals.ctx.font = '20px magicmedieval'; 
+        globals.ctx.fillStyle = 'yellow';    
+        globals.ctx.fillText("Select a card and put it on the table", 60, 585);
+   }
+   
 //    225, 220
 //    225, 660
 //    globals.ctx.fillStyle = 'red'; 
