@@ -439,11 +439,6 @@ function drawNames()
     // globals.hostPlayerInfo.izen_abizena
 }
 
-function lifeSlots()
-{
-
-}
-
 function drawMessages()
 {
     // console.log(globals.turnState);
