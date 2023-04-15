@@ -556,12 +556,12 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     if(globals.player[playerNum][i].cardName === card.cardName && globals.player[playerNum][i].state === CardState.DISCARD){
                         for(let l = 0; l < globals.slots.length; l++){
 
-                            if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator){
+                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator){
                                 
-                                card.xPos = globals.slots[i].xPos;
-                                card.yPos = globals.slots[i].yPos;
-                                card.state = CardState.GAME;
-                                card.showBack = false;
+                                globals.cards[i].xPos = globals.slots[l].xPos;
+                                globals.cards[i].yPos = globals.slots[l].yPos;
+                                globals.cards[i].state = CardState.GAME;
+                                globals.cards[i].showBack = false;
                             }
                         }
 
@@ -573,8 +573,6 @@ function checkIfSlotAvailable(effect, card, playerNum){
 
         case Effect.MUSTER:
             let effectChecks = 0;
-            console.log("Entra en muster effect para los slots")
-            console.log(card)
             for(let i = 0; i < globals.cards.length; i++){
                 if(i === 0)
                 if(globals.cards[i].slotIdentificator === card.slotIdentificator)
@@ -586,8 +584,6 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     if(globals.player[playerNum][i].cardName === card.cardName && globals.player[playerNum][i].state !== CardState.GAME && globals.player[playerNum][i].state !== CardState.DISCARD){
                         for(let l = 0; l < globals.slots.length; l++){
                             if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === card.slotIdentificator){
-                                console.log("entra para colocar una carta en muster")
-                                console.log("identificador de slot destino: " + globals.slots[l].slotIdentificator);
                                 globals.player[playerNum][i].xPos = globals.slots[l].xPos;
                                 globals.player[playerNum][i].yPos = globals.slots[l].yPos;
                                 globals.player[playerNum][i].state = CardState.GAME;
@@ -601,15 +597,15 @@ function checkIfSlotAvailable(effect, card, playerNum){
             }
             break;
         case Effect.SPY:
-            
+   
             for(let k = 0; k < 2; k++){
                 let spyChecks = 0;
                 let handIdentificatorSpy;
     
                 if(playerNum === 0)
-                    handIdentificatorSpy = SlotIdentificators.PLAYER1_HAND;
-                else
                     handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
+                else
+                    handIdentificatorSpy = SlotIdentificators.PLAYER1_HAND;
     
                 for(let i = 0; i < globals.cards.length; i++){
                     if(globals.cards[i].slotIdentificator === handIdentificatorSpy)
@@ -617,64 +613,50 @@ function checkIfSlotAvailable(effect, card, playerNum){
                 }
             
                 if(spyChecks < 12){
-    
-                    for(let l = 0; l < globals.slots.length; l++){
-                        if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
-    
-                            card.xPos = globals.slots[i].xPos;
-                            card.yPos = globals.slots[i].yPos;
-                            card.state = CardState.HAND;
-                            card.showBack = false;
+
+                    for(let i = 0; i < globals.cards.length; i++){
+                        if(globals.cards[i].state === CardState.DECK){
+                            for(let l = 0; l < globals.slots.length; l++){
+                                if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
+                                    console.log("slot xpos " + globals.slots[l].xPos)
+                                    console.log("slot ypos " + globals.slots[l].yPos)
+                                    globals.cards[i].xPos = globals.slots[l].xPos;
+                                    globals.cards[i].yPos = globals.slots[l].yPos;
+                                    globals.cards[i].state = CardState.HAND;
+                                    globals.cards[i].showBack = true;
+                                    globals.slots[l].placed_cards++;
+                                    l = globals.slots.length;
+                                    i = globals.cards.length;
+                                }
+                            }
                         }
+
                     }
+
                 }
                      
             }
-            let spyChecks = 0;
-            let handIdentificatorSpy;
 
-            if(playerNum === 0)
-                handIdentificatorSpy = SlotIdentificators.PLAYER1_HAND;
-            else
-                handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
-
-            for(let i = 0; i < globals.cards.length; i++){
-                if(globals.cards[i].slotIdentificator === handIdentificatorSpy)
-                spyChecks++  
-            }
-        
-            if(spyChecks < 12){
-
-                for(let l = 0; l < globals.slots.length; l++){
-                    if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
-
-                        card.xPos = globals.slots[i].xPos;
-                        card.yPos = globals.slots[i].yPos;
-                        card.state = CardState.HAND;
-                        card.showBack = false;
-                    }
-                }
-            }
                 
             break;
         case Effect.DECOY:
             let decoyChecks = 0;
-            let handIdentificator;
+            let handIdentificatorDecoy;
 
             if(playerNum === 0)
-                handIdentificator = SlotIdentificator.PLAYER1_HAND;
+                handIdentificatorDecoy = SlotIdentificator.PLAYER1_HAND;
             else
-            handIdentificator = SlotIdentificator.PLAYER0_HAND;
+            handIdentificatorDecoy = SlotIdentificator.PLAYER0_HAND;
 
             for(let i = 0; i < globals.cards.length; i++){
-                if(globals.cards[i].slotIdentificator === handIdentificator)
+                if(globals.cards[i].slotIdentificator === handIdentificatorDecoy)
                 decoyChecks++  
             }
         
             if(decoyChecks < 12){
 
                 for(let l = 0; l < globals.slots.length; l++){
-                    if(globals.slots[l].placed_cards !== -1 && globals.slots[l].slotIdentificator === handIdentificator){
+                    if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorDecoy){
 
                         card.xPos = globals.slots[i].xPos;
                         card.yPos = globals.slots[i].yPos;
@@ -1105,18 +1087,18 @@ function updateTurn()
     {  
         // console.log("turno player1")
         // console.log("Entra en Turno Player 1");
-        cardsHide(player2); // Ocultamos las cartas del jugador anterior
+        cardsHide(Turn.PLAYER1); // Ocultamos las cartas del jugador anterior
 
-        cardsInHand(player1);
+        cardsInHand(Turn.PLAYER2);
         
     }
 
     else if (globals.turnState === Turn.PLAYER2)
     {
         // console.log("Entra en Turno Player 2");
-        cardsHide(player1); // Ocultamos las cartas del jugador anterior
+        cardsHide(Turn.PLAYER2); // Ocultamos las cartas del jugador anterior
 
-        cardsInHand(player2);
+        cardsInHand(Turn.PLAYER1);
     }
 
     else
