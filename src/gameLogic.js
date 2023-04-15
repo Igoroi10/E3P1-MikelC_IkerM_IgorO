@@ -1169,216 +1169,230 @@ function placeCard()
     // console.log(globals.cards[globals.selectedCardId_Click]);
     // console.log("click: " + globals.selectedCardId_Click)
     // console.log("cardId: " + globals.selectedSlotId);
-    
-    if(globals.selectedCardId_Click !== -1 && globals.selectedSlotId !== -1)
+
+    //Como es undefined el global.selectedSlotID  === -1 hasta que seleciona el identificador de slots, peta. Ya que en el array como no existe la posicion -1 peta.
+    if (globals.selectedSlotId !== -1)
     {
-        console.log("Entra placed card");
-        const selectedCard      = globals.cards[globals.selectedCardId_Click];
-        const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
-        const slotIdentificator = globals.slots[globals.selectedSlotId].slotIdentificator;
-        // console.log(selectedCard);
-        // console.log("Entrra en Place Card Slot: " + slotIdentificator);
-        // ==============
-        //     CLIMATE
-        // ==============
-        
-        if ( slotIdentificator === SlotIdentificators.CLIMATE_FIELD)
-        {   
-            if(selectedCard.categoryId === CardCategory.CLIMATE)
-            {
-                // console.log("Entra en doble if");
-                selectedCard.xPos = selectedSlotId.xPos;
-                selectedCard.yPos = selectedSlotId.yPos;
-                // selectedCard.state = CardState.GAME;
-                globals.checkPlaced = true;
-            }
-            
-        }
-        
-        // PLAYER 1
-        if (globals.turnState === Turn.PLAYER2)
-        {
-            // ==============
-            //     UNITS
-            // ==============
-
-            //BUFFS PLAYER 1
-            if (slotIdentificator === SlotIdentificators.PLAYER0_B1 || slotIdentificator === SlotIdentificators.PLAYER0_B2 || slotIdentificator === SlotIdentificators.PLAYER0_B3)
-            {
-                if(selectedCard.categoryId === CardCategory.PERMAEFFECT)
-                {
-                    selectedCard.xPos = selectedSlotId.xPos;
-                    selectedCard.yPos = selectedSlotId.yPos;
-                    // selectedCard.state = CardState.GAME;
-                    globals.checkPlaced = true;
-                }
-            }
-            
-            if(selectedCard.effect === Effect.SPY) {
-                if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
-                     {
-                         selectedCard.xPos = selectedSlotId.xPos;
-                         selectedCard.yPos = selectedSlotId.yPos;
-                        //  selectedCard.state = CardState.GAME;
-                        globals.checkPlaced = true;
-                     }
- 
-                     // DISTANCIA 
-                     else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER1_F2)
-                     {
-                         selectedCard.xPos = selectedSlotId.xPos;
-                         selectedCard.yPos = selectedSlotId.yPos;
-                        //  selectedCard.state = CardState.GAME;
-                        globals.checkPlaced = true;
-                     }
-                     // ASEDIO
-                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
-                     {
-                         selectedCard.xPos = selectedSlotId.xPos;
-                         selectedCard.yPos = selectedSlotId.yPos;
-                        //  selectedCard.state = CardState.GAME;
-                        globals.checkPlaced = true;
-
-                     }
-            }
-            
-            //FIELDS PLAYER 1
-            else if (slotIdentificator === SlotIdentificators.PLAYER0_F1 || slotIdentificator === SlotIdentificators.PLAYER0_F2 || slotIdentificator === SlotIdentificators.PLAYER0_F3)
-            {
-                if(selectedCard.categoryId === CardCategory.UNIT)
-                {
-                    // METER IF DE TIPO CARTA:
-                    // CUEPRO A CUERPO
-                    if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
-                    {
-                        selectedCard.xPos = selectedSlotId.xPos;
-                        selectedCard.yPos = selectedSlotId.yPos;
-                        // selectedCard.state = CardState.GAME;
-                        globals.checkPlaced = true;
-                    }
-
-                    // DISTANCIA 
-                    else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER0_F2)
-                    {
-                        selectedCard.xPos = selectedSlotId.xPos;
-                        selectedCard.yPos = selectedSlotId.yPos;
-                        // selectedCard.state = CardState.GAME;
-                        globals.checkPlaced = true;
-                    }
-                    // ASEDIO
-                    else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
-                    {
-                        selectedCard.xPos = selectedSlotId.xPos;
-                        selectedCard.yPos = selectedSlotId.yPos;
-                        // selectedCard.state = CardState.GAME;
-                        globals.checkPlaced = true;
-                    }
-
-                    // console.log(selectedCard);
-                }
-            }   
-
-        }
-
-        //PLAYER 2
-        else if (globals.turnState === Turn.PLAYER1)
-        {
-            // ==============
-            //     UNITS
-            // ==============
-
-            //BUFFS PLAYER 2
-            if (slotIdentificator === SlotIdentificators.PLAYER1_B1 || slotIdentificator === SlotIdentificators.PLAYER1_B2 || slotIdentificator === SlotIdentificators.PLAYER1_B3)
-            {
-                if(selectedCard.categoryId === CardCategory.PERMAEFFECT)
-                {
-                    selectedCard.xPos = selectedSlotId.xPos;
-                    selectedCard.yPos = selectedSlotId.yPos;
-                    // selectedCard.state = CardState.GAME;
-                    globals.checkPlaced = true;
-                }
-            }
-
-            if(selectedCard.effect === Effect.SPY) {
-                if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
-                {
-                    selectedCard.xPos = selectedSlotId.xPos;
-                    selectedCard.yPos = selectedSlotId.yPos;
-                    //  selectedCard.state = CardState.GAME;
-                    globals.checkPlaced = true;
-                }
-
-                // DISTANCIA 
-                else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER0_F2)
-                {
-                    selectedCard.xPos = selectedSlotId.xPos;
-                    selectedCard.yPos = selectedSlotId.yPos;
-                    //  selectedCard.state = CardState.GAME;
-                    globals.checkPlaced = true;
-                }
-                // ASEDIO
-                else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
-                {
-                    selectedCard.xPos = selectedSlotId.xPos;
-                    selectedCard.yPos = selectedSlotId.yPos;
-                    //  selectedCard.state = CardState.GAME;
-                    globals.checkPlaced = true;
-
-                }
-            }
-
-            //FIELDS PLAYER 2
-            else if (slotIdentificator === SlotIdentificators.PLAYER1_F1 || slotIdentificator === SlotIdentificators.PLAYER1_F2 || slotIdentificator === SlotIdentificators.PLAYER1_F3)
-            {
-                if(selectedCard.categoryId === CardCategory.UNIT)
-                {
-                    // METER IF DE TIPO CARTA:
-                     // CUEPRO A CUERPO
-                     if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
-                     {
-                         selectedCard.xPos = selectedSlotId.xPos;
-                         selectedCard.yPos = selectedSlotId.yPos;
-                        //  selectedCard.state = CardState.GAME;
-                        globals.checkPlaced = true;
-                     }
- 
-                     // DISTANCIA 
-                     else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER1_F2)
-                     {
-                         selectedCard.xPos = selectedSlotId.xPos;
-                         selectedCard.yPos = selectedSlotId.yPos;
-                        //  selectedCard.state = CardState.GAME;
-                        globals.checkPlaced = true;
-                     }
-                     // ASEDIO
-                     else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
-                     {
-                         selectedCard.xPos = selectedSlotId.xPos;
-                         selectedCard.yPos = selectedSlotId.yPos;
-                        //  selectedCard.state = CardState.GAME;
-                        globals.checkPlaced = true;
-
-                     }
-                }
-            }      
-
-        }
+        console.log(globals.slots[globals.selectedSlotId].placed_cards);
        
-        if(globals.action.mousePressed && globals.checkPlaced)
+        //Comprobacion para saber si existe un hueco o no en dicho slot
+        if (globals.slots[globals.selectedSlotId].placed_cards === -1)
         {
-            console.log("Carta colocada");
-            // globals.mouseSelectedSlot = false;
-            // console.log("entra en el if del ");
-            // globals.mouseNotSelected = true;
+            console.log("Entra en el segundo if");
+            if(globals.selectedCardId_Click !== -1 && globals.selectedSlotId !== -1)
+            {
+                console.log("Entra placed card");
+                const selectedCard      = globals.cards[globals.selectedCardId_Click];
+                const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
+                const slotIdentificator = globals.slots[globals.selectedSlotId].slotIdentificator;
+                // console.log(selectedCard);
+                // console.log("Entrra en Place Card Slot: " + slotIdentificator);
+                // ==============
+                //     CLIMATE
+                // ==============
+                
+                if ( slotIdentificator === SlotIdentificators.CLIMATE_FIELD)
+                {   
+                    if(selectedCard.categoryId === CardCategory.CLIMATE)
+                    {
+                        // console.log("Entra en doble if");
+                        selectedCard.xPos = selectedSlotId.xPos;
+                        selectedCard.yPos = selectedSlotId.yPos;
+                        // selectedCard.state = CardState.GAME;
+                        globals.checkPlaced = true;
+                    }
+                    
+                }
+                
+                // PLAYER 1
+                if (globals.turnState === Turn.PLAYER2)
+                {
+                    // ==============
+                    //     UNITS
+                    // ==============
 
-            globals.selectedCardId_Click    = -1 
-            globals.selectedSlotId          = -1
-            globals.placedCard              = true;
-            globals.checkPlaced             = false;
+                    //BUFFS PLAYER 1
+                    if (slotIdentificator === SlotIdentificators.PLAYER0_B1 || slotIdentificator === SlotIdentificators.PLAYER0_B2 || slotIdentificator === SlotIdentificators.PLAYER0_B3)
+                    {
+                        if(selectedCard.categoryId === CardCategory.PERMAEFFECT)
+                        {
+                            selectedCard.xPos = selectedSlotId.xPos;
+                            selectedCard.yPos = selectedSlotId.yPos;
+                            // selectedCard.state = CardState.GAME;
+                            globals.checkPlaced = true;
+                        }
+                    }
+                    
+                    if(selectedCard.effect === Effect.SPY) {
+                        if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                //  selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+                            }
+        
+                            // DISTANCIA 
+                            else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER1_F2)
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                //  selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+                            }
+                            // ASEDIO
+                            else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                //  selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+
+                            }
+                    }
+                    
+                    //FIELDS PLAYER 1
+                    else if (slotIdentificator === SlotIdentificators.PLAYER0_F1 || slotIdentificator === SlotIdentificators.PLAYER0_F2 || slotIdentificator === SlotIdentificators.PLAYER0_F3)
+                    {
+                        if(selectedCard.categoryId === CardCategory.UNIT)
+                        {
+                            // METER IF DE TIPO CARTA:
+                            // CUEPRO A CUERPO
+                            if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                // selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+                            }
+
+                            // DISTANCIA 
+                            else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER0_F2)
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                // selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+                            }
+                            // ASEDIO
+                            else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                // selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+                            }
+
+                            // console.log(selectedCard);
+                        }
+                    }   
+
+                }
+
+                //PLAYER 2
+                else if (globals.turnState === Turn.PLAYER1)
+                {
+                    // ==============
+                    //     UNITS
+                    // ==============
+
+                    //BUFFS PLAYER 2
+                    if (slotIdentificator === SlotIdentificators.PLAYER1_B1 || slotIdentificator === SlotIdentificators.PLAYER1_B2 || slotIdentificator === SlotIdentificators.PLAYER1_B3)
+                    {
+                        if(selectedCard.categoryId === CardCategory.PERMAEFFECT)
+                        {
+                            selectedCard.xPos = selectedSlotId.xPos;
+                            selectedCard.yPos = selectedSlotId.yPos;
+                            // selectedCard.state = CardState.GAME;
+                            globals.checkPlaced = true;
+                        }
+                    }
+
+                    if(selectedCard.effect === Effect.SPY) {
+                        if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
+                        {
+                            selectedCard.xPos = selectedSlotId.xPos;
+                            selectedCard.yPos = selectedSlotId.yPos;
+                            //  selectedCard.state = CardState.GAME;
+                            globals.checkPlaced = true;
+                        }
+
+                        // DISTANCIA 
+                        else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER0_F2)
+                        {
+                            selectedCard.xPos = selectedSlotId.xPos;
+                            selectedCard.yPos = selectedSlotId.yPos;
+                            //  selectedCard.state = CardState.GAME;
+                            globals.checkPlaced = true;
+                        }
+                        // ASEDIO
+                        else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
+                        {
+                            selectedCard.xPos = selectedSlotId.xPos;
+                            selectedCard.yPos = selectedSlotId.yPos;
+                            //  selectedCard.state = CardState.GAME;
+                            globals.checkPlaced = true;
+
+                        }
+                    }
+
+                    //FIELDS PLAYER 2
+                    else if (slotIdentificator === SlotIdentificators.PLAYER1_F1 || slotIdentificator === SlotIdentificators.PLAYER1_F2 || slotIdentificator === SlotIdentificators.PLAYER1_F3)
+                    {
+                        if(selectedCard.categoryId === CardCategory.UNIT)
+                        {
+                            // METER IF DE TIPO CARTA:
+                            // CUEPRO A CUERPO
+                            if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                //  selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+                            }
+        
+                            // DISTANCIA 
+                            else if(selectedCard.type === Type.DISTANCE  && slotIdentificator === SlotIdentificators.PLAYER1_F2)
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                //  selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+                            }
+                            // ASEDIO
+                            else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                //  selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+
+                            }
+                        }
+                    }      
+
+                }
             
+                if(globals.action.mousePressed && globals.checkPlaced)
+                {
+                    console.log("Carta colocada");
+                    // globals.mouseSelectedSlot = false;
+                    // console.log("entra en el if del ");
+                    // globals.mouseNotSelected = true;
+
+                    globals.selectedCardId_Click    = -1 
+                    globals.selectedSlotId          = -1
+                    globals.placedCard              = true;
+                    globals.checkPlaced             = false;
+                    
+                }
+            }
         }
+
     }
+    
 }
+
 
 function updateGameOver()
 {
