@@ -445,9 +445,9 @@ function drawMessages()
     // console.log("los dos han pasado" + globals.checkBothPlayerRound);
     globals.checkRoundPlayer2;
     const hostName = localStorage.getItem('izen_abizena');
-    globals.ctx.fillStyle = 'red'; 
-    globals.ctx.fillRect(50, 530, 310, 85);
-    globals.ctx.clearRect(53, 533, 305, 80);
+    // globals.ctx.fillStyle = 'red'; 
+    // globals.ctx.fillRect(50, 530, 310, 85);
+    // globals.ctx.clearRect(53, 533, 305, 80);
 
 
     if(globals.turnState === Turn.PLAYER1)

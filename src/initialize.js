@@ -700,6 +700,7 @@ function initSlots()
     liveZone2();  
     tokenZone1();
     tokenZone2();
+    messageZone();
 
     //PLAYER 1
     slotDiscardP1();            // Slots de Descartes del Jugador 1     - DONE
@@ -814,6 +815,17 @@ function tokenZone2()
 
     const slotToken = new GameZones(xPos1, yPos, xSize, ySize);
     globals.slots.push(slotToken);
+}
+
+function messageZone()
+{
+    const xPos1     = Common_map_pos.MESSAGE_XPOS;
+    const yPos      = Common_map_pos.MESSAGE_YPOS;
+    const xSize     = Common_map_pos.MESSAGE_XSIZE;
+    const ySize     = Common_map_pos.MESSAGE_YSIZE;
+
+    const slotMessage = new GameZones(xPos1, yPos, xSize, ySize);
+    globals.slots.push(slotMessage);
 }
 
 function handPlayer1 ()
