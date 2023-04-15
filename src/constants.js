@@ -228,27 +228,32 @@ const SlotIdentificators = {
 
 const Common_map_pos = {
 
-    PLAYER1_CARD_XPOS:      120,
-    PLAYER1_CARD_YPOS:      60,
+    MESSAGE_XPOS:               50,
+    MESSAGE_YPOS:               530,
+    MESSAGE_XSIZE:              310,
+    MESSAGE_YSIZE:              85,  
 
-    CLIMATE_BOX_1_XPOS:     60,
-    CLIMATE_BOX_2_XPOS:     200,
-    CLIMATE_BOX_YPOS:       390,
+    PLAYER1_CARD_XPOS:          120,
+    PLAYER1_CARD_YPOS:          60,
 
-    PLAYER0_CARD_XPOS:      120,
-    PLAYER0_CARD_YPOS:      750,
+    CLIMATE_BOX_1_XPOS:         60,
+    CLIMATE_BOX_2_XPOS:         200,
+    CLIMATE_BOX_YPOS:           390,
 
-    PLAYER0_LIVE1_XPOS:     205,
-    PLAYER0_LIVE2_XPOS:     295,
-    PLAYER0_LIVE_YPOS:      670,
-    PLAYER0_TURN_TOKEN_XPOS: 15,
-    PLAYER0_TURN_TOKEN_YPOS: 620,
+    PLAYER0_CARD_XPOS:          120,
+    PLAYER0_CARD_YPOS:          750,
+
+    PLAYER0_LIVE1_XPOS:         205,
+    PLAYER0_LIVE2_XPOS:         295,
+    PLAYER0_LIVE_YPOS:          670,
+    PLAYER0_TURN_TOKEN_XPOS:    15,
+    PLAYER0_TURN_TOKEN_YPOS:    620,
     
-    PLAYER1_LIVE1_XPOS:     205,
-    PLAYER1_LIVE2_XPOS:     295,
-    PLAYER1_LIVE1_YPOS:     230,
-    PLAYER1_TURN_TOKEN_XPOS: 15,
-    PLAYER1_TURN_TOKEN_YPOS: 190,
+    PLAYER1_LIVE1_XPOS:         205,
+    PLAYER1_LIVE2_XPOS:         295,
+    PLAYER1_LIVE1_YPOS:         230,
+    PLAYER1_TURN_TOKEN_XPOS:    15,
+    PLAYER1_TURN_TOKEN_YPOS:    190,
 }
 
 const Player0_map_pos = {

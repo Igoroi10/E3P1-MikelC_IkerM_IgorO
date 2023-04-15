@@ -1169,7 +1169,9 @@ function updateSelectedCard(card)
             console.log("entra en el else");
             // globals.selectedCardId_Click = -1;
             // globals.cards[i].state = globals.cards[i].previousState;
+
         }
+     
     }
 
 }
