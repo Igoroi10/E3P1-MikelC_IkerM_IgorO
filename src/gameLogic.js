@@ -260,7 +260,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 // console.log("Entra en el if para ejecutar el efecto")
                 // globals.placedCard = false;
                 console.log("carta enviada a efecto")
-                console.log(card)
+                // console.log(card)
                 checkCardEffect(card);
                 // console.log("State Antes: " + card.state);
                 card.state = CardState.GAME
@@ -376,7 +376,7 @@ function discardCards()
 function checkCardEffect(card){
 
     // console.log("entra en placed card")
-    updateActions();
+    updateActions(card);
     switch(card.effect){
         case Effect.MEDIC:
             medicEffect(card);
@@ -1417,7 +1417,7 @@ function updateGameOver()
     }
 }
 
-function updateActions()
+function updateActions(card)
 {
     // globals.Action Sera el estado que tendra un update constante para saber de quien es el turno en todo momento
     // Cuando sea el turno correspondiente de alguno de los dos jugadores en algun turno en concreto se sumara a una globla actionPlayer ++ - Esta lo que hara sera
@@ -1429,8 +1429,10 @@ function updateActions()
     if (globals.turnState === Turn.PLAYER1)
     {
         // console.log("entra if Player1")
+        console.log(card);
+
         globals.actionsCounter.player2 = 0;
-        if(globals.placedCard && !globals.action.mousePressed)
+        if(globals.placedCard && !globals.action.mousePressed && card.state === CardState.GAME)
         {
             console.log("Entra en if de funcion UpdateActions")
             globals.actionsCounter.player1 ++;
@@ -1442,7 +1444,7 @@ function updateActions()
     if(globals.turnState === Turn.PLAYER2)
     {
         globals.actionsCounter.player1 = 0;
-        if(globals.placedCard && !globals.action.mousePressed)
+        if(globals.placedCard && !globals.action.mousePressed && card.state === CardState.GAME)
         {
             globals.actionsCounter.player2 ++;
             console.log("Acccion: " + globals.actionsCounter.player2 + " Player 2");

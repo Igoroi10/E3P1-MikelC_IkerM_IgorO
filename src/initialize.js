@@ -671,7 +671,7 @@ function AddTokenCard()
             }
         }
     }
-    console.log(globals.tokens);
+    // console.log(globals.tokens);
 }
 
 function initFakeCards ()
