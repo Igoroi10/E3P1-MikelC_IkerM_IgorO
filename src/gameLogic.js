@@ -231,7 +231,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 
         case CardState.SELECTED:
-
+            // console.log("entra a selected")
             if(globals.otherSelected)
             {
                 card.state = card.previousState;
@@ -262,6 +262,9 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 console.log("carta enviada a efecto")
                 console.log(card)
                 checkCardEffect(card);
+                // console.log("State Antes: " + card.state);
+                card.state = CardState.GAME
+                // console.log("State Despues " + card.state);
             }
             break;
 
@@ -289,7 +292,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
         case CardState.GAME:
             if (globals.checkBothPlayerRound)
             {
-                CardState.DISCARD;
+                CardState.DISCARD;s
             }
 
             else if (globals.scorch)
@@ -1193,7 +1196,7 @@ function placeCard()
     
     if(globals.selectedCardId_Click != -1 && globals.selectedSlotId != -1)
     {
-        console.log("Entra placed card");
+        // console.log("Entra placed card");
         const selectedCard      = globals.cards[globals.selectedCardId_Click];
         const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
         const slotIdentificator = globals.slots[globals.selectedSlotId].slotIdentificator;
