@@ -214,6 +214,16 @@ const SlotIdentificators = {
     PLAYER1_HAND:   15,
     PLAYER1_DECK:   16,
 
+    PLAYER1_DISCARD: 17,
+    
+    PLAYER0_DISCARD: 18,
+
+    PLAYER0_TOKEN1: 19,
+    PLAYER0_TOKEN2: 20,
+
+    PLAYER1_TOKEN1: 19,
+    PLAYER1_TOKEN2: 20,
+    
 }
 
 const Common_map_pos = {
