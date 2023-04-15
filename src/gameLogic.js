@@ -58,8 +58,13 @@ function playGame()
 
 
     if(globals.action.d){
-        for(let i = 0; i <  globals.cards.length; i++){
-            console.log("slot identificator de cartas: " + globals.cards[i].slotIdentificator);
+        let check = 1;
+        for(let i = 0; i <  globals.slots.length; i++){
+            if(globals.slots[i].slotIdentificator === SlotIdentificators.PLAYER0_HAND || globals.slots[i].slotIdentificator === SlotIdentificators.PLAYER1_HAND){
+                console.log("carta en mano nº" + check);
+                check++
+                console.log(globals.slots[i])
+            }
         }
         console.log("FIN DE SLOT IDENTIFICATOR")
     }
@@ -522,23 +527,6 @@ function musterEffect(card){
         }
     }
 
-    for(let i = 0; i < 2; i++){
-        for(let l = 0; l < globals.player[i].length; l++){
-            if( globals.player[i][l].slotIdentificator === card.slotIdentificator){
-                console.log(card)
-                console.log(globals.player[i][l]);
-                if(i === 0){
-                    console.log("lo sacamos del player 0 hulio")
-                }
-
-                else
-                    console.log("lo sacamos del 1 esta vez")
-
-                console.log("Y el array correcto es " + playerNum);
-            }
-        }
-    }
-
 }
 
 
@@ -613,18 +601,24 @@ function checkIfSlotAvailable(effect, card, playerNum){
                 }
             
                 if(spyChecks < 12){
-
-                    for(let i = 0; i < globals.cards.length; i++){
-                        if(globals.cards[i].state === CardState.DECK){
+                    console.log("entra en spy checks")
+                    for(let i = 0; i < globals.player[playerNum].length; i++){
+                        if(globals.player[playerNum][i].state === CardState.DECK){
+                            console.log("Entra en el if de carta de deck")
                             for(let l = 0; l < globals.slots.length; l++){
                                 if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
-                                    globals.cards[i].xPos = globals.slots[l].xPos;
-                                    globals.cards[i].yPos = globals.slots[l].yPos;
-                                    globals.cards[i].state = CardState.HAND;
-                                    globals.cards[i].showBack = true;
+
+                                    globals.player[playerNum][i].xPos = globals.slots[l].xPos;
+                                    globals.player[playerNum][i].yPos = globals.slots[l].yPos;
+                                    globals.player[playerNum][i].state = CardState.HAND;
+                                    globals.player[playerNum][i].showBack = true;
                                     globals.slots[l].placed_cards++;
+                                    console.log("Coloca una carta de spy")
+                                    console.log(globals.player[playerNum][i])
                                     l = globals.slots.length;
                                     i = globals.cards.length;
+
+
                                 }
                             }
                         }
@@ -987,13 +981,16 @@ function updateSlots(slot, card)
     // Asignarle el id de la carta en el globlas.cards la "i"
     // Y asignarle a la carta el identificador de ese slot
     
-    // console.log(globals.cards[0].slotIdentificator)
+    console.log(globals.cards[0].slotIdentificator)
+    for(let j = 0; j < globals.slots.length; j++){
+        globals.slots[j].placed_cards = -1;
+    }
+
 
     for (let i = 0; i < globals.cards.length; i++)
     {
         for (let j = 0; j < globals.slots.length; j++)
         {
-            globals.slots[j].placed_cards = -1;
 
             if (globals.cards[i].xPos === globals.slots[j].xPos && globals.cards[i].yPos === globals.slots[j].yPos )
             {
@@ -1015,44 +1012,6 @@ function distributeHandCards()
 
 function createDistribution()
 {
-    // let cardsToDraw = 20;
-    // let Player1HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
-    // let Player0HandxPos =  Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
-
-    // let player1HandyPos = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
-    // let player0HandyPos = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
-
-    // for(let i = 0; i < cardsToDraw; i++)
-    // {
-
-    //     if(i % 2 === 0)
-    //     {
-    //         globals.player[0][i].xPos       = Player0HandxPos;
-    //         globals.player[0][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
-    //         globals.player[0][i].showBack   = false;
-    //         globals.player[0][i].state      = CardState.HAND
-    //         Player0HandxPos += 75;
-
-
-    //         // globals.cards[i].showBack = false;
-
-    //         // console.log(globals.cards[i].xPos);
-            
-    //     }
-
-    //     else
-    //     {
-    //         // console.log("entra player 1");
-
-    //         globals.player[1][i].xPos       = Player1HandxPos;
-    //         globals.player[1][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
-    //         globals.player[1][i].showBack   = false;
-    //         globals.player[1][i].state      = CardState.HAND
-
-    //         Player1HandxPos += 75;
-            
-    //     }
-    // }
     for(let k = 0; k < 2; k++){
         let handIdentificatorDeal;
         
@@ -1060,7 +1019,7 @@ function createDistribution()
             handIdentificatorDeal = SlotIdentificators.PLAYER0_HAND
         else
             handIdentificatorDeal = SlotIdentificators.PLAYER1_HAND
-            
+
         for(let h = 0; h < 10; h++){
 
             for(let i = 0; i < globals.player[k].length; i++){
@@ -1085,6 +1044,8 @@ function createDistribution()
         }
         
     }
+
+    updateSlots();
 
 }
 

@@ -423,7 +423,7 @@ function drawSlotRectangle(slot) //Funcion que crea un rectangulo alrededor del 
 function renderSlots(slot)
 {
     // console.log("Entra en RenderSlots");
-    slot.placed_cards = false;
+    // slot.placed_cards = false;
 }
 
 function drawNames()
