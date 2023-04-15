@@ -618,8 +618,6 @@ function checkIfSlotAvailable(effect, card, playerNum){
                         if(globals.cards[i].state === CardState.DECK){
                             for(let l = 0; l < globals.slots.length; l++){
                                 if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
-                                    console.log("slot xpos " + globals.slots[l].xPos)
-                                    console.log("slot ypos " + globals.slots[l].yPos)
                                     globals.cards[i].xPos = globals.slots[l].xPos;
                                     globals.cards[i].yPos = globals.slots[l].yPos;
                                     globals.cards[i].state = CardState.HAND;
@@ -1017,47 +1015,77 @@ function distributeHandCards()
 
 function createDistribution()
 {
-    let cardsToDraw = 20;
-    let Player1HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
-    let Player0HandxPos =  Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
+    // let cardsToDraw = 20;
+    // let Player1HandxPos =  Player1_map_pos.PLAYER1_CARDS_IN_HAND1_XPOS;
+    // let Player0HandxPos =  Player0_map_pos.PLAYER0_CARDS_IN_HAND1_XPOS;
 
-    let player1HandyPos = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
-    let player0HandyPos = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
+    // let player1HandyPos = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+    // let player0HandyPos = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
 
-    for(let i = 0; i < cardsToDraw; i++)
-    {
+    // for(let i = 0; i < cardsToDraw; i++)
+    // {
 
-        if(i % 2 === 0)
-        {
-            globals.player[0][i].xPos       = Player0HandxPos;
-            globals.player[0][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
-            globals.player[0][i].showBack   = false;
-            globals.player[0][i].state      = CardState.HAND
-            Player0HandxPos += 75;
+    //     if(i % 2 === 0)
+    //     {
+    //         globals.player[0][i].xPos       = Player0HandxPos;
+    //         globals.player[0][i].yPos       = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
+    //         globals.player[0][i].showBack   = false;
+    //         globals.player[0][i].state      = CardState.HAND
+    //         Player0HandxPos += 75;
 
 
-            // globals.cards[i].showBack = false;
+    //         // globals.cards[i].showBack = false;
 
-            // console.log(globals.cards[i].xPos);
+    //         // console.log(globals.cards[i].xPos);
             
-        }
+    //     }
 
-        else
-        {
-            // console.log("entra player 1");
+    //     else
+    //     {
+    //         // console.log("entra player 1");
 
-            globals.player[1][i].xPos       = Player1HandxPos;
-            globals.player[1][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
-            globals.player[1][i].showBack   = false;
-            globals.player[1][i].state      = CardState.HAND
+    //         globals.player[1][i].xPos       = Player1HandxPos;
+    //         globals.player[1][i].yPos       = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
+    //         globals.player[1][i].showBack   = false;
+    //         globals.player[1][i].state      = CardState.HAND
 
-            Player1HandxPos += 75;
+    //         Player1HandxPos += 75;
             
-        }
-
+    //     }
+    // }
+    for(let k = 0; k < 2; k++){
+        let handIdentificatorDeal;
         
-       
+        if(k === 0)
+            handIdentificatorDeal = SlotIdentificators.PLAYER0_HAND
+        else
+            handIdentificatorDeal = SlotIdentificators.PLAYER1_HAND
+            
+        for(let h = 0; h < 10; h++){
+
+            for(let i = 0; i < globals.player[k].length; i++){
+
+                if(globals.player[k][i].state === CardState.DECK){
+    
+                    for(let l = 0; l < globals.slots.length; l++){
+                        if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorDeal){
+                            globals.player[k][i].xPos = globals.slots[l].xPos;
+                            globals.player[k][i].yPos = globals.slots[l].yPos;
+                            globals.player[k][i].state = CardState.HAND;
+                            globals.player[k][i].showBack = true;
+                            globals.slots[l].placed_cards++;
+                            l = globals.slots.length;
+                            i = globals.player[k].length;
+                            console.log("carta colocada en mano de player" + k);
+                        }
+                    }
+                }
+        
+            }
+        }
+        
     }
+
 }
 
 function updateTurn()
