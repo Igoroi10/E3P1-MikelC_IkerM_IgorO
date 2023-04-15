@@ -1148,7 +1148,7 @@ function updateSelectedCard()
             const xSize = 80;
             const ySize = 100;
         
-            if(globals.mouse.x < (card.xPos + xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < (card.yPos + ySize) && globals.mouse.y > card.yPos)
+            if(globals.mouse.x < (card.xPos + xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < (card.yPos + ySize) && globals.mouse.y > card.yPos && card.showBack === false)
             {
                 // console.log("Entra if");
                 globals.mouseSelectedCard = true;
@@ -1174,10 +1174,12 @@ function updateSelectedCard()
                 globals.mouseSelectedCard = false; 
                 globals.selectedCardId_Click = -1;
             }
+                
             
 
             // globals.action.mousePressed = false;
         }
+        console.log("//////////////////////");
     }
     
 
