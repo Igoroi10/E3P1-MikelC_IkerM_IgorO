@@ -44,13 +44,17 @@ function playGame()
 
     
 
-    console.log(globals.cards[globals.selectedCardId_Click]);
+    // console.log(globals.cards[globals.selectedCardId_Click]);
     // console.log(globals.cards[globals.selectedCardId_Click]);
     //Cuando se seleccionma la carta del campo, esta en game pero sigue seleccionada, es decir su estado no cambia a SELECTED pero hace sus funciones - CORREGIR
 
     // console.log(globals.selectedCardId_Click)
 
+    console.log("Turno player: " + globals.turnState);
+    console.log(globals.checkRoundPlayer1) // HOST
+    checkIfRoundPass();
     
+
 
     updateTokenPlacement();
     // updateLives();
@@ -1421,7 +1425,7 @@ function updateActions(card)
     // CHECK DE CAMBIO AUTOMATICO DE TURNO
     // checkIfRoundPass();
 
-    if (globals.turnState === Turn.PLAYER1)
+    if (globals.turnState === Turn.PLAYER1 && !globals.checkRoundPlayer1 )
     {
         // console.log("entra if Player1")
         // console.log(card.state);
@@ -1437,7 +1441,7 @@ function updateActions(card)
         }
     }
 
-    if(globals.turnState === Turn.PLAYER2)
+    if(globals.turnState === Turn.PLAYER2 && !globals.checkRoundPlayer2)
     {
         globals.actionsCounter.player1 = 0;
         if(globals.placedCard && globals.action.mousePressed)

@@ -358,8 +358,8 @@ const Player1_map_pos = {
 
 //Player Turn
 const Turn ={
-    PLAYER1:    0,
-    PLAYER2:    1,
+    PLAYER1:    0, // HOST
+    PLAYER2:    1, // INVITADO
     NO_TURN:    2,
 
 }

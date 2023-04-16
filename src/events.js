@@ -168,14 +168,14 @@ function checkIfTurnPass ()
     actions();
     // console.log(globals.turnState)
 
-    if (globals.turnState === Turn.PLAYER1 && globals.actionsCounter.player1 >= 2)
+    if (globals.turnState === Turn.PLAYER1)
     {
         // console.log("Turno del Jugador 1");
         globals.turnState = Turn.PLAYER2;
     }
 
     //CHECK DEL PLAYER 2
-    if (globals.turnState === Turn.PLAYER2 && globals.actionsCounter.player2 >= 2)
+    if (globals.turnState === Turn.PLAYER2)
     {
         // console.log("Turno del Jugador 2");
         globals.turnState = Turn.PLAYER1;
@@ -194,39 +194,40 @@ function checkIfRoundPass()
     //Si uno o ninguno de los jugadores a Pasado la Ronda 
    if(!globals.checkBothPlayerRound)
    {
-    //Deberemos de ver quien si alguno de los dos a pasado la Ronda o no 
+        //Deberemos de ver quien si alguno de los dos a pasado la Ronda o no 
 
-    //Si el Player a Pasado la Ronda
-    if (globals.checkRoundPlayer1)
-    {
-        console.log("Player 1 no puede jugar - PASO DE RONDA");
-        globals.turnState = Turn.PLAYER2;
-    }
+        //Si el Player a Pasado la Ronda - HOST
+        if (globals.checkRoundPlayer2)
+        {
+            console.log("Player 0 no puede jugar - PASO DE RONDA");
+            globals.turnState = Turn.PLAYER2;
+        }
 
-    //Si el Segundo Player a pasado la ronda
-    if (globals.checkRoundPlayer2)
-    {
-        console.log("Player 2 no puede jugar - PASO DE RONDA");
-        globals.turnState = Turn.PLAYER1;
-    }
+        //Si el Segundo Player a pasado la ronda
+        else if (globals.checkRoundPlayer1)
+        {
+            console.log("Player 1 no puede jugar - PASO DE RONDA");
+            globals.turnState = Turn.PLAYER1;
+        }
 
-     //Si ninguno a pasado la Ronda
-     else if (globals.checkRoundPlayer1 && !globals.checkRoundPlayer2)
-     {
-        console.log("Solo puede jugar el jugador 1");
-     }
+        //Si ninguno a pasado la Ronda
+        else if (globals.checkRoundPlayer2 && !globals.checkRoundPlayer1)
+        {
+            console.log("Solo puede jugar el jugador ");
+        }
 
-      else if (!globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
-     {
-        console.log("Solo puede jugar el jugador 2");
-     }
+        else if (!globals.checkRoundPlayer2 && globals.checkRoundPlayer1)
+        {
+            console.log("Solo puede jugar el jugador 2");
+        }
 
-     else
-     {
-        console.log("Ambos Jugadores Pueden jugar - NINGUNO PASO DE RONDA");
-     }
+        else
+        {
+            console.log("Ambos Jugadores Pueden jugar - NINGUNO PASO DE RONDA");
+        }
 
    }
+
 
    //Los dos jugadores han pasado la ronda y deberemos de reiniciar el global de Ronda
    else
@@ -244,13 +245,13 @@ function checkRoundState()
     if (globals.turnState === Turn.PLAYER1)
     {
         console.log("EL JUGADOR 1 TERMINO LA RONDA");
-        globals.checkRoundPlayer1 = true;
+        globals.checkRoundPlayer2 = true;
     }
 
     if (globals.turnState != Turn.PLAYER1 && globals.turnState === Turn.PLAYER2)
     {
         console.log("EL JUGADOR 2 TERMINO LA RONDA");
-        globals.checkRoundPlayer2 = true;
+        globals.checkRoundPlayer1 = true;
     }
 
     if (globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
