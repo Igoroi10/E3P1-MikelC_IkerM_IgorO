@@ -100,7 +100,7 @@ function detectCollisionBetweenMouseAndCards_Click()
             const xSize = 80;
             const ySize = 100;
         
-            if(globals.mouse.x < (card.xPos + xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < (card.yPos + ySize) && globals.mouse.y > card.yPos)
+            if(globals.mouse.x < (card.xPos + xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < (card.yPos + ySize) && globals.mouse.y > card.yPos && card.showBack === false)
             {
                 // console.log(card.state);
                 globals.mouseSelectedCard = true;
