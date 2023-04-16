@@ -551,7 +551,6 @@ function checkIfSlotAvailable(effect, card, playerNum){
             }
 
             if(medicChecks < 8){
-                console.log("entra en los checks de medic");
                 for(let i = 0; i < globals.player[playerNum].length; i++){
                     if(globals.player[playerNum][i].cardName === card.cardName && globals.player[playerNum][i].state === CardState.DISCARD){
                         for(let l = 0; l < globals.slots.length; l++){
