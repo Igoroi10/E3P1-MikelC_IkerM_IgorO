@@ -51,7 +51,7 @@ function playGame()
     // console.log(globals.selectedCardId_Click)
 
     console.log("Turno player: " + globals.turnState);
-    console.log(globals.checkRoundPlayer1) // HOST
+    // console.log(globals.checkRoundPlayer1) // 
     checkIfRoundPass();
     
 
@@ -1112,6 +1112,7 @@ function updateTurn()
 
     else
         console.log("No es turno de ninguno de los dos");
+        // FALTA BOLEANA GLOBAL PARA TERMINAR EL CHECK DE RONDAS - Para acabar la partida
 }
 
 function cardsInHand(playerNum)
