@@ -1036,15 +1036,6 @@ function createDistribution()
             for(let i = 0; i < globals.player[k].length; i++){
 
                 if(globals.player[k][i].state === CardState.DECK){
-                    globals.player[k][i].state = CardState.DISCARD
-                    globals.player[k][i].showBack = false;
-                    i = globals.player[k][i].length;
-                    }
-                }
-
-            for(let i = 0; i < globals.player[k].length; i++){
-
-                if(globals.player[k][i].state === CardState.DECK){
     
                     for(let l = 0; l < globals.slots.length; l++){
                         if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorDeal){
@@ -1055,7 +1046,7 @@ function createDistribution()
                             globals.slots[l].placed_cards++;
                             l = globals.slots.length;
                             i = globals.player[k].length;
-                            console.log("carta colocada en mano de player" + k);
+    
                         }
                     }
                 }
