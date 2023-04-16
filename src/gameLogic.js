@@ -484,7 +484,7 @@ function medicEffect(card){
 
         if(cardToCompare.type === typeToMedic && cardToCompare.state === CardState.DISCARD){
             if(cardToCompare.value > valueToMedic)
-                valueToScorch = cardToCompare.value;
+                valueToMedic = cardToCompare.value;
         }
     }
 
@@ -563,12 +563,12 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     if(globals.player[playerNum][i].cardName === card.cardName && globals.player[playerNum][i].state === CardState.DISCARD){
                         for(let l = 0; l < globals.slots.length; l++){
 
-                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator){
+                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === card.slotIdentificator ){
                                 
-                                globals.cards[i].xPos = globals.slots[l].xPos;
-                                globals.cards[i].yPos = globals.slots[l].yPos;
-                                globals.cards[i].state = CardState.GAME;
-                                globals.cards[i].showBack = false;
+                                globals.player[playerNum][i].xPos = globals.slots[l].xPos;
+                                globals.player[playerNum][i].yPos = globals.slots[l].yPos;
+                                globals.player[playerNum][i].state = CardState.GAME;
+                                globals.player[playerNum][i].showBack = false;
                             }
                         }
 
@@ -1054,11 +1054,10 @@ function createDistribution()
                             globals.slots[l].placed_cards++;
                             l = globals.slots.length;
                             i = globals.player[k].length;
-                            console.log("carta colocada en mano de player" + k);
+    
                         }
                     }
                 }
-        
             }
         }
         
