@@ -476,7 +476,7 @@ function medicEffect(card){
 
         if(cardToCompare.type === typeToMedic && cardToCompare.state === CardState.DISCARD){
             if(cardToCompare.value > valueToMedic)
-                valueToScorch = cardToCompare.value;
+                valueToMedic = cardToCompare.value;
         }
     }
 
@@ -551,16 +551,17 @@ function checkIfSlotAvailable(effect, card, playerNum){
             }
 
             if(medicChecks < 8){
+                console.log("entra en los checks de medic");
                 for(let i = 0; i < globals.player[playerNum].length; i++){
                     if(globals.player[playerNum][i].cardName === card.cardName && globals.player[playerNum][i].state === CardState.DISCARD){
                         for(let l = 0; l < globals.slots.length; l++){
 
-                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator){
+                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === card.slotIdentificator ){
                                 
-                                globals.cards[i].xPos = globals.slots[l].xPos;
-                                globals.cards[i].yPos = globals.slots[l].yPos;
-                                globals.cards[i].state = CardState.GAME;
-                                globals.cards[i].showBack = false;
+                                globals.player[playerNum][i].xPos = globals.slots[l].xPos;
+                                globals.player[playerNum][i].yPos = globals.slots[l].yPos;
+                                globals.player[playerNum][i].state = CardState.GAME;
+                                globals.player[playerNum][i].showBack = false;
                             }
                         }
 
@@ -1036,6 +1037,15 @@ function createDistribution()
             for(let i = 0; i < globals.player[k].length; i++){
 
                 if(globals.player[k][i].state === CardState.DECK){
+                    globals.player[k][i].state = CardState.DISCARD
+                    globals.player[k][i].showBack = false;
+                    i = globals.player[k][i].length;
+                    }
+                }
+
+            for(let i = 0; i < globals.player[k].length; i++){
+
+                if(globals.player[k][i].state === CardState.DECK){
     
                     for(let l = 0; l < globals.slots.length; l++){
                         if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorDeal){
@@ -1050,7 +1060,6 @@ function createDistribution()
                         }
                     }
                 }
-        
             }
         }
         
