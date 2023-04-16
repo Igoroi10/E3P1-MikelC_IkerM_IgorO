@@ -400,4 +400,5 @@ export {
     createList,
     selectEnemy,
     canvasDoubleClickHandler,
+    checkIfRoundPass,
 }

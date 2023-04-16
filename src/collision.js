@@ -92,7 +92,7 @@ function detectCollisionBetweenMouseAndSlots()
 //Funcion que detecta que carta hemos seleccionado para colocar
 function detectCollisionBetweenMouseAndCards_Click()
 {
-    if (globals.action.mousePressed)
+    if (globals.action.mousePressed )
     {
         for(let i = 0; i < globals.cards.length; ++i)
         {

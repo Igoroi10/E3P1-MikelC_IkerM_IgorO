@@ -2,7 +2,7 @@ import globals from "./globals.js";
 import { State, CardState, SlotIdentificators, Effect, GameMode, Player0_map_pos, Player1_map_pos, Turn, Common_map_pos, Type, CardCategory} from "./constants.js";
 import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards, detectCollisionBetweenMouseAndSlots, detectCollisionBetweenMouseAndCards_Click } from "./collision.js"; 
-import { selectEnemy, createList} from "./events.js";
+import { selectEnemy, createList,  checkIfRoundPass} from "./events.js";
 import { Card } from "./Card.js";
 
 function update()
@@ -44,7 +44,11 @@ function playGame()
 
     
 
-    
+    console.log(globals.cards[globals.selectedCardId_Click]);
+    // console.log(globals.cards[globals.selectedCardId_Click]);
+    //Cuando se seleccionma la carta del campo, esta en game pero sigue seleccionada, es decir su estado no cambia a SELECTED pero hace sus funciones - CORREGIR
+
+    // console.log(globals.selectedCardId_Click)
 
     
 
@@ -992,7 +996,7 @@ function updateSlots(slot, card)
     // Asignarle el id de la carta en el globlas.cards la "i"
     // Y asignarle a la carta el identificador de ese slot
     
-    console.log(globals.cards[0].slotIdentificator)
+    // console.log(globals.cards[0].slotIdentificator)
     for(let j = 0; j < globals.slots.length; j++){
         globals.slots[j].placed_cards = -1;
     }
@@ -1063,7 +1067,7 @@ function createDistribution()
 function updateTurn()
 {
     // console.log("Turno player: " + globals.turnState);
-    console.log(globals.selectedCardId_Click);
+    // console.log(globals.selectedCardId_Click);
 
     let player1 = 0;
     let player2 = 1;
@@ -1139,14 +1143,15 @@ function cardsHide(playerNum)
 function updateSelectedCard(card)
 {
     // console.log("entra en updateSelected");
-    if (globals.mouseSelectedCard)
+    if (globals.mouseSelectedCard && globals.cards[globals.selectedCardId_Click].state !== CardState.GAME)
     {
-        // console.log("entra en el if")
+        console.log("entra en el if dee update card")
         if(globals.selectedCardId_Click !== -1)
         {
             // console.log("Entra en if upodateSelectedCard");
-            card.previousState      = card.state;
+            card.previousState      = card.state
             card.state              = CardState.SELECTED;
+            globals.placedCard      = false;
             // globals.selectedCardId_Click = -1;
         }
 
@@ -1171,14 +1176,14 @@ function placeCard()
     // console.log("cardId: " + globals.selectedSlotId);
 
     //Como es undefined el global.selectedSlotID  === -1 hasta que seleciona el identificador de slots, peta. Ya que en el array como no existe la posicion -1 peta.
-    if (globals.selectedSlotId !== -1)
+    if (globals.selectedSlotId !== -1 )
     {
-        console.log(globals.slots[globals.selectedSlotId].placed_cards);
-       
+        // console.log(globals.slots[globals.selectedSlotId].placed_cards);
+    
         //Comprobacion para saber si existe un hueco o no en dicho slot
         if (globals.slots[globals.selectedSlotId].placed_cards === -1)
         {
-            console.log("Entra en el segundo if");
+            // console.log("Entra en el segundo if");
             if(globals.selectedCardId_Click !== -1 && globals.selectedSlotId !== -1)
             {
                 console.log("Entra placed card");
@@ -1390,7 +1395,6 @@ function placeCard()
         }
 
     }
-    
 }
 
 
@@ -1415,15 +1419,16 @@ function updateActions(card)
     // Permitir que solo se puedan hacer dos actionPlayer es decir: si ActionPlayer >= 2 se resetea ese action Player y se pasa al siguiente turno:  
     
     // CHECK DE CAMBIO AUTOMATICO DE TURNO
-  
+    // checkIfRoundPass();
 
     if (globals.turnState === Turn.PLAYER1)
     {
-        console.log("entra if Player1")
-        console.log(card.state);
+        // console.log("entra if Player1")
+        // console.log(card.state);
 
+        console.log(globals.placedCard);
         globals.actionsCounter.player2 = 0;
-        if(globals.placedCard && !globals.action.mousePressed)
+        if(globals.placedCard && globals.action.mousePressed)
         {
             console.log("Entra en if de funcion UpdateActions")
             globals.actionsCounter.player1 ++;
@@ -1435,7 +1440,7 @@ function updateActions(card)
     if(globals.turnState === Turn.PLAYER2)
     {
         globals.actionsCounter.player1 = 0;
-        if(globals.placedCard && !globals.action.mousePressed)
+        if(globals.placedCard && globals.action.mousePressed)
         {
             globals.actionsCounter.player2 ++;
             console.log("Acccion: " + globals.actionsCounter.player2 + " Player 2");
