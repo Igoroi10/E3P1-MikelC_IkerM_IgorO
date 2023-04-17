@@ -460,8 +460,8 @@ function scorchEffect(card){
         }
     }
 
-    
-    card.state = CardState.DISCARD;
+    if(card.categoryId !== CardCategory.UNIT)
+        card.state = CardState.DISCARD;
 
 }
 
