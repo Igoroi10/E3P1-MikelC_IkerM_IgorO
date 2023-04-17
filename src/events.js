@@ -223,7 +223,7 @@ function checkIfRoundPass()
 
         else
         {
-            console.log("Ambos Jugadores Pueden jugar - NINGUNO PASO DE RONDA");
+            // console.log("Ambos Jugadores Pueden jugar - NINGUNO PASO DE RONDA");
         }
 
    }

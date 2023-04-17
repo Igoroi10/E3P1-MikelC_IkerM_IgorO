@@ -50,7 +50,7 @@ function playGame()
 
     // console.log(globals.selectedCardId_Click)
 
-    console.log("Turno player: " + globals.turnState);
+    // console.log("Turno player: " + globals.turnState);
     // console.log(globals.checkRoundPlayer1) // 
     checkIfRoundPass();
     
@@ -610,9 +610,9 @@ function checkIfSlotAvailable(effect, card, playerNum){
                 let handIdentificatorSpy;
     
                 if(playerNum === 0)
-                    handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
-                else
                     handIdentificatorSpy = SlotIdentificators.PLAYER1_HAND;
+                else
+                    handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
     
                 for(let i = 0; i < globals.cards.length; i++){
                     if(globals.cards[i].slotIdentificator === handIdentificatorSpy)
@@ -624,13 +624,16 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     for(let i = 0; i < globals.player[playerNum].length; i++){
                         if(globals.player[playerNum][i].state === CardState.DECK){
                             console.log("Entra en el if de carta de deck")
+                            // console.log("Turno: " + globals.turnState)
+                            // console.log("PlayerNum: " + playerNum);
                             for(let l = 0; l < globals.slots.length; l++){
                                 if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
-
+                                    console.log(globals.slots[l].yPos);
                                     globals.player[playerNum][i].xPos = globals.slots[l].xPos;
                                     globals.player[playerNum][i].yPos = globals.slots[l].yPos;
                                     globals.player[playerNum][i].state = CardState.HAND;
-                                    globals.player[playerNum][i].showBack = true;
+                                    globals.player[playerNum][i].showBack = false;
+                                    globals.player[playerNum][i].slotIdentificator = globals.slots[l].slotIdentificator;
                                     globals.slots[l].placed_cards++;
                                     console.log("Coloca una carta de spy")
                                     console.log(globals.player[playerNum][i])
