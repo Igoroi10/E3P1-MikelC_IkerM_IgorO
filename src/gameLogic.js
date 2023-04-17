@@ -702,6 +702,8 @@ function updatePoints(){
 
 function calculatePoints(player){
 
+    //tightBondValueAdd()
+
     let points;
     let climate = SlotIdentificators.CLIMATE_FIELD; // Para el modo expert en un futuro
     let buff1;
@@ -713,6 +715,10 @@ function calculatePoints(player){
     let buffValue1 = 1;
     let buffValue2 = 1;
     let buffValue3 = 1;
+    let moraleBoost1 = 0;
+    let moraleBoost2 = 0;
+    let moraleBoost3 = 0;
+
     
 
     if(player === 0){
@@ -740,43 +746,47 @@ function calculatePoints(player){
     //Comprobaciones de los buffos + puntos
     for(let i = 0; i < globals.cards.length; i++){
 
-        if(globals.cards[i].slotID === buff1){
+        switch(globals.cards[i].slotID){
+            case buff1:
+                if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
+                buffValue1 = 2;    
+                if(globals.cards[i].effect === Effect.MORALE_BOOST){
+                    moraleBoost1++;
+                }
+            break;
 
-            if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
-                buffValue1 = 2;
-            else
-                buffValue1 = 0.5;           
+            case buff2:
+                if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
+                buffValue2 = 2;    
+                if(globals.cards[i].effect === Effect.MORALE_BOOST){
+                    moraleBoost2++;
+                }
+            break;
+            case buff3:
+                if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
+                buffValue3 = 2;    
+                if(globals.cards[i].effect === Effect.MORALE_BOOST){
+                    moraleBoost3++;
+                }
+            break;
+
         }
 
-        else if(globals.cards[i].slotID === buff3){
-
-            if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
-                buffValue2 = 2;
-            else
-                buffValue2 = 0.5;           
-        } 
-
-        else if(globals.cards[i].slotID === buff2){
-            
-            if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
-                buffValue3 = 2;
-            else
-                buffValue3 = 0.5;           
-        }
         
         if(globals.cards[i].slotID === field1){
-            points += (buffValue1 * globals.cards[i].value);
+            points += (buffValue1 * (globals.cards[i].value + moraleBoost1));
         }
 
         else if(globals.cards[i].slotID === field2){
-            points += (buffValue2 * globals.cards[i].value);
+            points += (buffValue2 * (globals.cards[i].value + moraleBoost2));
         }
 
         else if(globals.cards[i].slotID === field3){
-            points += (buffValue3 * globals.cards[i].value);
+            points += (buffValue3 * (globals.cards[i].value + moraleBoost3));
         }
     }
 
+    //tighBondValueDecrease()
     return points;
 }
 
@@ -826,17 +836,17 @@ function createPointersToken(array, number){
     switch(number){
         case 100:
             ind = 36;
-            const tokenCard = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
+            const tokenCard = new Card(globals.cardInfo[ind].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
             array.hundreds.push(tokenCard);
             break;
         case 10:
             ind = 35;
-            const tokenCard2 = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
+            const tokenCard2 = new Card(globals.cardInfo[ind].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
             array.tens.push(tokenCard2);
             break;
         case 1:
             ind = 34;
-            const tokenCard3 = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
+            const tokenCard3 = new Card(globals.cardInfo[ind].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
             array.units.push(tokenCard3);
             break;
     }
