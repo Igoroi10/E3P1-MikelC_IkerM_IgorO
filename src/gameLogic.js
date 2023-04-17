@@ -1404,6 +1404,11 @@ function placeCard()
 
 function updateGameOver()
 {
+    // console.log("player 1:  " + globals.checkRoundPlayer1);
+    // console.log("player 2:  " + globals.checkRoundPlayer2);
+    // console.log(globals.checkBothPlayerRound);
+    // console.log(Turn.NO_TURN);  
+    // console.log(globals.turnState);
     if(globals.playerTokens[0][0].showBack && globals.playerTokens[0][1].showBack)
     {
         globals.winner = globals.selectedEnemy;
