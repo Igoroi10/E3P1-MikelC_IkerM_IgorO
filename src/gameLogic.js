@@ -50,7 +50,7 @@ function playGame()
 
     // console.log(globals.selectedCardId_Click)
 
-    console.log("Turno player: " + globals.turnState);
+    // console.log("Turno player: " + globals.turnState);
     // console.log(globals.checkRoundPlayer1) // 
     checkIfRoundPass();
     
@@ -58,6 +58,7 @@ function playGame()
 
     updateTokenPlacement();
     // updateLives();
+    updateEndRound();
     updateGameOver();
 
    
@@ -313,7 +314,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
         case CardState.GAME:
             if (globals.checkBothPlayerRound)
             {
-                CardState.DISCARD;s
+                CardState.DISCARD;
             }
 
             else if (globals.scorch)
@@ -794,6 +795,8 @@ function calculatePoints(player){
     }
 
     tighBondValueDecrease(tightBondArray, player)
+
+
     return points;
 }
 
@@ -1205,8 +1208,8 @@ function updateTurn()
         cardsInHand(Turn.PLAYER1);
     }
 
-    else
-        console.log("No es turno de ninguno de los dos");
+    // else
+        // console.log("No es turno de ninguno de los dos");
         // FALTA BOLEANA GLOBAL PARA TERMINAR EL CHECK DE RONDAS - Para acabar la partida
 }
 
@@ -1500,6 +1503,11 @@ function placeCard()
 
 function updateGameOver()
 {
+    // console.log("player 1:  " + globals.checkRoundPlayer1);
+    // console.log("player 2:  " + globals.checkRoundPlayer2);
+    // console.log(globals.checkBothPlayerRound);
+    // console.log(Turn.NO_TURN);  
+    // console.log(globals.turnState);
     if(globals.playerTokens[0][0].showBack && globals.playerTokens[0][1].showBack)
     {
         globals.winner = globals.selectedEnemy;
@@ -1509,6 +1517,23 @@ function updateGameOver()
     {
         globals.winner = localStorage.getItem('izen_abizena');
         globals.checkIfLives0 = true;
+    }
+}
+
+function updateEndRound()
+{
+    if(globals.turnState === Turn.NO_TURN)
+    {
+        if(globals.player1Points > globals.player2Points)
+        {
+            let liveNum = globals.actionsCounter.player1 -1;
+            globals.playerTokens[1][liveNum].showBack = true;
+        }
+        else if(globals.player1Points < globals.player2Points)
+        {
+            let liveNum = globals.actionsCounter.player2 -1;
+            globals.playerTokens[0][liveNum].showBack = true;
+        }
     }
 }
 
@@ -1559,21 +1584,6 @@ function updateActions(card)
     updateSlots();
 }
 
-
-function updateLives()
-{
-    if(globals.actionsCounter.player1 > 0)
-    {
-        let liveNum = globals.actionsCounter.player1 -1;
-        globals.playerTokens[1][liveNum].showBack = true;
-
-    }
-    else if(globals.actionsCounter.player2 > 0)
-    {
-        let liveNum = globals.actionsCounter.player2 -1;
-        globals.playerTokens[0][liveNum].showBack = true;
-    }
-}
 
 export {
     update,
