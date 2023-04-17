@@ -50,14 +50,15 @@ function playGame()
 
     // console.log(globals.selectedCardId_Click)
 
-    console.log("Turno player: " + globals.turnState);
+    // console.log("Turno player: " + globals.turnState);
     // console.log(globals.checkRoundPlayer1) // 
     checkIfRoundPass();
     
 
 
     updateTokenPlacement();
-    // updateLives();
+    updateLives();
+    updateEndRound();
     updateGameOver();
 
    
@@ -313,7 +314,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
         case CardState.GAME:
             if (globals.checkBothPlayerRound)
             {
-                CardState.DISCARD;s
+                CardState.DISCARD;
             }
 
             else if (globals.scorch)
@@ -787,6 +788,7 @@ function calculatePoints(player){
     }
 
     //tighBondValueDecrease()
+    console.log(points);
     return points;
 }
 
@@ -1119,8 +1121,8 @@ function updateTurn()
         cardsInHand(Turn.PLAYER1);
     }
 
-    else
-        console.log("No es turno de ninguno de los dos");
+    // else
+        // console.log("No es turno de ninguno de los dos");
         // FALTA BOLEANA GLOBAL PARA TERMINAR EL CHECK DE RONDAS - Para acabar la partida
 }
 
@@ -1414,15 +1416,28 @@ function placeCard()
 
 function updateGameOver()
 {
+    // console.log("player 1:  " + globals.checkRoundPlayer1);
+    // console.log("player 2:  " + globals.checkRoundPlayer2);
+    // console.log(globals.checkBothPlayerRound);
+    // console.log(Turn.NO_TURN);  
+    // console.log(globals.turnState);
     if(globals.playerTokens[0][0].showBack && globals.playerTokens[0][1].showBack)
     {
         globals.winner = globals.selectedEnemy;
-        globals.checkIfLives0 = true;
+        // globals.checkIfLives0 = true;
     }
     else if(globals.playerTokens[1][0].showBack && globals.playerTokens[1][1].showBack)
     {
         globals.winner = localStorage.getItem('izen_abizena');
-        globals.checkIfLives0 = true;
+        // globals.checkIfLives0 = true;
+    }
+}
+
+function updateEndRound()
+{
+    if(globals.turnState === Turn.NO_TURN)
+    {
+        updatePoints();
     }
 }
 
@@ -1476,6 +1491,7 @@ function updateActions(card)
 
 function updateLives()
 {
+    console.log(globals.actionsCounter.player1);
     if(globals.actionsCounter.player1 > 0)
     {
         let liveNum = globals.actionsCounter.player1 -1;

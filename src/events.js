@@ -199,31 +199,31 @@ function checkIfRoundPass()
         //Si el Player a Pasado la Ronda - HOST
         if (globals.checkRoundPlayer2)
         {
-            console.log("Player 0 no puede jugar - PASO DE RONDA");
+            // console.log("Player 0 no puede jugar - PASO DE RONDA");
             globals.turnState = Turn.PLAYER2;
         }
 
         //Si el Segundo Player a pasado la ronda
         else if (globals.checkRoundPlayer1)
         {
-            console.log("Player 1 no puede jugar - PASO DE RONDA");
+            // console.log("Player 1 no puede jugar - PASO DE RONDA");
             globals.turnState = Turn.PLAYER1;
         }
 
         //Si ninguno a pasado la Ronda
         else if (globals.checkRoundPlayer2 && !globals.checkRoundPlayer1)
         {
-            console.log("Solo puede jugar el jugador ");
+            // console.log("Solo puede jugar el jugador ");
         }
 
         else if (!globals.checkRoundPlayer2 && globals.checkRoundPlayer1)
         {
-            console.log("Solo puede jugar el jugador 2");
+            // console.log("Solo puede jugar el jugador 2");
         }
 
         else
         {
-            console.log("Ambos Jugadores Pueden jugar - NINGUNO PASO DE RONDA");
+            // console.log("Ambos Jugadores Pueden jugar - NINGUNO PASO DE RONDA");
         }
 
    }
@@ -232,9 +232,10 @@ function checkIfRoundPass()
    //Los dos jugadores han pasado la ronda y deberemos de reiniciar el global de Ronda
    else
    {
-    ("LA RONDA A TERMINADO");
-    globals.turnState = Turn.NO_TURN;       // MAS ADELANTE CAMBIARLO - SOLO SE PUEDE JUGAR UNA RONDA
-    globals.checkBothPlayerRound = false;
+        // console.log("LA RONDA A TERMINADO");
+        globals.turnState = Turn.NO_TURN;       // MAS ADELANTE CAMBIARLO - SOLO SE PUEDE JUGAR UNA RONDA
+        // globals.checkBothPlayerRound = false;
+        // console.log(globals.turnState);
 
    }
     
@@ -256,7 +257,9 @@ function checkRoundState()
 
     if (globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
     {
+        console.log("entra en el if de los dos true()()()()()()()");
         globals.checkBothPlayerRound = true;
+        console.log(globals.checkBothPlayerRound);
     }
 
     else
