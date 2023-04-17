@@ -718,6 +718,7 @@ function calculatePoints(player){
     let moraleBoost1 = 0;
     let moraleBoost2 = 0;
     let moraleBoost3 = 0;
+    let tightBondArray = [];
 
     
 
