@@ -406,6 +406,7 @@ function updateUserText(user)
 function createNormalDeck(){
     let cardsNeeded = 65;
     const normalMode = GameMode.NORMAL_MODE;
+    addZarate();
     AddTokenCard();
     addPermaCards(normalMode);
     addInstaCards(normalMode);
@@ -603,6 +604,15 @@ function addUnitCards(cardsLeft){
 
 }
 
+function addZarate(){
+    for(let i = 0; i < globals.cardInfo.length; i++){
+
+        if(globals.cardInfo[i].izena === "Zarate")
+            insertCard(i);
+    }
+
+}
+
 function addUltraRareCard(){
     let ultraRareQuantity = 5;
     let randomChoice = Math.floor(Math.random() * (ultraRareQuantity + 1));
@@ -612,7 +622,8 @@ function addUltraRareCard(){
         if(globals.cardInfo[i].urritasun_karta === Rarity.ULTRA_RARE){
             if(checks === randomChoice){
                 // console.log("Añade carta ultra rara");
-                insertCard(i);
+                if(globals.cardInfo[i].izena !== "Zarate")
+                    insertCard(i);
             }
             checks++;
         }
