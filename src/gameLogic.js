@@ -685,6 +685,12 @@ function checkIfSlotAvailable(effect, card, playerNum){
 //      END OF EFFECTS
 // =========================
 
+
+// =========================
+//      START OF POINT CALCULATION AT THE END OF THE ROUND
+// =========================
+
+
 function updatePoints(){
     const player1 = 0;
     const player2 = 1;
@@ -704,7 +710,7 @@ function updatePoints(){
 
 function calculatePoints(player){
 
-    //tightBondValueAdd()
+
 
     let points = 0;
     let climate = SlotIdentificators.CLIMATE_FIELD; // Para el modo expert en un futuro
@@ -720,8 +726,9 @@ function calculatePoints(player){
     let moraleBoost1 = 0;
     let moraleBoost2 = 0;
     let moraleBoost3 = 0;
+    let tightBondArray = [];
 
-    
+    tightBondValueAdd(tightBondArray, player)
 
     if(player === 0){
 
@@ -822,6 +829,8 @@ function calculatePoints(player){
     // console.log("moraleBoost1: " + moraleBoost1);
     //tighBondValueDecrease()
     // console.log(points);
+
+    // tighBondValueDecrease(tightBondArray, player)
     return points;
 }
 
@@ -889,6 +898,78 @@ function createPointersToken(array, number){
     
 }
 
+function tightBondValueAdd(array, playerNum){
+
+    let field1;
+    let field2;
+    let field3;
+    const playerArray = globals.player[playerNum];
+
+    if(playerNum === 0){
+        field1  = SlotIdentificators.PLAYER0_F1;
+        field2  = SlotIdentificators.PLAYER0_F2;
+        field3  = SlotIdentificators.PLAYER0_F3;
+    }
+
+    else{
+        field1  = SlotIdentificators.PLAYER1_F1;
+        field2  = SlotIdentificators.PLAYER1_F2;
+        field3  = SlotIdentificators.PLAYER1_F3;
+    }
+
+
+
+    for(let f = 0; f < 3; f++){
+        let fieldToCompare;
+
+        if(f === 0)
+            fieldToCompare = field1;
+        else if(f === 1)
+            fieldToCompare = field2;
+        else   
+            fieldToCompare = field3;
+        
+        for(let i = 0; i < playerArray.length; i++){
+            if(playerArray[i].slotIdentificator === fieldToCompare){
+
+                for(let l = i+1; l < playerArray.length; l++){
+
+                    if(playerArray[i].cardName === playerArray[l].cardName && playerArray.effect === Effect.TIGHT_BOND){
+
+                        playerArray[i].value *= 2;
+                        playerArray[l].value *= 2;
+                        array.push(playerArray[i])
+                    }
+                }
+            }
+        }
+        
+        
+    }
+}
+
+function tighBondValueDecrease(array, playerNum){
+
+    for(let i = 0; i < globals.player[playerNum].length; i++){
+
+        for(let l = 0; l < array.length; l++){
+
+            if(globals.player[playerNum][i].cardName === array[l].cardName){
+
+                globals.player[playerNum][i].value /= 2;
+            }
+        }
+    }
+}
+
+// =========================
+//      START OF POINT CALCULATION AT THE END OF THE ROUND
+// =========================
+
+// =========================
+//      START OF LOCAL STORAGE
+// =========================
+
 function localStorageCheck(){
 
     if(localStorage.getItem("logged") === null){
@@ -927,8 +1008,13 @@ function logOut(){
     checkStates(); 
 
 }
+// =========================
+//      END OF LOCAL STORAGE
+// =========================
 
-
+// =========================
+//      START OF CARD DISTRIBUTION
+// =========================
 function startingDeal(mode){
     let cardsToDraw
     if(mode === GameMode.NORMAL_MODE){
@@ -1038,7 +1124,9 @@ function shuffleDeck(deck){
     }
 
 }
-
+// =========================
+//      END OF CARD DISTRIBUTION
+// =========================
 function updateSlots(slot, card)
 {
     // Mire a ver si slot esta vacio o no
