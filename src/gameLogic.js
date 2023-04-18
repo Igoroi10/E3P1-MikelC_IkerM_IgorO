@@ -1556,19 +1556,21 @@ function updateGameOver()
 
 function updateEndRound()
 {
+    //Player1Points invitado
+    //Player1Points host
     if(globals.turnState === Turn.NO_TURN)
     {
         if(globals.player1Points > globals.player2Points)
         {
             let liveNum = 0;
             globals.playerTokens[1][liveNum].showBack = true;
-            liveNum++;
+            globals.roundWinner = localStorage.getItem('izen_abizena');
         }
         else if(globals.player1Points < globals.player2Points)
         {
             let liveNum = 0;
             globals.playerTokens[0][liveNum].showBack = true;
-            liveNum++;
+            globals.roundWinner = globals.selectedEnemy;
         }
 
         for(let i = 0; i < globals.cards.length; i++)
@@ -1579,6 +1581,15 @@ function updateEndRound()
                 globals.cards[i].showBack = true;
             }
         }
+
+        console.log(globals.roundWinner);
+
+        // if(globals.roundWinner === localStorage.getItem('izen_abizena'))
+        // globals.turnState = Turn.PLAYER2;
+
+        // else if(globals.roundWinner === globals.selectedEnemy)
+        // globals.turnState = Turn.PLAYER1;
+        //Empieza la ronda el que ha ganado
     }
 }
 
