@@ -57,7 +57,7 @@ function playGame()
 
 
     updateTokenPlacement();
-    // updateLives();
+    updateLives();
     updateEndRound();
     updateGameOver();
 
@@ -1439,14 +1439,17 @@ function updateEndRound()
     {
         if(globals.player1Points > globals.player2Points)
         {
-            let liveNum = globals.actionsCounter.player1 -1;
+            let liveNum = 0;
             globals.playerTokens[1][liveNum].showBack = true;
+            liveNum++;
         }
         else if(globals.player1Points < globals.player2Points)
         {
-            let liveNum = globals.actionsCounter.player2 -1;
+            let liveNum = 0;
             globals.playerTokens[0][liveNum].showBack = true;
+            liveNum++;
         }
+
     }
 }
 
@@ -1495,6 +1498,25 @@ function updateActions(card)
     }
 
     updateSlots();
+}
+
+function updateLives()
+{
+    // console.log(globals.actionsCounter.player1);
+    if(globals.actionsCounter.player1 > 0)
+    {
+        console.log("entra en if1");
+        let liveNum = 0;
+        globals.playerTokens[1][0].showBack = true;
+        globals.playerTokens[1][1].showBack = true;
+        liveNum++;
+    }
+    else if(globals.actionsCounter.player2 > 0)
+    {
+        let liveNum = globals.actionsCounter.player2 - 1;
+        globals.playerTokens[0][0].showBack = true;
+        globals.playerTokens[0][1].showBack = true;
+    }
 }
 
 
