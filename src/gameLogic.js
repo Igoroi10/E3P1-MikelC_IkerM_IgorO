@@ -418,7 +418,7 @@ function checkCardEffect(card){
             //efecto de puntuación
             break;
         case Effect.DECOY:
-            decoyEffect(card)
+            decoyEffect()
             break;
         case Effect.SCORCH:
             scorchEffect(card);
@@ -477,10 +477,10 @@ function medicEffect(card){
     else
         playerNum = 1;
 
-    const playerarray = globals.player[playerNum];
+    const playerArray = globals.player[playerNum];
 
-    for(let i = 0; i < playerarray.length; i++){
-        let cardToCompare = playerarray[i];
+    for(let i = 0; i < playerArray.length; i++){
+        let cardToCompare = playerArray[i];
 
         if(cardToCompare.type === typeToMedic && cardToCompare.state === CardState.DISCARD){
             if(cardToCompare.value > valueToMedic)
@@ -488,23 +488,25 @@ function medicEffect(card){
         }
     }
 
-    for(let i = 0; i < playerarray.length; i++){
-        let cardToCompare = playerarray[i];
+    for(let i = 0; i < playerArray.length; i++){
+        let cardToCompare = playerArray[i];
         if(cardToCompare.value === valueToMedic && cardToCompare.state === CardState.DISCARD){
 
             cardToCompare.slotIdentificator = card.slotIdentificator;
             checkIfSlotAvailable(Effect.MEDIC, cardToCompare, playerNum);
 
-            i = playerarray.length;
+            i = playerArray.length;
         }
     }
 
 }
 
-function decoyEffect(card){
-    globals.decoy = true;
+function decoyEffect(){
+    const playerArray = globals.player[globals.turnState];
 
-    card.state = CardState.DISCARD;
+    for(let i = 0; i < player)
+
+
 
 }
 
@@ -679,6 +681,8 @@ function checkIfSlotAvailable(effect, card, playerNum){
             break;
     }
 }
+
+
 // =========================
 //      END OF EFFECTS
 // =========================
@@ -1135,14 +1139,14 @@ function updateTurn()
 
     if(globals.actionsCounter.player1 >= 2)
     {
-        console.log("Entra en cambio de turno PLayer1 a Player2");
+        //console.log("Entra en cambio de turno PLayer1 a Player2");
         globals.turnState = Turn.PLAYER2;
         globals.actionsCounter.player1 = 0;
 
     }
     else if (globals.actionsCounter.player2 >= 2)
     {
-        console.log("Entra en cambio de turno PLayer2 a Player1");
+        //console.log("Entra en cambio de turno PLayer2 a Player1");
         globals.turnState = Turn.PLAYER1;
         globals.actionsCounter.player1 = 0;
     }
@@ -1167,8 +1171,8 @@ function updateTurn()
         cardsInHand(Turn.PLAYER1);
     }
 
-    else
-        console.log("No es turno de ninguno de los dos");
+    //else
+        //console.log("No es turno de ninguno de los dos");
         // FALTA BOLEANA GLOBAL PARA TERMINAR EL CHECK DE RONDAS - Para acabar la partida
 }
 
@@ -1207,7 +1211,7 @@ function updateSelectedCard(card)
     // console.log("entra en updateSelected");
     if (globals.mouseSelectedCard && globals.cards[globals.selectedCardId_Click].state !== CardState.GAME)
     {
-        console.log("entra en el if dee update card")
+        //console.log("entra en el if dee update card")
         if(globals.selectedCardId_Click !== -1)
         {
             // console.log("Entra en if upodateSelectedCard");
@@ -1219,7 +1223,7 @@ function updateSelectedCard(card)
 
         else
         {
-            console.log("entra en el else");
+            //console.log("entra en el else");
             // globals.selectedCardId_Click = -1;
             // globals.cards[i].state = globals.cards[i].previousState;
 
@@ -1248,7 +1252,7 @@ function placeCard()
             // console.log("Entra en el segundo if");
             if(globals.selectedCardId_Click !== -1 && globals.selectedSlotId !== -1)
             {
-                console.log("Entra placed card");
+                //console.log("Entra placed card");
                 const selectedCard      = globals.cards[globals.selectedCardId_Click];
                 const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
                 const slotIdentificator = globals.slots[globals.selectedSlotId].slotIdentificator;
@@ -1442,7 +1446,7 @@ function placeCard()
             
                 if(globals.action.mousePressed && globals.checkPlaced)
                 {
-                    console.log("Carta colocada");
+                    //console.log("Carta colocada");
                     // globals.mouseSelectedSlot = false;
                     // console.log("entra en el if del ");
                     // globals.mouseNotSelected = true;
