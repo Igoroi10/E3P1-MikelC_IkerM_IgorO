@@ -1571,6 +1571,14 @@ function updateEndRound()
             liveNum++;
         }
 
+        for(let i = 0; i < globals.cards.length; i++)
+        {
+            if(globals.cards[i].state === CardState.GAME)
+            {
+                globals.cards[i].state = CardState.DISCARD;
+                globals.cards[i].showBack = true;
+            }
+        }
     }
 }
 
