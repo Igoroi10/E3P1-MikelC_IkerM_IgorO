@@ -57,7 +57,9 @@ function playGame()
 
 
     updateTokenPlacement();
+    updatePoints();
     // updateLives();
+    updateEndRound();
     updateGameOver();
 
    
@@ -313,7 +315,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
         case CardState.GAME:
             if (globals.checkBothPlayerRound)
             {
-                CardState.DISCARD;s
+                CardState.DISCARD;
             }
 
             else if (globals.scorch)
@@ -460,8 +462,8 @@ function scorchEffect(card){
         }
     }
 
-    
-    card.state = CardState.DISCARD;
+    if(card.categoryId !== CardCategory.UNIT)
+        card.state = CardState.DISCARD;
 
 }
 
@@ -515,8 +517,8 @@ function spyEffect(card){
 function musterEffect(card){
     let nameToSearch = "";
     let playerNum;
-    console.log("carta a principio de muster");
-    console.log(card)
+    // console.log("carta a principio de muster");
+    // console.log(card)
     if(card.slotIdentificators < SlotIdentificators.PLAYER1_F1)
         playerNum = 0;
     else
@@ -686,6 +688,12 @@ function checkIfSlotAvailable(effect, card, playerNum){
 //      END OF EFFECTS
 // =========================
 
+
+// =========================
+//      START OF POINT CALCULATION AT THE END OF THE ROUND
+// =========================
+
+
 function updatePoints(){
     const player1 = 0;
     const player2 = 1;
@@ -705,7 +713,9 @@ function updatePoints(){
 
 function calculatePoints(player){
 
-    let points;
+
+
+    let points = 0;
     let climate = SlotIdentificators.CLIMATE_FIELD; // Para el modo expert en un futuro
     let buff1;
     let buff2;
@@ -716,7 +726,12 @@ function calculatePoints(player){
     let buffValue1 = 1;
     let buffValue2 = 1;
     let buffValue3 = 1;
-    
+    let moraleBoost1 = 0;
+    let moraleBoost2 = 0;
+    let moraleBoost3 = 0;
+    let tightBondArray = [];
+
+    // tightBondValueAdd(tightBondArray, player)
 
     if(player === 0){
 
@@ -742,44 +757,83 @@ function calculatePoints(player){
 
     //Comprobaciones de los buffos + puntos
     for(let i = 0; i < globals.cards.length; i++){
-
-        if(globals.cards[i].slotID === buff1){
-
-            if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
-                buffValue1 = 2;
-            else
-                buffValue1 = 0.5;           
-        }
-
-        else if(globals.cards[i].slotID === buff3){
-
-            if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
-                buffValue2 = 2;
-            else
-                buffValue2 = 0.5;           
-        } 
-
-        else if(globals.cards[i].slotID === buff2){
-            
-            if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
-                buffValue3 = 2;
-            else
-                buffValue3 = 0.5;           
-        }
+        let cardValue = 0;
         
-        if(globals.cards[i].slotID === field1){
-            points += (buffValue1 * globals.cards[i].value);
+        if(globals.cards[i].categoryId === CardCategory.UNIT)
+        {
+            cardValue = parseInt(globals.cards[i].value);
+            // console.log("entra en el parse")
         }
 
-        else if(globals.cards[i].slotID === field2){
-            points += (buffValue2 * globals.cards[i].value);
+        switch(globals.cards[i].slotIdentificator){
+            case buff1:
+                // console.log("entra en el case buff1");
+                if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
+                {
+                    // console.log("entra en el if1 commanders");
+                    buffValue1 = 2; 
+                }   
+                if(globals.cards[i].effect === Effect.MORALE_BOOST){
+                    // console.log("entra en el if1 morale_boost");
+                    moraleBoost1++;
+                }
+            break;
+
+            case buff2:
+                // console.log("entra en el case buff2");
+                if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
+                {
+                    // console.log("entra en el ifcase2 commanders");
+                    buffValue2 = 2;   
+                }
+                 
+                if(globals.cards[i].effect === Effect.MORALE_BOOST){
+                    // console.log("entra en el ifcas2 morale_boost");
+                    moraleBoost2++;
+                }
+            break;
+            case buff3:
+                // console.log("entra en el case buff3");
+                if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
+                {
+                    // console.log("entra en el ifcase3 commanders");
+                    buffValue3 = 2;  
+                }
+                  
+                if(globals.cards[i].effect === Effect.MORALE_BOOST){
+                    // console.log("entra en el ifcase3 morale_boost");
+                    moraleBoost3++;
+                }
+            break;
+
         }
 
-        else if(globals.cards[i].slotID === field3){
-            points += (buffValue3 * globals.cards[i].value);
+
+        if(globals.cards[i].categoryId === CardCategory.UNIT)
+        {
+            // console.log(cardValue);
+            if(globals.cards[i].slotIdentificator === field1){
+                // console.log("entra en el primer calcul");
+                points += (buffValue1 * (cardValue + moraleBoost1));
+            }
+    
+            else if(globals.cards[i].slotIdentificator === field2){
+                // console.log("entra en el 2 calcul");
+                points += (buffValue2 * (cardValue + moraleBoost2));
+            }
+    
+            else if(globals.cards[i].slotIdentificator === field3){
+                points += (buffValue3 * (cardValue + moraleBoost3));
+            }
         }
     }
+    // console.log("moraleBoost3: " + moraleBoost3);
+    // console.log("moraleBoost2: " + moraleBoost2);
+    // console.log("moraleBoost1: " + moraleBoost1);
+    //tighBondValueDecrease()
+    // console.log(points);
 
+    // tighBondValueDecrease(tightBondArray, player)
     return points;
 }
 
@@ -809,15 +863,15 @@ function createPointers(points, player){
     units = pointsLeft;
 
     for(let i = 0; i < hundreds; i++){
-        createPointersToken(PointersArray, 100);
+        // createPointersToken(PointersArray, 100);
     }
 
     for(let i = 0; i < tens; i++){
-        createPointersToken(PointersArray, 10);
+        // createPointersToken(PointersArray, 10);
     }
 
     for(let i = 0; i < units; i++){
-        createPointersToken(PointersArray, 1);
+        // createPointersToken(PointersArray, 1);
     }
 }
 
@@ -829,23 +883,95 @@ function createPointersToken(array, number){
     switch(number){
         case 100:
             ind = 36;
-            const tokenCard = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
+            const tokenCard = new Card(globals.cardInfo[ind].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
             array.hundreds.push(tokenCard);
             break;
         case 10:
             ind = 35;
-            const tokenCard2 = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
+            const tokenCard2 = new Card(globals.cardInfo[ind].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
             array.tens.push(tokenCard2);
             break;
         case 1:
             ind = 34;
-            const tokenCard3 = new Card(globals.cardInfo[index].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
+            const tokenCard3 = new Card(globals.cardInfo[ind].irudia,  globals.cardInfo[index].izena, CardState.DECK, false, imageSet);
             array.units.push(tokenCard3);
             break;
     }
     
     
 }
+
+function tightBondValueAdd(array, playerNum){
+
+    let field1;
+    let field2;
+    let field3;
+    const playerArray = globals.player[playerNum];
+
+    if(playerNum === 0){
+        field1  = SlotIdentificators.PLAYER0_F1;
+        field2  = SlotIdentificators.PLAYER0_F2;
+        field3  = SlotIdentificators.PLAYER0_F3;
+    }
+
+    else{
+        field1  = SlotIdentificators.PLAYER1_F1;
+        field2  = SlotIdentificators.PLAYER1_F2;
+        field3  = SlotIdentificators.PLAYER1_F3;
+    }
+
+
+
+    for(let f = 0; f < 3; f++){
+        let fieldToCompare;
+
+        if(f === 0)
+            fieldToCompare = field1;
+        else if(f === 1)
+            fieldToCompare = field2;
+        else   
+            fieldToCompare = field3;
+        
+        for(let i = 0; i < playerArray.length; i++){
+            if(playerArray[i].slotIdentificator === fieldToCompare){
+
+                for(let l = i+1; l < playerArray.length; l++){
+
+                    if(playerArray[i].cardName === playerArray[l].cardName && playerArray.effect === Effect.TIGHT_BOND){
+
+                        playerArray[i].value *= 2;
+                        playerArray[l].value *= 2;
+                        array.push(playerArray[i])
+                    }
+                }
+            }
+        }
+        
+        
+    }
+}
+
+function tighBondValueDecrease(array, playerNum){
+
+    for(let i = 0; i < globals.player[playerNum].length; i++){
+
+        for(let l = 0; l < array.length; l++){
+
+            if(globals.player[playerNum][i].cardName === array[l].cardName){
+
+                globals.player[playerNum][i].value /= 2;
+            }
+        }
+    }
+}
+
+// =========================
+//      START OF POINT CALCULATION AT THE END OF THE ROUND
+// =========================
+
+// =========================
+//      START OF LOCAL STORAGE
+// =========================
 
 function localStorageCheck(){
 
@@ -885,8 +1011,13 @@ function logOut(){
     checkStates(); 
 
 }
+// =========================
+//      END OF LOCAL STORAGE
+// =========================
 
-
+// =========================
+//      START OF CARD DISTRIBUTION
+// =========================
 function startingDeal(mode){
     let cardsToDraw
     if(mode === GameMode.NORMAL_MODE){
@@ -996,7 +1127,9 @@ function shuffleDeck(deck){
     }
 
 }
-
+// =========================
+//      END OF CARD DISTRIBUTION
+// =========================
 function updateSlots(slot, card)
 {
     // Mire a ver si slot esta vacio o no
@@ -1112,8 +1245,8 @@ function updateTurn()
         cardsInHand(Turn.PLAYER1);
     }
 
-    else
-        console.log("No es turno de ninguno de los dos");
+    // else
+        // console.log("No es turno de ninguno de los dos");
         // FALTA BOLEANA GLOBAL PARA TERMINAR EL CHECK DE RONDAS - Para acabar la partida
 }
 
@@ -1193,7 +1326,7 @@ function placeCard()
             // console.log("Entra en el segundo if");
             if(globals.selectedCardId_Click !== -1 && globals.selectedSlotId !== -1)
             {
-                console.log("Entra placed card");
+                // console.log("Entra placed card");
                 const selectedCard      = globals.cards[globals.selectedCardId_Click];
                 const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
                 const slotIdentificator = globals.slots[globals.selectedSlotId].slotIdentificator;
@@ -1387,7 +1520,7 @@ function placeCard()
             
                 if(globals.action.mousePressed && globals.checkPlaced)
                 {
-                    console.log("Carta colocada");
+                    // console.log("Carta colocada");
                     // globals.mouseSelectedSlot = false;
                     // console.log("entra en el if del ");
                     // globals.mouseNotSelected = true;
@@ -1407,6 +1540,11 @@ function placeCard()
 
 function updateGameOver()
 {
+    // console.log("player 1:  " + globals.checkRoundPlayer1);
+    // console.log("player 2:  " + globals.checkRoundPlayer2);
+    // console.log(globals.checkBothPlayerRound);
+    // console.log(Turn.NO_TURN);  
+    // console.log(globals.turnState);
     if(globals.playerTokens[0][0].showBack && globals.playerTokens[0][1].showBack)
     {
         globals.winner = globals.selectedEnemy;
@@ -1416,6 +1554,26 @@ function updateGameOver()
     {
         globals.winner = localStorage.getItem('izen_abizena');
         globals.checkIfLives0 = true;
+    }
+}
+
+function updateEndRound()
+{
+    if(globals.turnState === Turn.NO_TURN)
+    {
+        if(globals.player1Points > globals.player2Points)
+        {
+            let liveNum = 0;
+            globals.playerTokens[1][liveNum].showBack = true;
+            liveNum++;
+        }
+        else if(globals.player1Points < globals.player2Points)
+        {
+            let liveNum = 0;
+            globals.playerTokens[0][liveNum].showBack = true;
+            liveNum++;
+        }
+
     }
 }
 
@@ -1433,13 +1591,13 @@ function updateActions(card)
         // console.log("entra if Player1")
         // console.log(card.state);
 
-        console.log(globals.placedCard);
+        // console.log(globals.placedCard);
         globals.actionsCounter.player2 = 0;
         if(globals.placedCard && globals.action.mousePressed)
         {
-            console.log("Entra en if de funcion UpdateActions")
+            // console.log("Entra en if de funcion UpdateActions")
             globals.actionsCounter.player1 ++;
-            console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
+            // console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
             globals.placedCard = false;
         }
     }
@@ -1466,21 +1624,25 @@ function updateActions(card)
     updateSlots();
 }
 
-
 function updateLives()
 {
+    // console.log(globals.actionsCounter.player1);
     if(globals.actionsCounter.player1 > 0)
     {
-        let liveNum = globals.actionsCounter.player1 -1;
-        globals.playerTokens[1][liveNum].showBack = true;
-
+        console.log("entra en if1");
+        let liveNum = 0;
+        globals.playerTokens[1][0].showBack = true;
+        globals.playerTokens[1][1].showBack = true;
+        liveNum++;
     }
     else if(globals.actionsCounter.player2 > 0)
     {
-        let liveNum = globals.actionsCounter.player2 -1;
-        globals.playerTokens[0][liveNum].showBack = true;
+        let liveNum = globals.actionsCounter.player2 - 1;
+        globals.playerTokens[0][0].showBack = true;
+        globals.playerTokens[0][1].showBack = true;
     }
 }
+
 
 export {
     update,
