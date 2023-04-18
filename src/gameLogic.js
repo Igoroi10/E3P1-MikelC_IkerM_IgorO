@@ -728,7 +728,7 @@ function calculatePoints(player){
     let moraleBoost3 = 0;
     let tightBondArray = [];
 
-    tightBondValueAdd(tightBondArray, player)
+    // tightBondValueAdd(tightBondArray, player)
 
     if(player === 0){
 
