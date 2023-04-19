@@ -1584,6 +1584,15 @@ function updateEndRound()
             console.log("entra en player2 gana");
             globals.player2LivesDeleted++;
         }
+        else
+        {
+            console.log("han empatado");
+            globals.playerTokens[1][globals.player1LivesDeleted].showBack = true;
+            globals.playerTokens[0][globals.player2LivesDeleted].showBack = true;
+            globals.roundWinner = localStorage.getItem('izen_abizena');
+            globals.player1LivesDeleted++;
+            globals.player2LivesDeleted++;
+        } 
 
         for(let i = 0; i < globals.cards.length; i++)
         {
