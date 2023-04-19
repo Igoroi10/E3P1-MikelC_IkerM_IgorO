@@ -186,4 +186,6 @@ export default
 
     checkPlaced: false,
 
+    player1LivesDeleted: 0,
+    player2LivesDeleted: 0,
 }
