@@ -418,7 +418,7 @@ function checkCardEffect(card){
             //efecto de puntuación
             break;
         case Effect.DECOY:
-            decoyEffect()
+           //decoyEffect()
             break;
         case Effect.SCORCH:
             scorchEffect(card);
@@ -501,14 +501,54 @@ function medicEffect(card){
 
 }
 
-function decoyEffect(){
+function decoyEffectActivation(){
     const playerArray = globals.player[globals.turnState];
+    let checks = 0;
+    let handIdentificator;
 
-    for(let i = 0; i < player)
+    if(globals.turnState === 0)
+        handIdentificator = SlotIdentificators.PLAYER0_HAND;
+    
+    else
+        handIdentificator = SlotIdentificators.PLAYER1_HAND;
 
+    for(let i = 0; i < playerArray.length; i++){
+        if(playerArray[i].slotIdentificator === handIdentificatorDecoy)
+            checks++  
+    }
+    
+    if(checks < 12){
 
+        for(let i = 0; i < playerArray.length; i++){
+            if(playerArray.effect === Effect.DECOY && playerArray.state === CardState.GAME){
+                globals.decoy = true;
+            }
+        }
+    }
 
 }
+
+
+function decoyEffectResult(card){
+
+    const playerArray = globals.player[globals.turnState];
+
+    for(let i = 0; i < playerArray.length; i++){
+        if(card.state === CardState.GAME){
+            checkIfSlotAvailable(Effect.DECOY, card, globals.turnState)
+            globals.decoy = false;
+        }
+
+        if(playerArray.effect === Effect.DECOY && playerArray.state === CardState.GAME){
+            playerArray.state = CardState.DISCARD;
+        }
+    }
+
+
+
+    
+}
+
 
 function spyEffect(card){
     checkIfSlotAvailable(Effect.SPY, card, globals.turnState)
