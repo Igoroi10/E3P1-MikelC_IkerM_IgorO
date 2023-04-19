@@ -887,7 +887,7 @@ function messageZone()
 function handPlayer1 ()
 { 
     const yPos      = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
-    const xSize     = 75;
+    const xSize     = 87.5;
     const ySize     = 90;
     const slotID    = SlotIdentificators.PLAYER0_HAND;
 
@@ -897,7 +897,7 @@ function handPlayer1 ()
     {
         const handSlots = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(handSlots);
-        xPos += 90;
+        xPos += 87.5;
     }
 
 }
@@ -905,7 +905,7 @@ function handPlayer1 ()
 function handPlayer2 ()
 {
     const yPos      = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
-    const xSize     = 75;
+    const xSize     = 87.5;
     const ySize     = 90;
     const slotID    = SlotIdentificators.PLAYER1_HAND;
 
@@ -915,7 +915,7 @@ function handPlayer2 ()
     {
         const handSlots = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(handSlots);
-        xPos += 75;
+        xPos += 87.5;
     }
 }
 
