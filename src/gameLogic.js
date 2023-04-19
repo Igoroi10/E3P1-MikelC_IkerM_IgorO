@@ -612,9 +612,9 @@ function checkIfSlotAvailable(effect, card, playerNum){
                 let handIdentificatorSpy;
     
                 if(playerNum === 0)
-                    handIdentificatorSpy = SlotIdentificators.PLAYER1_HAND;
-                else
                     handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
+                else
+                    handIdentificatorSpy = SlotIdentificators.PLAYER1_HAND;
     
                 for(let i = 0; i < globals.cards.length; i++){
                     if(globals.cards[i].slotIdentificator === handIdentificatorSpy)
@@ -1214,14 +1214,14 @@ function updateTurn()
 
     if(globals.actionsCounter.player0 >= 2)
     {
-        console.log("Entra en cambio de turno PLayer1 a Player2");
+        // console.log("Entra en cambio de turno PLayer1 a Player2");
         globals.turnState = Turn.PLAYER1;
         globals.actionsCounter.player0 = 0;
 
     }
     else if (globals.actionsCounter.player1 >= 2)
     {
-        console.log("Entra en cambio de turno PLayer2 a Player1");
+        // console.log("Entra en cambio de turno PLayer2 a Player1");
         globals.turnState = Turn.PLAYER0;
         globals.actionsCounter.player0 = 0;
     }
@@ -1287,7 +1287,7 @@ function updateSelectedCard(card)
     // console.log("entra en updateSelected");
     if (globals.mouseSelectedCard && globals.cards[globals.selectedCardId_Click].state !== CardState.GAME)
     {
-        console.log("entra en el if dee update card")
+        // console.log("entra en el if dee update card")
         if(globals.selectedCardId_Click !== -1)
         {
             // console.log("Entra en if upodateSelectedCard");
