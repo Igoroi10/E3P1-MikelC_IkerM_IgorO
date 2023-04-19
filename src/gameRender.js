@@ -450,7 +450,7 @@ function drawMessages()
     // globals.ctx.clearRect(53, 533, 305, 80);
 
 
-    if(globals.turnState === Turn.PLAYER1)
+    if(globals.turnState === Turn.PLAYER0)
     {
 
         globals.ctx.font = '20px magicmedieval'; 
@@ -461,7 +461,7 @@ function drawMessages()
         globals.ctx.fillStyle = 'yellow';    
         globals.ctx.fillText(globals.selectedEnemy+ "'s turn.", 90, 555); 
     }
-    else if(globals.turnState === Turn.PLAYER2)
+    else if(globals.turnState === Turn.PLAYER1)
     {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'black';    
@@ -494,13 +494,13 @@ function drawMessages()
             globals.ctx.fillText("Solo puede jugar el jugador 2", 70, 585);
         }
    }
-    if(globals.actionsCounter.player1 === 1 || globals.actionsCounter.player2 == 1)
+    if(globals.actionsCounter.player0 === 1 || globals.actionsCounter.player1 == 1)
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
         globals.ctx.fillText("(Select a card to decoy)", 60, 585);
    }
-   else if(globals.actionsCounter.player2 === 2 || globals.actionsCounter.player1 === 0)
+   else if(globals.actionsCounter.player1 === 2 || globals.actionsCounter.player0 === 0)
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    

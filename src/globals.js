@@ -151,8 +151,8 @@ export default
     actionsCounter: {
 
         none:        0,
+        player0:     0,
         player1:     0,
-        player2:     0,
     },
 
     //Card States

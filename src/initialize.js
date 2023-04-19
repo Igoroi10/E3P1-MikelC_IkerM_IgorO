@@ -406,6 +406,7 @@ function updateUserText(user)
 function createNormalDeck(){
     let cardsNeeded = 65;
     const normalMode = GameMode.NORMAL_MODE;
+    addZarate();
     AddTokenCard();
     addPermaCards(normalMode);
     addInstaCards(normalMode);
@@ -603,6 +604,15 @@ function addUnitCards(cardsLeft){
 
 }
 
+function addZarate(){
+    for(let i = 0; i < globals.cardInfo.length; i++){
+
+        if(globals.cardInfo[i].izena === "Zarate")
+            insertCard(i);
+    }
+
+}
+
 function addUltraRareCard(){
     let ultraRareQuantity = 5;
     let randomChoice = Math.floor(Math.random() * (ultraRareQuantity + 1));
@@ -612,7 +622,8 @@ function addUltraRareCard(){
         if(globals.cardInfo[i].urritasun_karta === Rarity.ULTRA_RARE){
             if(checks === randomChoice){
                 // console.log("Añade carta ultra rara");
-                insertCard(i);
+                if(globals.cardInfo[i].izena !== "Zarate")
+                    insertCard(i);
             }
             checks++;
         }
@@ -694,8 +705,8 @@ function initSlots()
     //GENERAL
     // tableSize();             // Tamaño de Toda la Mesa de juego      - NOT NECESSARY
     climatologyZone();          // Slots de Cartas de Clima             - DONE
-    buffPlayer1();              // Buffs del Player 1 (3 secciones)     - DONE
-    buffPlayer2();              // Buffs del Player 2 (3 secciones)     - DONE
+    buffPlayer1();              // Buffs del Player 0 (3 secciones)     - DONE
+    buffPlayer2();              // Buffs del Player 1 (3 secciones)     - DONE
     liveZone1();                // Slots de las vidas                   
     liveZone2();  
     tokenZone1();
@@ -705,13 +716,13 @@ function initSlots()
     //PLAYER 1
     slotDiscardP1();            // Slots de Descartes del Jugador 1     - DONE
     handPlayer1();              // Mano del Jugador 1 (12 Slots)        - DONE
-    tableSection_Player1();     // Seccion de juego de todas las cartas del Player 1 (3 Secciones, 10 slots cada una)   - DONE
+    tableSection_Player1();     // Seccion de juego de todas las cartas del Player 0 (3 Secciones, 10 slots cada una)   - DONE
     deckPlayer1();              // Mazo del Jugador 1                   - 
 
     //PLAYER 2
     slotDiscardP2();            // Slots de Descartes del Jugador 2     - DONE
     handPlayer2();              // Mano del Jugador 2 (12 Slots)        - DONE
-    tableSection_Player2();     // Seccion de juego de todas las cartas del Player 2 (3 Secciones, 10 slots cada una)   - 
+    tableSection_Player2();     // Seccion de juego de todas las cartas del Player 1 (3 Secciones, 10 slots cada una)   - 
     deckPlayer2();              // Mazo del jugador 2                   - 
 }
 
