@@ -553,7 +553,7 @@ function gameOverScreen()
     if(globals.checkIfLives0)
     {
         globals.ctx.fillStyle = 'black';    
-        globals.ctx.globalAlpha = 0.8;
+        globals.ctx.globalAlpha = 0.5;
         globals.ctx.fillRect(0, 0, globals.canvas.width, globals.canvas.height);
         globals.ctx.globalAlpha = 1;
         var img = new Image();

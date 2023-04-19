@@ -57,6 +57,7 @@ function playGame()
 
 
     updateTokenPlacement();
+    updatePoints();
     // updateLives();
     updateEndRound();
     updateGameOver();
@@ -516,8 +517,8 @@ function spyEffect(card){
 function musterEffect(card){
     let nameToSearch = "";
     let playerNum;
-    console.log("carta a principio de muster");
-    console.log(card)
+    // console.log("carta a principio de muster");
+    // console.log(card)
     if(card.slotIdentificators < SlotIdentificators.PLAYER1_F1)
         playerNum = 0;
     else
@@ -611,9 +612,9 @@ function checkIfSlotAvailable(effect, card, playerNum){
                 let handIdentificatorSpy;
     
                 if(playerNum === 0)
-                    handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
-                else
                     handIdentificatorSpy = SlotIdentificators.PLAYER1_HAND;
+                else
+                    handIdentificatorSpy = SlotIdentificators.PLAYER0_HAND;
     
                 for(let i = 0; i < globals.cards.length; i++){
                     if(globals.cards[i].slotIdentificator === handIdentificatorSpy)
@@ -625,13 +626,16 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     for(let i = 0; i < globals.player[playerNum].length; i++){
                         if(globals.player[playerNum][i].state === CardState.DECK){
                             console.log("Entra en el if de carta de deck")
+                            // console.log("Turno: " + globals.turnState)
+                            // console.log("PlayerNum: " + playerNum);
                             for(let l = 0; l < globals.slots.length; l++){
                                 if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
-
+                                    console.log(globals.slots[l].yPos);
                                     globals.player[playerNum][i].xPos = globals.slots[l].xPos;
                                     globals.player[playerNum][i].yPos = globals.slots[l].yPos;
                                     globals.player[playerNum][i].state = CardState.HAND;
-                                    globals.player[playerNum][i].showBack = true;
+                                    globals.player[playerNum][i].showBack = false;
+                                    globals.player[playerNum][i].slotIdentificator = globals.slots[l].slotIdentificator;
                                     globals.slots[l].placed_cards++;
                                     console.log("Coloca una carta de spy")
                                     console.log(globals.player[playerNum][i])
@@ -711,7 +715,7 @@ function calculatePoints(player){
 
 
 
-    let points;
+    let points = 0;
     let climate = SlotIdentificators.CLIMATE_FIELD; // Para el modo expert en un futuro
     let buff1;
     let buff2;
@@ -727,7 +731,7 @@ function calculatePoints(player){
     let moraleBoost3 = 0;
     let tightBondArray = [];
 
-    tightBondValueAdd(tightBondArray, player)
+    // tightBondValueAdd(tightBondArray, player)
 
     if(player === 0){
 
@@ -753,50 +757,83 @@ function calculatePoints(player){
 
     //Comprobaciones de los buffos + puntos
     for(let i = 0; i < globals.cards.length; i++){
+        let cardValue = 0;
+        
+        if(globals.cards[i].categoryId === CardCategory.UNIT)
+        {
+            cardValue = parseInt(globals.cards[i].value);
+            // console.log("entra en el parse")
+        }
 
-        switch(globals.cards[i].slotID){
+        switch(globals.cards[i].slotIdentificator){
             case buff1:
+                // console.log("entra en el case buff1");
                 if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
-                buffValue1 = 2;    
+                {
+                    // console.log("entra en el if1 commanders");
+                    buffValue1 = 2; 
+                }   
                 if(globals.cards[i].effect === Effect.MORALE_BOOST){
+                    // console.log("entra en el if1 morale_boost");
                     moraleBoost1++;
                 }
             break;
 
             case buff2:
+                // console.log("entra en el case buff2");
                 if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
-                buffValue2 = 2;    
+                {
+                    // console.log("entra en el ifcase2 commanders");
+                    buffValue2 = 2;   
+                }
+                 
                 if(globals.cards[i].effect === Effect.MORALE_BOOST){
+                    // console.log("entra en el ifcas2 morale_boost");
                     moraleBoost2++;
                 }
             break;
             case buff3:
+                // console.log("entra en el case buff3");
                 if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
-                buffValue3 = 2;    
+                {
+                    // console.log("entra en el ifcase3 commanders");
+                    buffValue3 = 2;  
+                }
+                  
                 if(globals.cards[i].effect === Effect.MORALE_BOOST){
+                    // console.log("entra en el ifcase3 morale_boost");
                     moraleBoost3++;
                 }
             break;
 
         }
 
-        
-        if(globals.cards[i].slotID === field1){
-            points += (buffValue1 * (globals.cards[i].value + moraleBoost1));
-        }
 
-        else if(globals.cards[i].slotID === field2){
-            points += (buffValue2 * (globals.cards[i].value + moraleBoost2));
-        }
-
-        else if(globals.cards[i].slotID === field3){
-            points += (buffValue3 * (globals.cards[i].value + moraleBoost3));
+        if(globals.cards[i].categoryId === CardCategory.UNIT)
+        {
+            // console.log(cardValue);
+            if(globals.cards[i].slotIdentificator === field1){
+                // console.log("entra en el primer calcul");
+                points += (buffValue1 * (cardValue + moraleBoost1));
+            }
+    
+            else if(globals.cards[i].slotIdentificator === field2){
+                // console.log("entra en el 2 calcul");
+                points += (buffValue2 * (cardValue + moraleBoost2));
+            }
+    
+            else if(globals.cards[i].slotIdentificator === field3){
+                points += (buffValue3 * (cardValue + moraleBoost3));
+            }
         }
     }
+    // console.log("moraleBoost3: " + moraleBoost3);
+    // console.log("moraleBoost2: " + moraleBoost2);
+    // console.log("moraleBoost1: " + moraleBoost1);
+    //tighBondValueDecrease()
+    // console.log(points);
 
-    tighBondValueDecrease(tightBondArray, player)
-
-
+    // tighBondValueDecrease(tightBondArray, player)
     return points;
 }
 
@@ -826,15 +863,15 @@ function createPointers(points, player){
     units = pointsLeft;
 
     for(let i = 0; i < hundreds; i++){
-        createPointersToken(PointersArray, 100);
+        // createPointersToken(PointersArray, 100);
     }
 
     for(let i = 0; i < tens; i++){
-        createPointersToken(PointersArray, 10);
+        // createPointersToken(PointersArray, 10);
     }
 
     for(let i = 0; i < units; i++){
-        createPointersToken(PointersArray, 1);
+        // createPointersToken(PointersArray, 1);
     }
 }
 
@@ -1289,7 +1326,7 @@ function placeCard()
             // console.log("Entra en el segundo if");
             if(globals.selectedCardId_Click !== -1 && globals.selectedSlotId !== -1)
             {
-                console.log("Entra placed card");
+                // console.log("Entra placed card");
                 const selectedCard      = globals.cards[globals.selectedCardId_Click];
                 const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
                 const slotIdentificator = globals.slots[globals.selectedSlotId].slotIdentificator;
@@ -1483,7 +1520,7 @@ function placeCard()
             
                 if(globals.action.mousePressed && globals.checkPlaced)
                 {
-                    console.log("Carta colocada");
+                    // console.log("Carta colocada");
                     // globals.mouseSelectedSlot = false;
                     // console.log("entra en el if del ");
                     // globals.mouseNotSelected = true;
@@ -1526,14 +1563,17 @@ function updateEndRound()
     {
         if(globals.player1Points > globals.player2Points)
         {
-            let liveNum = globals.actionsCounter.player1 -1;
+            let liveNum = 0;
             globals.playerTokens[1][liveNum].showBack = true;
+            liveNum++;
         }
         else if(globals.player1Points < globals.player2Points)
         {
-            let liveNum = globals.actionsCounter.player2 -1;
+            let liveNum = 0;
             globals.playerTokens[0][liveNum].showBack = true;
+            liveNum++;
         }
+
     }
 }
 
@@ -1551,13 +1591,13 @@ function updateActions(card)
         // console.log("entra if Player1")
         // console.log(card.state);
 
-        console.log(globals.placedCard);
+        // console.log(globals.placedCard);
         globals.actionsCounter.player2 = 0;
         if(globals.placedCard && globals.action.mousePressed)
         {
-            console.log("Entra en if de funcion UpdateActions")
+            // console.log("Entra en if de funcion UpdateActions")
             globals.actionsCounter.player1 ++;
-            console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
+            // console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
             globals.placedCard = false;
         }
     }
@@ -1582,6 +1622,25 @@ function updateActions(card)
     }
 
     updateSlots();
+}
+
+function updateLives()
+{
+    // console.log(globals.actionsCounter.player1);
+    if(globals.actionsCounter.player1 > 0)
+    {
+        console.log("entra en if1");
+        let liveNum = 0;
+        globals.playerTokens[1][0].showBack = true;
+        globals.playerTokens[1][1].showBack = true;
+        liveNum++;
+    }
+    else if(globals.actionsCounter.player2 > 0)
+    {
+        let liveNum = globals.actionsCounter.player2 - 1;
+        globals.playerTokens[0][0].showBack = true;
+        globals.playerTokens[0][1].showBack = true;
+    }
 }
 
 
