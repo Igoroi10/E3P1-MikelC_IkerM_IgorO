@@ -1212,18 +1212,18 @@ function updateTurn()
     let player0 = 0;
     let player1 = 1;
 
-    if(globals.actionsCounter.player1 >= 2)
+    if(globals.actionsCounter.player0 >= 2)
     {
         console.log("Entra en cambio de turno PLayer1 a Player2");
         globals.turnState = Turn.PLAYER1;
-        globals.actionsCounter.player1 = 0;
+        globals.actionsCounter.player0 = 0;
 
     }
-    else if (globals.actionsCounter.player2 >= 2)
+    else if (globals.actionsCounter.player1 >= 2)
     {
         console.log("Entra en cambio de turno PLayer2 a Player1");
         globals.turnState = Turn.PLAYER0;
-        globals.actionsCounter.player1 = 0;
+        globals.actionsCounter.player0 = 0;
     }
 
     
@@ -1231,7 +1231,7 @@ function updateTurn()
     if (globals.turnState === Turn.PLAYER0)
     {  
         // console.log("turno player1")
-        // console.log("Entra en Turno Player 1");
+        // console.log("Entra en Turno Player 0");
         cardsHide(Turn.PLAYER1); // Ocultamos las cartas del jugador anterior
 
         cardsInHand(Turn.PLAYER0);
@@ -1240,7 +1240,7 @@ function updateTurn()
 
     else if (globals.turnState === Turn.PLAYER1)
     {
-        // console.log("Entra en Turno Player 2");
+        // console.log("Entra en Turno Player 1");
         cardsHide(Turn.PLAYER0); // Ocultamos las cartas del jugador anterior
 
         cardsInHand(Turn.PLAYER1);
@@ -1594,23 +1594,23 @@ function updateActions(card)
         // console.log(card.state);
 
         // console.log(globals.placedCard);
-        globals.actionsCounter.player2 = 0;
+        globals.actionsCounter.player1 = 0;
         if(globals.placedCard && globals.action.mousePressed)
         {
             // console.log("Entra en if de funcion UpdateActions")
-            globals.actionsCounter.player1 ++;
-            // console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
+            globals.actionsCounter.player0 ++;
+            // console.log("Acccion: " + globals.actionsCounter.player0 + " Player 0");
             globals.placedCard = false;
         }
     }
 
     if(globals.turnState === Turn.PLAYER1 && !globals.checkRoundPlayer2)
     {
-        globals.actionsCounter.player1 = 0;
+        globals.actionsCounter.player0 = 0;
         if(globals.placedCard && globals.action.mousePressed)
         {
-            globals.actionsCounter.player2 ++;
-            console.log("Acccion: " + globals.actionsCounter.player2 + " Player 2");
+            globals.actionsCounter.player1 ++;
+            console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
             globals.placedCard = false;
         }
         
@@ -1619,8 +1619,8 @@ function updateActions(card)
     else if (globals.turnState === Turn.NO_TURN)
     {
         console.log("NO TURN");
+        globals.actionsCounter.player0 = 0;
         globals.actionsCounter.player1 = 0;
-        globals.actionsCounter.player2 = 0;
     }
 
     updateSlots();
@@ -1628,8 +1628,8 @@ function updateActions(card)
 
 function updateLives()
 {
-    // console.log(globals.actionsCounter.player1);
-    if(globals.actionsCounter.player1 > 0)
+    // console.log(globals.actionsCounter.player0);
+    if(globals.actionsCounter.player0 > 0)
     {
         console.log("entra en if1");
         let liveNum = 0;
@@ -1637,9 +1637,9 @@ function updateLives()
         globals.playerTokens[1][1].showBack = true;
         liveNum++;
     }
-    else if(globals.actionsCounter.player2 > 0)
+    else if(globals.actionsCounter.player1 > 0)
     {
-        let liveNum = globals.actionsCounter.player2 - 1;
+        let liveNum = globals.actionsCounter.player1 - 1;
         globals.playerTokens[0][0].showBack = true;
         globals.playerTokens[0][1].showBack = true;
     }

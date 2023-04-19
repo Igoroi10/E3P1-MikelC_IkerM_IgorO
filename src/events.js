@@ -182,7 +182,7 @@ function checkIfTurnPass ()
     }
 
     //Le asignamos el estado de NO_TURN para que no pueda serguir jugando
-    else if(globals.actionsCounter.player2 === 0 && globals.actionsCounter.player1 === 0)
+    else if(globals.actionsCounter.player1 === 0 && globals.actionsCounter.player0 === 0)
     {
         globals.turnState = Turn.NO_TURN;
     }
@@ -206,7 +206,7 @@ function checkIfRoundPass()
         //Si el Segundo Player a pasado la ronda
         else if (globals.checkRoundPlayer1)
         {
-            // console.log("Player 1 no puede jugar - PASO DE RONDA");
+            // console.log("Player 0 no puede jugar - PASO DE RONDA");
             globals.turnState = Turn.PLAYER0;
         }
 
@@ -278,23 +278,23 @@ function actions()
 
     if (globals.turnState === Turn.PLAYER0)
     {
-        globals.actionsCounter.player1 ++;
-        // console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
-        globals.actionsCounter.player2 = 0;
+        globals.actionsCounter.player0 ++;
+        // console.log("Acccion: " + globals.actionsCounter.player0 + " Player 0");
+        globals.actionsCounter.player1 = 0;
     }
 
     if(globals.turnState === Turn.PLAYER1)
     {
-        globals.actionsCounter.player2 ++;
-        // console.log("Acccion: " + globals.actionsCounter.player2 + " Player 2");
-        globals.actionsCounter.player1 = 0;
+        globals.actionsCounter.player1 ++;
+        // console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
+        globals.actionsCounter.player0 = 0;
     }
 
     else if (globals.turnState === Turn.NO_TURN)
     {
         // console.log("NO TURN");
+        globals.actionsCounter.player0 = 0;
         globals.actionsCounter.player1 = 0;
-        globals.actionsCounter.player2 = 0;
     }
 }
 

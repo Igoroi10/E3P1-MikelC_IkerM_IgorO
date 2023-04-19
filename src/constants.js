@@ -181,24 +181,24 @@ const CardSlotsQuantity = {
 }
 
 const SlotIdentificators = {
-    //Player 1 Buffs
+    //Player 0 Buffs
 
     PLAYER0_B1 :    0,
     PLAYER0_B2:     1,
     PLAYER0_B3:     2,
     
-    //Player 2 Buffs:
+    //Player 1 Buffs:
 
     PLAYER1_B1:     3,
     PLAYER1_B2:     4,
     PLAYER1_B3:     5,
 
-    //Player 1 Field:
+    //Player 0 Field:
     PLAYER0_F1:     6,
     PLAYER0_F2:     7,
     PLAYER0_F3:     8,
 
-    //Player 2 Field:
+    //Player 1 Field:
     PLAYER1_F1:     9,
     PLAYER1_F2:     10,
     PLAYER1_F3:     11,
