@@ -168,17 +168,17 @@ function checkIfTurnPass ()
     actions();
     // console.log(globals.turnState)
 
-    if (globals.turnState === Turn.PLAYER1)
+    if (globals.turnState === Turn.PLAYER0)
     {
         // console.log("Turno del Jugador 1");
-        globals.turnState = Turn.PLAYER2;
+        globals.turnState = Turn.PLAYER1;
     }
 
     //CHECK DEL PLAYER 2
-    if (globals.turnState === Turn.PLAYER2)
+    if (globals.turnState === Turn.PLAYER1)
     {
         // console.log("Turno del Jugador 2");
-        globals.turnState = Turn.PLAYER1;
+        globals.turnState = Turn.PLAYER0;
     }
 
     //Le asignamos el estado de NO_TURN para que no pueda serguir jugando
@@ -200,14 +200,14 @@ function checkIfRoundPass()
         if (globals.checkRoundPlayer2)
         {
             // console.log("Player 0 no puede jugar - PASO DE RONDA");
-            globals.turnState = Turn.PLAYER2;
+            globals.turnState = Turn.PLAYER1;
         }
 
         //Si el Segundo Player a pasado la ronda
         else if (globals.checkRoundPlayer1)
         {
             // console.log("Player 1 no puede jugar - PASO DE RONDA");
-            globals.turnState = Turn.PLAYER1;
+            globals.turnState = Turn.PLAYER0;
         }
 
         //Si ninguno a pasado la Ronda
@@ -243,13 +243,13 @@ function checkIfRoundPass()
 
 function checkRoundState()
 {
-    if (globals.turnState === Turn.PLAYER1)
+    if (globals.turnState === Turn.PLAYER0)
     {
         console.log("EL JUGADOR 1 TERMINO LA RONDA");
         globals.checkRoundPlayer2 = true;
     }
 
-    if (globals.turnState != Turn.PLAYER1 && globals.turnState === Turn.PLAYER2)
+    if (globals.turnState != Turn.PLAYER0 && globals.turnState === Turn.PLAYER1)
     {
         console.log("EL JUGADOR 2 TERMINO LA RONDA");
         globals.checkRoundPlayer1 = true;
@@ -276,14 +276,14 @@ function actions()
     // Cuando sea el turno correspondiente de alguno de los dos jugadores en algun turno en concreto se sumara a una globla actionPlayer ++ - Esta lo que hara sera
     // Permitir que solo se puedan hacer dos actionPlayer es decir: si ActionPlayer >= 2 se resetea ese action Player y se pasa al siguiente turno:  
 
-    if (globals.turnState === Turn.PLAYER1)
+    if (globals.turnState === Turn.PLAYER0)
     {
         globals.actionsCounter.player1 ++;
         // console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
         globals.actionsCounter.player2 = 0;
     }
 
-    if(globals.turnState === Turn.PLAYER2)
+    if(globals.turnState === Turn.PLAYER1)
     {
         globals.actionsCounter.player2 ++;
         // console.log("Acccion: " + globals.actionsCounter.player2 + " Player 2");

@@ -450,7 +450,7 @@ function drawMessages()
     // globals.ctx.clearRect(53, 533, 305, 80);
 
 
-    if(globals.turnState === Turn.PLAYER1)
+    if(globals.turnState === Turn.PLAYER0)
     {
 
         globals.ctx.font = '20px magicmedieval'; 
@@ -461,7 +461,7 @@ function drawMessages()
         globals.ctx.fillStyle = 'yellow';    
         globals.ctx.fillText(globals.selectedEnemy+ "'s turn.", 90, 555); 
     }
-    else if(globals.turnState === Turn.PLAYER2)
+    else if(globals.turnState === Turn.PLAYER1)
     {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'black';    
