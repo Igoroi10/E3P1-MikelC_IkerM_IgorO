@@ -1587,7 +1587,9 @@ function placeCard()
 
     }
 }
-
+// =========================
+//      START OF END ROUND AND GAME OVER UPDATES
+// =========================
 
 function updateGameOver()
 {
@@ -1627,6 +1629,7 @@ function updateEndRound()
 
     }
 }
+
 
 function updateActions(card)
 {
@@ -1694,6 +1697,20 @@ function updateLives()
     }
 }
 
+function endRoundDecoyReset(){
+
+    for(let i = 0; i < 2; i++){
+        for(let j = 0; j < globals.player[i].length; j++){
+            if(globals.player[i].effect === Effect.DECOY && globals.player[i].showBack === true){
+                globals.player[i].showBack = false;
+                j = globals.player[i].length;
+            }
+        }
+    }
+}
+// =========================
+//     END OF END ROUND AND GAME OVER UPDATES
+// =========================
 
 export {
     update,
