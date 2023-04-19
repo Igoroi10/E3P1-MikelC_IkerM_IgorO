@@ -1564,13 +1564,13 @@ function updateEndRound()
         {
             let liveNum = 0;
             globals.playerTokens[1][liveNum].showBack = true;
-            globals.roundWinner = localStorage.getItem('izen_abizena');
+            globals.roundWinner = globals.selectedEnemy;
         }
         else if(globals.player1Points < globals.player2Points)
         {
             let liveNum = 0;
             globals.playerTokens[0][liveNum].showBack = true;
-            globals.roundWinner = globals.selectedEnemy;
+            globals.roundWinner = localStorage.getItem('izen_abizena');
         }
 
         for(let i = 0; i < globals.cards.length; i++)
@@ -1582,15 +1582,28 @@ function updateEndRound()
             }
         }
 
-        console.log(globals.roundWinner);
-
-        // if(globals.roundWinner === localStorage.getItem('izen_abizena'))
-        // globals.turnState = Turn.PLAYER2;
-
-        // else if(globals.roundWinner === globals.selectedEnemy)
-        // globals.turnState = Turn.PLAYER1;
-        //Empieza la ronda el que ha ganado
+        // // console.log(globals.roundWinner);
+        if(globals.roundWinner === localStorage.getItem('izen_abizena'))
+        {
+            globals.checkBothPlayerRound = false;
+            globals.checkRoundPlayer1 = false;
+            globals.checkRoundPlayer2 = false;
+            globals.turnState = Turn.PLAYER2;
+        }
+    
+        else if(globals.roundWinner === globals.selectedEnemy)
+        {
+            globals.checkBothPlayerRound = false;
+            globals.checkRoundPlayer1 = false;
+            globals.checkRoundPlayer2 = false;
+            globals.turnState = Turn.PLAYER1;
+        }
+       console.log(globals.checkBothPlayerRound);
+        //Empieza la ronda el que ha ganado.
     }
+
+    // else if(globals.turnState === Turn.PLAYER1 || globals.turnState === Turn.PLAYER2)
+    // console.log(globals.turnState);
 }
 
 function updateActions(card)
