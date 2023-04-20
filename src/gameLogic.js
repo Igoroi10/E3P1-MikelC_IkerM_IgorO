@@ -1189,14 +1189,18 @@ function dealDecoys(){
                 identificator = SlotIdentificators.PLAYER1_DECOY;
 
             for(let l = 0; l < globals.slots.length; l++){
+                if(globals.slots[l].slotIdentificator === identificator){
+                    console.log("slot a revisar")
+                    console.log(globals.slots[l])
+                }
                 if(globals.slots[l].slotIdentificator === identificator && globals.slots[l].placed_cards === -1){
-                    console.log("Decoy placed in slot")
                     card.xPos = globals.slots[l].xPos
                     card.yPos = globals.slots[l].yPos
                     card.slotIdentificator = identificator;
                     card.showBack = false;
-                    card.placed_cards++;
                 }
+
+                updateSlots();
             }
         }
 
