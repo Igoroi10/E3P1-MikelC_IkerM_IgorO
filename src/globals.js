@@ -32,6 +32,8 @@ export default
 
     buttonLogout: {},
 
+    buttonMode: {},
+
     //Array de Cartas
     cards: [],
 

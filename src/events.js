@@ -165,6 +165,10 @@ export function btnEndRound()
     checkIfRoundPass();
 }
 
+export function btnNormalMode()
+{
+    console.log("entra en el boton");
+}
 
 function checkIfTurnPass ()
 {
