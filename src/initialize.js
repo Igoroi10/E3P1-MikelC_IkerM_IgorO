@@ -424,6 +424,7 @@ function createExpertDeck(){
     let cardsNeeded = 85;
     const expertMode = GameMode.EXPERT_MODE;
     addOneOfEach();
+    addZarate();
     addDecoy();
     addPermaCards(expertMode);
     addInstaCards(expertMode);
@@ -444,7 +445,7 @@ function createExpertDeck(){
 function addOneOfEach(){
  
     for(let i = 0; i < globals.cardInfo.length; i++){
-        if(globals.cardInfo[i].izena !== "Decoy")
+        if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
                 insertCard(i);
     }
     // console.log("fin de addOneEach");
@@ -521,7 +522,8 @@ function addClimateCards(){
             if(globals.cardInfo[l].kategoria === "climate"){
                 // console.log("entra en el de kategoria en clima")
                 if(checks === randomChoice){
-                    insertCard(l);
+                    if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
+                        insertCard(l);
                     l = globals.cardInfo.length;
                     // console.log("añadido carta de clima")
                 } 
@@ -546,7 +548,8 @@ function addPermaCards(mode){
 
             if(globals.cardInfo[l].kategoria === "permaeffect"){
                 // console.log("entra en el de kategoria en perma")
-                insertCard(l);
+                if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
+                    insertCard(l);
                 l = globals.cardInfo.length;
                 // console.log("añadido carta perma")   
                 checks++;
@@ -574,7 +577,7 @@ function addInstaCards(mode){
                 // console.log("entra en el de kategoria en insta")
                 
                 if(checks === randomChoice){
-                    if(globals.cardInfo[i].izena !== "Decoy")
+                    if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
                         insertCard(l);
                     l = globals.cardInfo.length;
                     // console.log("añadido carta de effect")
@@ -643,7 +646,7 @@ function addUltraRareCard(){
         if(globals.cardInfo[i].urritasun_karta === Rarity.ULTRA_RARE){
             if(checks === randomChoice){
                 // console.log("Añade carta ultra rara");
-                if(globals.cardInfo[i].izena !== "Zarate")
+                if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
                     insertCard(i);
             }
             checks++;
@@ -660,8 +663,8 @@ function AddRareCard(){
     for(let i = 0; i < globals.cardInfo.length; i++){
         if(globals.cardInfo[i].urritasun_karta === Rarity.RARE){
             if(checks === randomChoice){
-                // console.log("Añade carta rara");
-                insertCard(i);
+                if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
+                    insertCard(i);
             }
             checks++;
         }
@@ -676,8 +679,8 @@ function AddCommonCard(){
     for(let i = 0; i < globals.cardInfo.length; i++){
         if(globals.cardInfo[i].urritasun_karta === Rarity.COMMON){
             if(checks === randomChoice){
-                // console.log("Añade carta común");
-                insertCard(i);
+                if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
+                    insertCard(i);
             }
             checks++;
         }
