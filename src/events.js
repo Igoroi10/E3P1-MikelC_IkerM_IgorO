@@ -39,8 +39,7 @@ export function btnStartOver ()
 {
     //cambiamos el texto 
     // console.log("entraa");
-    document.getElementById("btnStart").innerHTML = "OVER";
-    document.getElementById('sectionLogIn').style.display = "none";
+   
 
 
 
@@ -50,9 +49,7 @@ export function btnStartOver ()
     
     // CON ESE MAZO LLAMAR A RENDER Y QUE RENDERIZE LAS CARTAS - Esta en el update del drawGame
 
-    globals.gameState = State.GAME_START;
     
-    checkStates();
     // document.getElementById('sectionPlay').style.display = "none";
 
 }
@@ -165,6 +162,27 @@ export function btnEndRound()
     checkIfRoundPass();
 }
 
+export function btnNormalMode()
+{
+    globals.buttonStart.style.visibility = "Hidden";
+    // globals.buttonAdmin.style.visibility = "Hidden";
+    // globals.buttonPlayer.style.visibility = "Hidden";
+
+    document.getElementById('divCanvas').style.display = "block";
+    document.getElementById('sectionLogIn').style.display = "none";
+    document.getElementById('sectionPlay').style.display = "none";
+    document.getElementById('playerMenuScreen').style.display = "none";
+
+    document.getElementById("btnStart").innerHTML = "OVER";
+    document.getElementById('sectionLogIn').style.display = "none";
+
+    globals.gameState = State.GAME_START;
+    globals.gameMode = GameMode.NORMAL_MODE;
+    
+    checkStates();
+
+    requestAnimationFrame(gameLoop);
+}
 
 function checkIfTurnPass ()
 {

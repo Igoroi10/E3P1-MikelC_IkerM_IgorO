@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, canvasDoubleClickHandler} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, canvasDoubleClickHandler, btnNormalMode} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -23,6 +23,7 @@ function initHTMLelements()
     globals.buttonTurn      = document.getElementById('btnTurn');
     globals.buttonRound      = document.getElementById('btnRound');
     globals.buttonLogout    = document.getElementsByClassName('btnLogout');
+    globals.buttonMode      = document.getElementById('btnNormal');
 
     //Get A reference to the canvas 
     globals.canvas = document.getElementById('gameScreen');
@@ -33,13 +34,14 @@ function initHTMLelements()
     globals.ctx = globals.canvas.getContext('2d');
 
     //Inicializamos listeners
-    globals.buttonStart.addEventListener("mousedown",       btnStartDown,       false);
+    // globals.buttonStart.addEventListener("mousedown",       btnStartDown,       false);
     globals.buttonStart.addEventListener("mouseover",       btnStartOver,       false);
     globals.buttonStart.addEventListener("mouseout",        btnStartOut,        false);
     // globals.buttonAdmin.addEventListener("mousedown",       btnStartAdmin,      false);
     // globals.buttonPlayer.addEventListener("mousedown",      btnStartPlayer,     false);
     globals.buttonTurn.addEventListener("mousedown",        btnStartTurn,       false);
     globals.buttonRound.addEventListener("mousedown",       btnEndRound,        false);
+    globals.buttonMode.addEventListener("mousedown",       btnNormalMode,        false);
         for(let i = 0; i < globals.buttonLogout.length; i++)
         {
             globals.buttonLogout[i].addEventListener("mousedown",      btnLogOut,          false);

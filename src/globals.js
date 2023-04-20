@@ -32,6 +32,8 @@ export default
 
     buttonLogout: {},
 
+    buttonMode: {},
+
     //Array de Cartas
     cards: [],
 
@@ -183,6 +185,8 @@ export default
 
     player1LivesDeleted: 0,
     player2LivesDeleted: 0,
+
+    gameMode: -1,
 
     levelTime: {},
 
