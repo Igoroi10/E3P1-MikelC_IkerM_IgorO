@@ -176,7 +176,7 @@ export default
 
     placedCard: false,
 
-
+    roundWinner: "",
     winner: "",
     checkIfLives0: false,
     
@@ -186,4 +186,6 @@ export default
 
     checkPlaced: false,
 
+    player1LivesDeleted: 0,
+    player2LivesDeleted: 0,
 }

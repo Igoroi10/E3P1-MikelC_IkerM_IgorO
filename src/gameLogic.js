@@ -420,7 +420,7 @@ function checkCardEffect(card){
             //efecto de puntuación
             break;
         case Effect.DECOY:
-            decoyEffect(card)
+           //decoyEffect()
             break;
         case Effect.SCORCH:
             scorchEffect(card);
@@ -479,10 +479,10 @@ function medicEffect(card){
     else
         playerNum = 1;
 
-    const playerarray = globals.player[playerNum];
+    const playerArray = globals.player[playerNum];
 
-    for(let i = 0; i < playerarray.length; i++){
-        let cardToCompare = playerarray[i];
+    for(let i = 0; i < playerArray.length; i++){
+        let cardToCompare = playerArray[i];
 
         if(cardToCompare.type === typeToMedic && cardToCompare.state === CardState.DISCARD){
             if(cardToCompare.value > valueToMedic)
@@ -490,25 +490,67 @@ function medicEffect(card){
         }
     }
 
-    for(let i = 0; i < playerarray.length; i++){
-        let cardToCompare = playerarray[i];
+    for(let i = 0; i < playerArray.length; i++){
+        let cardToCompare = playerArray[i];
         if(cardToCompare.value === valueToMedic && cardToCompare.state === CardState.DISCARD){
 
             cardToCompare.slotIdentificator = card.slotIdentificator;
             checkIfSlotAvailable(Effect.MEDIC, cardToCompare, playerNum);
 
-            i = playerarray.length;
+            i = playerArray.length;
         }
     }
 
 }
 
-function decoyEffect(card){
-    globals.decoy = true;
+function decoyEffectActivation(){
+    const playerArray = globals.player[globals.turnState];
+    let checks = 0;
+    let handIdentificator;
 
-    card.state = CardState.DISCARD;
+    if(globals.turnState === 0)
+        handIdentificator = SlotIdentificators.PLAYER0_HAND;
+    
+    else
+        handIdentificator = SlotIdentificators.PLAYER1_HAND;
+
+    for(let i = 0; i < playerArray.length; i++){
+        if(playerArray[i].slotIdentificator === handIdentificatorDecoy)
+            checks++  
+    }
+    
+    if(checks < 12){
+
+        for(let i = 0; i < playerArray.length; i++){
+            if(playerArray.effect === Effect.DECOY && playerArray.state === CardState.GAME){
+                globals.decoy = true;
+            }
+        }
+    }
 
 }
+
+
+function decoyEffectResult(card){
+
+    const playerArray = globals.player[globals.turnState];
+
+    for(let i = 0; i < playerArray.length; i++){
+        if(card.state === CardState.GAME){
+            checkIfSlotAvailable(Effect.DECOY, card, globals.turnState)
+            globals.decoy = false;
+        }
+
+        if(playerArray.effect === Effect.DECOY && playerArray.state === CardState.GAME){
+            playerArray.state = CardState.DISCARD;
+        }
+    }
+
+
+
+    
+}
+
 
 function spyEffect(card){
     checkIfSlotAvailable(Effect.SPY, card, globals.turnState)
@@ -685,6 +727,8 @@ function checkIfSlotAvailable(effect, card, playerNum){
             break;
     }
 }
+
+
 // =========================
 //      END OF EFFECTS
 // =========================
@@ -1221,9 +1265,11 @@ function updateTurn()
     }
     else if (globals.actionsCounter.player1 >= 2)
     {
+
         // console.log("Entra en cambio de turno PLayer2 a Player1");
         globals.turnState = Turn.PLAYER0;
         globals.actionsCounter.player0 = 0;
+
     }
 
     
@@ -1245,6 +1291,7 @@ function updateTurn()
 
         cardsInHand(Turn.PLAYER1);
     }
+
 
     // else
         // console.log("No es turno de ninguno de los dos");
@@ -1299,7 +1346,7 @@ function updateSelectedCard(card)
 
         else
         {
-            console.log("entra en el else");
+            //console.log("entra en el else");
             // globals.selectedCardId_Click = -1;
             // globals.cards[i].state = globals.cards[i].previousState;
 
@@ -1328,6 +1375,7 @@ function placeCard()
             // console.log("Entra en el segundo if");
             if(globals.selectedCardId_Click !== -1 && globals.selectedSlotId !== -1)
             {
+
                 // console.log("Entra placed card");
                 const selectedCard      = globals.cards[globals.selectedCardId_Click];
                 const selectedSlotId    = globals.slots[globals.selectedSlotId]; 
@@ -1522,7 +1570,8 @@ function placeCard()
             
                 if(globals.action.mousePressed && globals.checkPlaced)
                 {
-                    // console.log("Carta colocada");
+                    //console.log("Carta colocada");
+
                     // globals.mouseSelectedSlot = false;
                     // console.log("entra en el if del ");
                     // globals.mouseNotSelected = true;
@@ -1561,22 +1610,70 @@ function updateGameOver()
 
 function updateEndRound()
 {
+
+    //Player1Points invitado
+    //Player1Points host
+    console.log(globals.turnState);
     if(globals.turnState === Turn.NO_TURN)
     {
+        // let liveNum1 = 0;
+        // let liveNum2 = 0;
         if(globals.player1Points > globals.player2Points)
         {
-            let liveNum = 0;
-            globals.playerTokens[1][liveNum].showBack = true;
-            liveNum++;
+            globals.playerTokens[1][globals.player1LivesDeleted].showBack = true;
+            globals.roundWinner = localStorage.getItem('izen_abizena');
+            console.log("entra en player1 gana");
+            globals.player1LivesDeleted++;
         }
         else if(globals.player1Points < globals.player2Points)
         {
-            let liveNum = 0;
-            globals.playerTokens[0][liveNum].showBack = true;
-            liveNum++;
+            
+            globals.playerTokens[0][globals.player2LivesDeleted].showBack = true;
+            globals.roundWinner = globals.selectedEnemy;
+            console.log("entra en player2 gana");
+            globals.player2LivesDeleted++;
+        }
+        else
+        {
+            console.log("han empatado");
+            globals.playerTokens[1][globals.player1LivesDeleted].showBack = true;
+            globals.playerTokens[0][globals.player2LivesDeleted].showBack = true;
+            globals.roundWinner = localStorage.getItem('izen_abizena');
+            globals.player1LivesDeleted++;
+            globals.player2LivesDeleted++;
+        } 
+
+        for(let i = 0; i < globals.cards.length; i++)
+        {
+            if(globals.cards[i].state === CardState.GAME)
+            {
+                globals.cards[i].state = CardState.DISCARD;
+                globals.cards[i].showBack = true;
+            }
         }
 
+        // // console.log(globals.roundWinner);
+        if(globals.roundWinner === localStorage.getItem('izen_abizena'))
+        {
+            globals.checkBothPlayerRound = false;
+            globals.checkRoundPlayer1 = false;
+            globals.checkRoundPlayer2 = false;
+            globals.turnState = Turn.PLAYER0;
+        }
+    
+        else if(globals.roundWinner === globals.selectedEnemy)
+        {
+            globals.checkBothPlayerRound = false;
+            globals.checkRoundPlayer1 = false;
+            globals.checkRoundPlayer2 = false;
+            globals.turnState = Turn.PLAYER1;
+        }
+       console.log(globals.checkBothPlayerRound);
+        //Empieza la ronda el que ha ganado.
     }
+
+    // else if(globals.turnState === Turn.PLAYER1 || globals.turnState === Turn.PLAYER2)
+    // console.log(globals.turnState);
 }
 
 function updateActions(card)
