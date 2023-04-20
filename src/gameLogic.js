@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import { State, CardState, SlotIdentificators, Effect, GameMode, Player0_map_pos, Player1_map_pos, Turn, Common_map_pos, Type, CardCategory} from "./constants.js";
-import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
+import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets, initTimers } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards, detectCollisionBetweenMouseAndSlots, detectCollisionBetweenMouseAndCards_Click } from "./collision.js"; 
 import { selectEnemy, createList,  checkIfRoundPass} from "./events.js";
 import { Card } from "./Card.js";
@@ -35,6 +35,8 @@ function playGame()
     updateTurn();
     
     updateCards();
+
+    updateLevelTime(); 
 
     detectCollisionBetweenMouseAndSlots();
 
@@ -1799,6 +1801,20 @@ function endRoundDecoyReset(){
 // =========================
 //     END OF END ROUND AND GAME OVER UPDATES
 // =========================
+
+function updateLevelTime()
+{
+    globals.levelTime.timeChangeCounter += globals.deltaTime;
+    
+    if (globals.levelTime.timeChangeCounter > globals.levelTime.timeChangeValue)
+    {
+        console.log("entra en updateLevelTime");
+        globals.levelTime.value--;
+
+        //Reseteamos timeChangeCounter
+        globals.levelTime.timeChangeCounter = 0;   
+    }
+}
 
 export {
     update,
