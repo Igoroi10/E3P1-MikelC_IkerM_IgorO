@@ -1491,11 +1491,19 @@ function placeCard()
                     //FIELDS PLAYER 1
                     else if (slotIdentificator === SlotIdentificators.PLAYER0_F1 || slotIdentificator === SlotIdentificators.PLAYER0_F2 || slotIdentificator === SlotIdentificators.PLAYER0_F3)
                     {
-                        if(selectedCard.categoryId === CardCategory.UNIT)
+                        if(selectedCard.categoryId === CardCategory.UNIT || selectedCard.categoryId === CardCategory.INSTAEFFECT)
                         {
                             // METER IF DE TIPO CARTA:
                             // CUEPRO A CUERPO
-                            if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
+                            console.log(selectedCard.frontImg);
+                            if(selectedCard.frontImg === '29')
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                //  selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+                            }
+                            else if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
@@ -1576,11 +1584,18 @@ function placeCard()
                     //FIELDS PLAYER 2
                     else if (slotIdentificator === SlotIdentificators.PLAYER1_F1 || slotIdentificator === SlotIdentificators.PLAYER1_F2 || slotIdentificator === SlotIdentificators.PLAYER1_F3)
                     {
-                        if(selectedCard.categoryId === CardCategory.UNIT)
+                        if(selectedCard.categoryId === CardCategory.UNIT || selectedCard.categoryId === CardCategory.INSTAEFFECT)
                         {
                             // METER IF DE TIPO CARTA:
                             // CUEPRO A CUERPO
-                            if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
+                            if(selectedCard.frontImg === '29')
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                //  selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+                            }
+                            else if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
@@ -1605,11 +1620,12 @@ function placeCard()
                                 globals.checkPlaced = true;
 
                             }
+                            
                         }
                     }      
 
                 }
-            
+            console.log(selectedCard);
                 if(globals.action.mousePressed && globals.checkPlaced)
                 {
                     //console.log("Carta colocada");
