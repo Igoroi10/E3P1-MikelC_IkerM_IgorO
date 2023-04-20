@@ -36,6 +36,7 @@ function drawGame()
     renderCards();
     drawMessages();
     drawTokens();
+    drawPoints();
     renderBigCard();
     gameOverScreen();
 }
@@ -335,7 +336,12 @@ function renderBigCard(){
 
 }
 
-
+function drawPoints(){
+    globals.ctx.font        = "8 px magicmedieval";
+    globals.ctx.fillStyle   = "white";
+    globals.ctx.fillText(globals.player1Points,  390,  675);
+    globals.ctx.fillText(globals.player2Points,  390,  230);
+}
 
 
 

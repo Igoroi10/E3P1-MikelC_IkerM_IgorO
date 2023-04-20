@@ -814,14 +814,14 @@ function updatePoints(){
     let player1Points;
     let player2Points;
 
-    player1Points = calculatePoints(player1);
-    player2Points = calculatePoints(player2);
+    globals.player1Points = calculatePoints(player1);
+    globals.player2Points = calculatePoints(player2);
 
-    globals.player1Points = player1Points;
-    globals.player2Points = player2Points;
+    // globals.player1Points = player1Points;
+    // globals.player2Points = player2Points;
 
-    createPointers(player1Points, player1);
-    createPointers(player2Points, player2);
+    // createPointers(player1Points, player1);
+    // createPointers(player2Points, player2);
 }
 
 function calculatePoints(player){
