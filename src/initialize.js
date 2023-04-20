@@ -373,7 +373,7 @@ function manageLogin(userData)
         // console.log("entra error data");
         globals.gameState = State.LOG_IN;
         //Mostramos el mensaje de error
-        globals.lblError.innerHTML = "Error! Something went wrong";
+        globals.lblError.innerHTML = "The username or password are incorrect. Please try again.";
         globals.inputEmail.value = "";
         globals.inputPassword.value = "";
         
