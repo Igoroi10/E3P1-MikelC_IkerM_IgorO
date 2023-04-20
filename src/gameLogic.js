@@ -1189,10 +1189,6 @@ function dealDecoys(){
                 identificator = SlotIdentificators.PLAYER1_DECOY;
 
             for(let l = 0; l < globals.slots.length; l++){
-                if(globals.slots[l].slotIdentificator === identificator){
-                    console.log("slot a revisar")
-                    console.log(globals.slots[l])
-                }
                 if(globals.slots[l].slotIdentificator === identificator && globals.slots[l].placed_cards === -1){
                     card.xPos = globals.slots[l].xPos
                     card.yPos = globals.slots[l].yPos
@@ -1210,7 +1206,7 @@ function dealDecoys(){
 // =========================
 //      END OF CARD DISTRIBUTION
 // =========================
-function updateSlots(slot, card)
+function updateSlots()
 {
     // Mire a ver si slot esta vacio o no
     // Asignarle el id de la carta en el globlas.cards la "i"
