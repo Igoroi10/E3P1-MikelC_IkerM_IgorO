@@ -723,6 +723,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     }
                 }
             }
+            globals.actionsCounter++;
             break;
     }
 }
