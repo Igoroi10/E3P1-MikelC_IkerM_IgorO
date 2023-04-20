@@ -187,4 +187,8 @@ export default
     player2LivesDeleted: 0,
 
     gameMode: -1,
+
+    levelTime: {},
+
+    timerActivate: false,
 }

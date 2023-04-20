@@ -2,6 +2,7 @@ import globals from "./globals.js";
 import { CardState } from "./constants.js";
 import ImageSet from "./ImageSet.js";
 import { updateSelectedCard } from "./gameLogic.js";
+import { decoyEvent } from "./events.js";
 
 //DOBLE CLICK
 function detectCollisionBetweenMouseAndCards()
@@ -109,6 +110,7 @@ function detectCollisionBetweenMouseAndCards_Click()
                 {
                     globals.selectedCardId_Click = i;
                     updateSelectedCard(card);
+                    decoyEvent();
                 }
                     
                 else

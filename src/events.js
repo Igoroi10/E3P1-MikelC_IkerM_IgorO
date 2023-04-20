@@ -3,7 +3,7 @@ import { createNormalDeck, initGame } from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
-import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal } from "./gameLogic.js";
+import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal,  decoyEffectResult } from "./gameLogic.js";
 
 
 
@@ -420,6 +420,24 @@ export function keyupHandler(event)
 
 }
 
+function decoyEvent()
+{
+    if(globals.actionsCounter === 1)
+    {
+        if(globals.selectedCardId_Click >= 0)
+        {
+            if(globals.decoy === true)
+            {
+                console.log("Entra en todos los ifs");
+                const card = globals.cards[globals.selectedCardId_Click]
+                decoyEffectResult(card);
+            }
+        }
+        
+    }
+}
+
+
 
 
 export {
@@ -427,4 +445,5 @@ export {
     selectEnemy,
     canvasDoubleClickHandler,
     checkIfRoundPass,
+    decoyEvent,
 }

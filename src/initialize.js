@@ -10,6 +10,7 @@ import { Assets } from "./Assets.js";
 import ImageSet from "./ImageSet.js";
 import { Player0_map_pos, Player1_map_pos, Common_map_pos, SlotIdentificators } from "./constants.js";
 import { checkStates, localStorageUpdate } from "./gameLogic.js";
+import Time from "./Timer.js";
 
 
 function initHTMLelements()
@@ -1340,10 +1341,13 @@ function fakeCardCreation_4() //Token card
 
 
 // ==================================================
-//               CREATION OF FAKE CARDS
+//               TIMERS
 // ==================================================
 
-
+function initTimers()
+{
+    globals.levelTime = new Time(0,1);
+}
 
 
 function initCommonSlots(){
@@ -1364,4 +1368,5 @@ export {
     initCardLinks,
     initSlots,
     getAllUsers,
+    initTimers,
 }

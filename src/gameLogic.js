@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import { State, CardState, SlotIdentificators, Effect, GameMode, Player0_map_pos, Player1_map_pos, Turn, Common_map_pos, Type, CardCategory} from "./constants.js";
-import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets } from "./initialize.js";
+import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets, initTimers } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards, detectCollisionBetweenMouseAndSlots, detectCollisionBetweenMouseAndCards_Click } from "./collision.js"; 
 import { selectEnemy, createList,  checkIfRoundPass} from "./events.js";
 import { Card } from "./Card.js";
@@ -35,6 +35,8 @@ function playGame()
     updateTurn();
     
     updateCards();
+
+    updateLevelTime(); 
 
     detectCollisionBetweenMouseAndSlots();
 
@@ -251,21 +253,12 @@ function updateCard(card) // Puede ser una global de estado o una constante
             // console.log("entra a selected")
             // console.log(globals.cards[globals.selectedCardId_Click]);
             placeCard();
-
+            
             if(globals.otherSelected)
             {
                 card.state = card.previousState;
             }
 
-            else if (globals.decoy)
-            {
-                for(let i = 0; i < globals.player[globals.turnState].length; i++){
-
-                    if(globals.player[globals.turnState].state === CardState.SELECTED)
-                        checkIfSlotAvailable(Effect.DECOY, card, globals.turnState)
-                }
-                   
-            }
             else if (globals.double_click)
             {
                 CardState.DOUBLE_CLICK;
@@ -283,7 +276,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 // console.log(card.state);
                 // console.log("State Antes: " + card.state);
                 card.state = CardState.GAME;
-
+                decoyEffectActivation();
                 checkCardEffect(card);
                 // console.log("State Despues " + card.state);
                 
@@ -517,19 +510,16 @@ function decoyEffectActivation(){
         handIdentificator = SlotIdentificators.PLAYER1_HAND;
 
     for(let i = 0; i < playerArray.length; i++){
-        if(playerArray[i].slotIdentificator === handIdentificatorDecoy)
+        if(playerArray[i].slotIdentificator === handIdentificator)
             checks++  
     }
     
     if(checks < 12){
-
-        for(let i = 0; i < playerArray.length; i++){
-            if(playerArray.effect === Effect.DECOY && playerArray.state === CardState.GAME){
-                globals.decoy = true;
-            }
+        for(let i = 0; i < playerArray.length; i++)
+        {
+            globals.decoy = true;
         }
     }
-
 }
 
 
@@ -538,13 +528,9 @@ function decoyEffectResult(card){
     const playerArray = globals.player[globals.turnState];
 
     for(let i = 0; i < playerArray.length; i++){
-        if(card.state === CardState.GAME){
+        if(card.state === CardState.GAME && globals.decoy){
             checkIfSlotAvailable(Effect.DECOY, card, globals.turnState)
             globals.decoy = false;
-        }
-
-        if(playerArray.effect === Effect.DECOY && playerArray.state === CardState.GAME){
-            playerArray.state = CardState.DISCARD;
         }
     }
 
@@ -703,11 +689,19 @@ function checkIfSlotAvailable(effect, card, playerNum){
         case Effect.DECOY:
             let decoyChecks = 0;
             let handIdentificatorDecoy;
+            let decoyID;
 
             if(playerNum === 0)
-                handIdentificatorDecoy = SlotIdentificator.PLAYER1_HAND;
+            {
+                handIdentificatorDecoy = SlotIdentificators.PLAYER0_HAND;
+                decoyID = SlotIdentificators.PLAYER0_DECOY;
+            }
             else
-            handIdentificatorDecoy = SlotIdentificator.PLAYER0_HAND;
+            {
+                handIdentificatorDecoy = SlotIdentificators.PLAYER1_HAND;
+                decoyID = SlotIdentificators.PLAYER1_DECOY;
+            }
+            
 
             for(let i = 0; i < globals.cards.length; i++){
                 if(globals.cards[i].slotIdentificator === handIdentificatorDecoy)
@@ -716,21 +710,29 @@ function checkIfSlotAvailable(effect, card, playerNum){
         
             if(decoyChecks < 12){
 
-                for(let l = 0; l < globals.slots.length; l++){
+                for(let l = 0; l < globals.slots.length; l++)
+                {
                     if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorDecoy){
 
-                        card.xPos = globals.slots[i].xPos;
-                        card.yPos = globals.slots[i].yPos;
+                        card.xPos = globals.slots[l].xPos;
+                        card.yPos = globals.slots[l].yPos;
                         card.state = CardState.HAND;
                         card.showBack = false;
                     }
+                }
 
-                    for(let i = 0; i < globals.cards.length; i++){
-                        if(globals.cards[i].slotIdentificator === handIdentificatorDecoy && globals.cards[i].showBack === false)
-                            globals.cards[i].showBack = true;
+                for(let i = 0; i < globals.cards.length; i++){
+                    console.log("entra en for de dar vuelta al decoy");
+                    if(globals.cards[i].slotIdentificator === decoyID && globals.cards[i].showBack === false)
+                    {
+                        console.log("Da la vuelta a una carta");
+                        globals.cards[i].showBack = true;
+                        i = globals.cards.length;
                     }
                 }
             }
+            globals.actionsCounter++;
+            globals.decoy = false;
             break;
     }
 }
@@ -1766,7 +1768,8 @@ function updateActions(card)
         if(globals.placedCard && globals.action.mousePressed)
         {
             // console.log("Entra en if de funcion UpdateActions")
-            globals.actionsCounter ++;
+            // globals.actionsCounter ++;
+            globals.timerActivate = true;
             // console.log("Acccion: " + globals.actionsCounter.player0 + " Player 0");
             globals.placedCard = false;
         }
@@ -1777,7 +1780,8 @@ function updateActions(card)
         // globals.actionsCounter.player0 = 0;
         if(globals.placedCard && globals.action.mousePressed)
         {
-            globals.actionsCounter ++;
+            // globals.actionsCounter ++;
+            globals.timerActivate = true;
             // console.log("Acccion: " + globals.actionsCounter.player1 + " Player 1");
             globals.placedCard = false;
         }
@@ -1863,6 +1867,31 @@ function dealCards(){
 //     END OF END ROUND AND GAME OVER UPDATES
 // =========================
 
+function updateLevelTime()
+{
+    if(globals.timerActivate)
+    {
+        globals.levelTime.timeChangeCounter += globals.deltaTime *2;
+    
+        if (globals.levelTime.timeChangeCounter > globals.levelTime.timeChangeValue)
+        {
+            console.log("entra en updateLevelTime");
+            globals.levelTime.value++;
+
+            //Reseteamos timeChangeCounter
+            globals.levelTime.timeChangeCounter = 0; 
+        }
+    }
+   
+    if( globals.levelTime.value >= 1)
+    {
+        globals.actionsCounter++;
+        globals.levelTime.value     = 0;
+        globals.timerActivate       = false;
+
+    }
+}
+
 export {
     update,
     checkStates,
@@ -1876,4 +1905,5 @@ export {
     placeCard,
     discardCards,
     updateSelectedCard,
+    decoyEffectResult,
 }
