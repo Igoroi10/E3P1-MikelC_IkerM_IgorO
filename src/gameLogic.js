@@ -1724,7 +1724,17 @@ function checkLastSelection()
         //Ahora hago un for en el array de cartas poara comprobar que carta esta en selected DE LA MANO
         if(globals.cards[j].state === CardState.SELECTED)
         {
-            // ver que slot esta asignado a esa carta
+            if(globals.cards[j].slotIdentificator < SlotIdentificators.PLAYER0_HAND)
+                globals.cards[j].state = CardState.GAME;
+
+            else if(globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER0_HAND || globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER1_HAND)
+                globals.cards[j].state = CardState.HAND;
+            
+            else if(globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER0_DECK || globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER1_DECK)
+                 globals.cards[j].state = CardState.DECK;
+                 
+            else if(globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER0_DISCARD|| globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER1_DISCARD)
+                globals.cards[j].state = CardState.DISCARD;
         }
     }
 } 
