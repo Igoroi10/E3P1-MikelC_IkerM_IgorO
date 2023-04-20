@@ -3,7 +3,7 @@ import { createNormalDeck, initGame } from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
-import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal } from "./gameLogic.js";
+import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal,  decoyEffectResult } from "./gameLogic.js";
 
 
 
