@@ -91,11 +91,15 @@ export function btnStartAdmin()
 
 function createList()
 {
+
+    globals.selectedEnemy = globals.all_users[0].izen_abizena;
     const usersList = document.querySelector('select');     // Guardamos en una Variable la lista que queremos seleccionar
     const users = globals.all_users;                        // Le damos los valores (En nuestro caso sera un Fake Array para hacer Pruebas)
     const hostEmail = localStorage.getItem('emaila');
     const hostName = localStorage.getItem('izen_abizena');
 
+    if(hostName === globals.all_users[0].izen_abizena)
+        globals.selectedEnemy = globals.all_users[1].izen_abizena;
 
     //Creacion de la Lista - Automatizada 
     for(let i = 0; i < users.length; i++)
