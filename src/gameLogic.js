@@ -660,6 +660,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                                 globals.player[playerNum][i].yPos = globals.slots[l].yPos;
                                 globals.player[playerNum][i].state = CardState.GAME;
                                 globals.player[playerNum][i].showBack = false;
+
                             }
                         }
 
@@ -687,6 +688,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                                 globals.player[playerNum][i].state = CardState.GAME;
                                 globals.player[playerNum][i].showBack = false;
                                 l = globals.slots.length;
+                                updateSlots();
                             }
                         }
 
