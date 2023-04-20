@@ -472,6 +472,11 @@ function insertCard(i){
         case "instaeffect":
         const instaCard = new SuddenCard(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
         globals.cards.push(instaCard);
+        if(globals.cardInfo[i].izena === "Decoy"){
+            console.log("Decoy added")
+            console.log(instaCard);
+        }
+
         break;
 
         case "permaeffect":
@@ -771,7 +776,6 @@ function decoyZone0()
         const decoySlot = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(decoySlot);
         xPos += 90;
-        slotID++;
     }
 }
 
@@ -789,7 +793,6 @@ function decoyZone1()
         const decoySlot = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(decoySlot);
         xPos += 90;
-        slotID++;
     }
 }
 
