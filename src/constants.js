@@ -224,13 +224,10 @@ const SlotIdentificators = {
     PLAYER1_TOKEN1: 19,
     PLAYER1_TOKEN2: 20,
 
-    PLAYER0_DECOY1: 21,
-    PLAYER0_DECOY2: 22,
-    PLAYER0_DECOY3: 23,
+    PLAYER0_DECOY:  21,
 
-    PLAYER1_DECOY1: 24,
-    PLAYER1_DECOY2: 25,
-    PLAYER1_DECOY3: 26,
+    PLAYER1_DECOY:  22,
+
     
 }
 
@@ -267,9 +264,8 @@ const Common_map_pos = {
 const Player0_map_pos = {
 
     PLAYER0_DECOY_YPOS:             620,
-    PLAYER0_DECOY1_XPOS:            1335,
-    PLAYER0_DECOY2_XPOS:            1425,
-    PLAYER0_DECOY3_XPOS:            1515,
+    PLAYER0_DECOY_XPOS:            1335,
+
 
     PLAYER0_BUFF1_XPOS:             500,
     PLAYER0_BUFF1_YPOS:             450,
@@ -321,9 +317,8 @@ const Player0_map_pos = {
 const Player1_map_pos = {
 
     PLAYER1_DECOY_YPOS:             170,
-    PLAYER1_DECOY1_XPOS:            1335,
-    PLAYER1_DECOY2_XPOS:            1425,
-    PLAYER1_DECOY3_XPOS:            1515,
+    PLAYER1_DECOY_XPOS:             1335,
+
 
     PLAYER1_BUFF1_XPOS:             500,
     PLAYER1_BUFF1_YPOS:             330,

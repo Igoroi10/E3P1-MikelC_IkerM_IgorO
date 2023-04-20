@@ -759,12 +759,12 @@ function tableSize()
 
 function decoyZone0()
 {
-    let xPos = Player0_map_pos.PLAYER0_DECOY1_XPOS;
+    let xPos = Player0_map_pos.PLAYER0_DECOY_XPOS;
 
     const yPos = Player0_map_pos.PLAYER0_DECOY_YPOS;
     const xSize = CardSizes.TOKEN_WIDHT;
     const ySize = CardSizes.TOKEN_HEIGHT;
-    let slotID = SlotIdentificators.PLAYER0_DECOY1; 
+    let slotID = SlotIdentificators.PLAYER0_DECOY; 
 
     for(let i = 0; i < 3; i++)
     {
@@ -777,12 +777,12 @@ function decoyZone0()
 
 function decoyZone1()
 {
-    let xPos = Player1_map_pos.PLAYER1_DECOY1_XPOS;
+    let xPos = Player1_map_pos.PLAYER1_DECOY_XPOS;
 
     const yPos = Player1_map_pos.PLAYER1_DECOY_YPOS;
     const xSize = CardSizes.TOKEN_WIDHT;
     const ySize = CardSizes.TOKEN_HEIGHT;
-    let slotID = SlotIdentificators.PLAYER1_DECOY1; 
+    let slotID = SlotIdentificators.PLAYER1_DECOY; 
 
     for(let i = 0; i < 3; i++)
     {
