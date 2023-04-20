@@ -1612,22 +1612,70 @@ function updateGameOver()
 
 function updateEndRound()
 {
+
+    //Player1Points invitado
+    //Player1Points host
+    console.log(globals.turnState);
     if(globals.turnState === Turn.NO_TURN)
     {
+        // let liveNum1 = 0;
+        // let liveNum2 = 0;
         if(globals.player1Points > globals.player2Points)
         {
-            let liveNum = 0;
-            globals.playerTokens[1][liveNum].showBack = true;
-            liveNum++;
+            globals.playerTokens[1][globals.player1LivesDeleted].showBack = true;
+            globals.roundWinner = localStorage.getItem('izen_abizena');
+            console.log("entra en player1 gana");
+            globals.player1LivesDeleted++;
         }
         else if(globals.player1Points < globals.player2Points)
         {
-            let liveNum = 0;
-            globals.playerTokens[0][liveNum].showBack = true;
-            liveNum++;
+            
+            globals.playerTokens[0][globals.player2LivesDeleted].showBack = true;
+            globals.roundWinner = globals.selectedEnemy;
+            console.log("entra en player2 gana");
+            globals.player2LivesDeleted++;
+        }
+        else
+        {
+            console.log("han empatado");
+            globals.playerTokens[1][globals.player1LivesDeleted].showBack = true;
+            globals.playerTokens[0][globals.player2LivesDeleted].showBack = true;
+            globals.roundWinner = localStorage.getItem('izen_abizena');
+            globals.player1LivesDeleted++;
+            globals.player2LivesDeleted++;
+        } 
+
+        for(let i = 0; i < globals.cards.length; i++)
+        {
+            if(globals.cards[i].state === CardState.GAME)
+            {
+                globals.cards[i].state = CardState.DISCARD;
+                globals.cards[i].showBack = true;
+            }
         }
 
+        // // console.log(globals.roundWinner);
+        if(globals.roundWinner === localStorage.getItem('izen_abizena'))
+        {
+            globals.checkBothPlayerRound = false;
+            globals.checkRoundPlayer1 = false;
+            globals.checkRoundPlayer2 = false;
+            globals.turnState = Turn.PLAYER0;
+        }
+    
+        else if(globals.roundWinner === globals.selectedEnemy)
+        {
+            globals.checkBothPlayerRound = false;
+            globals.checkRoundPlayer1 = false;
+            globals.checkRoundPlayer2 = false;
+            globals.turnState = Turn.PLAYER1;
+        }
+       console.log(globals.checkBothPlayerRound);
+        //Empieza la ronda el que ha ganado.
     }
+
+    // else if(globals.turnState === Turn.PLAYER1 || globals.turnState === Turn.PLAYER2)
+    // console.log(globals.turnState);
 }
 
 

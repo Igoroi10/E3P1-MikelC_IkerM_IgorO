@@ -713,17 +713,19 @@ function initSlots()
     tokenZone2();
     messageZone();
 
-    //PLAYER 1
+    //PLAYER 0
     slotDiscardP1();            // Slots de Descartes del Jugador 1     - DONE
     handPlayer1();              // Mano del Jugador 1 (12 Slots)        - DONE
     tableSection_Player1();     // Seccion de juego de todas las cartas del Player 0 (3 Secciones, 10 slots cada una)   - DONE
     deckPlayer1();              // Mazo del Jugador 1                   - 
+    decoyZone0();               // Slots de los decoys del player 0
 
-    //PLAYER 2
+    //PLAYER 1
     slotDiscardP2();            // Slots de Descartes del Jugador 2     - DONE
     handPlayer2();              // Mano del Jugador 2 (12 Slots)        - DONE
     tableSection_Player2();     // Seccion de juego de todas las cartas del Player 1 (3 Secciones, 10 slots cada una)   - 
     deckPlayer2();              // Mazo del jugador 2                   - 
+    decoyZone1();               // Slots de los decoys del player 1
 }
 
 // Tamaño de la mesa
@@ -739,6 +741,41 @@ function tableSize()
 
 }
 
+function decoyZone0()
+{
+    let xPos = Player0_map_pos.PLAYER0_DECOY1_XPOS;
+
+    const yPos = Player0_map_pos.PLAYER0_DECOY_YPOS;
+    const xSize = CardSizes.TOKEN_WIDHT;
+    const ySize = CardSizes.TOKEN_HEIGHT;
+    let slotID = SlotIdentificators.PLAYER0_DECOY1; 
+
+    for(let i = 0; i < 3; i++)
+    {
+        const decoySlot = new GameZones(xPos, yPos, xSize, ySize, slotID)
+        globals.slots.push(decoySlot);
+        xPos += 90;
+        slotID++;
+    }
+}
+
+function decoyZone1()
+{
+    let xPos = Player1_map_pos.PLAYER1_DECOY1_XPOS;
+
+    const yPos = Player1_map_pos.PLAYER1_DECOY_YPOS;
+    const xSize = CardSizes.TOKEN_WIDHT;
+    const ySize = CardSizes.TOKEN_HEIGHT;
+    let slotID = SlotIdentificators.PLAYER1_DECOY1; 
+
+    for(let i = 0; i < 3; i++)
+    {
+        const decoySlot = new GameZones(xPos, yPos, xSize, ySize, slotID)
+        globals.slots.push(decoySlot);
+        xPos += 90;
+        slotID++;
+    }
+}
 
 function slotDiscardP1 ()
 {
@@ -850,7 +887,7 @@ function messageZone()
 function handPlayer1 ()
 { 
     const yPos      = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
-    const xSize     = 75;
+    const xSize     = 87.5;
     const ySize     = 90;
     const slotID    = SlotIdentificators.PLAYER0_HAND;
 
@@ -860,7 +897,7 @@ function handPlayer1 ()
     {
         const handSlots = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(handSlots);
-        xPos += 75;
+        xPos += 87.5;
     }
 
 }
@@ -868,7 +905,7 @@ function handPlayer1 ()
 function handPlayer2 ()
 {
     const yPos      = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
-    const xSize     = 75;
+    const xSize     = 87.5;
     const ySize     = 90;
     const slotID    = SlotIdentificators.PLAYER1_HAND;
 
@@ -878,7 +915,7 @@ function handPlayer2 ()
     {
         const handSlots = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(handSlots);
-        xPos += 75;
+        xPos += 87.5;
     }
 }
 
