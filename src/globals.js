@@ -186,4 +186,5 @@ export default
     player1LivesDeleted: 0,
     player2LivesDeleted: 0,
 
+    gameMode: -1,
 }

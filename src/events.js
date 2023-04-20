@@ -177,6 +177,7 @@ export function btnNormalMode()
     document.getElementById('sectionLogIn').style.display = "none";
 
     globals.gameState = State.GAME_START;
+    globals.gameMode = GameMode.NORMAL_MODE;
     
     checkStates();
 
