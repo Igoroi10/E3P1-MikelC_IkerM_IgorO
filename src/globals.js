@@ -148,12 +148,7 @@ export default
     selectedCardId_Click: -1,
     selectedSlotId: -1,
 
-    actionsCounter: {
-
-        none:        0,
-        player0:     0,
-        player1:     0,
-    },
+    actionsCounter: 0,
 
     //Card States
     draw: false,

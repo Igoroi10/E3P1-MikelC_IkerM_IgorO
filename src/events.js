@@ -144,10 +144,10 @@ export function btnStartTurn()
     // console.log("Boton Turno Pulsado");
 
     //Ahora Una vez pulsado el boton de turno deberemos de hacer un check para saber quien lo ha puslado y si le corresponde poder jugar en ese turno o no
+    globals.actionsCounter ++;
+    // checkIfTurnPass();
 
-    checkIfTurnPass();
-
-    checkIfRoundPass();
+    // checkIfRoundPass();
 
 }
 
@@ -182,7 +182,7 @@ function checkIfTurnPass ()
     }
 
     //Le asignamos el estado de NO_TURN para que no pueda serguir jugando
-    else if(globals.actionsCounter.player1 === 0 && globals.actionsCounter.player0 === 0)
+    else if(globals.checkBothPlayerRound)
     {
         globals.turnState = Turn.NO_TURN;
     }
