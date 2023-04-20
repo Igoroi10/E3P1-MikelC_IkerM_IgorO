@@ -722,6 +722,11 @@ function checkIfSlotAvailable(effect, card, playerNum){
                         card.state = CardState.HAND;
                         card.showBack = false;
                     }
+
+                    for(let i = 0; i < globals.cards.length; i++){
+                        if(globals.cards[i].slotIdentificator === handIdentificatorDecoy && globals.cards[i].showBack === false)
+                            globals.cards[i].showBack = true;
+                    }
                 }
             }
             break;
@@ -1713,6 +1718,10 @@ function updateEndRound()
         }
        console.log(globals.checkBothPlayerRound);
         //Empieza la ronda el que ha ganado.
+
+        endRoundDecoyReset();
+
+        dealCards()
     }
 
     // else if(globals.turnState === Turn.PLAYER1 || globals.turnState === Turn.PLAYER2)
@@ -1795,6 +1804,42 @@ function endRoundDecoyReset(){
             }
         }
     }
+}
+
+function dealCards(){
+    for(let k = 0; k < 2; k++){
+        let handIdentificatorDeal;
+        
+        if(k === 0)
+            handIdentificatorDeal = SlotIdentificators.PLAYER0_HAND
+        else
+            handIdentificatorDeal = SlotIdentificators.PLAYER1_HAND
+
+        for(let h = 0; h < 2; h++){
+
+            for(let i = 0; i < globals.player[k].length; i++){
+
+                if(globals.player[k][i].state === CardState.DECK){
+    
+                    for(let l = 0; l < globals.slots.length; l++){
+                        if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorDeal){
+                            globals.player[k][i].xPos = globals.slots[l].xPos;
+                            globals.player[k][i].yPos = globals.slots[l].yPos;
+                            globals.player[k][i].state = CardState.HAND;
+                            globals.player[k][i].showBack = true;
+                            globals.slots[l].placed_cards++;
+                            l = globals.slots.length;
+                            i = globals.player[k].length;
+    
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+
+    updateSlots();
 }
 // =========================
 //     END OF END ROUND AND GAME OVER UPDATES
