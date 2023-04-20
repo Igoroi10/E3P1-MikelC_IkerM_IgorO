@@ -438,13 +438,38 @@ function checkCardEffect(card){
 
 function scorchEffect(card){
     console.log("entra en el efecto scorch");
-    const typeToScorch = card.type;
-    const fieldID      = card.slotIdentificators;
+    const fieldID      = card.slotIdentificator;
     let valueToScorch = -1;
+    let fieldToScorch;
+
+
+
+    switch (fieldID){
+
+    case SlotIdentificators.PLAYER0_F1:
+        fieldToScorch = SlotIdentificators.PLAYER1_F1;
+        break;
+    case SlotIdentificators.PLAYER0_F2:
+        fieldToScorch = SlotIdentificators.PLAYER1_F2;
+        break;
+    case SlotIdentificators.PLAYER0_F3:
+        fieldToScorch = SlotIdentificators.PLAYER1_F3;
+        break;
+    case SlotIdentificators.PLAYER1_F1:
+        fieldToScorch = SlotIdentificators.PLAYER0_F1;
+        break;
+    case SlotIdentificators.PLAYER1_F2:
+        fieldToScorch = SlotIdentificators.PLAYER0_F2;
+        break;
+    case SlotIdentificators.PLAYER1_F3:
+        fieldToScorch = SlotIdentificators.PLAYER0_F3;
+        break;
+    }
 
     for(let i = 0; i < globals.cards.length; i++){
         let cardToCompare = globals.cards[i];
-        if(cardToCompare.type === typeToScorch && cardToCompare.slotIdentificators !== fieldID && cardToCompare.state === CardState.GAME){
+        if(cardToCompare.slotIdentificator === fieldToScorch){
+            console.log("Value actualizado")
             if(cardToCompare.value > valueToScorch)
                 valueToScorch = cardToCompare.value;
         }
@@ -452,7 +477,7 @@ function scorchEffect(card){
 
     for(let i = 0; i < globals.cards.length; i++){
         let cardToCompare = globals.cards[i];
-        if(cardToCompare.value === valueToScorch && cardToCompare.slotIdentificators !== fieldID  && cardToCompare.state === CardState.GAME){
+        if(cardToCompare.value === valueToScorch && cardToCompare.slotIdentificator === fieldToScorch){
             cardToCompare.state = CardState.DISCARD;
         }
     }
