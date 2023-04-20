@@ -1713,6 +1713,23 @@ function placeCard()
 
     }
 }
+
+// BOLOLO
+function checkLastSelection()
+{
+    // Hacer una comprobacion de todos los slots y ver si hay alguno que esta en estado selected
+    // Y segun el slot le asigno un estado previo
+    for(let j = 0; j < globals.cards.length; j ++)
+    {
+        //Ahora hago un for en el array de cartas poara comprobar que carta esta en selected DE LA MANO
+        if(globals.cards[j].state === CardState.SELECTED)
+        {
+            // ver que slot esta asignado a esa carta
+        }
+    }
+} 
+
+
 // =========================
 //      START OF END ROUND AND GAME OVER UPDATES
 // =========================
