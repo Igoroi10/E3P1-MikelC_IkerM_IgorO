@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { CardState } from "./constants.js";
+import { CardState, SlotIdentificators } from "./constants.js";
 import ImageSet from "./ImageSet.js";
 import { updateSelectedCard } from "./gameLogic.js";
 import { decoyEvent } from "./events.js";
@@ -108,9 +108,45 @@ function detectCollisionBetweenMouseAndCards_Click()
                 
                 if(globals.selectedCardId_Click === -1)
                 {
-                    globals.selectedCardId_Click = i;
-                    updateSelectedCard(card);
-                    decoyEvent();
+                    if(globals.actionsCounter === 0)
+                    {
+                        globals.selectedCardId_Click = i;
+                        //Testear el id - Ver si el slot identioficator corresponde a field 1 2 o 3 del turnState
+                        updateSelectedCard(card);
+                        decoyEvent();
+                    }
+
+                    else if (globals.actionsCounter === 1)
+                    {
+                        let field1;
+                        let field2;
+                        let field3;
+
+                        if (globals.turnState === 0 )
+                        {
+                            field1 = SlotIdentificators.PLAYER0_F1
+                            field2 = SlotIdentificators.PLAYER0_F2
+                            field3 = SlotIdentificators.PLAYER0_F3
+                        }
+
+                        else
+                        {
+                            field1 = SlotIdentificators.PLAYER1_F1
+                            field2 = SlotIdentificators.PLAYER1_F2
+                            field3 = SlotIdentificators.PLAYER1_F3
+                        }
+
+
+                        if (globals.slots[globals.selectedSlotId].slotIdentificator  === field1 || globals.slots[globals.selectedSlotId].slotIdentificator  === field2 || globals.slots[globals.selectedSlotId].slotIdentificator  === field3  )
+                        {
+                            globals.selectedCardId_Click = i;
+                            //Testear el id - Ver si el slot identioficator corresponde a field 1 2 o 3 del turnState
+                            updateSelectedCard(card);
+                            decoyEvent();
+                        }
+                      
+                    }
+                    
                 }
                     
                 else
