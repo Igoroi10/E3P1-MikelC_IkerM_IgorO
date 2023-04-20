@@ -336,6 +336,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 
         case CardState.DISCARD:
+            card.showBack = true;
             if (globals.medic && globals.action.click)
             {
                 CardState.SELECTED;
@@ -443,6 +444,7 @@ function checkCardEffect(card){
 }
 
 function scorchEffect(card){
+    console.log("entra en el efecto scorch");
     const typeToScorch = card.type;
     const fieldID      = card.slotIdentificators;
     let valueToScorch = -1;
@@ -1374,7 +1376,7 @@ function cardsHide(playerNum)
 function updateSelectedCard(card)
 {
     // console.log("entra en updateSelected");
-    if (globals.mouseSelectedCard && globals.cards[globals.selectedCardId_Click].state !== CardState.GAME)
+    if (globals.mouseSelectedCard && globals.cards[globals.selectedCardId_Click].state !== CardState.GAME && globals.cards[globals.selectedCardId_Click].state !== CardState.DISCARD)
     {
         // console.log("entra en el if dee update card")
         if(globals.selectedCardId_Click !== -1)
@@ -1495,8 +1497,8 @@ function placeCard()
                         {
                             // METER IF DE TIPO CARTA:
                             // CUEPRO A CUERPO
-                            console.log(selectedCard.frontImg);
-                            if(selectedCard.frontImg === '29')
+                            // console.log(selectedCard.frontImg);
+                            if(selectedCard.cardName === 'Scorch')
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
@@ -1588,7 +1590,7 @@ function placeCard()
                         {
                             // METER IF DE TIPO CARTA:
                             // CUEPRO A CUERPO
-                            if(selectedCard.frontImg === '29')
+                            if(selectedCard.cardName === 'Scorch')
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
@@ -1625,7 +1627,7 @@ function placeCard()
                     }      
 
                 }
-            console.log(selectedCard);
+            // console.log(selectedCard);
                 if(globals.action.mousePressed && globals.checkPlaced)
                 {
                     //console.log("Carta colocada");
