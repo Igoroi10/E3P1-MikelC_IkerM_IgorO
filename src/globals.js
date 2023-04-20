@@ -185,4 +185,6 @@ export default
     player2LivesDeleted: 0,
 
     levelTime: {},
+
+    timerActivate: false,
 }
