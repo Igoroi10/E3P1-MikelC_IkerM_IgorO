@@ -259,15 +259,6 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 card.state = card.previousState;
             }
 
-            else if (globals.decoy)
-            {
-                for(let i = 0; i < globals.player[globals.turnState].length; i++){
-
-                    if(globals.player[globals.turnState].state === CardState.SELECTED)
-                        checkIfSlotAvailable(Effect.DECOY, card, globals.turnState)
-                }
-                   
-            }
             else if (globals.double_click)
             {
                 CardState.DOUBLE_CLICK;
@@ -537,13 +528,9 @@ function decoyEffectResult(card){
     const playerArray = globals.player[globals.turnState];
 
     for(let i = 0; i < playerArray.length; i++){
-        if(card.state === CardState.GAME){
+        if(card.state === CardState.GAME && globals.decoy){
             checkIfSlotAvailable(Effect.DECOY, card, globals.turnState)
             globals.decoy = false;
-        }
-
-        if(playerArray.effect === Effect.DECOY && playerArray.state === CardState.GAME){
-            playerArray.state = CardState.DISCARD;
         }
     }
 
@@ -702,11 +689,19 @@ function checkIfSlotAvailable(effect, card, playerNum){
         case Effect.DECOY:
             let decoyChecks = 0;
             let handIdentificatorDecoy;
+            let decoyID;
 
             if(playerNum === 0)
+            {
                 handIdentificatorDecoy = SlotIdentificators.PLAYER0_HAND;
+                decoyID = SlotIdentificators.PLAYER0_DECOY;
+            }
             else
-            handIdentificatorDecoy = SlotIdentificators.PLAYER1_HAND;
+            {
+                handIdentificatorDecoy = SlotIdentificators.PLAYER1_HAND;
+                decoyID = SlotIdentificators.PLAYER1_DECOY;
+            }
+            
 
             for(let i = 0; i < globals.cards.length; i++){
                 if(globals.cards[i].slotIdentificator === handIdentificatorDecoy)
@@ -715,7 +710,8 @@ function checkIfSlotAvailable(effect, card, playerNum){
         
             if(decoyChecks < 12){
 
-                for(let l = 0; l < globals.slots.length; l++){
+                for(let l = 0; l < globals.slots.length; l++)
+                {
                     if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorDecoy){
 
                         card.xPos = globals.slots[l].xPos;
@@ -723,14 +719,20 @@ function checkIfSlotAvailable(effect, card, playerNum){
                         card.state = CardState.HAND;
                         card.showBack = false;
                     }
+                }
 
-                    for(let i = 0; i < globals.cards.length; i++){
-                        if(globals.cards[i].slotIdentificator === handIdentificatorDecoy && globals.cards[i].showBack === false)
-                            globals.cards[i].showBack = true;
+                for(let i = 0; i < globals.cards.length; i++){
+                    console.log("entra en for de dar vuelta al decoy");
+                    if(globals.cards[i].slotIdentificator === decoyID && globals.cards[i].showBack === false)
+                    {
+                        console.log("Da la vuelta a una carta");
+                        globals.cards[i].showBack = true;
+                        i = globals.cards.length;
                     }
                 }
             }
             globals.actionsCounter++;
+            globals.decoy = false;
             break;
     }
 }
