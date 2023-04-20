@@ -499,29 +499,63 @@ function medicEffect(card){
 }
 
 function decoyEffectActivation(){
-    const playerArray = globals.player[globals.turnState];
-    let checks = 0;
-    let handIdentificator;
-
-    if(globals.turnState === 0)
-        handIdentificator = SlotIdentificators.PLAYER0_HAND;
+    // globals.decoyAvailable 
+    // global booleana de actibavavaacion de decoyAvailaable que permita hacer todo lo demas, si esta en false desactibvarlo y pasar de turno
     
-    else
-        handIdentificator = SlotIdentificators.PLAYER1_HAND;
-
-    for(let i = 0; i < playerArray.length; i++){
-        if(playerArray[i].slotIdentificator === handIdentificator)
-            checks++  
-    }
+    checkIfDecoyAvailable();
     
-    if(checks < 12){
-        for(let i = 0; i < playerArray.length; i++)
-        {
-            globals.decoy = true;
+    if (globals.decoyAvailable)
+    {
+        const playerArray = globals.player[globals.turnState];
+        let checks = 0;
+        let handIdentificator;
+
+        if(globals.turnState === 0)
+            handIdentificator = SlotIdentificators.PLAYER0_HAND;
+        
+        else
+            handIdentificator = SlotIdentificators.PLAYER1_HAND;
+
+        for(let i = 0; i < playerArray.length; i++){
+            if(playerArray[i].slotIdentificator === handIdentificator)
+                checks++  
         }
+        
+        if(checks < 12){
+            for(let i = 0; i < playerArray.length; i++)
+            {
+                globals.decoy = true;
+            }
+        }
+    }
+
+    else
+    {
+        console.log("entra en el else de decoyEffectActivation");
+        globals.actionsCounter++;
     }
 }
 
+function checkIfDecoyAvailable ()
+{
+    let decoyID; 
+
+    if(globals.turnState === 0)
+    {
+        decoyID = SlotIdentificators.PLAYER0_DECOY;
+    }
+    else
+    {
+        decoyID = SlotIdentificators.PLAYER1_DECOY;
+    }
+
+
+    for(let i = 0; i < globals.cards.length; i++)
+    {
+        if (globals.cards[i].slotIdentificator === decoyID && globals.cards[i].showBack === false)
+            globals.decoyAvailable = true;
+    }
+}
 
 function decoyEffectResult(card){
 

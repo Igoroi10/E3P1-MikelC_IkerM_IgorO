@@ -410,7 +410,7 @@ function decoyEvent()
         {
             if(globals.decoy === true)
             {
-                console.log("Entra en todos los ifs");
+                // console.log("Entra en todos los ifs");
                 const card = globals.cards[globals.selectedCardId_Click]
                 decoyEffectResult(card);
             }

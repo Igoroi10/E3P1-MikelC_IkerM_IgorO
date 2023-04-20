@@ -187,4 +187,6 @@ export default
     levelTime: {},
 
     timerActivate: false,
+
+    decoyAvailable: false,
 }
