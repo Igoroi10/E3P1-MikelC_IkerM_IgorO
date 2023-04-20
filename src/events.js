@@ -427,4 +427,5 @@ export {
     selectEnemy,
     canvasDoubleClickHandler,
     checkIfRoundPass,
+    decoyEvent,
 }
