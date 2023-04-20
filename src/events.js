@@ -402,6 +402,24 @@ export function keyupHandler(event)
 
 }
 
+function decoyEvent()
+{
+    if(globals.actionsCounter === 1)
+    {
+        if(globals.selectedCardId_Click >= 0)
+        {
+            if(globals.decoy === true)
+            {
+                console.log("Entra en todos los ifs");
+                const card = globals.cards[globals.selectedCardId_Click]
+                decoyEffectResult(card);
+            }
+        }
+        
+    }
+}
+
+
 
 
 export {
