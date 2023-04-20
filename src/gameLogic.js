@@ -1343,7 +1343,7 @@ function updateTurn()
         cardsInHand(Turn.PLAYER1);
     }
 
-
+    updateButtonTurn();
     // else
         // console.log("No es turno de ninguno de los dos");
         // FALTA BOLEANA GLOBAL PARA TERMINAR EL CHECK DE RONDAS - Para acabar la partida
@@ -1657,6 +1657,16 @@ function placeCard()
 // =========================
 //      START OF END ROUND AND GAME OVER UPDATES
 // =========================
+function updateButtonTurn()
+{
+    // console.log(globals.actionsCounter);
+    if(globals.actionsCounter === 0)
+    {
+        document.getElementById('btnTurn').style.display = "none";
+    }
+    else
+    document.getElementById('btnTurn').style.display = "block";
+}
 
 function updateGameOver()
 {
