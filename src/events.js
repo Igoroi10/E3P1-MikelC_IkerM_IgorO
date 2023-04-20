@@ -343,6 +343,7 @@ export function canvasMousedownHandler()
 export function canvasMouseupHandler(event)
 {
     globals.action.mousePressed = false;
+    console.log(globals.slots[1]);
 }
 
 export function canvasMousemoveHandler(event)
