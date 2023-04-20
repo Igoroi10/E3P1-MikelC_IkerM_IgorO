@@ -407,6 +407,7 @@ function createNormalDeck(){
     let cardsNeeded = 65;
     const normalMode = GameMode.NORMAL_MODE;
     addZarate();
+    addDecoy();
     AddTokenCard();
     addPermaCards(normalMode);
     addInstaCards(normalMode);
@@ -423,6 +424,7 @@ function createExpertDeck(){
     let cardsNeeded = 85;
     const expertMode = GameMode.EXPERT_MODE;
     addOneOfEach();
+    addDecoy();
     addPermaCards(expertMode);
     addInstaCards(expertMode);
     addClimateCards();
@@ -442,6 +444,7 @@ function createExpertDeck(){
 function addOneOfEach(){
  
     for(let i = 0; i < globals.cardInfo.length; i++){
+        if(globals.cardInfo[i].izena !== "Decoy")
                 insertCard(i);
     }
     // console.log("fin de addOneEach");
@@ -566,7 +569,8 @@ function addInstaCards(mode){
                 // console.log("entra en el de kategoria en insta")
                 
                 if(checks === randomChoice){
-                    insertCard(l);
+                    if(globals.cardInfo[i].izena !== "Decoy")
+                        insertCard(l);
                     l = globals.cardInfo.length;
                     // console.log("añadido carta de effect")
                 }    
@@ -576,6 +580,18 @@ function addInstaCards(mode){
     }
 }
 
+
+function addDecoy(){
+    for(let l = 0; l < 6; l++){
+        for(let i = 0; i < globals.cardInfo.length; i++){
+
+            if(globals.cardInfo[i].izena === "Decoy")
+                insertCard(i);
+        }
+    }
+
+
+}
 
 function addUnitCards(cardsLeft){
 
