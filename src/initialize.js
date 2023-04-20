@@ -290,7 +290,7 @@ function logInHandler(event)
     
     const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
 
-    // console.log(dataToSend);
+    console.log(dataToSend);
 
     //Ruta relativa al fichero que hace la petición (verifyUser.php)
     const url = "../server/routes/verifyUser.php";
@@ -302,13 +302,16 @@ function logInHandler(event)
     {
         if (this.readyState == 4)
         {
+            console.log("entra en el primer if");
             if(this.status == 200)
             {
+                console.log("entra en el segundo if");
                 if(this.responseText != null)
                 {
-                    // console.log(this.responseText);
+                    console.log("Entra en el tercer if");
+                    console.log(this.responseText);
                     const userData = JSON.parse(this.responseText);
-                    // console.log(userData);
+                    console.log(userData);
 
                     //Guardado Global
                     globals.hostPlayerInfo = userData;
@@ -326,52 +329,63 @@ function logInHandler(event)
 
     request.responseType = "text";
     request.send(dataToSend);
+    console.log("datatoSend2:  " + dataToSend)
 
 }
 
 function manageLogin(userData)
 {
-
+console.log("entra en el funcion manageLogin");
     // console.log("entra en manage");
     // console.log("email..." + userData.email + "...");
     // console.log("password..." + userData.password + "...");
 
     if (userData.emaila !== "")
     {
-        // console.log("entraaaaaaaaaa");
-        if(userData.rol === "admin"){
-            globals.gameState = State.ADMIN_MENU;
-            localStorageUpdate();
-            checkStates();
-
+        console.log("entra1");
+        if(userData === undefined)
+        {
+            console.log("entra en el undefined");
+            globals.lblError.innerHTML = "The username or password are incorrect. Please try again.";
+            globals.inputEmail.value = "";
+            globals.inputPassword.value = "";
         }
 
         else{
-            globals.gameState = State.PLAYER_MENU;
-            localStorageUpdate();
-            checkStates();
-            // console.log("entra en el else");
+            if(userData.rol === "admin"){
+                globals.gameState = State.ADMIN_MENU;
+                localStorageUpdate();
+                checkStates();
+    
+            }
+    
+            else{
+                globals.gameState = State.PLAYER_MENU;
+                localStorageUpdate();
+                checkStates();
+                // console.log("entra en el else");
+            }
+            //Usuario logueado
+    
+            console.log(localStorage.getItem("izen_abizena"));
+            // createList();
+    
+            //ACtivamos el menú de play y ocultamos el de logIn
+            // document.getElementById('sectionLogIn').style.display = "none";
+            // document.getElementById('playerMenuScreen').style.display = "block";
+            // globals.sectionLogIn.style.display  = "none";
+            // globals.sectionPlay.style.display   = "block";
+    
+            //No hay mesajes de eror
+            lblError.innerHTML = "";
         }
-        //Usuario logueado
-
-        console.log(localStorage.getItem("izen_abizena"));
-        // createList();
-
-        //ACtivamos el menú de play y ocultamos el de logIn
-        // document.getElementById('sectionLogIn').style.display = "none";
-        // document.getElementById('playerMenuScreen').style.display = "block";
-        // globals.sectionLogIn.style.display  = "none";
-        // globals.sectionPlay.style.display   = "block";
-
-        //No hay mesajes de eror
-        lblError.innerHTML = "";
     }
 
     else
     {
         // console.log("entra en reseteo a login")
         // console.log("entra else");
-        // console.log("entra error data");
+        console.log("entra error data");
         globals.gameState = State.LOG_IN;
         //Mostramos el mensaje de error
         globals.lblError.innerHTML = "The username or password are incorrect. Please try again.";
@@ -385,6 +399,7 @@ function manageLogin(userData)
     updateUserText(userData);
     
     selectEnemy();
+    console.log("Fin de funcion")
 }
 
 function updateUserText(user)

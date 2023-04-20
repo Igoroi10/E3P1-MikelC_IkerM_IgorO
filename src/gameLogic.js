@@ -338,6 +338,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 
         case CardState.DISCARD:
+            card.showBack = true;
             if (globals.medic && globals.action.click)
             {
                 CardState.SELECTED;
@@ -445,6 +446,7 @@ function checkCardEffect(card){
 }
 
 function scorchEffect(card){
+    console.log("entra en el efecto scorch");
     const typeToScorch = card.type;
     const fieldID      = card.slotIdentificators;
     let valueToScorch = -1;
@@ -720,6 +722,11 @@ function checkIfSlotAvailable(effect, card, playerNum){
                         card.yPos = globals.slots[l].yPos;
                         card.state = CardState.HAND;
                         card.showBack = false;
+                    }
+
+                    for(let i = 0; i < globals.cards.length; i++){
+                        if(globals.cards[i].slotIdentificator === handIdentificatorDecoy && globals.cards[i].showBack === false)
+                            globals.cards[i].showBack = true;
                     }
                 }
             }
@@ -1374,7 +1381,7 @@ function cardsHide(playerNum)
 function updateSelectedCard(card)
 {
     // console.log("entra en updateSelected");
-    if (globals.mouseSelectedCard && globals.cards[globals.selectedCardId_Click].state !== CardState.GAME)
+    if (globals.mouseSelectedCard && globals.cards[globals.selectedCardId_Click].state !== CardState.GAME && globals.cards[globals.selectedCardId_Click].state !== CardState.DISCARD)
     {
         // console.log("entra en el if dee update card")
         if(globals.selectedCardId_Click !== -1)
@@ -1491,11 +1498,19 @@ function placeCard()
                     //FIELDS PLAYER 1
                     else if (slotIdentificator === SlotIdentificators.PLAYER0_F1 || slotIdentificator === SlotIdentificators.PLAYER0_F2 || slotIdentificator === SlotIdentificators.PLAYER0_F3)
                     {
-                        if(selectedCard.categoryId === CardCategory.UNIT)
+                        if(selectedCard.categoryId === CardCategory.UNIT || selectedCard.categoryId === CardCategory.INSTAEFFECT)
                         {
                             // METER IF DE TIPO CARTA:
                             // CUEPRO A CUERPO
-                            if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
+                            // console.log(selectedCard.frontImg);
+                            if(selectedCard.cardName === 'Scorch')
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                //  selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+                            }
+                            else if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
@@ -1576,11 +1591,18 @@ function placeCard()
                     //FIELDS PLAYER 2
                     else if (slotIdentificator === SlotIdentificators.PLAYER1_F1 || slotIdentificator === SlotIdentificators.PLAYER1_F2 || slotIdentificator === SlotIdentificators.PLAYER1_F3)
                     {
-                        if(selectedCard.categoryId === CardCategory.UNIT)
+                        if(selectedCard.categoryId === CardCategory.UNIT || selectedCard.categoryId === CardCategory.INSTAEFFECT)
                         {
                             // METER IF DE TIPO CARTA:
                             // CUEPRO A CUERPO
-                            if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
+                            if(selectedCard.cardName === 'Scorch')
+                            {
+                                selectedCard.xPos = selectedSlotId.xPos;
+                                selectedCard.yPos = selectedSlotId.yPos;
+                                //  selectedCard.state = CardState.GAME;
+                                globals.checkPlaced = true;
+                            }
+                            else if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
@@ -1605,11 +1627,12 @@ function placeCard()
                                 globals.checkPlaced = true;
 
                             }
+                            
                         }
                     }      
 
                 }
-            
+            // console.log(selectedCard);
                 if(globals.action.mousePressed && globals.checkPlaced)
                 {
                     //console.log("Carta colocada");
@@ -1713,6 +1736,10 @@ function updateEndRound()
         }
        console.log(globals.checkBothPlayerRound);
         //Empieza la ronda el que ha ganado.
+
+        endRoundDecoyReset();
+
+        dealCards()
     }
 
     // else if(globals.turnState === Turn.PLAYER1 || globals.turnState === Turn.PLAYER2)
@@ -1797,6 +1824,42 @@ function endRoundDecoyReset(){
             }
         }
     }
+}
+
+function dealCards(){
+    for(let k = 0; k < 2; k++){
+        let handIdentificatorDeal;
+        
+        if(k === 0)
+            handIdentificatorDeal = SlotIdentificators.PLAYER0_HAND
+        else
+            handIdentificatorDeal = SlotIdentificators.PLAYER1_HAND
+
+        for(let h = 0; h < 2; h++){
+
+            for(let i = 0; i < globals.player[k].length; i++){
+
+                if(globals.player[k][i].state === CardState.DECK){
+    
+                    for(let l = 0; l < globals.slots.length; l++){
+                        if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorDeal){
+                            globals.player[k][i].xPos = globals.slots[l].xPos;
+                            globals.player[k][i].yPos = globals.slots[l].yPos;
+                            globals.player[k][i].state = CardState.HAND;
+                            globals.player[k][i].showBack = true;
+                            globals.slots[l].placed_cards++;
+                            l = globals.slots.length;
+                            i = globals.player[k].length;
+    
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+
+    updateSlots();
 }
 // =========================
 //     END OF END ROUND AND GAME OVER UPDATES
