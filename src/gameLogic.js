@@ -29,7 +29,7 @@ function update()
 
 function playGame()
 {
-    console.log("Turno: " + globals.turnState);
+
     // console.log(globals.cards);
 
     updateTurn();
@@ -1073,16 +1073,18 @@ function startingDeal(mode){
     else
         cardsToDraw = 80;
 
+    dealDecoys();
+
     shuffleDeck(globals.cards)
 
     for(let i = 0; i < cardsToDraw; i++){
-        if(i % 2 === 0){
+        if(i % 2 === 0 && globals.cards[i].cardName !== "Decoy"){
             globals.cards[i].xPos  = Player0_map_pos.PLAYER0_DECK_XPOS;
             globals.cards[i].yPos  = Player0_map_pos.PLAYER0_DECK_YPOS;
             globals.player[0].push(globals.cards[i]); //Array que almacena las cartas para el player host
         }
 
-        else
+        else if(globals.cards[i].cardName !== "Decoy")
         {
             globals.cards[i].xPos  = Player1_map_pos.PLAYER1_DECK_XPOS;
             globals.cards[i].yPos  = Player1_map_pos.PLAYER1_DECK_YPOS;
@@ -1172,10 +1174,39 @@ function shuffleDeck(deck){
     }
 
 }
+
+function dealDecoys(){
+
+    for(let i = 0; i < globals.cards.length; i++){
+        let card = globals.cards[i];
+        let identificator;
+
+        if(card.effect === Effect.DECOY){
+            if(i % 2 === 0)
+                identificator = SlotIdentificators.PLAYER0_DECOY;
+            
+            else
+                identificator = SlotIdentificators.PLAYER1_DECOY;
+
+            for(let l = 0; l < globals.slots.length; l++){
+                if(globals.slots[l].slotIdentificator === identificator && globals.slots[l].placed_cards === -1){
+                    card.xPos = globals.slots[l].xPos
+                    card.yPos = globals.slots[l].yPos
+                    card.slotIdentificator = identificator;
+                    card.showBack = false;
+                }
+
+                updateSlots();
+            }
+        }
+
+    }
+}
+
 // =========================
 //      END OF CARD DISTRIBUTION
 // =========================
-function updateSlots(slot, card)
+function updateSlots()
 {
     // Mire a ver si slot esta vacio o no
     // Asignarle el id de la carta en el globlas.cards la "i"
@@ -1587,7 +1618,9 @@ function placeCard()
 
     }
 }
-
+// =========================
+//      START OF END ROUND AND GAME OVER UPDATES
+// =========================
 
 function updateGameOver()
 {
@@ -1613,7 +1646,6 @@ function updateEndRound()
 
     //Player1Points invitado
     //Player1Points host
-    console.log(globals.turnState);
     if(globals.turnState === Turn.NO_TURN)
     {
         // let liveNum1 = 0;
@@ -1675,6 +1707,7 @@ function updateEndRound()
     // else if(globals.turnState === Turn.PLAYER1 || globals.turnState === Turn.PLAYER2)
     // console.log(globals.turnState);
 }
+
 
 function updateActions(card)
 {
@@ -1742,6 +1775,20 @@ function updateLives()
     }
 }
 
+function endRoundDecoyReset(){
+
+    for(let i = 0; i < 2; i++){
+        for(let j = 0; j < globals.player[i].length; j++){
+            if(globals.player[i].effect === Effect.DECOY && globals.player[i].showBack === true){
+                globals.player[i].showBack = false;
+                j = globals.player[i].length;
+            }
+        }
+    }
+}
+// =========================
+//     END OF END ROUND AND GAME OVER UPDATES
+// =========================
 
 export {
     update,

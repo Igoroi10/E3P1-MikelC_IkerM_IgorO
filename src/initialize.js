@@ -407,6 +407,7 @@ function createNormalDeck(){
     let cardsNeeded = 65;
     const normalMode = GameMode.NORMAL_MODE;
     addZarate();
+    addDecoy();
     AddTokenCard();
     addPermaCards(normalMode);
     addInstaCards(normalMode);
@@ -423,6 +424,8 @@ function createExpertDeck(){
     let cardsNeeded = 85;
     const expertMode = GameMode.EXPERT_MODE;
     addOneOfEach();
+    addZarate();
+    addDecoy();
     addPermaCards(expertMode);
     addInstaCards(expertMode);
     addClimateCards();
@@ -442,6 +445,7 @@ function createExpertDeck(){
 function addOneOfEach(){
  
     for(let i = 0; i < globals.cardInfo.length; i++){
+        if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
                 insertCard(i);
     }
     // console.log("fin de addOneEach");
@@ -469,6 +473,11 @@ function insertCard(i){
         case "instaeffect":
         const instaCard = new SuddenCard(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
         globals.cards.push(instaCard);
+        if(globals.cardInfo[i].izena === "Decoy"){
+            console.log("Decoy added")
+            console.log(instaCard);
+        }
+
         break;
 
         case "permaeffect":
@@ -513,7 +522,8 @@ function addClimateCards(){
             if(globals.cardInfo[l].kategoria === "climate"){
                 // console.log("entra en el de kategoria en clima")
                 if(checks === randomChoice){
-                    insertCard(l);
+                    if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
+                        insertCard(l);
                     l = globals.cardInfo.length;
                     // console.log("añadido carta de clima")
                 } 
@@ -538,7 +548,8 @@ function addPermaCards(mode){
 
             if(globals.cardInfo[l].kategoria === "permaeffect"){
                 // console.log("entra en el de kategoria en perma")
-                insertCard(l);
+                if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
+                    insertCard(l);
                 l = globals.cardInfo.length;
                 // console.log("añadido carta perma")   
                 checks++;
@@ -566,7 +577,8 @@ function addInstaCards(mode){
                 // console.log("entra en el de kategoria en insta")
                 
                 if(checks === randomChoice){
-                    insertCard(l);
+                    if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
+                        insertCard(l);
                     l = globals.cardInfo.length;
                     // console.log("añadido carta de effect")
                 }    
@@ -576,6 +588,18 @@ function addInstaCards(mode){
     }
 }
 
+
+function addDecoy(){
+    for(let l = 0; l < 6; l++){
+        for(let i = 0; i < globals.cardInfo.length; i++){
+
+            if(globals.cardInfo[i].izena === "Decoy")
+                insertCard(i);
+        }
+    }
+
+
+}
 
 function addUnitCards(cardsLeft){
 
@@ -622,7 +646,7 @@ function addUltraRareCard(){
         if(globals.cardInfo[i].urritasun_karta === Rarity.ULTRA_RARE){
             if(checks === randomChoice){
                 // console.log("Añade carta ultra rara");
-                if(globals.cardInfo[i].izena !== "Zarate")
+                if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
                     insertCard(i);
             }
             checks++;
@@ -639,8 +663,8 @@ function AddRareCard(){
     for(let i = 0; i < globals.cardInfo.length; i++){
         if(globals.cardInfo[i].urritasun_karta === Rarity.RARE){
             if(checks === randomChoice){
-                // console.log("Añade carta rara");
-                insertCard(i);
+                if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
+                    insertCard(i);
             }
             checks++;
         }
@@ -655,8 +679,8 @@ function AddCommonCard(){
     for(let i = 0; i < globals.cardInfo.length; i++){
         if(globals.cardInfo[i].urritasun_karta === Rarity.COMMON){
             if(checks === randomChoice){
-                // console.log("Añade carta común");
-                insertCard(i);
+                if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
+                    insertCard(i);
             }
             checks++;
         }
@@ -713,17 +737,19 @@ function initSlots()
     tokenZone2();
     messageZone();
 
-    //PLAYER 1
+    //PLAYER 0
     slotDiscardP1();            // Slots de Descartes del Jugador 1     - DONE
     handPlayer1();              // Mano del Jugador 1 (12 Slots)        - DONE
     tableSection_Player1();     // Seccion de juego de todas las cartas del Player 0 (3 Secciones, 10 slots cada una)   - DONE
     deckPlayer1();              // Mazo del Jugador 1                   - 
+    decoyZone0();               // Slots de los decoys del player 0
 
-    //PLAYER 2
+    //PLAYER 1
     slotDiscardP2();            // Slots de Descartes del Jugador 2     - DONE
     handPlayer2();              // Mano del Jugador 2 (12 Slots)        - DONE
     tableSection_Player2();     // Seccion de juego de todas las cartas del Player 1 (3 Secciones, 10 slots cada una)   - 
     deckPlayer2();              // Mazo del jugador 2                   - 
+    decoyZone1();               // Slots de los decoys del player 1
 }
 
 // Tamaño de la mesa
@@ -739,6 +765,39 @@ function tableSize()
 
 }
 
+function decoyZone0()
+{
+    let xPos = Player0_map_pos.PLAYER0_DECOY_XPOS;
+
+    const yPos = Player0_map_pos.PLAYER0_DECOY_YPOS;
+    const xSize = CardSizes.TOKEN_WIDHT;
+    const ySize = CardSizes.TOKEN_HEIGHT;
+    let slotID = SlotIdentificators.PLAYER0_DECOY; 
+
+    for(let i = 0; i < 3; i++)
+    {
+        const decoySlot = new GameZones(xPos, yPos, xSize, ySize, slotID)
+        globals.slots.push(decoySlot);
+        xPos += 90;
+    }
+}
+
+function decoyZone1()
+{
+    let xPos = Player1_map_pos.PLAYER1_DECOY_XPOS;
+
+    const yPos = Player1_map_pos.PLAYER1_DECOY_YPOS;
+    const xSize = CardSizes.TOKEN_WIDHT;
+    const ySize = CardSizes.TOKEN_HEIGHT;
+    let slotID = SlotIdentificators.PLAYER1_DECOY; 
+
+    for(let i = 0; i < 3; i++)
+    {
+        const decoySlot = new GameZones(xPos, yPos, xSize, ySize, slotID)
+        globals.slots.push(decoySlot);
+        xPos += 90;
+    }
+}
 
 function slotDiscardP1 ()
 {
@@ -850,7 +909,7 @@ function messageZone()
 function handPlayer1 ()
 { 
     const yPos      = Player0_map_pos.PLAYER0_CARDS_IN_HAND_YPOS;
-    const xSize     = 75;
+    const xSize     = 87.5;
     const ySize     = 90;
     const slotID    = SlotIdentificators.PLAYER0_HAND;
 
@@ -860,7 +919,7 @@ function handPlayer1 ()
     {
         const handSlots = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(handSlots);
-        xPos += 75;
+        xPos += 87.5;
     }
 
 }
@@ -868,7 +927,7 @@ function handPlayer1 ()
 function handPlayer2 ()
 {
     const yPos      = Player1_map_pos.PLAYER1_CARDS_IN_HAND_YPOS;
-    const xSize     = 75;
+    const xSize     = 87.5;
     const ySize     = 90;
     const slotID    = SlotIdentificators.PLAYER1_HAND;
 
@@ -878,7 +937,7 @@ function handPlayer2 ()
     {
         const handSlots = new GameZones(xPos, yPos, xSize, ySize, slotID)
         globals.slots.push(handSlots);
-        xPos += 75;
+        xPos += 87.5;
     }
 }
 
