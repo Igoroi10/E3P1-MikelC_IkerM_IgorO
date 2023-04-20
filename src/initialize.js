@@ -33,7 +33,7 @@ function initHTMLelements()
     globals.ctx = globals.canvas.getContext('2d');
 
     //Inicializamos listeners
-    globals.buttonStart.addEventListener("mousedown",       btnStartDown,       false);
+    // globals.buttonStart.addEventListener("mousedown",       btnStartDown,       false);
     globals.buttonStart.addEventListener("mouseover",       btnStartOver,       false);
     globals.buttonStart.addEventListener("mouseout",        btnStartOut,        false);
     // globals.buttonAdmin.addEventListener("mousedown",       btnStartAdmin,      false);
