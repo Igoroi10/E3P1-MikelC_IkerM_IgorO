@@ -1859,7 +1859,9 @@ function updateEndRound()
 
         endRoundDecoyReset();
 
-        dealCards()
+        dealCards();
+        globals.player1Points = 0;
+        globals.player2Points = 0;
     }
 
     // else if(globals.turnState === Turn.PLAYER1 || globals.turnState === Turn.PLAYER2)
