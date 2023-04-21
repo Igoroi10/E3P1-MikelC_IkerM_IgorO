@@ -660,6 +660,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                                 globals.player[playerNum][i].yPos = globals.slots[l].yPos;
                                 globals.player[playerNum][i].state = CardState.GAME;
                                 globals.player[playerNum][i].showBack = false;
+
                             }
                         }
 
@@ -687,6 +688,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                                 globals.player[playerNum][i].state = CardState.GAME;
                                 globals.player[playerNum][i].showBack = false;
                                 l = globals.slots.length;
+                                updateSlots();
                             }
                         }
 
@@ -814,14 +816,14 @@ function updatePoints(){
     let player1Points;
     let player2Points;
 
-    player1Points = calculatePoints(player1);
-    player2Points = calculatePoints(player2);
+    globals.player1Points = calculatePoints(player1);
+    globals.player2Points = calculatePoints(player2);
 
-    globals.player1Points = player1Points;
-    globals.player2Points = player2Points;
+    // globals.player1Points = player1Points;
+    // globals.player2Points = player2Points;
 
-    createPointers(player1Points, player1);
-    createPointers(player2Points, player2);
+    // createPointers(player1Points, player1);
+    // createPointers(player2Points, player2);
 }
 
 function calculatePoints(player){
