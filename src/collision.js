@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { CardState, SlotIdentificators } from "./constants.js";
+import { CardState, SlotIdentificators, Effect } from "./constants.js";
 import ImageSet from "./ImageSet.js";
 import { updateSelectedCard, checkLastSelection  } from "./gameLogic.js";
 import { decoyEvent } from "./events.js";
@@ -142,7 +142,7 @@ function detectCollisionBetweenMouseAndCards_Click()
                             }
 
 
-                            if (globals.slots[globals.selectedSlotId].slotIdentificator  === field1 || globals.slots[globals.selectedSlotId].slotIdentificator  === field2 || globals.slots[globals.selectedSlotId].slotIdentificator  === field3  )
+                            if (globals.slots[globals.selectedSlotId].slotIdentificator  === field1 && card.effect !== Effect.SPY || globals.slots[globals.selectedSlotId].slotIdentificator  === field2 && card.effect !== Effect.SPY || globals.slots[globals.selectedSlotId].slotIdentificator  === field3  && card.effect !== Effect.SPY)
                             {
                                 globals.selectedCardId_Click = i;
                                 //Testear el id - Ver si el slot identioficator corresponde a field 1 2 o 3 del turnState

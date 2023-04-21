@@ -115,10 +115,12 @@ function checkStates(){
            break;
 
        case State.ADMIN_MENU:
+            document.getElementById('adminName').innerHTML= '' +  globals.hostPlayerInfo.izena_abizena;
             makeThisScreenVisible(State.ADMIN_MENU);
            break;
 
        case State.PLAYER_MENU:
+            document.getElementById('playerName').innerHTML= '' +  globals.hostPlayerInfo.izena_abizena;
             makeThisScreenVisible(State.PLAYER_MENU);
            break;
 
@@ -276,7 +278,11 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 // console.log(card.state);
                 // console.log("State Antes: " + card.state);
                 card.state = CardState.GAME;
-                decoyEffectActivation();
+                // console.log(card.effect);
+                
+                    console.log("Entra en NO spy");
+                    decoyEffectActivation();    
+                
                 checkCardEffect(card);
                 // console.log("State Despues " + card.state);
                 
@@ -1100,6 +1106,8 @@ function localStorageCheck(){
             // console.log("logged as admin")
             globals.hostPlayerInfo.izena_abizena = localStorage.getItem('izena_abizena');
             globals.gameState = State.ADMIN_MENU;
+            
+            
         }
 
         else{
