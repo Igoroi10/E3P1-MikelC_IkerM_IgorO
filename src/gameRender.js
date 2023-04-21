@@ -137,7 +137,7 @@ function renderCard(card){
             globals.assets.card_value[card.value],                     //archivo de la imagen
             0, 0,                                                    //Posición inicial x e y 
             65, 63, 
-            card.xPos, card.yPos + 60,                                   //fin de x e y
+            card.xPos, card.yPos + 65,                                   //fin de x e y
             30, 30             //Fin de anchura.       
 
         )
@@ -147,7 +147,7 @@ function renderCard(card){
             globals.assets.card_effect[card.effect],                     //archivo de la imagen
             0, 0,                                                        //Posición inicial x e y 
             65, 54, 
-            card.xPos, card.yPos + 51,                                   //fin de x e y
+            card.xPos + 60, card.yPos + 65,                                   //fin de x e y
             19, 16                                                      //Fin de anchura.       
 
         )
