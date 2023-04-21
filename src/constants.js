@@ -306,7 +306,7 @@ const Player0_map_pos = {
     PLAYER0_CARDS_IN_HAND11_XPOS:   1180,
     PLAYER0_CARDS_IN_HAND12_XPOS:   1255,
 
-    PLAYER0_DECK_XPOS:              1345,
+    PLAYER0_DECK_XPOS:              1495,
     PLAYER0_DECK_YPOS:              750,
     
     PLAYER0_DISCARD_XPOS:          120,
@@ -358,7 +358,7 @@ const Player1_map_pos = {
     PLAYER1_CARDS_IN_HAND11_XPOS:   1180,
     PLAYER1_CARDS_IN_HAND12_XPOS:   1255,
 
-    PLAYER1_DECK_XPOS:              1345,
+    PLAYER1_DECK_XPOS:              1495,
     PLAYER1_DECK_YPOS:              20,
 
     PLAYER1_DISCARD_XPOS:          120,
