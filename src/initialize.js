@@ -505,11 +505,11 @@ function insertCard(i){
         globals.cards.push(permaCard);
         break;
 
-        case "climate":
-        const climateCard = new ClimateCard(globals.cardInfo[i].irudia, globals.cardInfo[i].cardName, 
-                                            CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
-        globals.cards.push(climateCard);
-        break;
+        // case "climate":
+        // const climateCard = new ClimateCard(globals.cardInfo[i].irudia, globals.cardInfo[i].cardName, 
+        //                                     CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
+        // globals.cards.push(climateCard);
+        // break;
 
         case "token":
         
@@ -518,7 +518,7 @@ function insertCard(i){
         break;
 
         default:
-            console.error("Incorrect card category");
+            console.log("Incorrect card category");
 
 
 
