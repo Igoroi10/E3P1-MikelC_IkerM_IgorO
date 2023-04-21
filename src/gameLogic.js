@@ -891,44 +891,56 @@ function calculatePoints(player){
 
         switch(globals.cards[i].slotIdentificator){
             case buff1:
-                // console.log("entra en el case buff1");
+                console.log("entra en el case buff1");
                 if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
                 {
                     // console.log("entra en el if1 commanders");
                     buffValue1 = 2; 
                 }   
-                if(globals.cards[i].effect === Effect.MORALE_BOOST){
-                    // console.log("entra en el if1 morale_boost");
-                    moraleBoost1++;
-                }
             break;
 
             case buff2:
-                // console.log("entra en el case buff2");
+                console.log("entra en el case buff2");
                 if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
                 {
                     // console.log("entra en el ifcase2 commanders");
                     buffValue2 = 2;   
                 }
-                 
-                if(globals.cards[i].effect === Effect.MORALE_BOOST){
-                    // console.log("entra en el ifcas2 morale_boost");
-                    moraleBoost2++;
-                }
+                
             break;
             case buff3:
-                // console.log("entra en el case buff3");
+                console.log("entra en el case buff3");
                 if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
                 {
                     // console.log("entra en el ifcase3 commanders");
                     buffValue3 = 2;  
                 }
                   
+            break;
+            case field1:
+                console.log("entra en el field1");
+                if(globals.cards[i].effect === Effect.MORALE_BOOST){
+                    // console.log("entra en el if1 morale_boost");
+                    moraleBoost1++;
+                }
+            break;
+
+            case field2:
+                console.log("entra en el field2"); 
+                if(globals.cards[i].effect === Effect.MORALE_BOOST){
+                    // console.log("entra en el ifcas2 morale_boost");
+                    moraleBoost2++;
+                }
+            break;
+
+            case field3:
+                console.log("entra en el field3");
                 if(globals.cards[i].effect === Effect.MORALE_BOOST){
                     // console.log("entra en el ifcase3 morale_boost");
                     moraleBoost3++;
                 }
             break;
+
 
         }
 
@@ -1850,7 +1862,9 @@ function updateEndRound()
 
         endRoundDecoyReset();
 
-        dealCards()
+        dealCards();
+        globals.player1Points = 0;
+        globals.player2Points = 0;
     }
 
     // else if(globals.turnState === Turn.PLAYER1 || globals.turnState === Turn.PLAYER2)
@@ -1926,13 +1940,24 @@ function updateLives()
 }
 
 function endRoundDecoyReset(){
+    let identificator;
 
     for(let i = 0; i < 2; i++){
-        for(let j = 0; j < globals.player[i].length; j++){
-            if(globals.player[i].effect === Effect.DECOY && globals.player[i].showBack === true){
-                globals.player[i].showBack = false;
-                j = globals.player[i].length;
+        if(i === 0)
+            identificator = SlotIdentificators.PLAYER0_DECOY;
+        else
+            identificator = SlotIdentificators.PLAYER1_DECOY;
+
+
+        for(let j = 0; j < globals.cards.length; j++){
+            if(globals.cards[j].effect === Effect.DECOY && globals.cards[j].showBack === true){
+
+                if(globals.cards[j].slotIdentificator === identificator){
+                    globals.cards[j].showBack = false;
+                    j = globals.player[i].length;
+                }
             }
+
         }
     }
 }

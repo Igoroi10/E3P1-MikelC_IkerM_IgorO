@@ -518,7 +518,7 @@ function insertCard(i){
         break;
 
         default:
-            console.log("Incorrect card category");
+            // console.error("Incorrect card category");
 
 
 
@@ -640,7 +640,7 @@ function addUnitCards(cardsLeft){
             AddCommonCard();
         }
 
-
+        filterExtraCards();
         // console.log(i);
     }
 
