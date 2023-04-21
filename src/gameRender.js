@@ -492,12 +492,12 @@ function drawMessages()
    {
         if (globals.checkRoundPlayer1 && !globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText("Solo puede jugar el jugador 1", 70, 585);
+            globals.ctx.fillText("Only player 1 can play", 60, 610);
         }
 
         else if (!globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText("Solo puede jugar el jugador 2", 70, 585);
+            globals.ctx.fillText("Only player 2 can play", 60, 610);
         }
    }
     if(globals.actionsCounter === 1 )
