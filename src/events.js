@@ -109,7 +109,7 @@ function createList()
         }
 
     }
-
+    console.log(hostName);
     document.getElementById('playerName').innerHTML= '' + hostName;
     document.getElementById('adminName').innerHTML= '' + hostName;
 
