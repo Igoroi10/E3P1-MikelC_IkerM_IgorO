@@ -1,7 +1,7 @@
 import globals from "./globals.js";
-import { CardState, SlotIdentificators } from "./constants.js";
+import { CardState, SlotIdentificators, Effect } from "./constants.js";
 import ImageSet from "./ImageSet.js";
-import { updateSelectedCard } from "./gameLogic.js";
+import { updateSelectedCard, checkLastSelection  } from "./gameLogic.js";
 import { decoyEvent } from "./events.js";
 
 //DOBLE CLICK
@@ -93,79 +93,86 @@ function detectCollisionBetweenMouseAndSlots()
 //Funcion que detecta que carta hemos seleccionado para colocar
 function detectCollisionBetweenMouseAndCards_Click()
 {
-    if (globals.action.mousePressed )
+    // If del Timer - para bloquear la seleccion durante 1 segundo
+    if(!globals.timerActivate)
     {
-        for(let i = 0; i < globals.cards.length; ++i)
+        // console.log("Entra en el if de timerActivate")
+        if (globals.action.mousePressed )
         {
-            const card = globals.cards[i];
-            const xSize = 80;
-            const ySize = 100;
-        
-            if(globals.mouse.x < (card.xPos + xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < (card.yPos + ySize) && globals.mouse.y > card.yPos && card.showBack === false)
+            for(let i = 0; i < globals.cards.length; ++i)
             {
-                // console.log(card.state);
-                globals.mouseSelectedCard = true;
-                
-                if(globals.selectedCardId_Click === -1)
+                const card = globals.cards[i];
+                const xSize = 80;
+                const ySize = 100;
+            
+                if(globals.mouse.x < (card.xPos + xSize) && globals.mouse.x >= card.xPos && globals.mouse.y < (card.yPos + ySize) && globals.mouse.y > card.yPos && card.showBack === false)
                 {
-                    if(globals.actionsCounter === 0)
+                    // console.log(card.state);
+                    globals.mouseSelectedCard = true;
+                    
+                    if(globals.selectedCardId_Click === -1)
                     {
-                        globals.selectedCardId_Click = i;
-                        //Testear el id - Ver si el slot identioficator corresponde a field 1 2 o 3 del turnState
-                        updateSelectedCard(card);
-                        decoyEvent();
-                    }
-
-                    else if (globals.actionsCounter === 1)
-                    {
-                        let field1;
-                        let field2;
-                        let field3;
-
-                        if (globals.turnState === 0 )
-                        {
-                            field1 = SlotIdentificators.PLAYER0_F1
-                            field2 = SlotIdentificators.PLAYER0_F2
-                            field3 = SlotIdentificators.PLAYER0_F3
-                        }
-
-                        else
-                        {
-                            field1 = SlotIdentificators.PLAYER1_F1
-                            field2 = SlotIdentificators.PLAYER1_F2
-                            field3 = SlotIdentificators.PLAYER1_F3
-                        }
-
-
-                        if (globals.slots[globals.selectedSlotId].slotIdentificator  === field1 || globals.slots[globals.selectedSlotId].slotIdentificator  === field2 || globals.slots[globals.selectedSlotId].slotIdentificator  === field3  )
+                        if(globals.actionsCounter === 0)
                         {
                             globals.selectedCardId_Click = i;
                             //Testear el id - Ver si el slot identioficator corresponde a field 1 2 o 3 del turnState
+                            checkLastSelection();
                             updateSelectedCard(card);
                             decoyEvent();
                         }
-                      
+
+                        else if (globals.actionsCounter === 1)
+                        {
+                            let field1;
+                            let field2;
+                            let field3;
+
+                            if (globals.turnState === 0 )
+                            {
+                                field1 = SlotIdentificators.PLAYER0_F1
+                                field2 = SlotIdentificators.PLAYER0_F2
+                                field3 = SlotIdentificators.PLAYER0_F3
+                            }
+
+                            else
+                            {
+                                field1 = SlotIdentificators.PLAYER1_F1
+                                field2 = SlotIdentificators.PLAYER1_F2
+                                field3 = SlotIdentificators.PLAYER1_F3
+                            }
+
+
+                            if (globals.slots[globals.selectedSlotId].slotIdentificator  === field1 && card.effect !== Effect.SPY || globals.slots[globals.selectedSlotId].slotIdentificator  === field2 && card.effect !== Effect.SPY || globals.slots[globals.selectedSlotId].slotIdentificator  === field3  && card.effect !== Effect.SPY)
+                            {
+                                globals.selectedCardId_Click = i;
+                                //Testear el id - Ver si el slot identioficator corresponde a field 1 2 o 3 del turnState
+                                updateSelectedCard(card);
+                                decoyEvent();
+                            }
+                        
+                        }
+                        
                     }
-                    
+                        
+                    else
+                    globals.selectedSlotId = -1;
+
+                    break;
                 }
-                    
+
                 else
-                globals.selectedSlotId = -1;
-
-                break;
+                {
+                    globals.mouseSelectedCard = false; 
+                    globals.selectedCardId_Click = -1;
+                }
+                
+                
+                // globals.action.mousePressed = false;
             }
-
-            else
-            {
-                globals.mouseSelectedCard = false; 
-                globals.selectedCardId_Click = -1;
-            }
-            
-            
-            // globals.action.mousePressed = false;
         }
     }
 }
+    
 
 export {
     detectCollisionBetweenMouseAndCards,

@@ -115,10 +115,12 @@ function checkStates(){
            break;
 
        case State.ADMIN_MENU:
+            document.getElementById('adminName').innerHTML= '' +  globals.hostPlayerInfo.izena_abizena;
             makeThisScreenVisible(State.ADMIN_MENU);
            break;
 
        case State.PLAYER_MENU:
+            document.getElementById('playerName').innerHTML= '' +  globals.hostPlayerInfo.izena_abizena;
             makeThisScreenVisible(State.PLAYER_MENU);
            break;
 
@@ -276,7 +278,11 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 // console.log(card.state);
                 // console.log("State Antes: " + card.state);
                 card.state = CardState.GAME;
-                decoyEffectActivation();
+                // console.log(card.effect);
+                
+                    console.log("Entra en NO spy");
+                    decoyEffectActivation();    
+                
                 checkCardEffect(card);
                 // console.log("State Despues " + card.state);
                 
@@ -660,6 +666,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                                 globals.player[playerNum][i].yPos = globals.slots[l].yPos;
                                 globals.player[playerNum][i].state = CardState.GAME;
                                 globals.player[playerNum][i].showBack = false;
+
                             }
                         }
 
@@ -687,6 +694,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                                 globals.player[playerNum][i].state = CardState.GAME;
                                 globals.player[playerNum][i].showBack = false;
                                 l = globals.slots.length;
+                                updateSlots();
                             }
                         }
 
@@ -814,14 +822,14 @@ function updatePoints(){
     let player1Points;
     let player2Points;
 
-    player1Points = calculatePoints(player1);
-    player2Points = calculatePoints(player2);
+    globals.player1Points = calculatePoints(player1);
+    globals.player2Points = calculatePoints(player2);
 
-    globals.player1Points = player1Points;
-    globals.player2Points = player2Points;
+    // globals.player1Points = player1Points;
+    // globals.player2Points = player2Points;
 
-    createPointers(player1Points, player1);
-    createPointers(player2Points, player2);
+    // createPointers(player1Points, player1);
+    // createPointers(player2Points, player2);
 }
 
 function calculatePoints(player){
@@ -1110,6 +1118,8 @@ function localStorageCheck(){
             // console.log("logged as admin")
             globals.hostPlayerInfo.izena_abizena = localStorage.getItem('izena_abizena');
             globals.gameState = State.ADMIN_MENU;
+            
+            
         }
 
         else{
@@ -1725,6 +1735,33 @@ function placeCard()
 
     }
 }
+
+// BOLOLO
+function checkLastSelection()
+{
+    // Hacer una comprobacion de todos los slots y ver si hay alguno que esta en estado selected
+    // Y segun el slot le asigno un estado previo
+    for(let j = 0; j < globals.cards.length; j ++)
+    {
+        //Ahora hago un for en el array de cartas poara comprobar que carta esta en selected DE LA MANO
+        if(globals.cards[j].state === CardState.SELECTED)
+        {
+            if(globals.cards[j].slotIdentificator < SlotIdentificators.PLAYER0_HAND)
+                globals.cards[j].state = CardState.GAME;
+
+            else if(globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER0_HAND || globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER1_HAND)
+                globals.cards[j].state = CardState.HAND;
+            
+            else if(globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER0_DECK || globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER1_DECK)
+                 globals.cards[j].state = CardState.DECK;
+                 
+            else if(globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER0_DISCARD|| globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER1_DISCARD)
+                globals.cards[j].state = CardState.DISCARD;
+        }
+    }
+} 
+
+
 // =========================
 //      START OF END ROUND AND GAME OVER UPDATES
 // =========================
@@ -1987,4 +2024,5 @@ export {
     discardCards,
     updateSelectedCard,
     decoyEffectResult,
+    checkLastSelection,
 }
