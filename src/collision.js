@@ -1,7 +1,7 @@
 import globals from "./globals.js";
 import { CardState, SlotIdentificators } from "./constants.js";
 import ImageSet from "./ImageSet.js";
-import { updateSelectedCard } from "./gameLogic.js";
+import { updateSelectedCard, checkLastSelection  } from "./gameLogic.js";
 import { decoyEvent } from "./events.js";
 
 //DOBLE CLICK
@@ -112,6 +112,7 @@ function detectCollisionBetweenMouseAndCards_Click()
                     {
                         globals.selectedCardId_Click = i;
                         //Testear el id - Ver si el slot identioficator corresponde a field 1 2 o 3 del turnState
+                        checkLastSelection();
                         updateSelectedCard(card);
                         decoyEvent();
                     }

@@ -433,7 +433,9 @@ function createNormalDeck(){
     cardsNeeded -= globals.cards.length;
 
     addUnitCards(cardsNeeded,normalMode);
+    filterExtraCards(normalMode);
     globals.cards.splice(60);
+    console.log(globals.cards)
 }
 
 
@@ -642,8 +644,58 @@ function addUnitCards(cardsLeft){
         // console.log(i);
     }
 
+    
+
     // console.log(cardsLeft);
 
+}
+
+function filterExtraCards(mode){
+
+    let cardsNeeded;
+    let cardsToDraw;
+    let zCheck = 0;
+    let dCheck = 0;
+    let cCheck = 0;
+
+    if(mode === GameMode.EXPERT_MODE)
+        cardsNeeded = 80;
+    else
+        cardsNeeded = 60;
+
+    for(let i = 0; i < globals.cards.length; i++){
+        let card = globals.cards[i];
+        if(card.cardName === "Zarate"){
+            zCheck++;
+            if(zCheck > 1)
+            globals.cards.splice(i,1);
+        }
+
+        if(card.cardName === "Decoy"){
+            dCheck++;
+            if(dCheck > 6){
+                globals.cards.splice(i,1);
+            }
+        }
+
+        if(card.categoryId === 3){
+            cCheck++;
+            if(cCheck > 0)
+            globals.cards.splice(i,1);
+
+        }
+
+
+
+
+
+
+    }
+
+    if(globals.cards.length < cardsNeeded){
+        cardsToDraw = cardsNeeded - globals.cards.length;
+        addUnitCards(cardsToDraw);
+    }
 }
 
 function addZarate(){

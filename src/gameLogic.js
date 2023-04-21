@@ -1715,6 +1715,33 @@ function placeCard()
 
     }
 }
+
+// BOLOLO
+function checkLastSelection()
+{
+    // Hacer una comprobacion de todos los slots y ver si hay alguno que esta en estado selected
+    // Y segun el slot le asigno un estado previo
+    for(let j = 0; j < globals.cards.length; j ++)
+    {
+        //Ahora hago un for en el array de cartas poara comprobar que carta esta en selected DE LA MANO
+        if(globals.cards[j].state === CardState.SELECTED)
+        {
+            if(globals.cards[j].slotIdentificator < SlotIdentificators.PLAYER0_HAND)
+                globals.cards[j].state = CardState.GAME;
+
+            else if(globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER0_HAND || globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER1_HAND)
+                globals.cards[j].state = CardState.HAND;
+            
+            else if(globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER0_DECK || globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER1_DECK)
+                 globals.cards[j].state = CardState.DECK;
+                 
+            else if(globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER0_DISCARD|| globals.cards[j].slotIdentificator === SlotIdentificators.PLAYER1_DISCARD)
+                globals.cards[j].state = CardState.DISCARD;
+        }
+    }
+} 
+
+
 // =========================
 //      START OF END ROUND AND GAME OVER UPDATES
 // =========================
@@ -1977,4 +2004,5 @@ export {
     discardCards,
     updateSelectedCard,
     decoyEffectResult,
+    checkLastSelection,
 }
