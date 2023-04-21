@@ -465,7 +465,7 @@ function drawMessages()
         globals.ctx.fillRect(50, 530, 310, 85);
         globals.ctx.globalAlpha = 1.0; 
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(globals.selectedEnemy+ "'s turn.", 90, 555); 
+        globals.ctx.fillText(hostName+ "'s turn.", 90, 555); 
     }
     else if(globals.turnState === Turn.PLAYER1)
     {
@@ -475,7 +475,7 @@ function drawMessages()
         globals.ctx.fillRect(50, 530, 310, 85);
         globals.ctx.globalAlpha = 1.0;
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(hostName + "'s turn.", 90, 555); 
+        globals.ctx.fillText(globals.selectedEnemy + "'s turn.", 90, 555); 
     }
     else
     {
