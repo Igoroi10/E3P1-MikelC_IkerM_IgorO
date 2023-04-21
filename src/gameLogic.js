@@ -846,7 +846,7 @@ function calculatePoints(player){
     let moraleBoost3 = 0;
     let tightBondArray = [];
 
-    // tightBondValueAdd(tightBondArray, player)
+    tightBondValueAdd(tightBondArray, player)
 
     if(player === 0){
 
@@ -948,7 +948,7 @@ function calculatePoints(player){
     //tighBondValueDecrease()
     // console.log(points);
 
-    // tighBondValueDecrease(tightBondArray, player)
+    tighBondValueDecrease(tightBondArray, player)
     return points;
 }
 
@@ -1915,11 +1915,13 @@ function updateLives()
 }
 
 function endRoundDecoyReset(){
-
+console.log("entra en endRounDecoy");
     for(let i = 0; i < 2; i++){
+        console.log(globals.player[i]);
         for(let j = 0; j < globals.player[i].length; j++){
-            if(globals.player[i].effect === Effect.DECOY && globals.player[i].showBack === true){
-                globals.player[i].showBack = false;
+            if(globals.player[i][j].effect === Effect.DECOY && globals.player[i][j].showBack === true){
+                console.log("entra en el if del decoy End");
+                globals.player[i][j].showBack = false;
                 j = globals.player[i].length;
             }
         }
