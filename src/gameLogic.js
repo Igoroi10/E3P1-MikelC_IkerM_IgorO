@@ -414,6 +414,7 @@ function checkCardEffect(card){
             spyEffect(card)
             break;
         case Effect.TIGHT_BOND:
+            // tightBondEffect();
             //efecto de puntuación
             break;
         case Effect.COMMANDERS_HORN:
@@ -852,7 +853,7 @@ function calculatePoints(player){
     let moraleBoost3 = 0;
     let tightBondArray = [];
 
-    // tightBondValueAdd(tightBondArray, player)
+    tightBondValueAdd(tightBondArray, player)
 
     if(player === 0){
 
@@ -951,10 +952,10 @@ function calculatePoints(player){
     // console.log("moraleBoost3: " + moraleBoost3);
     // console.log("moraleBoost2: " + moraleBoost2);
     // console.log("moraleBoost1: " + moraleBoost1);
-    //tighBondValueDecrease()
+    // tighBondValueDecrease()
     // console.log(points);
 
-    // tighBondValueDecrease(tightBondArray, player)
+    tighBondValueDecrease(tightBondArray, player)
     return points;
 }
 
@@ -1057,9 +1058,9 @@ function tightBondValueAdd(array, playerNum){
             if(playerArray[i].slotIdentificator === fieldToCompare){
 
                 for(let l = i+1; l < playerArray.length; l++){
-
-                    if(playerArray[i].cardName === playerArray[l].cardName && playerArray.effect === Effect.TIGHT_BOND){
-
+                    // console.log(playerArray[l].cardName);
+                    if(playerArray[i].cardName === playerArray[l].cardName && playerArray[l].effect === Effect.TIGHT_BOND && playerArray[l].state === CardState.GAME){
+                        console.log("entra en el if de thightBond")
                         playerArray[i].value *= 2;
                         playerArray[l].value *= 2;
                         array.push(playerArray[i])
