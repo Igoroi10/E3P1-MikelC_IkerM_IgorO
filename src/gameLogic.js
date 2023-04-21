@@ -799,6 +799,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     }
                 }
             }
+            updateSlots();
             globals.actionsCounter++;
             globals.decoy = false;
             break;
@@ -817,6 +818,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
 
 
 function updatePoints(){
+    // updateSlots
     const player1 = 0;
     const player2 = 1;
 
