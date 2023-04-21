@@ -2002,4 +2002,5 @@ export {
     discardCards,
     updateSelectedCard,
     decoyEffectResult,
+    checkLastSelection,
 }
