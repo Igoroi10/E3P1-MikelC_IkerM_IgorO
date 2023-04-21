@@ -278,7 +278,11 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 // console.log(card.state);
                 // console.log("State Antes: " + card.state);
                 card.state = CardState.GAME;
-                decoyEffectActivation();
+                if(card.effect !== Effect.SPY )
+                {
+                    console.log("Entra en NO spy");
+                    decoyEffectActivation();    
+                }
                 checkCardEffect(card);
                 // console.log("State Despues " + card.state);
                 
