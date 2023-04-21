@@ -1848,6 +1848,7 @@ function updateEndRound()
             globals.checkRoundPlayer1 = false;
             globals.checkRoundPlayer2 = false;
             globals.turnState = Turn.PLAYER0;
+            globals.actionsCounter = 0;
         }
     
         else if(globals.roundWinner === globals.selectedEnemy)
@@ -1856,6 +1857,7 @@ function updateEndRound()
             globals.checkRoundPlayer1 = false;
             globals.checkRoundPlayer2 = false;
             globals.turnState = Turn.PLAYER1;
+            globals.actionsCounter = 0;
         }
        console.log(globals.checkBothPlayerRound);
         //Empieza la ronda el que ha ganado.
