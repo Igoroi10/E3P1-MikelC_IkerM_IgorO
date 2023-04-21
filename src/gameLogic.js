@@ -1915,15 +1915,24 @@ function updateLives()
 }
 
 function endRoundDecoyReset(){
-console.log("entra en endRounDecoy");
+    let identificator;
+
     for(let i = 0; i < 2; i++){
-        console.log(globals.player[i]);
-        for(let j = 0; j < globals.player[i].length; j++){
-            if(globals.player[i][j].effect === Effect.DECOY && globals.player[i][j].showBack === true){
-                console.log("entra en el if del decoy End");
-                globals.player[i][j].showBack = false;
-                j = globals.player[i].length;
+        if(i === 0)
+            identificator = SlotIdentificators.PLAYER0_DECOY;
+        else
+            identificator = SlotIdentificators.PLAYER1_DECOY;
+
+
+        for(let j = 0; j < globals.cards.length; j++){
+            if(globals.cards[j].effect === Effect.DECOY && globals.cards[j].showBack === true){
+
+                if(globals.cards[j].slotIdentificator === identificator){
+                    globals.cards[j].showBack = false;
+                    j = globals.player[i].length;
+                }
             }
+
         }
     }
 }
