@@ -44,7 +44,6 @@ export default
 
     txtPruebas: {},
     
-    fakeCardInfo: [],
 
     cardInfo: [],
 
@@ -108,14 +107,13 @@ export default
     inputEmail:     {},
     inputPassword:  {},
     
-    lblSessionUser: {},
+    lblSessionUser: {}, 
     lblError:       {},
     sectionLogIn:   {},
     sectionPlay:    {},
 
     bigCard:       -1,
 
-    fakeUsersArray: ['Iker Mendoza', 'Mikel Cruz', 'Igor Ocon', 'Asier Nogueria', 'Esther', 'Zarate'],
 
 
 

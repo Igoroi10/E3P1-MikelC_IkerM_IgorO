@@ -4,7 +4,6 @@ import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
 import {Card, UnitCard, SuddenCard, PermaCard, ClimateCard} from "./Card.js";
-import FakeCard from "./FakeCard.js";
 import { GameZones } from "./GameZones.js";
 import { Assets } from "./Assets.js";
 import ImageSet from "./ImageSet.js";
@@ -773,14 +772,6 @@ function AddTokenCard()
     // console.log(globals.tokens);
 }
 
-function initFakeCards ()
-{
-    fakeCardCreation_1;
-    fakeCardCreation_2;
-    fakeCardCreation_3;
-    fakeCardCreation_4;
-}
-
 
 
 // ============================================================================================
@@ -1266,125 +1257,6 @@ function getAllUsers()
 
 
 
-// ==================================================
-//               CREATION OF FAKE CARDS
-// ==================================================
-
-// Inicializamos unas cartas fake para meter al array de objetos
-
-function fakeCardCreation_1() // Zarate
-{
-    const frontImg      = client/images/Images_for_fake/Zarate.png;                      // ./images/Ruta de la imagen de frente
-    const backImg       = client/images/Images_for_fake/Back_Image.png;                      // ./images/Ruta la imagen de atras
-    const frameImg      = client/images/Images_for_fake/Card_Template.png;                      // ./images/Ruta del frame correspondiente
-    const cardName      = "Zarateee";               // Nombre de la Carta
-    const cardCategory  = "unit";                   // Asignamos el Estado/Categoria de la Carta 
-    const state         = CardState.DECK;           // Estado de la carta 
-    const value         = 7;                        // Valor de la carta
-    const description   = "Zarate The villiain";    // Descripcion de la carta
-    const effect        = Effect.SCORCH_INMUNE;     // Effecto que tendra la categoria 
-    const rarity        = Rarity.ULTRA_RARE;        // Rareza de la carta
-    const type          = Type.DISTANCE;            // Tipo de la carta
-    const showBack      = false;                    // Boolean que Enseña el dorso de la carta
-
-
-    // frontImg, backImg, frameImg, cardName, CardCategory, state, showBack
-    const ZarateCard = new FakeCard (frontImg, backImg, frameImg, cardName, cardCategory, state, value, description, effect, rarity, type, showBack);
-
-    for (let i = 0; i <= 5; i++)
-    {
-        globals.cardInfo.push(ZarateCard);
-    }
-
-    // globals.cards.push(Zarate);
-}
-
-function fakeCardCreation_2() //Climatology Card
-{
-    const frontImg      = client/images/Images_for_fake/bitting_frost.png;                      // ./images/Ruta de la imagen de frente
-    const backImg       = client/images/Images_for_fake/Back_Image.png;                      // ./images/Ruta la imagen de atras
-    const frameImg      = client/images/Images_for_fake/Card_Template.png;                      // ./images/Ruta del frame correspondiente
-    const cardName      = "Bitting Frost";          // Nombre de la Carta
-    const cardCategory  = "climate";                // Asignamos el Estado/Categoria de la Carta 
-    const state         = CardState.DECK;           // Estado de la carta 
-    const value         = 0;                        // Valor de la carta
-
-    const description   = "Sets the strength of all Close Combat cards to 1 for both players.";    // Descripcion de la carta
-    
-    const effect        = null;                     // Effecto que tendra la categoria 
-    const rarity        = null;                     // Rareza de la carta
-    const type          = null;                     // Tipo de la carta
-    const showBack      = false;                    // Boolean que Enseña el dorso de la carta
-
-
-    // frontImg, backImg, frameImg, cardName, CardCategory, state, showBack
-    const Climatology = new FakeCard (frontImg, backImg, frameImg, cardName, cardCategory, state, value, description, effect, rarity, type, showBack);
-    
-    for (let i = 0; i <= 5; i++)
-    {
-        globals.cardInfo.push(Climatology);
-    }
-
-    // globals.cards.push(Climatology);
-}
-
-function fakeCardCreation_3() //PermaEffect Card
-{
-    const frontImg      = client/images/Images_for_fake/Commanders_Horn.png;                 // ./images/Ruta de la imagen de frente
-    const backImg       = client/images/Images_for_fake/Back_Image.png;                      // ./images/Ruta la imagen de atras
-    const frameImg      = client/images/Images_for_fake/Card_Template.png;                   // ./images/Ruta del frame correspondiente
-    const cardName      = "Commander's Horn";       // Nombre de la Carta
-    const cardCategory  = "Effect";                 // Asignamos el Estado/Categoria de la Carta 
-    const state         = CardState.DECK;           // Estado de la carta 
-    const value         = 0;                        // Valor de la carta
-
-    const description   = "Doubles the strength of all unit cards in that row. Limited to 1 per row.";    // Descripcion de la carta
-    
-    const effect        = Effect.COMMANDERS_HORN;   // Effecto que tendra
-    const rarity        = null;                     // Rareza de la carta
-    const type          = null;                     // Tipo de la carta
-    const showBack      = false;                    // Boolean que Enseña el dorso de la carta
-
-
-    // frontImg, backImg, frameImg, cardName, CardCategory, state, showBack
-    const PermaEffect = new FakeCard (frontImg, backImg, frameImg, cardName, cardCategory, state, value, description, effect, rarity, type, showBack);
-
-    for (let i = 0; i <= 5; i++)
-    {
-        globals.cardInfo.push(PermaEffect);
-    }
-
-    // globals.cards.push(PermaEffect);
-}
-
-function fakeCardCreation_4() //Token card
-{
-    const frontImg      = client/images/Images_for_fake/Coin.png;                      // ./images/Ruta de la imagen de frente
-    const backImg       = client/images/Images_for_fake/Back_Image.png;                      // ./images/Ruta la imagen de atras
-    const frameImg      = client/images/Images_for_fake/Card_Template.png;                      // ./images/Ruta del frame correspondiente
-    const cardName      = "Coin";          // Nombre de la Carta
-    const cardCategory  = "Token";                // Asignamos el Estado/Categoria de la Carta 
-    const state         = CardState.DECK;           // Estado de la carta 
-    const value         = 0;                        // Valor de la carta
-
-    const description   = "Sets the strength of all Close Combat cards to 1 for both players.";    // Descripcion de la carta
-    
-    const effect        = null;                     // Effecto que tendra
-    const rarity        = null;                     // Rareza de la carta
-    const type          = null;                     // Tipo de la carta
-    const showBack      = false;                    // Boolean que Enseña el dorso de la carta
-
-
-    // frontImg, backImg, frameImg, cardName, CardCategory, state, showBack
-    const Token = new FakeCard (frontImg, backImg, frameImg, cardName, cardCategory, state, value, description, effect, rarity, type, showBack);
-
-    for (let i = 0; i <= 5; i++)
-    {
-        globals.tokens.push(Token);
-    }
-    // globals.cards.push(Token);
-}
-
 
 // ==================================================
 //               TIMERS
@@ -1408,7 +1280,6 @@ export {
     initHTMLelements,
     initVars,
     initEvents,
-    initFakeCards,
     loadAssets,
     initCardInfo,
     initCardLinks,
