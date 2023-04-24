@@ -1145,6 +1145,9 @@ function localStorageUpdate(){
 
 function logOut(){
     localStorage.clear();
+    // console.log("entra en logout");
+    globals.inputEmail.value = "";
+    globals.inputPassword.value = "";
     globals.gameState = State.LOG_IN;
     checkStates(); 
 

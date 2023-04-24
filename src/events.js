@@ -66,7 +66,7 @@ export function btnLogOut ()
 {
     console.log("Entra en logOut");
     logOut();
-    checkStates();
+    // checkStates();
 }
 
 export function btnStartAdmin()
