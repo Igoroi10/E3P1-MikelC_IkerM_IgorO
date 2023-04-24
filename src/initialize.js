@@ -304,16 +304,12 @@ function logInHandler(event)
     {
         if (this.readyState == 4)
         {
-            console.log("entra en el primer if");
             if(this.status == 200)
             {
-                console.log("entra en el segundo if");
                 if(this.responseText != null)
                 {
-                    console.log("Entra en el tercer if");
-                    console.log(this.responseText);
+                    // console.log(this.responseText);
                     const userData = JSON.parse(this.responseText);
-                    console.log(userData);
 
                     //Guardado Global
                     globals.hostPlayerInfo = userData;
@@ -344,10 +340,8 @@ console.log("entra en el funcion manageLogin");
 
     if (userData.emaila !== "")
     {
-        console.log("entra1");
         if(userData === undefined)
         {
-            console.log("entra en el undefined");
             globals.lblError.innerHTML = "The username or password are incorrect. Please try again.";
             globals.inputEmail.value = "";
             globals.inputPassword.value = "";
@@ -387,7 +381,7 @@ console.log("entra en el funcion manageLogin");
     {
         // console.log("entra en reseteo a login")
         // console.log("entra else");
-        console.log("entra error data");
+        // console.log("entra error data");
         globals.gameState = State.LOG_IN;
         //Mostramos el mensaje de error
         globals.lblError.innerHTML = "The username or password are incorrect. Please try again.";
