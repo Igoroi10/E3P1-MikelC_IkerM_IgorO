@@ -191,4 +191,7 @@ export default
     timerActivate: false,
 
     decoyAvailable: false,
+
+    //Inicializamos el render de la carta Grande a false
+    bigRender: false,
 }
