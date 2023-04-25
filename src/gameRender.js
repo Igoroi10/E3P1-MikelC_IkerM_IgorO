@@ -222,7 +222,7 @@ function renderBigCard(){
     let initialY = 238
 
     if(globals.selectedCardId >= 0){
-
+        globals.bigRender = true;
         const card = globals.cards[globals.selectedCardId];
 
         if(card.showBack){
@@ -333,6 +333,8 @@ function renderBigCard(){
             }
         }
     }
+    else
+        globals.bigRender = false;
 
 }
 
