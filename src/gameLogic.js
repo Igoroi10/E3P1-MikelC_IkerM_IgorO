@@ -1145,6 +1145,7 @@ function localStorageUpdate(){
 
 function logOut(){
     localStorage.clear();
+    document.getElementById('selectUserList').innerHTML = ""; 
     // console.log("entra en logout");
     globals.inputEmail.value = "";
     globals.inputPassword.value = "";
