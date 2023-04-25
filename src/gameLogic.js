@@ -2034,7 +2034,7 @@ function updateLevelTime()
 
 
 // =========================
-//     
+//     ESCRIBIR MULTILENGUAJE CON INNERHTML
 // =========================
 
 
