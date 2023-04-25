@@ -191,4 +191,6 @@ export default
     timerActivate: false,
 
     decoyAvailable: false,
+
+    lenguajeSelected = -1,
 }

@@ -2040,16 +2040,16 @@ function updateLevelTime()
 
 function multiMensaje()
 {
-    document.getElementById('Emaila').innerHTML = lenguajeText.emailText;
-    document.getElementById('Password').innerHTML = lenguajeText.passwordText;
-    document.getElementById('winrateTitle').innerHTML = lenguajeText.winrateText;
-    document.getElementById('gamesWonTitle').innerHTML = lenguajeText.gamesWonText;
-    document.getElementById('totalGamesTitle').innerHTML = lenguajeText.totalGamesText;
-    document.getElementById('head').innerHTML = lenguajeText.userListText;
-    document.getElementById('selectDifficultTitle').innerHTML = lenguajeText.selectDifficultText;
-    document.getElementById('btnNormal').innerHTML = lenguajeText.normalButtonText;
-    document.getElementById('difficultButton').innerHTML = lenguajeText.expertButtonText;
-    document.getElementById('logOutTitle').innerHTML = lenguajeText.logOutText;
+    document.getElementById('mailText').innerHTML = lenguajeText[globals.lenguajeSelected].emailText;
+    document.getElementById('passwordText').innerHTML = lenguajeText[globals.lenguajeSelected].passwordText;
+    document.getElementById('winrateTitle').innerHTML = lenguajeText[globals.lenguajeSelected].winrateText;
+    document.getElementById('gamesWonTitle').innerHTML = lenguajeText[globals.lenguajeSelected].gamesWonText;
+    document.getElementById('totalGamesTitle').innerHTML = lenguajeText[globals.lenguajeSelected].totalGamesText;
+    document.getElementById('head').innerHTML = lenguajeText[globals.lenguajeSelected].userListText;
+    document.getElementById('selectDifficultTitle').innerHTML = lenguajeText[globals.lenguajeSelected].selectDifficultText;
+    document.getElementById('btnNormal').innerHTML = lenguajeText[globals.lenguajeSelected].normalButtonText;
+    document.getElementById('difficultButton').innerHTML = lenguajeText[globals.lenguajeSelected].expertButtonText;
+    document.getElementById('logOutTitle').innerHTML = lenguajeText[globals.lenguajeSelected].logOutText;
 }
 
 export {
