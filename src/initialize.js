@@ -363,7 +363,7 @@ console.log("entra en el funcion manageLogin");
             //Usuario logueado
     
             console.log(localStorage.getItem("izen_abizena"));
-            // createList();
+            createList();
     
             //ACtivamos el menú de play y ocultamos el de logIn
             // document.getElementById('sectionLogIn').style.display = "none";
