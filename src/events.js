@@ -321,14 +321,14 @@ function actions()
 }
 
 
-function  canvasRightMouseupHandler()
+function  canvasRightMousedownHandler()
 {
     //Meter aqui la accion de la carta grande
     // console.log("entra en la funcion canvasDoubleClickHandler");
     // globals.action.doubleClick = true;
 
     console.log("Entra en canvasRightMouseupHandler");
-    globals.action.rightMousePressed = false; 
+    globals.action.rightMousePressed = true; 
     
 
     //HAY QUE ECHARLE UN OJO
@@ -339,21 +339,23 @@ function  canvasRightMouseupHandler()
    
 }
 
-function canvasRightMousedownHandler()
+function canvasRightMouseupHandler()
 {
-    console.log("entra en funcion RightMouseDownHandler");
-    globals.action.rightMousePressed = true; 
+    globals.action.rightMousePressed = false;
 }
 
 export function canvasMousedownHandler()
 {
-    console.log("entra en funcion click");
+    // console.log("entra en funcion click");
     globals.action.mousePressed = true;
+    
 }
+
+
 
 export function canvasMouseupHandler(event)
 {
-    console.log("sale funcion click");
+    // console.log("sale funcion click");
     globals.action.mousePressed = false;
 }
 
@@ -455,8 +457,8 @@ function decoyEvent()
 export {
     createList,
     selectEnemy,
-    canvasRightMouseupHandler,
     canvasRightMousedownHandler,
+    canvasRightMouseupHandler,
     checkIfRoundPass,
     decoyEvent,
 }

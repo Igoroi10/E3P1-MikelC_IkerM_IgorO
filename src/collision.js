@@ -8,7 +8,7 @@ import { decoyEvent } from "./events.js";
 function detectCollisionBetweenMouseAndCards()
 {
 
-    if(globals.action.doubleClick)
+    if(globals.action.rightMousePressed)
     {
         for(let i = 0; i < globals.cards.length; ++i)
         {
@@ -38,7 +38,7 @@ function detectCollisionBetweenMouseAndCards()
                 globals.selectedCardId = -1;
             }
 
-            globals.action.doubleClick = false;
+            globals.action.rightMousePressed = false;
             
         }
     }

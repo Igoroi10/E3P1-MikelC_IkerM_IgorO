@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, canvasRightMouseupHandler, btnNormalMode} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -117,13 +117,9 @@ function initEvents()
     window.addEventListener("keyup", keyupHandler, false);
 
     //Add the event listeners
-    globals.canvas.addEventListener("mouseup",   canvasMouseupHandler, false);
-    globals.canvas.addEventListener("mousedown", canvasMousedownHandler, false);
+    // globals.canvas.addEventListener("mouseup",   canvasMouseupHandler, false);
+    // globals.canvas.addEventListener("mousedown", canvasMousedownHandler, false);
     globals.canvas.addEventListener("mousemove", canvasMousemoveHandler, false);
-
-    //Right click
-    globals.canvas.addEventListener("rightclickdown",  canvasRightMousedownHandler, false);
-    globals.canvas.addEventListener("rightclickup",  canvasRightMouseupHandler, false);
 
     //EVITAR QUE SALGA EL MENU DEL NAVEGADOR
     let b = document.getElementsByClassName('container')[0];
@@ -132,6 +128,66 @@ function initEvents()
         evt.preventDefault(); 
         contextmenu.style.display = 'block';
     }
+
+    //FUNCION QUE DETECTA QUE CLICK SE UTILIZA 
+    let button = document.querySelector('canvas');
+    button.addEventListener("mousedown", (e) => {
+    switch (e.button) 
+    {
+        case 0:
+            // console.log("Entra en caso left Button");
+            // globals.action.mousePressed = true;
+            canvasMousedownHandler();
+            // log.textContent = "Left button clicked.";
+        break;
+
+        case 1:
+            // console.log("Entra en caso middle Button");
+            // log.textContent = "Middle button clicked.";
+        break;
+
+        case 2:
+            // console.log("Entra en caso right Button");
+            canvasRightMousedownHandler();
+            // log.textContent = "Right button clicked.";
+        break;
+
+        default:
+            // console.log("no se pulsa ninguno / No se detecta el boton pulsado")
+        // log.textContent = `Unknown button code: ${e.button}`;
+    }
+    
+    });
+
+    //FUNCION UP DE DETECTAR EL CICK
+    let Button = document.querySelector('canvas');
+    Button.addEventListener("mouseup", (e) => {
+    switch (e.button) 
+    {
+        case 0:
+            // console.log("Sale en caso left Button");
+            // globals.action.mousePressed = true;
+            canvasMouseupHandler();
+            // log.textContent = "Left button clicked.";
+        break;
+
+        case 1:
+            // console.log("sale en caso middle Button");
+            // log.textContent = "Middle button clicked.";
+        break;
+
+        case 2:
+            // console.log("Sale en caso right Button");
+            canvasRightMouseupHandler();
+            // log.textContent = "Right button clicked.";
+        break;
+
+        default:
+            // console.log("no se pulsa ninguno / No se detecta el boton pulsado")
+        // log.textContent = `Unknown button code: ${e.button}`;
+    }
+    
+    });
    
 }
 
