@@ -328,7 +328,7 @@ function  canvasRightMousedownHandler()
     // console.log("entra en la funcion canvasDoubleClickHandler");
     // globals.action.doubleClick = true;
 
-    console.log("Entra en canvasRightMouseupHandler");
+    // console.log("Entra en canvasRightMouseupHandler");
     globals.action.rightMousePressed = true; 
     
 

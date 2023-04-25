@@ -99,7 +99,7 @@ function detectCollisionBetweenMouseAndCards_Click()
         //If global que permite seleccionar o no cuando hay una carta Renderizada en grande
         if(!globals.bigRender)
         {
-            console.log("entra en el if bigRender de detectCollisionBetweenMouseAndCards_Click")
+            // console.log("entra en el if bigRender de detectCollisionBetweenMouseAndCards_Click")
             // console.log("Entra en el if de timerActivate")
             if (globals.action.mousePressed )
             {

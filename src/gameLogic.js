@@ -280,7 +280,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 card.state = CardState.GAME;
                 // console.log(card.effect);
                 
-                    console.log("Entra en NO spy");
+                    // console.log("Entra en NO spy");
                     decoyEffectActivation();    
                 
                 checkCardEffect(card);
@@ -636,7 +636,7 @@ function musterEffect(card){
         // console.log("search name: " + searchingCard.cardName);
 
         if(searchingCard.cardName === card.cardName || searchingCard.cardName === nameToSearch){
-            console.log(" entra en el if de nombres iguales");
+            // console.log(" entra en el if de nombres iguales");
             if(searchingCard.state !== CardState.GAME || searchingCard.state !== CardState.DISCARD ){
                 searchingCard.slotIdentificator = card.slotIdentificator;
                 checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum)
@@ -790,10 +790,10 @@ function checkIfSlotAvailable(effect, card, playerNum){
                 }
 
                 for(let i = 0; i < globals.cards.length; i++){
-                    console.log("entra en for de dar vuelta al decoy");
+                    // console.log("entra en for de dar vuelta al decoy");
                     if(globals.cards[i].slotIdentificator === decoyID && globals.cards[i].showBack === false)
                     {
-                        console.log("Da la vuelta a una carta");
+                        // console.log("Da la vuelta a una carta");
                         globals.cards[i].showBack = true;
                         i = globals.cards.length;
                     }
@@ -891,7 +891,7 @@ function calculatePoints(player){
 
         switch(globals.cards[i].slotIdentificator){
             case buff1:
-                console.log("entra en el case buff1");
+                // console.log("entra en el case buff1");
                 if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
                 {
                     // console.log("entra en el if1 commanders");
@@ -900,7 +900,7 @@ function calculatePoints(player){
             break;
 
             case buff2:
-                console.log("entra en el case buff2");
+                // console.log("entra en el case buff2");
                 if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
                 {
                     // console.log("entra en el ifcase2 commanders");
@@ -909,7 +909,7 @@ function calculatePoints(player){
                 
             break;
             case buff3:
-                console.log("entra en el case buff3");
+                // console.log("entra en el case buff3");
                 if(globals.cards[i].effect === Effect.COMMANDERS_HORN)
                 {
                     // console.log("entra en el ifcase3 commanders");
@@ -918,7 +918,7 @@ function calculatePoints(player){
                   
             break;
             case field1:
-                console.log("entra en el field1");
+                // console.log("entra en el field1");
                 if(globals.cards[i].effect === Effect.MORALE_BOOST){
                     // console.log("entra en el if1 morale_boost");
                     moraleBoost1++;
@@ -926,7 +926,7 @@ function calculatePoints(player){
             break;
 
             case field2:
-                console.log("entra en el field2"); 
+                // console.log("entra en el field2"); 
                 if(globals.cards[i].effect === Effect.MORALE_BOOST){
                     // console.log("entra en el ifcas2 morale_boost");
                     moraleBoost2++;
@@ -934,7 +934,7 @@ function calculatePoints(player){
             break;
 
             case field3:
-                console.log("entra en el field3");
+                // console.log("entra en el field3");
                 if(globals.cards[i].effect === Effect.MORALE_BOOST){
                     // console.log("entra en el ifcase3 morale_boost");
                     moraleBoost3++;
@@ -2015,7 +2015,7 @@ function updateLevelTime()
     
         if (globals.levelTime.timeChangeCounter > globals.levelTime.timeChangeValue)
         {
-            console.log("entra en updateLevelTime");
+            // console.log("entra en updateLevelTime");
             globals.levelTime.value++;
 
             //Reseteamos timeChangeCounter
