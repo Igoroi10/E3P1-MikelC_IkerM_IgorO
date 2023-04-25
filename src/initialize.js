@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, canvasDoubleClickHandler, btnNormalMode} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, canvasRightMouseupHandler, btnNormalMode} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -121,8 +121,18 @@ function initEvents()
     globals.canvas.addEventListener("mousedown", canvasMousedownHandler, false);
     globals.canvas.addEventListener("mousemove", canvasMousemoveHandler, false);
 
-    //Double click
-    globals.canvas.addEventListener("dblclick", canvasDoubleClickHandler, false);
+    //Right click
+    globals.canvas.addEventListener("rightclickdown",  canvasRightMousedownHandler, false);
+    globals.canvas.addEventListener("rightclickup",  canvasRightMouseupHandler, false);
+
+    //EVITAR QUE SALGA EL MENU DEL NAVEGADOR
+    let b = document.getElementsByClassName('container')[0];
+    let contextmenu = document.querySelector('.container');
+    b.oncontextmenu = (evt)=>{
+        evt.preventDefault(); 
+        contextmenu.style.display = 'block';
+    }
+   
 }
 
 //===========================================

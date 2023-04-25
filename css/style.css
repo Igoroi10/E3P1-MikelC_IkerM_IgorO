@@ -762,6 +762,11 @@ h3{
 
 }
 
+.container{
+    background:#f44544;
+    position:relative;
+  }
+
 /* #btnStart{
     margin: auto;
     width: 50%;
