@@ -4,6 +4,7 @@ import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLi
 import {detectCollisionBetweenMouseAndCards, detectCollisionBetweenMouseAndSlots, detectCollisionBetweenMouseAndCards_Click } from "./collision.js"; 
 import { selectEnemy, createList,  checkIfRoundPass} from "./events.js";
 import { Card } from "./Card.js";
+import { lenguajeText } from "./text.js";
 
 function update()
 {
@@ -2029,6 +2030,26 @@ function updateLevelTime()
         globals.timerActivate       = false;
 
     }
+}
+
+
+// =========================
+//     
+// =========================
+
+
+function multiMensaje()
+{
+    document.getElementById('Emaila').innerHTML = lenguajeText.emailText;
+    document.getElementById('Password').innerHTML = lenguajeText.passwordText;
+    document.getElementById('winrateTitle').innerHTML = lenguajeText.winrateText;
+    document.getElementById('gamesWonTitle').innerHTML = lenguajeText.gamesWonText;
+    document.getElementById('totalGamesTitle').innerHTML = lenguajeText.totalGamesText;
+    document.getElementById('head').innerHTML = lenguajeText.userListText;
+    document.getElementById('selectDifficultTitle').innerHTML = lenguajeText.selectDifficultText;
+    document.getElementById('btnNormal').innerHTML = lenguajeText.normalButtonText;
+    document.getElementById('difficultButton').innerHTML = lenguajeText.expertButtonText;
+    document.getElementById('logOutTitle').innerHTML = lenguajeText.logOutText;
 }
 
 export {
