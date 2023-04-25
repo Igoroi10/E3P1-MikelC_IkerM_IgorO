@@ -192,5 +192,5 @@ export default
 
     decoyAvailable: false,
 
-    lenguajeSelected = -1,
+    lenguajeSelected: 0,
 }
