@@ -194,4 +194,6 @@ export default
 
     //Inicializamos el render de la carta Grande a false
     bigRender: false,
+    
+    lenguajeSelected: 0,
 }
