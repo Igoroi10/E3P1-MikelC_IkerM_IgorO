@@ -90,25 +90,34 @@ top: -5px;
     font-size: 1.2em;
     top: 20px;
 }
-.forget{
+/* .forget{
+    background-color: red;
     margin: -15px 0 15px ;
     font-size: .9em;
     color: #fff;
     display: flex;
     justify-content: space-between;  
+} */
+
+.forgetbtn{
+    margin-top: 20px;
+    align-items: center;
+    width: 40%;
+    height: 30px;
+    color: #fff;
+    /* background: #fff; */
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 20;
+
 }
 
-.forget label input{
-    margin-right: 3px;
-    
-}
-.forget label a{
-    color: #fff;
+.forgetbtn p a{
     text-decoration: none;
+    color: #fff;
+    font-weight: 600;
 }
-.forget label a:hover{
-    text-decoration: underline;
-}
+
 .LogInbutton{
     width: 100%;
     height: 40px;
