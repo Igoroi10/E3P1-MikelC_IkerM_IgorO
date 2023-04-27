@@ -101,7 +101,7 @@ function initHTMLelements()
     globals.btnBack_register.addEventListener("mousedown", btnBack, false);
 
     globals.submit_forget.addEventListener("mousedown", btnSubmitForget, false);
-    // globals.sectionRegister.addEventListener("mousedown", btnSubmitRegister, false);
+    globals.submit_register.addEventListener("mousedown", btnSubmitRegister, false);
     
     // globals.sectionForgotPassword = 
     // globals.sectionRegister = 
@@ -519,7 +519,7 @@ function postForgotPasswordData(event)
 
     console.log(dataToSend);
 
-    //Ruta relativa al fichero que hace la petición (verifyUser.php)
+    //Ruta relativa al fichero que hace la petición (postNewPassword.php)
     const url = "../server/routes/postNewPassword.php";
     const request = new XMLHttpRequest();
     request.open('POST', url, true);
@@ -535,9 +535,6 @@ function postForgotPasswordData(event)
                 {
                     console.log(this.responseText);
                     const userData = JSON.parse(this.responseText);
-
-                    //Guardado Global
-                    globals.hostPlayerInfo = userData;
 
                     manageForgot(userData);
                 }
@@ -596,6 +593,97 @@ function manageForgot(userData)
         
     }
 }
+
+// ===========================================================
+//                    P O S T  d e  R E G I S T E R
+// ===========================================================
+
+function postRegisterData()
+{
+    console.log("Entra en postForgotPasswordData");
+
+    // Funcion que checkea si la Confirmacion de la contraseña Esta bien o no 
+    checkPassword();
+
+    const objectToSend = {
+        izen_abizena: globals.inputNameSurname_Register.value,
+        emaila: globals.inputEmail_Register.value.toLowerCase(),
+        pasahitza: globals.inputPassword_Register.value
+    }
+    
+    const dataToSend = 'izen_abizena=' + objectToSend.izen_abizena + '&emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
+
+    console.log(dataToSend);
+
+    //Ruta relativa al fichero que hace la petición (RegisterNewUser.php)
+    const url = "../server/routes/verifyUser.php"; // FAALTA CAMBIAR ESTO
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                    console.log(this.responseText);
+                    const userData = JSON.parse(this.responseText);
+
+                    manageRegister(userData);
+                }
+                else
+                    alert("Comunication error: No data received");
+            }
+            else
+                alert( "Comunication error: " + this.statusText);
+        }
+    }
+
+    request.responseType = "text";
+    request.send(dataToSend);
+
+}
+
+function manageRegister(userData)
+{
+    console.log("entra en el funcion manageRegister");
+    if (userData.emaila !== "")
+    {
+        if(userData === undefined || userData.pasahitza === null || userData.izen_abizena === "" || userData.pasahitza === "" )
+        {
+            console.log("entra en undefined o null");
+            globals.lblError.innerHTML = "The Email or Password are not correct";
+
+            globals.inputNameSurname_Register.value         = "";
+            globals.inputEmail_Register.value               = "";
+            globals.inputPassword_Register.value            = "";
+            globals.inputConfirmPassword_Register.value     = "";
+        }
+
+        else
+            lblError.innerHTML = "";
+    }
+
+    else
+    {
+        console.log("entra en el primer else de la funcion manageRegister")
+        //cambiar el emaila a minusculas
+        globals.inputEmail_Register.value.toLowerCase();
+        //Mostrar mensaje de todo ok
+
+
+        localStorageUpdate();
+        checkStates();
+        
+    }
+}
+
+// ===========================================================
+//                    F I N   D E   P O S T S
+// ===========================================================
 
 
 function updateUserText(user)
@@ -1492,4 +1580,5 @@ export {
     getAllUsers,
     initTimers,
     postForgotPasswordData,
+    postRegisterData
 }
