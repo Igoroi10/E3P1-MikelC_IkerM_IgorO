@@ -133,10 +133,12 @@ const Type ={
 
 const Key = {
 
-    ENTER:      13,     // Tecla Enter
-    DECK:       68,     // Tecla D
-    CARD:       67,     // Tecla C
-    EXAMINE:    69,     // Tecla E    
+    ENTER:          13,     // Tecla Enter
+    DECK:           68,     // Tecla D
+    CARD:           67,     // Tecla C
+    EXAMINE:        69,     // Tecla E 
+    ENGLISH_KEY:    78,     // Tecla N
+    EUSK_KEY:       85,     // Tecla U
 }
 
 const Card_img_quantity = {

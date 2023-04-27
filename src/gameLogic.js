@@ -4,6 +4,7 @@ import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLi
 import {detectCollisionBetweenMouseAndCards, detectCollisionBetweenMouseAndSlots, detectCollisionBetweenMouseAndCards_Click } from "./collision.js"; 
 import { selectEnemy, createList,  checkIfRoundPass} from "./events.js";
 import { Card } from "./Card.js";
+import { lenguajeText } from "./text.js";
 
 function update()
 {
@@ -2053,6 +2054,36 @@ function updateLevelTime()
     }
 }
 
+
+// =========================
+//     ESCRIBIR MULTILENGUAJE CON INNERHTML
+// =========================
+
+
+function multiMensaje()
+{
+    if(globals.action.n)
+    {
+        globals.lenguajeSelected = 0;
+    }
+    else if(globals.action.u)
+    {
+        globals.lenguajeSelected = 1;
+    }
+    console.log(globals.lenguajeSelected);
+
+    document.getElementById('mailText').innerHTML = lenguajeText[globals.lenguajeSelected].emailText;
+    document.getElementById('passwordText').innerHTML = lenguajeText[globals.lenguajeSelected].passwordText;
+    document.getElementById('winrateTitle').innerHTML = lenguajeText[globals.lenguajeSelected].winrateText;
+    document.getElementById('gamesWonTitle').innerHTML = lenguajeText[globals.lenguajeSelected].gamesWonText;
+    document.getElementById('totalGamesTitle').innerHTML = lenguajeText[globals.lenguajeSelected].totalGamesText;
+    document.getElementById('head').innerHTML = lenguajeText[globals.lenguajeSelected].userListText;
+    document.getElementById('selectDifficultTitle').innerHTML = lenguajeText[globals.lenguajeSelected].selectDifficultText;
+    document.getElementById('btnNormal').innerHTML = lenguajeText[globals.lenguajeSelected].normalButtonText;
+    document.getElementById('difficultButton').innerHTML = lenguajeText[globals.lenguajeSelected].expertButtonText;
+    document.getElementById('logOutTitle').innerHTML = lenguajeText[globals.lenguajeSelected].logOutText;
+}
+
 export {
     update,
     checkStates,
@@ -2068,4 +2099,5 @@ export {
     updateSelectedCard,
     decoyEffectResult,
     checkLastSelection,
+    multiMensaje,
 }

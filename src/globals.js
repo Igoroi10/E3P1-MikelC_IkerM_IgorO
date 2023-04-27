@@ -34,6 +34,10 @@ export default
 
     buttonMode: {},
 
+    buttonEnglish: {},
+
+    buttonEuskera: {},
+
     //Array de Cartas
     cards: [],
 
@@ -198,4 +202,6 @@ export default
     sectionForgotPassword: {},
 
     sectionRegister: {},
+    
+    lenguajeSelected: 0,
 }

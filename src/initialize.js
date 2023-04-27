@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -20,9 +20,11 @@ function initHTMLelements()
     globals.buttonPlayer    = document.getElementById('btnPlayer');
     globals.buttonAdd       = document.getElementById('btnAdd');
     globals.buttonTurn      = document.getElementById('btnTurn');
-    globals.buttonRound      = document.getElementById('btnRound');
+    globals.buttonRound     = document.getElementById('btnRound');
     globals.buttonLogout    = document.getElementsByClassName('btnLogout');
     globals.buttonMode      = document.getElementById('btnNormal');
+    globals.buttonEnglish   = document.getElementById('btnEnglish');
+    globals.buttonEuskera   = document.getElementById('btnEuskera');
 
     //Get A reference to the canvas 
     globals.canvas = document.getElementById('gameScreen');
@@ -45,7 +47,8 @@ function initHTMLelements()
         {
             globals.buttonLogout[i].addEventListener("mousedown",      btnLogOut,          false);
         }
-    
+    globals.buttonEnglish.addEventListener("mousedown", btnEnglishMode, false);
+    globals.buttonEuskera.addEventListener("mousedown", btnEuskeraMode, false);
 
 
     // globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);

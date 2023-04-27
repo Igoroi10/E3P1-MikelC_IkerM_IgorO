@@ -30,10 +30,15 @@ section{
     min-height: 100vh;
     width: 100%;
     
-    background: url('../images/background.jpg')no-repeat;
     background-position: center;
     background-size: cover;
 }
+
+body{
+    background: url('../images/background.jpg')no-repeat;
+    background-size: 100% 100%;
+}
+
 .form-box{
     position: relative;
     width: 400px;
@@ -439,7 +444,7 @@ html {
 }
 
 #adminMenuScreen{
-    background-image: url("../images/background.jpg");
+    /* background-image: url("../images/background.jpg"); */
     margin: auto;
     margin-top: 50px;
     width: 1664px; 
@@ -537,7 +542,7 @@ html {
 
 
 #playerMenuScreen{
-    background-image: url("../images/background.jpg");
+    /* background-image: url("../images/background.jpg"); */
     margin: auto;
     margin-top: 50px;
     width: 1664px; 
@@ -754,7 +759,7 @@ h3{
 #userList{
     float: right;
     width: 400px;
-    height: 700px;
+    height: 600px;
     color: white;
     /* background-color: #36395A; */
     margin: auto;
@@ -807,3 +812,52 @@ h3{
     border: 3px solid green;
     padding: 16px;
 } */
+
+#idiomaButton{
+    float: right;
+    margin-top: 0px;
+    margin-right: 150px;
+}
+
+.btnIdioma{
+    align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px,rgba(45, 35, 66, 0.3) 0 7px 13px -3px,#3d7ac4 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 5px;
+    padding-right: 5px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+    background-image: url("../images/background.jpg");
+    margin-left: 10px;
+    margin-top: 5px;
+}
+.btnIdioma:focus {
+    box-shadow: #a9a9f3 0 0 0 1.5px inset, rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px, #acacfc 0 -3px 0 inset;
+  }
+  
+.btnIdioma:active {
+    box-shadow: #b1b1ff 0 3px 7px inset;
+    transform: translateY(2px);
+
+}

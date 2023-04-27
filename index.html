@@ -11,6 +11,12 @@
     <!-- <button id = "btnStart" class = "btn btn-primary"> START</button> -->
     <!-- <button id = "btnAdmin" class="btn btn-primary"> ADMIN</button> -->
     <!-- <button id = "btnPlayer" class="btn btn-primary">PLAYER</button> -->
+    <header>            
+        <div id="idiomaButton" style="display: block;">
+            <button class="btnIdioma" id="btnEnglish" type="button">ENGLISH</button>
+            <button class="btnIdioma" id="btnEuskera" type="button">EUSKERA</button>
+        </div>
+    </header>
 
     <div id = "divCanvas">
         <div class="container">
@@ -36,7 +42,7 @@
             </div>
 
             <div id="logOutButton">
-                <button class="btnLogout" type="button">Log out</button>
+                <button class="btnLogout" id="logOutTitle" type="button">Log out</button>
             </div>
 
         
@@ -92,13 +98,13 @@
                     
             </div>
             <div id="gamesWon">
-                    <h2>Games Won: &nbsp;&nbsp;&nbsp; 46</h2>
+                    <h2 id="gamesWonTitle">Games Won: &nbsp;&nbsp;&nbsp; 46</h2>
             </div>
             <div id="totalGames">
-                    <h2>Total games: &nbsp; 100</h2>
+                    <h2 id="totalGamesTitle">Total games: &nbsp; 100</h2>
             </div>
             <div id="selectDifficult">
-                <h3>Select game difficult:</h3>
+                <h3 id="selectDifficultTitle">Select game difficult:</h3>
                 <button id="btnNormal" type="button">Normal</button>
                 <button id="difficultButton" type="button">Expert</button>
                 <button id="btnStart" type="button" class="btn btn-primary" style="display: none;">PLAY</button>
@@ -134,14 +140,14 @@
                                     <ion-icon name="mail-outline"></ion-icon>
                                     <!-- <label for="id_name">Email:</label> -->
                                     <input type="email" name="email" id="Emaila" placeholder="example@domain.com" required>
-                                    <label for="">Email</label>
+                                    <label for="" id="mailText">Email</label>
                                 </div>
 
                                 <!-- Form PassWord -->
                                 <div class="inputbox">
                                     <ion-icon name="lock-closed-outline"></ion-icon>
                                     <input type="password" name="password" id="Password" value="" placeholder=""required> 
-                                    <label for="password">Password</label>
+                                    <label for="password" id="passwordText">Password</label>
                                 </div>
 
                                

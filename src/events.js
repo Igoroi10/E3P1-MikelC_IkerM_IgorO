@@ -3,7 +3,7 @@ import { createNormalDeck, initGame } from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
-import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal,  decoyEffectResult } from "./gameLogic.js";
+import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal,  decoyEffectResult , multiMensaje} from "./gameLogic.js";
 
 
 
@@ -79,11 +79,21 @@ export function btnStartAdmin()
     document.getElementById('adminMenuScreen').style.display = "block";
     document.getElementById('sectionLogIn').style.display = "none";
     
-
     // checkStates();
+}
 
-    
+function btnEnglishMode()
+{
+    globals.lenguajeSelected = 0;
+    console.log("entra en la funcion btnEnglishMode");
+    multiMensaje();
+}
 
+function btnEuskeraMode()
+{
+    globals.lenguajeSelected = 1;
+    console.log("entra en la funcion btnEnglishMode");
+    multiMensaje();
 }
 
 function btnForgotPassword()
@@ -415,6 +425,15 @@ export function keydownHandler(event)
             globals.action.e        = true;
             break;
 
+        case Key.ENGLISH_KEY:
+            console.log("Entra en la tecla N");
+            globals.action.n        = true;
+            break;
+
+        case Key.EUSK_KEY:
+            console.log("Entra en la tecla U");
+            globals.action.u        = true;
+            break;
         
     }
 
@@ -444,7 +463,17 @@ export function keyupHandler(event)
 
         case Key.EXAMINE:
             globals.action.e        = false;
-            break;        
+            break;  
+            
+        case Key.ENGLISH_KEY:
+            console.log("Entra en la tecla N");
+            globals.action.n        = false;
+            break;
+
+        case Key.EUSK_KEY:
+            console.log("Entra en la tecla U");
+            globals.action.u        = false;
+            break;
     }
 
 }
@@ -478,4 +507,6 @@ export {
     decoyEvent,
     btnForgotPassword,
     btnRegister,
+    btnEnglishMode,
+    btnEuskeraMode,
 }
