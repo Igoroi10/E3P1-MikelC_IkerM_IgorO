@@ -195,6 +195,7 @@ function btnBack()
 {
     console.log("entra en btnBack");
     globals.gameState = State.LOG_IN;
+    document.getElementById('lblError').innerHTML = ""; 
     globals.inputEmail.value             = "";
     globals.inputPassword.value          = "";
 
