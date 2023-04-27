@@ -428,11 +428,13 @@ export function keydownHandler(event)
         case Key.ENGLISH_KEY:
             console.log("Entra en la tecla N");
             globals.action.n        = true;
+            // multiMensaje();
             break;
 
         case Key.EUSK_KEY:
             console.log("Entra en la tecla U");
             globals.action.u        = true;
+            // multiMensaje();
             break;
         
     }

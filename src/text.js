@@ -18,7 +18,8 @@ export const lenguajeText = [
         confirmPasswordText: 'Confirm Password',
         submitText: 'SUBMIT',
         nameSurnameText: 'Name & Surname',
-        registerText: 'Register'
+        registerText: 'Register',
+        backText: 'Back'
     },
 
     {
@@ -38,7 +39,8 @@ export const lenguajeText = [
         confirmPasswordText: 'Pasahitza egiaztatu',
         submitText: 'BIDALI',
         nameSurnameText: 'Izen Abizena',
-        registerText: 'Erregistratu'
+        registerText: 'Erregistratu',
+        backText: 'Atzera'
     },
 ]
 
