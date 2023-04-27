@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -57,16 +57,33 @@ function initHTMLelements()
 
 
     //Elementos
-    globals.btnLogin        = document.getElementById('btnLogin'); 
-    globals.inputEmail      = document.getElementById('Emaila');
-    globals.inputPassword   = document.getElementById('Password');
+    globals.btnLogin                = document.getElementById('btnLogin'); 
+    globals.inputEmail              = document.getElementById('Emaila');
+    globals.inputPassword           = document.getElementById('Password');
+    globals.btnBack                 = document.getElementById('btnBack');
+    globals.btnBack_register        = document.getElementById('btnBack_register');
+    globals.lblSessionUser          = document.getElementById('lblSessionUser');
+    globals.lblError                = document.getElementById('lblError');
+    globals.sectionLogIn            = document.getElementById('sectionLogIn');
+    globals.sectionPlay             = document.getElementById('sectionPlay');
+    
+    
 
-    globals.lblSessionUser  = document.getElementById('lblSessionUser');
-    globals.lblError        = document.getElementById('lblError');
-    globals.sectionLogIn    = document.getElementById('sectionLogIn');
-    globals.sectionPlay     = document.getElementById('sectionPlay');
-    globals.sectionForgotPassword = document.getElementById('forgetbtn');
-    globals.sectionRegister = document.getElementById('btnregister');
+    //Formulario Forget
+    globals.sectionForgotPassword   = document.getElementById('forgetbtn');
+
+    globals.inputEmail_Forgot                   = document.getElementById('Emaila_Forgot');
+    globals.inputPassword_Forgot                = document.getElementById('Password_Forgot');
+    globals.inputConfirmPassword_Forgot         = document.getElementById('Confirm_Password_Forgot');
+    
+    //Formulario Register
+    globals.sectionRegister         = document.getElementById('btnregister');
+
+    globals.inputNameSurname_Register               = document.getElementById('name_surname');
+    globals.inputEmail_Register                     = document.getElementById('Emaila_Register');
+    globals.inputPassword_Register                  = document.getElementById('Password_Register');
+    globals.inputConfirmPassword_Register           = document.getElementById('Confirm_Password_Register');
+
 
     //Mostramos la pantalla de Log In
     document.getElementById('sectionLogIn').style.display = "flex";
@@ -77,6 +94,10 @@ function initHTMLelements()
     globals.btnLogin.addEventListener("mousedown", logInHandler, false);
     globals.sectionForgotPassword.addEventListener("mousedown", btnForgotPassword, false);
     globals.sectionRegister.addEventListener("mousedown", btnRegister, false);
+
+    globals.btnBack.addEventListener("mousedown", btnBack, false);
+    globals.btnBack_register.addEventListener("mousedown", btnBack, false);
+    
     // globals.sectionForgotPassword = 
     // globals.sectionRegister = 
     
