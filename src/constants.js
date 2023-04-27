@@ -213,9 +213,9 @@ const SlotIdentificators = {
 
 
     PLAYER0_HAND:   13,
-    PLAYER0_DECK:   14,
-    
-    PLAYER1_HAND:   15,
+    PLAYER1_HAND:   14,
+
+    PLAYER0_DECK:   15,
     PLAYER1_DECK:   16,
 
     PLAYER1_DISCARD: 17,
