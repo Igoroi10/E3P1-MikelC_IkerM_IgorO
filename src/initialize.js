@@ -554,13 +554,13 @@ function insertCard(i){
 
         case "unit":
         const unitCard = new UnitCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, CardState.DECK, true, imageSet,
-                                      globals.cardInfo[i].balioa, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua,
+                                      globals.cardInfo[i].balioa, globals.cardInfo[i].description, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].efektua,
                                       globals.cardInfo[i].urritasun_karta, globals.cardInfo[i].mota);
         globals.cards.push(unitCard);
         break;
 
         case "instaeffect":
-        const instaCard = new SuddenCard(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
+        const instaCard = new SuddenCard(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].efektua);
         globals.cards.push(instaCard);
         if(globals.cardInfo[i].izena === "Decoy"){
             console.log("Decoy added")
@@ -570,13 +570,13 @@ function insertCard(i){
         break;
 
         case "permaeffect":
-        const permaCard = new PermaCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
+        const permaCard = new PermaCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].efektua);
         globals.cards.push(permaCard);
         break;
 
         // case "climate":
         // const climateCard = new ClimateCard(globals.cardInfo[i].irudia, globals.cardInfo[i].cardName, 
-        //                                     CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].efektua);
+        //                                     CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].deskripzioa, globals.cardInfo[i].efektua);
         // globals.cards.push(climateCard);
         // break;
 
