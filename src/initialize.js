@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -75,6 +75,7 @@ function initHTMLelements()
     globals.inputEmail_Forgot                   = document.getElementById('Emaila_Forgot');
     globals.inputPassword_Forgot                = document.getElementById('Password_Forgot');
     globals.inputConfirmPassword_Forgot         = document.getElementById('Confirm_Password_Forgot');
+    globals.submit_forget                       = document.getElementById('btnLogin_forgot');
     
     //Formulario Register
     globals.sectionRegister         = document.getElementById('btnregister');
@@ -83,6 +84,7 @@ function initHTMLelements()
     globals.inputEmail_Register                     = document.getElementById('Emaila_Register');
     globals.inputPassword_Register                  = document.getElementById('Password_Register');
     globals.inputConfirmPassword_Register           = document.getElementById('Confirm_Password_Register');
+    globals.submit_register                         = document.getElementById('btnLogin_Register');
 
 
     //Mostramos la pantalla de Log In
@@ -97,6 +99,9 @@ function initHTMLelements()
 
     globals.btnBack.addEventListener("mousedown", btnBack, false);
     globals.btnBack_register.addEventListener("mousedown", btnBack, false);
+
+    globals.sectionRegister.addEventListener("mousedown", btnSubmitForget, false);
+    globals.sectionRegister.addEventListener("mousedown", btnSubmitRegister, false);
     
     // globals.sectionForgotPassword = 
     // globals.sectionRegister = 
@@ -376,7 +381,9 @@ function loadHandler()
 
     }
 }
-
+// ===========================================================
+//                          P O S T
+// ===========================================================
 function logInHandler(event)
 {
     // console.log("Send Button Pressed");
@@ -493,6 +500,60 @@ console.log("entra en el funcion manageLogin");
     selectEnemy();
     console.log("Fin de funcion")
 }
+
+// ===========================================================
+//                    P O S T  d e  F O R G O T
+// ===========================================================
+function postForgotPasswordData(event)
+{
+    // console.log("Send Button Pressed");
+
+    const objectToSend = {
+        emaila: globals.inputEmail.value,
+        pasahitza: globals.inputPassword.value
+    }
+    
+    const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
+
+    console.log(dataToSend);
+
+    //Ruta relativa al fichero que hace la petición (verifyUser.php)
+    const url = "../server/routes/verifyUser.php";
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                    // console.log(this.responseText);
+                    const userData = JSON.parse(this.responseText);
+
+                    //Guardado Global
+                    globals.hostPlayerInfo = userData;
+
+                    // console.log(globals.hostPlayerInfo.emaila);
+                    manageLogin(userData);
+                }
+                else
+                    alert("Comunication error: No data received");
+            }
+            else
+                alert( "Comunication error: " + this.statusText);
+        }
+    }
+
+    request.responseType = "text";
+    request.send(dataToSend);
+    console.log("datatoSend2:  " + dataToSend)
+
+}
+
 
 function updateUserText(user)
 {
@@ -1386,4 +1447,5 @@ export {
     initSlots,
     getAllUsers,
     initTimers,
+    postForgotPasswordData,
 }
