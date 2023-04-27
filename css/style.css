@@ -99,7 +99,7 @@ top: -5px;
     justify-content: space-between;  
 } */
 
-.forgetbtn{
+#forgetbtn{
     margin-top: 20px;
     align-items: center;
     width: 40%;
@@ -130,7 +130,7 @@ top: -5px;
     font-weight: 600;
 }
 
-.register{
+#register{
     font-size: .9em;
     color: #fff;
     text-align: center;
