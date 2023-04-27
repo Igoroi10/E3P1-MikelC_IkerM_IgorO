@@ -150,12 +150,12 @@
 
                                  <!-- Form Forget -->
                                  <div class="forget">
-                                    <p class="forgetbtn"><a href="#">Forgot Your Password?</a></p>
+                                    <p id="forgetbtn"><a href="#">Forgot Your Password?</a></p>
                                 </div>
 
                                 <!-- Register "button" -->
-                                <div class="register">
-                                    <p>Don't have a account <a href="#">Register</a></p>
+                                <div id="register">
+                                    <p id="btnregister">Don't have a account <a href="#">Register</a></p>
                                 </div>
 
                             </div>
@@ -163,122 +163,6 @@
                     </div>
                 </div>
             </section>
-            <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-            <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-
-        <!-- Formulario Forget Password -->
-
-        <section id="sectionForgotPassword" >
-            <div class="form-box">  
-                <div class="form-value">
-                    <form action="" onsubmit="return false">
-                        <h2>ForgotPassword</h2>
-                        <div class="inputbox">
-                            <label id="lblError"></label>
-                            <br>
-
-                            <!-- Email -->
-                            <div class="inputbox">
-                                <ion-icon name="mail-outline"></ion-icon>
-                                <!-- <label for="id_name">Email:</label> -->
-                                <input type="email" name="email" id="Emaila" placeholder="example@domain.com" required>
-                                <label for="">Email</label>
-                            </div>
-
-                            <!-- Form PassWord -->
-                            <div class="inputbox">
-                                <ion-icon name="lock-closed-outline"></ion-icon>
-                                <input type="password" name="password" id="Password" value="" placeholder=""required> 
-                                <label for="password">Password</label>
-                            </div>
-
-                            <!-- Form Confirm password -->
-                            <div class="inputbox">
-                                <ion-icon name="lock-closed-outline"></ion-icon>
-                                <input type="password" name="password" id="Confirm_Password" value="" placeholder=""required> 
-                                <label for="password">Confirm Password</label>
-                            </div>
-
-                            <button id="btnLogin" type="submit" class="btn btn-primary">SUMBIT</button>
-
-                            <!-- Register "button" -->
-                            <div class="register">
-                                <p>Don't have a account <a href="#">Register</a></p>
-                            </div>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-
-
-        <!-- FORMULARIO REGISTER -->
-
-        <section id="sectionRegister" >
-            <div class="form-box">  
-                <div class="form-value">
-                    <form action="" onsubmit="return false">
-                        <h2>Register</h2>
-                        <div class="inputbox">
-                            <label id="lblError"></label>
-                            <br>
-
-                            <!-- Name & Surname -->
-                            <div class="inputbox">
-                                <ion-icon name="mail-outline"></ion-icon>
-                                <input type="name" name="email" id="Emaila" placeholder="Jovani Vazquez" required>
-                                <label for="">Name & Surname </label>
-                            </div>
-
-                             <!-- Surname
-                             <div class="inputbox">
-                                <ion-icon name="mail-outline"></ion-icon>
-                                <input type="name" name="surname" id="surname" placeholder="Vazquez" required>
-                                <label for="">Surname</label>
-                            </div> -->
-
-                             <!-- Email -->
-                             <div class="inputbox">
-                                <ion-icon name="mail-outline"></ion-icon>
-                                <input type="email" name="email" id="Emaila" placeholder="example@domain.com" required>
-                                <label for="">Email</label>
-                            </div>
-
-                            <!-- Form PassWord -->
-                            <div class="inputbox">
-                                <ion-icon name="lock-closed-outline"></ion-icon>
-                                <input type="password" name="password" id="Password" value="" placeholder=""required> 
-                                <label for="password">Password</label>
-                            </div>
-
-                            <!-- Form Confirm password -->
-                            <div class="inputbox">
-                                <ion-icon name="lock-closed-outline"></ion-icon>
-                                <input type="password" name="password" id="Confirm_Password" value="" placeholder=""required> 
-                                <label for="password">Confirm Password</label>
-                            </div>
-
-                            <button id="btnLogin" type="submit" class="btn btn-primary">SUMBIT</button>
-
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-
-
-
-
-
-
-
 
         <!-- Seccion PLAY -->
         <section id="sectionPlay">
@@ -292,8 +176,117 @@
         </section>
 
     </div>
+
+    <!-- Formulario Forget Password -->
+    <div id="forgotPasswordScreen">
+        <section id="sectionForgotPassword" >
+            <div class="form-box">  
+                <div class="form-value">
+                    <form action="" onsubmit="return false">
+                        <h2>Forgot Password</h2>
+                        <div class="inputbox">
+                            <label id="lblError"></label>
+                            <br>
+    
+                            <!-- Email -->
+                            <div class="inputbox">
+                                <ion-icon name="mail-outline"></ion-icon>
+                                <!-- <label for="id_name">Email:</label> -->
+                                <input type="email" id="Emaila" placeholder="example@domain.com" required>
+                                <label for="">Email</label>
+                            </div>
+    
+                            <!-- Form PassWord -->
+                            <div class="inputbox">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                                <input type="password" id="Password" value="" placeholder=""required> 
+                                <label for="password">Password</label>
+                            </div>
+    
+                            <!-- Form Confirm password -->
+                            <div class="inputbox">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                                <input type="password" id="Confirm_Password" value="" placeholder=""required> 
+                                <label for="password">Confirm Password</label>
+                            </div>
+    
+                            <button id="btnLogin" type="submit" class="btn btn-primary">SUMBIT</button>
+    
+                            <!-- Register "button" -->
+                            <div id="register">
+                                <p id="btnregister">Don't have a account <a href="#">Register</a></p>
+                            </div>
+    
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    
+
+
+
+    <!-- FORMULARIO REGISTER -->
+    <div id="registerScreen">
+        <section id="sectionRegister" >
+            <div class="form-box">  
+                <div class="form-value">
+                    <form action="" onsubmit="return false">
+                        <h2>Register</h2>
+                        <div class="inputbox">
+                            <label id="lblError"></label>
+                            <br>
+    
+                            <!-- Name & Surname -->
+                            <div class="inputbox">
+                                <ion-icon name="mail-outline"></ion-icon>
+                                <input type="name" id="Emaila" placeholder="Jovani Vazquez" required>
+                                <label for="">Name & Surname </label>
+                            </div>
+    
+                             <!-- Surname
+                             <div class="inputbox">
+                                <ion-icon name="mail-outline"></ion-icon>
+                                <input type="name" name="surname" id="surname" placeholder="Vazquez" required>
+                                <label for="">Surname</label>
+                            </div> -->
+    
+                             <!-- Email -->
+                             <div class="inputbox">
+                                <ion-icon name="mail-outline"></ion-icon>
+                                <input type="email" id="Emaila" placeholder="example@domain.com" required>
+                                <label for="">Email</label>
+                            </div>
+    
+                            <!-- Form PassWord -->
+                            <div class="inputbox">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                                <input type="password" id="Password" value="" placeholder=""required> 
+                                <label for="password">Password</label>
+                            </div>
+    
+                            <!-- Form Confirm password -->
+                            <div class="inputbox">
+                                <ion-icon name="lock-closed-outline"></ion-icon>
+                                <input type="password" id="Confirm_Password" value="" placeholder=""required> 
+                                <label for="password">Confirm Password</label>
+                            </div>
+    
+                            <button id="btnLogin" type="submit" class="btn btn-primary">SUMBIT</button>
+    
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+       
+    </div>
+    
     
     <script type="module" src="./src/game.js"></script>
-
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
