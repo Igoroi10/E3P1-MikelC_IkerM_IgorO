@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -62,6 +62,8 @@ function initHTMLelements()
     globals.lblError        = document.getElementById('lblError');
     globals.sectionLogIn    = document.getElementById('sectionLogIn');
     globals.sectionPlay     = document.getElementById('sectionPlay');
+    globals.sectionForgotPassword = document.getElementById('forgetbtn');
+    globals.sectionRegister = document.getElementById('btnregister');
 
     //Mostramos la pantalla de Log In
     document.getElementById('sectionLogIn').style.display = "flex";
@@ -70,6 +72,11 @@ function initHTMLelements()
     // globals.sectionPlay.style.display   = "none";
 
     globals.btnLogin.addEventListener("mousedown", logInHandler, false);
+    globals.sectionForgotPassword.addEventListener("mousedown", btnForgotPassword, false);
+    globals.sectionRegister.addEventListener("mousedown", btnRegister, false);
+    // globals.sectionForgotPassword = 
+    // globals.sectionRegister = 
+    
 
     
 }
