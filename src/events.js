@@ -86,6 +86,20 @@ export function btnStartAdmin()
 
 }
 
+function btnForgotPassword()
+{
+    console.log("entra en la funcion btnForgotPassword")
+    globals.gameState = State.FORGOT_PASSWORD;
+    checkStates();
+}
+
+function btnRegister()
+{
+    console.log("entra en la funcion btnRegister")
+    globals.gameState = State.REGISTER;
+    checkStates();
+}
+
 function createList()
 {
 
@@ -462,4 +476,6 @@ export {
     canvasRightMouseupHandler,
     checkIfRoundPass,
     decoyEvent,
+    btnForgotPassword,
+    btnRegister,
 }
