@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { createNormalDeck, initGame, postForgotPasswordData, postRegisterData,  } from "./initialize.js";
+import { createNormalDeck, initGame, postForgotPasswordData  } from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
@@ -72,7 +72,7 @@ export function btnLogOut ()
 
 function btnSubmitForget()
 {
-    
+    console.log("entra en boton submit");
     postForgotPasswordData();
 
 }

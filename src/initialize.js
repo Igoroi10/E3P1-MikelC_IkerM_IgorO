@@ -100,8 +100,8 @@ function initHTMLelements()
     globals.btnBack.addEventListener("mousedown", btnBack, false);
     globals.btnBack_register.addEventListener("mousedown", btnBack, false);
 
-    globals.sectionRegister.addEventListener("mousedown", btnSubmitForget, false);
-    globals.sectionRegister.addEventListener("mousedown", btnSubmitRegister, false);
+    globals.submit_forget.addEventListener("mousedown", btnSubmitForget, false);
+    // globals.sectionRegister.addEventListener("mousedown", btnSubmitRegister, false);
     
     // globals.sectionForgotPassword = 
     // globals.sectionRegister = 
@@ -506,11 +506,13 @@ console.log("entra en el funcion manageLogin");
 // ===========================================================
 function postForgotPasswordData(event)
 {
-    // console.log("Send Button Pressed");
+    console.log("Entra en postForgotPasswordData");
+
+    checkPassword();
 
     const objectToSend = {
-        emaila: globals.inputEmail.value,
-        pasahitza: globals.inputPassword.value
+        emaila: globals.inputEmail_Forgot.value,
+        pasahitza: globals.inputPassword_Forgot.value
     }
     
     const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
@@ -518,7 +520,7 @@ function postForgotPasswordData(event)
     console.log(dataToSend);
 
     //Ruta relativa al fichero que hace la petición (verifyUser.php)
-    const url = "../server/routes/verifyUser.php";
+    const url = "../server/routes/postNewPassword.php";
     const request = new XMLHttpRequest();
     request.open('POST', url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -537,8 +539,7 @@ function postForgotPasswordData(event)
                     //Guardado Global
                     globals.hostPlayerInfo = userData;
 
-                    // console.log(globals.hostPlayerInfo.emaila);
-                    manageLogin(userData);
+                    manageForgot(userData);
                 }
                 else
                     alert("Comunication error: No data received");
@@ -550,8 +551,48 @@ function postForgotPasswordData(event)
 
     request.responseType = "text";
     request.send(dataToSend);
-    console.log("datatoSend2:  " + dataToSend)
 
+}
+
+function checkPassword()
+{
+    if (globals.inputPassword_Forgot.value !== globals.inputConfirmPassword_Forgot.value )
+    {
+        console.log("entr en el if de checkPassword")
+        globals.inputPassword_Forgot.value = null;
+    }
+    else
+        console.log("contraseña correcta");
+}
+
+function manageForgot(userData)
+{
+    console.log("entra en el funcion manageForgot");
+    if (userData.emaila !== "")
+    {
+        if(userData === undefined || userData.pasahitza === null)
+        {
+            console.log("entra en undefined o null");
+            globals.lblError.innerHTML = "The Email or Password are not correct";
+            globals.inputEmail_Forgot.value = "";
+            globals.inputPassword_Forgot.value = "";
+            globals.inputConfirmPassword_Forgot.value = "";
+        }
+
+        else
+            lblError.innerHTML = "";
+    }
+
+    else
+    {
+        console.log("entra en el primer else de la funcion manageForgot")
+        //Mostrar mensaje de todo ok
+
+
+        localStorageUpdate();
+        checkStates();
+        
+    }
 }
 
 

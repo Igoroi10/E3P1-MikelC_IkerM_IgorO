@@ -213,7 +213,7 @@ export default
 
     inputEmail_Forgot:              {},
     inputPassword_Forgot:           {},
-    inputConfirmPassword_Forgot :   {},
+    inputConfirmPassword_Forgot:    {},
     submit_forget:                  {},
     
     //Formulario Register
