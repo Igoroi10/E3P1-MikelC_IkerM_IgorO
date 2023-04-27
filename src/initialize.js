@@ -533,7 +533,7 @@ function postForgotPasswordData(event)
             {
                 if(this.responseText != null)
                 {
-                    // console.log(this.responseText);
+                    console.log(this.responseText);
                     const userData = JSON.parse(this.responseText);
 
                     //Guardado Global
