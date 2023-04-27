@@ -156,12 +156,12 @@
 
                                  <!-- Form Forget -->
                                  <div class="forget">
-                                    <p class="forgetbtn"><a href="#">Forgot Your Password?</a></p>
+                                    <p id="forgetPassword?" class="forgetbtn"><a href="#">Forgot Your Password?</a></p>
                                 </div>
 
                                 <!-- Register "button" -->
                                 <div class="register">
-                                    <p>Don't have a account <a href="#">Register</a></p>
+                                    <p id="DontHaveAccount">Don't have a account <a id="RegisterBox" href="#">Register</a></p>
                                 </div>
 
                             </div>
@@ -179,7 +179,7 @@
             <div class="form-box">  
                 <div class="form-value">
                     <form action="" onsubmit="return false">
-                        <h2>ForgotPassword</h2>
+                        <h2 id="forgotPasswordTitle">ForgotPassword</h2>
                         <div class="inputbox">
                             <label id="lblError"></label>
                             <br>
@@ -189,21 +189,21 @@
                                 <ion-icon name="mail-outline"></ion-icon>
                                 <!-- <label for="id_name">Email:</label> -->
                                 <input type="email" name="email" id="Emaila" placeholder="example@domain.com" required>
-                                <label for="">Email</label>
+                                <label for="" id="emailForgotPass">Email</label>
                             </div>
 
                             <!-- Form PassWord -->
                             <div class="inputbox">
                                 <ion-icon name="lock-closed-outline"></ion-icon>
                                 <input type="password" name="password" id="Password" value="" placeholder=""required> 
-                                <label for="password">Password</label>
+                                <label for="password" id="passForgotPass">Password</label>
                             </div>
 
                             <!-- Form Confirm password -->
                             <div class="inputbox">
                                 <ion-icon name="lock-closed-outline"></ion-icon>
                                 <input type="password" name="password" id="Confirm_Password" value="" placeholder=""required> 
-                                <label for="password">Confirm Password</label>
+                                <label for="password" id="confirmPassForgot">Confirm Password</label>
                             </div>
 
                             <button id="btnLogin" type="submit" class="btn btn-primary">SUMBIT</button>

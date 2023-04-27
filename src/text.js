@@ -11,7 +11,14 @@ export const lenguajeText = [
         selectDifficultText: 'Select game difficult:', 
         normalButtonText: 'Normal', 
         expertButtonText: 'Expert', 
-        logOutText: 'Log out'
+        logOutText: 'Log out',
+        forgotPasswordBox: 'Forgot Your Password?',
+        dontHaveAccountText: "Don't have a account",
+        forgotPasswordText: 'Forgot Password',
+        confirmPasswordText: 'Confirm Password',
+        submitText: 'SUBMIT',
+        nameSurnameText: 'Name & Surname',
+        registerText: 'Register'
     },
 
     {
@@ -24,7 +31,14 @@ export const lenguajeText = [
         selectDifficultText: 'Partidaren zailtasuna aukeratu:', 
         normalButtonText: 'Normala', 
         expertButtonText: 'Aditua', 
-        logOutText: 'Sahioa itxi'
+        logOutText: 'Sahioa itxi',
+        forgotPasswordBox: 'Pasahitza ahaztu zaizu?',
+        dontHaveAccountText: "Ez daukazu sahiorik Erregistratu",
+        forgotPasswordText: 'Pasahitza ahaztuta',
+        confirmPasswordText: 'Pasahitza egiaztatu',
+        submitText: 'BIDALI',
+        nameSurnameText: 'Izen Abizena',
+        registerText: 'Erregistratu'
     },
 ]
 

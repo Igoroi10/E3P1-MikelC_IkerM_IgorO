@@ -484,6 +484,7 @@ function updateUserText(user)
 
 
 function createNormalDeck(){
+    console.log(globals.cards);
     let cardsNeeded = 65;
     const normalMode = GameMode.NORMAL_MODE;
     addZarate();
