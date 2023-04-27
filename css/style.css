@@ -781,6 +781,11 @@ h3{
     font-weight: bold;
 }
 
+#lblErrorRegister{
+    color: red;
+    font-weight: bold;
+}
+
 #lblSessionUser{
     font-weight: bold;
 }
