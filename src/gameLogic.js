@@ -114,7 +114,7 @@ function checkStates(){
             makeThisScreenVisible(State.LOG_IN);
            break;
 
-    
+    //Comentario comentado
         case State.FORGOT_PASSWORD:
             console.log("entra en forgotpassword");
             makeThisScreenVisible(State.FORGOT_PASSWORD);
