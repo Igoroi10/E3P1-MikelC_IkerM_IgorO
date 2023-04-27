@@ -105,43 +105,54 @@ function checkStates(){
    //Change what the game is doing based on the game state
    switch(globals.gameState)
    {
-       case State.LOADING:
+        case State.LOADING:
            initialLoad();
            makeThisScreenVisible(State.LOADING);
            break;
 
-       case State.LOG_IN:
+        case State.LOG_IN:
             makeThisScreenVisible(State.LOG_IN);
            break;
 
-       case State.ADMIN_MENU:
+    
+        case State.FORGOT_PASSWORD:
+            console.log("entra en forgotpassword");
+            makeThisScreenVisible(State.FORGOT_PASSWORD);
+            break;
+
+        case State.REGISTER:
+            console.log("entra en Register");
+            makeThisScreenVisible(State.REGISTER);
+            break;
+
+        case State.ADMIN_MENU:
             document.getElementById('adminName').innerHTML= '' +  globals.hostPlayerInfo.izena_abizena;
             makeThisScreenVisible(State.ADMIN_MENU);
            break;
 
-       case State.PLAYER_MENU:
+        case State.PLAYER_MENU:
             document.getElementById('playerName').innerHTML= '' +  globals.hostPlayerInfo.izena_abizena;
             makeThisScreenVisible(State.PLAYER_MENU);
            break;
 
-       case State.LOAD_GAME:
+        case State.LOAD_GAME:
             initGameLoad();
            break;
 
-       case State.PLAYING:
+        case State.PLAYING:
            // console.log("Colocolo")
            //playGame();
            break;
 
-       case State.STATS:
+        case State.STATS:
             makeThisScreenVisible(State.STATS);
            break;
 
-       case State.ROUND_END:
+        case State.ROUND_END:
             makeThisScreenVisible(State.ROUND_END);
            break;
 
-       case State.GAME_END:
+        case State.GAME_END:
             makeThisScreenVisible(State.GAME_END);
            break;        
 
@@ -157,7 +168,7 @@ function checkStates(){
             globals.gameState = State.PLAYING;
            break; 
 
-       default:
+        default:
            console.error("Error: Game State invalid");
    }
 }
@@ -180,6 +191,14 @@ function makeThisScreenVisible(screen){
         case State.PLAYING:
             visibleDiv = "divCanvas";
             break;
+
+        case State.FORGOT_PASSWORD:
+            visibleDiv = "forgotPasswordScreen";
+            break;
+
+        case State.REGISTER:
+            visibleDiv = "registerScreen";
+            break;
     }
 
 
@@ -189,6 +208,8 @@ function makeThisScreenVisible(screen){
     document.getElementById("playerMenuScreen").style.display       = "none";
     document.getElementById("adminMenuScreen").style.display        = "none";
     document.getElementById("divCanvas").style.display              = "none";
+    document.getElementById("forgotPasswordScreen").style.display   = "none";
+    document.getElementById("registerScreen").style.display         = "none";
 
     document.getElementById(visibleDiv).style.display    = "block";
 
