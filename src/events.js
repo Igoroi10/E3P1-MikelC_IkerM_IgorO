@@ -65,6 +65,7 @@ export function btnStartOut ()
 export function btnLogOut ()
 {
     console.log("Entra en logOut");
+    document.getElementById('lblError').innerHTML = ""; 
     logOut();
     // checkStates();
 }
