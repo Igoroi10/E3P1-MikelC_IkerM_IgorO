@@ -401,6 +401,15 @@ export function keydownHandler(event)
             globals.action.e        = true;
             break;
 
+        case Key.ENGLISH_KEY:
+            console.log("Entra en la tecla N");
+            globals.action.n        = true;
+            break;
+
+        case Key.EUSK_KEY:
+            console.log("Entra en la tecla U");
+            globals.action.u        = true;
+            break;
         
     }
 
@@ -430,7 +439,17 @@ export function keyupHandler(event)
 
         case Key.EXAMINE:
             globals.action.e        = false;
-            break;        
+            break;  
+            
+        case Key.ENGLISH_KEY:
+            console.log("Entra en la tecla N");
+            globals.action.n        = false;
+            break;
+
+        case Key.EUSK_KEY:
+            console.log("Entra en la tecla U");
+            globals.action.u        = false;
+            break;
     }
 
 }
