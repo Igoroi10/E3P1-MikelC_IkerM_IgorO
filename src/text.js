@@ -19,7 +19,8 @@ export const lenguajeText = [
         submitText: 'SUBMIT',
         nameSurnameText: 'Name & Surname',
         registerText: 'Register',
-        backText: 'Back'
+        backText: 'Back',
+        errorMensajeText: 'The username or password are incorrect. Please try again.'
     },
 
     {
@@ -40,7 +41,8 @@ export const lenguajeText = [
         submitText: 'BIDALI',
         nameSurnameText: 'Izen Abizena',
         registerText: 'Erregistratu',
-        backText: 'Atzera'
+        backText: 'Atzera',
+        errorMensajeText: 'Erabiltzailea edo pasahitza gaizki daude. Mesedez berriz saiatu.'
     },
 ]
 
