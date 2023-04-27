@@ -34,6 +34,10 @@ export default
 
     buttonMode: {},
 
+    buttonEnglish: {},
+
+    buttonEuskera: {},
+
     //Array de Cartas
     cards: [],
 

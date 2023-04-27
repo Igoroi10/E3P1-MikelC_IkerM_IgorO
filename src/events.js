@@ -79,11 +79,21 @@ export function btnStartAdmin()
     document.getElementById('adminMenuScreen').style.display = "block";
     document.getElementById('sectionLogIn').style.display = "none";
     
-
     // checkStates();
+}
 
-    
+function btnEnglishMode()
+{
+    globals.lenguajeSelected = 0;
+    console.log("entra en la funcion btnEnglishMode");
+    multiMensaje();
+}
 
+function btnEuskeraMode()
+{
+    globals.lenguajeSelected = 1;
+    console.log("entra en la funcion btnEnglishMode");
+    multiMensaje();
 }
 
 function createList()
@@ -404,13 +414,11 @@ export function keydownHandler(event)
         case Key.ENGLISH_KEY:
             console.log("Entra en la tecla N");
             globals.action.n        = true;
-            multiMensaje();
             break;
 
         case Key.EUSK_KEY:
             console.log("Entra en la tecla U");
             globals.action.u        = true;
-            multiMensaje();
             break;
         
     }
@@ -483,4 +491,6 @@ export {
     canvasRightMouseupHandler,
     checkIfRoundPass,
     decoyEvent,
+    btnEnglishMode,
+    btnEuskeraMode,
 }
