@@ -3,7 +3,7 @@ import { createNormalDeck, initGame } from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
-import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal,  decoyEffectResult } from "./gameLogic.js";
+import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal,  decoyEffectResult , multiMensaje} from "./gameLogic.js";
 
 
 
@@ -404,11 +404,13 @@ export function keydownHandler(event)
         case Key.ENGLISH_KEY:
             console.log("Entra en la tecla N");
             globals.action.n        = true;
+            multiMensaje();
             break;
 
         case Key.EUSK_KEY:
             console.log("Entra en la tecla U");
             globals.action.u        = true;
+            multiMensaje();
             break;
         
     }

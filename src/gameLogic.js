@@ -2041,6 +2041,16 @@ function updateLevelTime()
 
 function multiMensaje()
 {
+    if(globals.action.n)
+    {
+        globals.lenguajeSelected = 0;
+    }
+    else if(globals.action.u)
+    {
+        globals.lenguajeSelected = 1;
+    }
+    console.log(globals.lenguajeSelected);
+
     document.getElementById('mailText').innerHTML = lenguajeText[globals.lenguajeSelected].emailText;
     document.getElementById('passwordText').innerHTML = lenguajeText[globals.lenguajeSelected].passwordText;
     document.getElementById('winrateTitle').innerHTML = lenguajeText[globals.lenguajeSelected].winrateText;
@@ -2068,4 +2078,5 @@ export {
     updateSelectedCard,
     decoyEffectResult,
     checkLastSelection,
+    multiMensaje,
 }
