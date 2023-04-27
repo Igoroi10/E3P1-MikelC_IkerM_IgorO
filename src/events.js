@@ -100,6 +100,12 @@ function btnForgotPassword()
 {
     console.log("entra en la funcion btnForgotPassword")
     globals.gameState = State.FORGOT_PASSWORD;
+
+    //Limpieza de forgot
+    globals.inputEmail_Forgot.value             = "";
+    globals.inputPassword_Forgot.value          = "";
+    globals.inputConfirmPassword_Forgot.value   = "";
+
     checkStates();
 }
 
@@ -107,6 +113,13 @@ function btnRegister()
 {
     console.log("entra en la funcion btnRegister")
     globals.gameState = State.REGISTER;
+
+    //Limpieza de registro
+    globals.inputNameSurname_Register.value     = "";
+    globals.inputEmail_Register.value           = "";
+    globals.inputPassword_Register.value        = "";
+    globals.inputConfirmPassword_Register.value = "";
+
     checkStates();
 }
 
@@ -162,6 +175,14 @@ export function btnStartPlayer()
     document.getElementById('sectionLogIn').style.display = "none";
 
 
+}
+
+function btnBack()
+{
+    console.log("entra en btnBack");
+    globals.gameState = State.LOG_IN;
+
+    checkStates();
 }
 
 //Boton Que Pasa de turno
@@ -509,4 +530,5 @@ export {
     btnRegister,
     btnEnglishMode,
     btnEuskeraMode,
+    btnBack,
 }
