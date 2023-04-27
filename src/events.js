@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { createNormalDeck, initGame } from "./initialize.js";
+import { createNormalDeck, initGame, postForgotPasswordData, postRegisterData,  } from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
@@ -69,6 +69,19 @@ export function btnLogOut ()
     logOut();
     // checkStates();
 }
+
+function btnSubmitForget()
+{
+    
+    postForgotPasswordData();
+
+}
+
+function btnSubmitRegister()
+{
+    postRegisterData();
+}
+
 
 export function btnStartAdmin()
 {
@@ -532,4 +545,6 @@ export {
     btnEnglishMode,
     btnEuskeraMode,
     btnBack,
+    btnSubmitForget,
+    btnSubmitRegister,
 }
