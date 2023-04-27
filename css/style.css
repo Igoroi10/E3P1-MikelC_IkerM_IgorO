@@ -890,3 +890,18 @@ h3{
     transform: translateY(2px);
 
 }
+
+#forgetbtn{
+    color: #d9c6ee;
+    text-decoration: underline;
+}
+
+#btnregister{
+    color: #d9c6ee;
+    text-decoration: underline;
+}
+
+a{
+    color: #d9c6ee;
+    text-decoration: underline;
+}
