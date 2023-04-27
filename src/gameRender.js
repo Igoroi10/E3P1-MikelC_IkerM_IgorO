@@ -88,6 +88,7 @@ function drawTokens()
 
 function renderCard(card){
 
+
      //DIBUJO DEL REVERSO
      if(card.showBack === true){
         globals.ctx.drawImage(
@@ -219,11 +220,20 @@ function renderCard(card){
 
 function renderBigCard(){
     let initialX = 652;
-    let initialY = 238
+    let initialY = 238;
+    let descriptionText;
+
+
 
     if(globals.selectedCardId >= 0){
         globals.bigRender = true;
         const card = globals.cards[globals.selectedCardId];
+
+        if(globals.lenguajeSelected === 0)
+            descriptionText = card.description;
+        
+        else
+            descriptionText = card.description_eu;
 
         if(card.showBack){
 
@@ -307,7 +317,7 @@ function renderBigCard(){
             globals.ctx.fillText(card.cardName, initialX + 100, initialY + 300);
 
 
-            let words = card.description_eu.split(" ");
+            let words = descriptionText.split(" ");
             let x = initialX + 43;
             let y = initialY + 330;
             let tamanoLetra = 7;
