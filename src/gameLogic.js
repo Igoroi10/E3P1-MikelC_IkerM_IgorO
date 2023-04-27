@@ -2062,14 +2062,6 @@ function updateLevelTime()
 
 function multiMensaje()
 {
-    if(globals.action.n)
-    {
-        globals.lenguajeSelected = 0;
-    }
-    else if(globals.action.u)
-    {
-        globals.lenguajeSelected = 1;
-    }
     console.log(globals.lenguajeSelected);
 
     document.getElementById('mailText').innerHTML = lenguajeText[globals.lenguajeSelected].emailText;
@@ -2082,6 +2074,22 @@ function multiMensaje()
     document.getElementById('btnNormal').innerHTML = lenguajeText[globals.lenguajeSelected].normalButtonText;
     document.getElementById('difficultButton').innerHTML = lenguajeText[globals.lenguajeSelected].expertButtonText;
     document.getElementById('logOutTitle').innerHTML = lenguajeText[globals.lenguajeSelected].logOutText;
+    document.getElementById('forgetbtn').innerHTML = lenguajeText[globals.lenguajeSelected].forgotPasswordBox;
+    document.getElementById('btnregister').innerHTML = lenguajeText[globals.lenguajeSelected].dontHaveAccountText;
+    document.getElementById('forgotPasswordTitle').innerHTML = lenguajeText[globals.lenguajeSelected].forgotPasswordText;
+    document.getElementById('emailForgotPass').innerHTML = lenguajeText[globals.lenguajeSelected].emailText;
+    document.getElementById('passForgotPass').innerHTML = lenguajeText[globals.lenguajeSelected].passwordText;
+    document.getElementById('confirmPassForgot').innerHTML = lenguajeText[globals.lenguajeSelected].confirmPasswordText;
+    document.getElementById('btnLogin_forgot').innerHTML = lenguajeText[globals.lenguajeSelected].submitText;
+    document.getElementById('btnregister').innerHTML = lenguajeText[globals.lenguajeSelected].dontHaveAccountText;
+    document.getElementById('registerText').innerHTML = lenguajeText[globals.lenguajeSelected].registerText;
+    document.getElementById('Name&Surname').innerHTML = lenguajeText[globals.lenguajeSelected].nameSurnameText;
+    document.getElementById('emailRegister').innerHTML = lenguajeText[globals.lenguajeSelected].emailText;
+    document.getElementById('passwordRegister').innerHTML = lenguajeText[globals.lenguajeSelected].passwordText;
+    document.getElementById('confirmPassRegister').innerHTML = lenguajeText[globals.lenguajeSelected].confirmPasswordText;
+    document.getElementById('btnLogin_Register').innerHTML = lenguajeText[globals.lenguajeSelected].submitText;
+    document.getElementById('btnBack').innerHTML = lenguajeText[globals.lenguajeSelected].backText;
+    document.getElementById('btnBack_register').innerHTML = lenguajeText[globals.lenguajeSelected].backText;
 }
 
 export {

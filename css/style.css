@@ -485,7 +485,7 @@ html {
     margin-right: auto;
     margin-top: 0px;
     display: block;
-    border: 3px solid rgb(0, 0, 0);
+    /* border: 3px solid rgb(0, 0, 0); */
 }
 
 #adminName{
@@ -583,7 +583,7 @@ html {
     margin-right: auto;
     margin-top: 0px;
     display: block;
-    border: 3px solid rgb(0, 0, 0);
+    border: 1px solid rgba(0, 0, 0, 0.01);
 }
 
 #playerScreen {
@@ -889,4 +889,19 @@ h3{
     box-shadow: #b1b1ff 0 3px 7px inset;
     transform: translateY(2px);
 
+}
+
+#forgetbtn{
+    color: #d9c6ee;
+    text-decoration: underline;
+}
+
+#btnregister{
+    color: #d9c6ee;
+    text-decoration: underline;
+}
+
+a{
+    color: #d9c6ee;
+    text-decoration: underline;
 }
