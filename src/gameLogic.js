@@ -1831,8 +1831,8 @@ function updateEndRound()
     //Player1Points host
     if(globals.turnState === Turn.NO_TURN)
     {
-        // let liveNum1 = 0;
-        // let liveNum2 = 0;
+        updateSlots();
+
         if(globals.player1Points > globals.player2Points)
         {
             globals.playerTokens[1][globals.player1LivesDeleted].showBack = true;
@@ -1860,6 +1860,12 @@ function updateEndRound()
 
         for(let i = 0; i < globals.cards.length; i++)
         {
+            globals.cards[i].state = 
+            globals.cards[i].slotIdentificator < SlotIdentificators.PLAYER0_HAND? CardState.GAME:
+            globals.cards[i].slotIdentificator < SlotIdentificators.PLAYER0_DECK? CardState.HAND:
+            globals.cards[i].state;
+            
+
             if(globals.cards[i].state === CardState.GAME)
             {
                 globals.cards[i].state = CardState.DISCARD;
