@@ -511,7 +511,7 @@ function postForgotPasswordData(event)
     checkPassword();
 
     const objectToSend = {
-        emaila: globals.inputEmail_Forgot.value,
+        emaila: globals.inputEmail_Forgot.value.toLowerCase(),
         pasahitza: globals.inputPassword_Forgot.value
     }
     
@@ -586,6 +586,8 @@ function manageForgot(userData)
     else
     {
         console.log("entra en el primer else de la funcion manageForgot")
+        //cambiar el emaila a minusculas
+        globals.inputEmail_Forgot.value.toLowerCase();
         //Mostrar mensaje de todo ok
 
 
