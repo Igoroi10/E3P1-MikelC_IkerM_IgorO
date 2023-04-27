@@ -56,6 +56,6 @@ export const gameText = [
         turnText: "-ren txanda", 
         selectCardText: 'Karta bat aukeratu eta mahaian ipini', 
         decoyText: '(Karta bat aukeratu decoy egiteko)', 
-        onePlayerPassedText: 'Bakarrik ' + globals.turnState + ' jokalariak jolastu dezake'
+        onePlayerPassedText: 'Bakarrik ' + globals.turnState + '. jokalariak jokatu dezake'
     }
 ]
