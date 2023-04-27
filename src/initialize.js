@@ -554,21 +554,32 @@ function postForgotPasswordData(event)
 
 function checkPassword()
 {
-    if (globals.inputPassword_Forgot.value !== globals.inputConfirmPassword_Forgot.value )
+    console.log("entra a la funcion checkPassword");
+    
+    if (globals.inputPassword_Forgot.value !== globals.inputConfirmPassword_Forgot.value || globals.inputPassword_Forgot.value === "" || globals.inputConfirmPassword_Forgot.value  === "" )
     {
-        console.log("entr en el if de checkPassword")
-        globals.inputPassword_Forgot.value = null;
+        console.log("entr en el if de checkPassword de Forgot")
+        globals.inputPassword_Forgot.value = "";
     }
+
+    if(globals.inputPassword_Register.value !== globals.inputConfirmPassword_Register.value || globals.inputPassword_Register.value === "" || globals.inputConfirmPassword_Register.value  === "")
+    {
+        console.log("entr en el if de checkPassword de Register")
+        globals.inputPassword_Register.value = "";
+    }
+
     else
         console.log("contraseña correcta");
 }
+
+
 
 function manageForgot(userData)
 {
     console.log("entra en el funcion manageForgot");
     if (userData.emaila !== "")
     {
-        if(userData === undefined || userData.pasahitza === null)
+        if(userData === undefined || userData.pasahitza === -1)
         {
             console.log("entra en undefined o null");
             globals.lblError.innerHTML = "The Email or Password are not correct";
@@ -601,7 +612,7 @@ function manageForgot(userData)
 
 function postRegisterData()
 {
-    console.log("Entra en postForgotPasswordData");
+    console.log("Entra en postRegister");
 
     // Funcion que checkea si la Confirmacion de la contraseña Esta bien o no 
     checkPassword();
@@ -617,7 +628,7 @@ function postRegisterData()
     console.log(dataToSend);
 
     //Ruta relativa al fichero que hace la petición (RegisterNewUser.php)
-    const url = "../server/routes/verifyUser.php"; // FAALTA CAMBIAR ESTO
+    const url = "../server/routes/postNewUser.php";
     const request = new XMLHttpRequest();
     request.open('POST', url, true);
     request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -653,10 +664,15 @@ function manageRegister(userData)
     console.log("entra en el funcion manageRegister");
     if (userData.emaila !== "")
     {
-        if(userData === undefined || userData.pasahitza === null || userData.izen_abizena === "" || userData.pasahitza === "" )
+        console.log(userData.pasahitza);
+        // console.log(userData.izen_abizena);
+        // console.log(userData);
+
+        if(userData.izen_abizena === "" ||userData.pasahitza === "" )
         {
-            console.log("entra en undefined o null");
-            globals.lblError.innerHTML = "The Email or Password are not correct";
+            console.log("entra en undefined o null del primer if de manageRegister");
+            document.getElementById('lblErrorRegister').innerHTML = "The Email or Password are not correct";
+            // globals.lblError.innerHTML = "The Email or Password are not correct";
 
             globals.inputNameSurname_Register.value         = "";
             globals.inputEmail_Register.value               = "";
@@ -664,21 +680,30 @@ function manageRegister(userData)
             globals.inputConfirmPassword_Register.value     = "";
         }
 
+        //Mostrar mensaje de todo ok
         else
+        {
+            console.log("Todo correcto en el ManageRegister");
             lblError.innerHTML = "";
+            // localStorageUpdate();
+            globals.gameState = State.LOG_IN;
+            checkStates();
+        }
+           
     }
 
     else
     {
-        console.log("entra en el primer else de la funcion manageRegister")
-        //cambiar el emaila a minusculas
-        globals.inputEmail_Register.value.toLowerCase();
-        //Mostrar mensaje de todo ok
-
-
-        localStorageUpdate();
-        checkStates();
+        console.log("entra en undefined o null de email de la funcion manageRegister");
+        document.getElementById('lblError').innerHTML = "The Email or Password are not correct";
         
+        // globals.lblError.innerHTML = "The Email or Password are not correct";
+
+        globals.inputNameSurname_Register.value         = "";
+        globals.inputEmail_Register.value               = "";
+        globals.inputPassword_Register.value            = "";
+        globals.inputConfirmPassword_Register.value     = "";
+
     }
 }
 
