@@ -49,8 +49,7 @@ export const gameText = [
         turnText: "'s turn", 
         selectCardText: 'Select a card and put it on the table', 
         decoyText: '(Select a card to decoy)', 
-        onePlayerPassedText: 'Only player ' + 
-        globals.turnState + ' can play'
+        onePlayerPassedText: 'Only player ' + globals.turnState + ' can play'
     },
 
     {

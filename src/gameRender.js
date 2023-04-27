@@ -3,6 +3,7 @@
 import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE , Turn} from "./constants.js";
 import { gameLoop } from "./game.js";
 import globals from "./globals.js";
+import { gameText } from "./text.js";
 // import { GameZones } from "./GameZones.js";
 
 
@@ -477,7 +478,7 @@ function drawMessages()
         globals.ctx.fillRect(50, 530, 310, 85);
         globals.ctx.globalAlpha = 1.0; 
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(hostName+ "'s turn.", 90, 555); 
+        globals.ctx.fillText(hostName+ gameText[globals.lenguajeSelected].turnText, 90, 555); 
     }
     else if(globals.turnState === Turn.PLAYER1)
     {
@@ -487,7 +488,7 @@ function drawMessages()
         globals.ctx.fillRect(50, 530, 310, 85);
         globals.ctx.globalAlpha = 1.0;
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(globals.selectedEnemy + "'s turn.", 90, 555); 
+        globals.ctx.fillText(globals.selectedEnemy + gameText[globals.lenguajeSelected].turnText, 90, 555); 
     }
     else
     {
@@ -504,25 +505,25 @@ function drawMessages()
    {
         if (globals.checkRoundPlayer1 && !globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText("Only player 1 can play", 60, 610);
+            globals.ctx.fillText(gameText[globals.lenguajeSelected].onePlayerPassedText, 60, 610);
         }
 
         else if (!globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText("Only player 2 can play", 60, 610);
+            globals.ctx.fillText(gameText[globals.lenguajeSelected].onePlayerPassedText, 60, 610);
         }
    }
     if(globals.actionsCounter === 1 )
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText("(Select a card to decoy)", 60, 585);
+        globals.ctx.fillText(gameText[globals.lenguajeSelected].decoyText, 60, 585);
    }
    else if(globals.actionsCounter === 0)
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText("Select a card and put it on the table", 60, 585);
+        globals.ctx.fillText(gameText[globals.lenguajeSelected].selectCardText, 60, 585);
    }
    
 //    225, 220
