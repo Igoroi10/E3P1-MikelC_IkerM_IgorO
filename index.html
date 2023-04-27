@@ -210,7 +210,7 @@
 
                             <!-- Register "button" -->
                             <div class="register">
-                                <p>Don't have a account <a href="#">Register</a></p>
+                                <p id="DontHaveAccountForgot">Don't have a account <a href="#">Register</a></p>
                             </div>
 
                         </div>
@@ -229,7 +229,7 @@
             <div class="form-box">  
                 <div class="form-value">
                     <form action="" onsubmit="return false">
-                        <h2>Register</h2>
+                        <h2 id="registerText">Register</h2>
                         <div class="inputbox">
                             <label id="lblError"></label>
                             <br>
@@ -238,7 +238,7 @@
                             <div class="inputbox">
                                 <ion-icon name="mail-outline"></ion-icon>
                                 <input type="name" name="email" id="Emaila" placeholder="Jovani Vazquez" required>
-                                <label for="">Name & Surname </label>
+                                <label for="" id="Name&Surname">Name & Surname </label>
                             </div>
 
                              <!-- Surname
@@ -252,21 +252,21 @@
                              <div class="inputbox">
                                 <ion-icon name="mail-outline"></ion-icon>
                                 <input type="email" name="email" id="Emaila" placeholder="example@domain.com" required>
-                                <label for="">Email</label>
+                                <label for="" id="emailRegister">Email</label>
                             </div>
 
                             <!-- Form PassWord -->
                             <div class="inputbox">
                                 <ion-icon name="lock-closed-outline"></ion-icon>
                                 <input type="password" name="password" id="Password" value="" placeholder=""required> 
-                                <label for="password">Password</label>
+                                <label for="password" id="passwordRegister">Password</label>
                             </div>
 
                             <!-- Form Confirm password -->
                             <div class="inputbox">
                                 <ion-icon name="lock-closed-outline"></ion-icon>
                                 <input type="password" name="password" id="Confirm_Password" value="" placeholder=""required> 
-                                <label for="password">Confirm Password</label>
+                                <label for="password" id="confirmPassRegister">Confirm Password</label>
                             </div>
 
                             <button id="btnLogin" type="submit" class="btn btn-primary">SUMBIT</button>
