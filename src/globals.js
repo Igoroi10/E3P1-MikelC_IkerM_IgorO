@@ -199,9 +199,29 @@ export default
     //Inicializamos el render de la carta Grande a false
     bigRender: false,
 
-    sectionForgotPassword: {},
+    
 
-    sectionRegister: {},
+   
     
     lenguajeSelected: 0,
+
+    btnBack: {},
+    btnBack_register: {},
+
+    //Formulario Forgot
+    sectionForgotPassword:          {},
+
+    inputEmail_Forgot:              {},
+    inputPassword_Forgot:           {},
+    inputConfirmPassword_Forgot :   {},
+    
+    //Formulario Register
+    sectionRegister:                {},
+
+    inputNameSurname_Register:      {},
+    inputEmail_Register:            {},
+    inputPassword_Register:         {}, 
+    inputConfirmPassword_Register:  {},
+
+
 }
