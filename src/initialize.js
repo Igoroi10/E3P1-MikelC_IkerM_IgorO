@@ -536,7 +536,9 @@ function postForgotPasswordData(event)
                 {
                     console.log(this.responseText);
                     const userData = JSON.parse(this.responseText);
-
+                    console.log("------------")
+                    console.log(userData)
+                    console.log("------------")
                     manageForgot(userData);
                 }
                 else
@@ -577,31 +579,35 @@ function checkPassword()
 function manageForgot(userData)
 {
     console.log("entra en el funcion manageForgot");
-    if (userData.emaila !== "")
+    // console.log(userData.emaila);
+    // console.log(userData.pasahitza);
+    console.log(userData['error']);
+    if (userData.error === "Changed succesfully" && globals.inputEmail_Forgot.value !== "" && globals.inputPassword_Forgot.value !== "" && globals.inputConfirmPassword_Register.value !== "" )
     {
-        if(userData === undefined || userData.pasahitza === -1)
-        {
-            console.log("entra en undefined o null");
-            globals.lblError.innerHTML = "The Email or Password are not correct";
-            globals.inputEmail_Forgot.value = "";
-            globals.inputPassword_Forgot.value = "";
-            globals.inputConfirmPassword_Forgot.value = "";
-        }
-
+        if(globals.lenguajeSelected === 0)
+            document.getElementById('lblError').innerHTML = "Password changed successfully";
         else
-            lblError.innerHTML = "";
+            document.getElementById('lblError').innerHTML = "Pasahitza aldatu egin da";
+    
+    
+        // console.log("Todo correcto en manageForgot");
+        //Mostrar mensaje de todo ok
+        globals.gameState = State.LOG_IN;
+        checkStates();
+        // localStorageUpdate();
     }
 
     else
     {
-        console.log("entra en el primer else de la funcion manageForgot")
-        //cambiar el emaila a minusculas
-        globals.inputEmail_Forgot.value.toLowerCase();
-        //Mostrar mensaje de todo ok
-
-
-        localStorageUpdate();
-        checkStates();
+        if(globals.lenguajeSelected === 0)
+            document.getElementById('lblErrorForgot').innerHTML = "The Email or Password are not correct";
+        else
+            document.getElementById('lblErrorForgot').innerHTML = "Pasahitza edo emaila ez dira zuzenak";
+    
+        document.getElementById('lblErrorForgot').innerHTML = "The Email or Password are not correct";
+        globals.inputEmail_Forgot.value = "";
+        globals.inputPassword_Forgot.value = "";
+        globals.inputConfirmPassword_Forgot.value = "";
         
     }
 }

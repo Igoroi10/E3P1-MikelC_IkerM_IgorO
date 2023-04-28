@@ -781,6 +781,11 @@ h3{
     font-weight: bold;
 }
 
+#lblErrorForgot{
+    color: red;
+    font-weight: bold;
+}
+
 #lblErrorRegister{
     color: red;
     font-weight: bold;

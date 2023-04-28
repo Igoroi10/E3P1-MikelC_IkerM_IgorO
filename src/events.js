@@ -99,6 +99,10 @@ export function btnStartAdmin()
 
 function btnEnglishMode()
 {
+    document.getElementById('lblError').innerHTML = ""; 
+    document.getElementById('lblErrorForgot').innerHTML = "";
+    document.getElementById('lblErrorRegister').innerHTML = "";
+    
     globals.lenguajeSelected = 0;
     console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
@@ -106,6 +110,10 @@ function btnEnglishMode()
 
 function btnEuskeraMode()
 {
+    document.getElementById('lblError').innerHTML = ""; 
+    document.getElementById('lblErrorForgot').innerHTML = "";
+    document.getElementById('lblErrorRegister').innerHTML = "";
+
     globals.lenguajeSelected = 1;
     console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
@@ -197,6 +205,8 @@ function btnBack()
     console.log("entra en btnBack");
     globals.gameState = State.LOG_IN;
     document.getElementById('lblError').innerHTML = ""; 
+    document.getElementById('lblErrorForgot').innerHTML = "";
+    document.getElementById('lblErrorRegister').innerHTML = "";
     globals.inputEmail.value             = "";
     globals.inputPassword.value          = "";
 
