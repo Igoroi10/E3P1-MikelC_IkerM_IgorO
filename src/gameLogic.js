@@ -4,7 +4,7 @@ import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLi
 import {detectCollisionBetweenMouseAndCards, detectCollisionBetweenMouseAndSlots, detectCollisionBetweenMouseAndCards_Click } from "./collision.js"; 
 import { selectEnemy, createList,  checkIfRoundPass} from "./events.js";
 import { Card } from "./Card.js";
-import { lenguajeText } from "./text.js";
+import { lenguageText } from "./text.js";
 
 function update()
 {
@@ -2070,32 +2070,32 @@ function multiMensaje()
 {
     console.log(globals.lenguageSelected);
 
-    document.getElementById('mailText').innerHTML = lenguajeText[globals.lenguageSelected].emailText;
-    document.getElementById('passwordText').innerHTML = lenguajeText[globals.lenguageSelected].passwordText;
-    document.getElementById('winrateTitle').innerHTML = lenguajeText[globals.lenguageSelected].winrateText;
-    document.getElementById('gamesWonTitle').innerHTML = lenguajeText[globals.lenguageSelected].gamesWonText;
-    document.getElementById('totalGamesTitle').innerHTML = lenguajeText[globals.lenguageSelected].totalGamesText;
-    document.getElementById('head').innerHTML = lenguajeText[globals.lenguageSelected].userListText;
-    document.getElementById('selectDifficultTitle').innerHTML = lenguajeText[globals.lenguageSelected].selectDifficultText;
-    document.getElementById('btnNormal').innerHTML = lenguajeText[globals.lenguageSelected].normalButtonText;
-    document.getElementById('difficultButton').innerHTML = lenguajeText[globals.lenguageSelected].expertButtonText;
-    document.getElementById('logOutTitle').innerHTML = lenguajeText[globals.lenguageSelected].logOutText;
-    document.getElementById('forgetbtn').innerHTML = lenguajeText[globals.lenguageSelected].forgotPasswordBox;
-    document.getElementById('btnregister').innerHTML = lenguajeText[globals.lenguageSelected].dontHaveAccountText;
-    document.getElementById('forgotPasswordTitle').innerHTML = lenguajeText[globals.lenguageSelected].forgotPasswordText;
-    document.getElementById('emailForgotPass').innerHTML = lenguajeText[globals.lenguageSelected].emailText;
-    document.getElementById('passForgotPass').innerHTML = lenguajeText[globals.lenguageSelected].passwordText;
-    document.getElementById('confirmPassForgot').innerHTML = lenguajeText[globals.lenguageSelected].confirmPasswordText;
-    document.getElementById('btnLogin_forgot').innerHTML = lenguajeText[globals.lenguageSelected].submitText;
-    document.getElementById('btnregister').innerHTML = lenguajeText[globals.lenguageSelected].dontHaveAccountText;
-    document.getElementById('registerText').innerHTML = lenguajeText[globals.lenguageSelected].registerText;
-    document.getElementById('Name&Surname').innerHTML = lenguajeText[globals.lenguageSelected].nameSurnameText;
-    document.getElementById('emailRegister').innerHTML = lenguajeText[globals.lenguageSelected].emailText;
-    document.getElementById('passwordRegister').innerHTML = lenguajeText[globals.lenguageSelected].passwordText;
-    document.getElementById('confirmPassRegister').innerHTML = lenguajeText[globals.lenguageSelected].confirmPasswordText;
-    document.getElementById('btnLogin_Register').innerHTML = lenguajeText[globals.lenguageSelected].submitText;
-    document.getElementById('btnBack').innerHTML = lenguajeText[globals.lenguageSelected].backText;
-    document.getElementById('btnBack_register').innerHTML = lenguajeText[globals.lenguageSelected].backText;
+    document.getElementById('mailText').innerHTML = lenguageText[globals.lenguageSelected].emailText;
+    document.getElementById('passwordText').innerHTML = lenguageText[globals.lenguageSelected].passwordText;
+    document.getElementById('winrateTitle').innerHTML = lenguageText[globals.lenguageSelected].winrateText;
+    document.getElementById('gamesWonTitle').innerHTML = lenguageText[globals.lenguageSelected].gamesWonText;
+    document.getElementById('totalGamesTitle').innerHTML = lenguageText[globals.lenguageSelected].totalGamesText;
+    document.getElementById('head').innerHTML = lenguageText[globals.lenguageSelected].userListText;
+    document.getElementById('selectDifficultTitle').innerHTML = lenguageText[globals.lenguageSelected].selectDifficultText;
+    document.getElementById('btnNormal').innerHTML = lenguageText[globals.lenguageSelected].normalButtonText;
+    document.getElementById('difficultButton').innerHTML = lenguageText[globals.lenguageSelected].expertButtonText;
+    document.getElementById('logOutTitle').innerHTML = lenguageText[globals.lenguageSelected].logOutText;
+    document.getElementById('forgetbtn').innerHTML = lenguageText[globals.lenguageSelected].forgotPasswordBox;
+    document.getElementById('btnregister').innerHTML = lenguageText[globals.lenguageSelected].dontHaveAccountText;
+    document.getElementById('forgotPasswordTitle').innerHTML = lenguageText[globals.lenguageSelected].forgotPasswordText;
+    document.getElementById('emailForgotPass').innerHTML = lenguageText[globals.lenguageSelected].emailText;
+    document.getElementById('passForgotPass').innerHTML = lenguageText[globals.lenguageSelected].passwordText;
+    document.getElementById('confirmPassForgot').innerHTML = lenguageText[globals.lenguageSelected].confirmPasswordText;
+    document.getElementById('btnLogin_forgot').innerHTML = lenguageText[globals.lenguageSelected].submitText;
+    document.getElementById('btnregister').innerHTML = lenguageText[globals.lenguageSelected].dontHaveAccountText;
+    document.getElementById('registerText').innerHTML = lenguageText[globals.lenguageSelected].registerText;
+    document.getElementById('Name&Surname').innerHTML = lenguageText[globals.lenguageSelected].nameSurnameText;
+    document.getElementById('emailRegister').innerHTML = lenguageText[globals.lenguageSelected].emailText;
+    document.getElementById('passwordRegister').innerHTML = lenguageText[globals.lenguageSelected].passwordText;
+    document.getElementById('confirmPassRegister').innerHTML = lenguageText[globals.lenguageSelected].confirmPasswordText;
+    document.getElementById('btnLogin_Register').innerHTML = lenguageText[globals.lenguageSelected].submitText;
+    document.getElementById('btnBack').innerHTML = lenguageText[globals.lenguageSelected].backText;
+    document.getElementById('btnBack_register').innerHTML = lenguageText[globals.lenguageSelected].backText;
 }
 
 export {

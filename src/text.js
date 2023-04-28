@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 
-export const lenguajeText = [
+export const lenguageText = [
     {  
         emailText: 'Email', 
         passwordText: 'Password', 

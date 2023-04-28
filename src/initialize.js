@@ -10,7 +10,7 @@ import ImageSet from "./ImageSet.js";
 import { Player0_map_pos, Player1_map_pos, Common_map_pos, SlotIdentificators } from "./constants.js";
 import { checkStates, localStorageUpdate } from "./gameLogic.js";
 import Time from "./Timer.js";
-import {lenguajeText } from "./text.js";
+import {lenguageText } from "./text.js";
 
 
 function initHTMLelements()
@@ -446,7 +446,7 @@ console.log("entra en el funcion manageLogin");
     {
         if(userData === undefined)
         {
-            globals.lblError.innerHTML = lenguajeText[globals.lenguageSelected].errorMensajeText;
+            globals.lblError.innerHTML = lenguageText[globals.lenguageSelected].errorMensajeText;
             globals.inputEmail.value = "";
             globals.inputPassword.value = "";
         }
@@ -488,7 +488,7 @@ console.log("entra en el funcion manageLogin");
         // console.log("entra error data");
         globals.gameState = State.LOG_IN;
         //Mostramos el mensaje de error
-        globals.lblError.innerHTML = lenguajeText[globals.lenguageSelected].errorMensajeText;
+        globals.lblError.innerHTML = lenguageText[globals.lenguageSelected].errorMensajeText;
         globals.inputEmail.value = "";
         globals.inputPassword.value = "";
         
