@@ -230,7 +230,7 @@ function renderBigCard(){
         globals.bigRender = true;
         const card = globals.cards[globals.selectedCardId];
 
-        if(globals.lenguajeSelected === 0)
+        if(globals.lenguageSelected === 0)
             descriptionText = card.description;
         
         else
@@ -478,7 +478,7 @@ function drawMessages()
         globals.ctx.fillRect(50, 530, 310, 85);
         globals.ctx.globalAlpha = 1.0; 
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(hostName+ gameText[globals.lenguajeSelected].turnText, 90, 555); 
+        globals.ctx.fillText(hostName+ gameText[globals.lenguageSelected].turnText, 90, 555); 
     }
     else if(globals.turnState === Turn.PLAYER1)
     {
@@ -488,7 +488,7 @@ function drawMessages()
         globals.ctx.fillRect(50, 530, 310, 85);
         globals.ctx.globalAlpha = 1.0;
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(globals.selectedEnemy + gameText[globals.lenguajeSelected].turnText, 90, 555); 
+        globals.ctx.fillText(globals.selectedEnemy + gameText[globals.lenguageSelected].turnText, 90, 555); 
     }
     else
     {
@@ -505,25 +505,25 @@ function drawMessages()
    {
         if (globals.checkRoundPlayer1 && !globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText(gameText[globals.lenguajeSelected].onePlayerPassedText, 60, 610);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 60, 610);
         }
 
         else if (!globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText(gameText[globals.lenguajeSelected].onePlayerPassedText, 60, 610);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 60, 610);
         }
    }
     if(globals.actionsCounter === 1 )
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(gameText[globals.lenguajeSelected].decoyText, 60, 585);
+        globals.ctx.fillText(gameText[globals.lenguageSelected].decoyText, 60, 585);
    }
    else if(globals.actionsCounter === 0)
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(gameText[globals.lenguajeSelected].selectCardText, 60, 585);
+        globals.ctx.fillText(gameText[globals.lenguageSelected].selectCardText, 60, 585);
    }
    
 //    225, 220

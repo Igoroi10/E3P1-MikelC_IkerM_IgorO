@@ -446,7 +446,7 @@ console.log("entra en el funcion manageLogin");
     {
         if(userData === undefined)
         {
-            globals.lblError.innerHTML = lenguajeText[globals.lenguajeSelected].errorMensajeText;
+            globals.lblError.innerHTML = lenguajeText[globals.lenguageSelected].errorMensajeText;
             globals.inputEmail.value = "";
             globals.inputPassword.value = "";
         }
@@ -488,7 +488,7 @@ console.log("entra en el funcion manageLogin");
         // console.log("entra error data");
         globals.gameState = State.LOG_IN;
         //Mostramos el mensaje de error
-        globals.lblError.innerHTML = lenguajeText[globals.lenguajeSelected].errorMensajeText;
+        globals.lblError.innerHTML = lenguajeText[globals.lenguageSelected].errorMensajeText;
         globals.inputEmail.value = "";
         globals.inputPassword.value = "";
         
@@ -584,7 +584,7 @@ function manageForgot(userData)
     console.log(userData['error']);
     if (userData.error === "Changed succesfully" && globals.inputEmail_Forgot.value !== "" && globals.inputPassword_Forgot.value !== "" && globals.inputConfirmPassword_Register.value !== "" )
     {
-        if(globals.lenguajeSelected === 0)
+        if(globals.lenguageSelected === 0)
             document.getElementById('lblError').innerHTML = "Password changed successfully";
         else
             document.getElementById('lblError').innerHTML = "Pasahitza aldatu egin da";
@@ -599,7 +599,7 @@ function manageForgot(userData)
 
     else
     {
-        if(globals.lenguajeSelected === 0)
+        if(globals.lenguageSelected === 0)
             document.getElementById('lblErrorForgot').innerHTML = "The Email or Password are not correct";
         else
             document.getElementById('lblErrorForgot').innerHTML = "Pasahitza edo emaila ez dira zuzenak";

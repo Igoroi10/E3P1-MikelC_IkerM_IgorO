@@ -103,7 +103,7 @@ function btnEnglishMode()
     document.getElementById('lblErrorForgot').innerHTML = "";
     document.getElementById('lblErrorRegister').innerHTML = "";
     
-    globals.lenguajeSelected = 0;
+    globals.lenguageSelected = 0;
     console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
 }
@@ -114,7 +114,7 @@ function btnEuskeraMode()
     document.getElementById('lblErrorForgot').innerHTML = "";
     document.getElementById('lblErrorRegister').innerHTML = "";
 
-    globals.lenguajeSelected = 1;
+    globals.lenguageSelected = 1;
     console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
 }
