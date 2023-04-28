@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { State, CardState, SlotIdentificators, Effect, GameMode, Player0_map_pos, Player1_map_pos, Turn, Common_map_pos, Type, CardCategory} from "./constants.js";
+import { State, CardState, SlotIdentificators, Effect, GameMode, Player0_map_pos, Player1_map_pos, Turn, Common_map_pos, Type, CardCategory, CardSlotsQuantity} from "./constants.js";
 import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets, initTimers } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards, detectCollisionBetweenMouseAndSlots, detectCollisionBetweenMouseAndCards_Click } from "./collision.js"; 
 import { selectEnemy, createList,  checkIfRoundPass} from "./events.js";
@@ -700,22 +700,39 @@ function checkIfSlotAvailable(effect, card, playerNum){
             break;
 
         case Effect.MUSTER:
+            updateSlots();
             let effectChecks = 0;
+            let handToSearch;
+            let deckToSearch;
+            console.log("Deck state before muster")
+            console.log(globals.cards)
+
+            if(card.slotIdentificator < SlotIdentificators.PLAYER1_F1 || card.slotIdentificator === SlotIdentificators.PLAYER0_HAND || card.slotIdentificator === SlotIdentificators.PLAYER0_DECK){
+                handToSearch = SlotIdentificators.PLAYER0_HAND;
+                deckToSearch = SlotIdentificators.PLAYER0_DECK;
+            }
+            else{
+                handToSearch = SlotIdentificators.PLAYER1_HAND;
+                deckToSearch = SlotIdentificators.PLAYER1_DECK;
+            }
+
+
             for(let i = 0; i < globals.cards.length; i++){
                 if(i === 0)
                 if(globals.cards[i].slotIdentificator === card.slotIdentificator)
                 effectChecks++  
             }
 
-            if(effectChecks < 8){
-                for(let i = 0; i < globals.player[playerNum].length; i++){
-                    if(globals.player[playerNum][i].cardName === card.cardName && globals.player[playerNum][i].state !== CardState.GAME && globals.player[playerNum][i].state !== CardState.DISCARD){
+            if(effectChecks < CardSlotsQuantity.FIELD){
+                for(let i = 0; i < globals.cards.length; i++){
+                    if(globals.cards[i].cardName === card.cardName && globals.cards[i].slotIdentificator === handToSearch ||
+                        globals.cards[i].cardName === card.cardName && globals.cards[i].slotIdentificator === deckToSearch){
                         for(let l = 0; l < globals.slots.length; l++){
                             if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === card.slotIdentificator){
-                                globals.player[playerNum][i].xPos = globals.slots[l].xPos;
-                                globals.player[playerNum][i].yPos = globals.slots[l].yPos;
-                                globals.player[playerNum][i].state = CardState.GAME;
-                                globals.player[playerNum][i].showBack = false;
+                                globals.cards[i].xPos = globals.slots[l].xPos;
+                                globals.cards[i].yPos = globals.slots[l].yPos;
+                                globals.cards[i].state = CardState.GAME;
+                                globals.cards[i].showBack = false;
                                 l = globals.slots.length;
                                 updateSlots();
                             }
