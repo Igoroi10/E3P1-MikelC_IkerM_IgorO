@@ -1265,11 +1265,11 @@ function updateTokenPlacement()
         // console.log(globals.turnState);
         if(globals.turnState === Turn.PLAYER1)
         {
-            globals.tokens[0].yPos = Common_map_pos.PLAYER0_TURN_TOKEN_YPOS;
+            globals.tokens[0].yPos = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
         }
         else if(globals.turnState === Turn.PLAYER0)
         {
-            globals.tokens[0].yPos = Common_map_pos.PLAYER1_TURN_TOKEN_YPOS;
+            globals.tokens[0].yPos = Common_map_pos.PLAYER0_TURN_TOKEN_YPOS;
         }
     }
 }
