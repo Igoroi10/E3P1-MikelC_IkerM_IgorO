@@ -154,24 +154,26 @@ function createList()
     globals.selectedEnemy = globals.all_users[0].izen_abizena;
     const usersList = document.querySelector('select');     // Guardamos en una Variable la lista que queremos seleccionar
     const users = globals.all_users;                        
-    const hostEmail = localStorage.getItem('emaila');
+    const hostEmail = localStorage.getItem('emaila').toLowerCase();
     const hostName = localStorage.getItem('izen_abizena');
 
     if(hostName === globals.all_users[0].izen_abizena)
         globals.selectedEnemy = globals.all_users[1].izen_abizena;
 
         // console.log(users[1]['emaila']);
-    //Creacion de la Lista - Automatizada 
-    for(let i = 0; i < users.length; i++)
-    {
-        if(users[i]['emaila'] !== hostEmail && hostEmail !== null){
-            // console.log("entra en el if del emaila logueado = hostEmail");
-            const li = document.createElement('option');            // Creamos Una linea
-            li.textContent = users[i]['izen_abizena'];                      // Asignamos cada valor del array a la linea correspondiente del ciclo
-            usersList.appendChild(li);                      // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
-        }
+        console.log(hostEmail);
+        //Creacion de la Lista - Automatizada 
+        for(let i = 0; i < users.length; i++)
+        {
+            console.log(users[i]['emaila'])
+            if(users[i]['emaila'] !== hostEmail && hostEmail !== null){
+                // console.log("entra en el if del emaila logueado = hostEmail");
+                const li = document.createElement('option');            // Creamos Una linea
+                li.textContent = users[i]['izen_abizena'];                      // Asignamos cada valor del array a la linea correspondiente del ciclo
+                usersList.appendChild(li);                      // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
+            }
 
-    }
+        }
     console.log(hostName);
     document.getElementById('playerName').innerHTML= '' + hostName;
     document.getElementById('adminName').innerHTML= '' + hostName;
