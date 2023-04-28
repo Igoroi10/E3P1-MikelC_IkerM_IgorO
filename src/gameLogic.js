@@ -635,6 +635,7 @@ function spyEffect(card){
 function musterEffect(card){
     let nameToSearch = "";
     let playerNum;
+    let searchSlot;
     // console.log("carta a principio de muster");
     // console.log(card)
     if(card.slotIdentificators < SlotIdentificators.PLAYER1_F1)
@@ -646,9 +647,17 @@ function musterEffect(card){
     switch (card.cardName){
         case "Akerbeltz":
             nameToSearch = "Akerbeltz_morro";
+            if(globals.turnState === 0)
+                searchSlot = SlotIdentificators.PLAYER0_F3;
+            else
+                searchSlot = SlotIdentificators.PLAYER1_F3;
             break;
         case "Sorgina":
             nameToSearch = "Sorginak";
+            if(globals.turnState === 0)
+                searchSlot = SlotIdentificators.PLAYER0_F1;
+            else
+                searchSlot = SlotIdentificators.PLAYER1_F1;
             break;
     }
 
@@ -659,7 +668,11 @@ function musterEffect(card){
 
         if(searchingCard.cardName === card.cardName || searchingCard.cardName === nameToSearch){
             // console.log(" entra en el if de nombres iguales");
+
+
             if(searchingCard.state !== CardState.GAME || searchingCard.state !== CardState.DISCARD ){
+                if(searchingCard.cardName === nameToSearch)
+                    searchingCard.slotIdentificator = searchSlot;
                 searchingCard.slotIdentificator = card.slotIdentificator;
                 checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum)
             }
