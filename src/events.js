@@ -64,7 +64,7 @@ export function btnStartOut ()
 
 export function btnLogOut ()
 {
-    console.log("Entra en logOut");
+    // console.log("Entra en logOut");
     document.getElementById('lblError').innerHTML = ""; 
     logOut();
     // checkStates();
@@ -72,7 +72,7 @@ export function btnLogOut ()
 
 function btnSubmitForget()
 {
-    console.log("entra en boton submit");
+    // console.log("entra en boton submit");
     postForgotPasswordData();
 
 }
@@ -104,7 +104,7 @@ function btnEnglishMode()
     document.getElementById('lblErrorRegister').innerHTML = "";
     
     globals.lenguageSelected = 0;
-    console.log("entra en la funcion btnEnglishMode");
+  // console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
 }
 
@@ -115,13 +115,13 @@ function btnEuskeraMode()
     document.getElementById('lblErrorRegister').innerHTML = "";
 
     globals.lenguageSelected = 1;
-    console.log("entra en la funcion btnEnglishMode");
+  // console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
 }
 
 function btnForgotPassword()
 {
-    console.log("entra en la funcion btnForgotPassword")
+  // console.log("entra en la funcion btnForgotPassword")
     globals.gameState = State.FORGOT_PASSWORD;
 
     //Limpieza de forgot
@@ -161,11 +161,11 @@ function createList()
         globals.selectedEnemy = globals.all_users[1].izen_abizena;
 
         // console.log(users[1]['emaila']);
-        console.log(hostEmail);
+      // console.log(hostEmail);
         //Creacion de la Lista - Automatizada 
         for(let i = 0; i < users.length; i++)
         {
-            console.log(users[i]['emaila'])
+          // console.log(users[i]['emaila'])
             if(users[i]['emaila'] !== hostEmail && hostEmail !== null){
                 // console.log("entra en el if del emaila logueado = hostEmail");
                 const li = document.createElement('option');            // Creamos Una linea
@@ -174,7 +174,7 @@ function createList()
             }
 
         }
-    console.log(hostName);
+  // console.log(hostName);
     document.getElementById('playerName').innerHTML= '' + hostName;
     document.getElementById('adminName').innerHTML= '' + hostName;
 
@@ -186,14 +186,14 @@ function selectEnemy()
     select.addEventListener('change', function(){
     let selectedOption = this.options[select.selectedIndex];
     globals.selectedEnemy = selectedOption.text;
-    console.log(globals.selectedEnemy);
+  // console.log(globals.selectedEnemy);
   });
   
 }
 
 export function btnStartPlayer()
 {
-    console.log("entra en btnPlayer");
+  // console.log("entra en btnPlayer");
     // globals.buttonStart.style.visibility = "Hidden";
     globals.buttonAdmin.style.visibility = "Hidden";
     globals.buttonPlayer.style.visibility = "Hidden";
@@ -206,7 +206,7 @@ export function btnStartPlayer()
 
 function btnBack()
 {
-    console.log("entra en btnBack");
+  // console.log("entra en btnBack");
     globals.gameState = State.LOG_IN;
     document.getElementById('lblError').innerHTML = ""; 
     document.getElementById('lblErrorForgot').innerHTML = "";
@@ -345,25 +345,25 @@ function checkRoundState()
 {
     if (globals.turnState === Turn.PLAYER0)
     {
-        console.log("EL JUGADOR 1 TERMINO LA RONDA");
+      // console.log("EL JUGADOR 1 TERMINO LA RONDA");
         globals.checkRoundPlayer2 = true;
     }
 
     if (globals.turnState != Turn.PLAYER0 && globals.turnState === Turn.PLAYER1)
     {
-        console.log("EL JUGADOR 2 TERMINO LA RONDA");
+      // console.log("EL JUGADOR 2 TERMINO LA RONDA");
         globals.checkRoundPlayer1 = true;
     }
 
     if (globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
     {
-        console.log("entra en el if de los dos true()()()()()()()");
+      // console.log("entra en el if de los dos true()()()()()()()");
         globals.checkBothPlayerRound = true;
-        console.log(globals.checkBothPlayerRound);
+      // console.log(globals.checkBothPlayerRound);
     }
 
     else
-        console.log("ERROR");
+      console.log("ERROR");
 
 }
 
@@ -479,13 +479,13 @@ export function keydownHandler(event)
             break;
 
         case Key.ENGLISH_KEY:
-            console.log("Entra en la tecla N");
+          // console.log("Entra en la tecla N");
             globals.action.n        = true;
             // multiMensaje();
             break;
 
         case Key.EUSK_KEY:
-            console.log("Entra en la tecla U");
+          // console.log("Entra en la tecla U");
             globals.action.u        = true;
             // multiMensaje();
             break;
@@ -521,12 +521,12 @@ export function keyupHandler(event)
             break;  
             
         case Key.ENGLISH_KEY:
-            console.log("Entra en la tecla N");
+          // console.log("Entra en la tecla N");
             globals.action.n        = false;
             break;
 
         case Key.EUSK_KEY:
-            console.log("Entra en la tecla U");
+          // console.log("Entra en la tecla U");
             globals.action.u        = false;
             break;
     }

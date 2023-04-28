@@ -76,12 +76,12 @@ function playGame()
         let check = 1;
         for(let i = 0; i <  globals.slots.length; i++){
             if(globals.slots[i].slotIdentificator === SlotIdentificators.PLAYER0_HAND || globals.slots[i].slotIdentificator === SlotIdentificators.PLAYER1_HAND){
-                console.log("carta en mano nº" + check);
+              // console.log("carta en mano nº" + check);
                 check++
-                console.log(globals.slots[i])
+              // console.log(globals.slots[i])
             }
         }
-        console.log("FIN DE SLOT IDENTIFICATOR")
+      // console.log("FIN DE SLOT IDENTIFICATOR")
     }
 
     //Funcion que comprueba cosntantemente si un slot esta vacio o no
@@ -117,12 +117,12 @@ function checkStates(){
 
     //Comentario comentado
         case State.FORGOT_PASSWORD:
-            console.log("entra en forgotpassword");
+          // console.log("entra en forgotpassword");
             makeThisScreenVisible(State.FORGOT_PASSWORD);
             break;
 
         case State.REGISTER:
-            console.log("entra en Register");
+          // console.log("entra en Register");
             makeThisScreenVisible(State.REGISTER);
             break;
 
@@ -376,7 +376,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 
         default:
-            console.log("ERROR");
+          // console.log("ERROR");
 
     }
 }
@@ -466,7 +466,7 @@ function checkCardEffect(card){
 }
 
 function scorchEffect(card){
-    console.log("entra en el efecto scorch");
+  // console.log("entra en el efecto scorch");
     const fieldID      = card.slotIdentificator;
     let valueToScorch = -1;
     let fieldToScorch;
@@ -498,7 +498,7 @@ function scorchEffect(card){
     for(let i = 0; i < globals.cards.length; i++){
         let cardToCompare = globals.cards[i];
         if(cardToCompare.slotIdentificator === fieldToScorch){
-            console.log("Value actualizado")
+          // console.log("Value actualizado")
             if(cardToCompare.value > valueToScorch)
                 valueToScorch = cardToCompare.value;
         }
@@ -585,7 +585,7 @@ function decoyEffectActivation(){
 
     else
     {
-        console.log("entra en el else de decoyEffectActivation");
+      // console.log("entra en el else de decoyEffectActivation");
         globals.actionsCounter++;
     }
 }
@@ -742,24 +742,24 @@ function checkIfSlotAvailable(effect, card, playerNum){
                 }
             
                 if(spyChecks < 12){
-                    console.log("entra en spy checks")
+                  // console.log("entra en spy checks")
                     for(let i = 0; i < globals.player[playerNum].length; i++){
                         if(globals.player[playerNum][i].state === CardState.DECK){
-                            console.log("Entra en el if de carta de deck")
+                          // console.log("Entra en el if de carta de deck")
                             // console.log("Turno: " + globals.turnState)
                             // console.log("PlayerNum: " + playerNum);
                             for(let l = 0; l < globals.slots.length; l++){
                                 if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorSpy){
                                     // console.log(globals.slots[l].yPos);
-                                    console.log(playerNum);
-                                    console.log(globals.player[playerNum][i])
+                                  // console.log(playerNum);
+                                  // console.log(globals.player[playerNum][i])
                                     globals.player[playerNum][i].xPos = globals.slots[l].xPos;
                                     globals.player[playerNum][i].yPos = globals.slots[l].yPos;
                                     globals.player[playerNum][i].state = CardState.HAND;
                                     globals.player[playerNum][i].showBack = false;
                                     globals.player[playerNum][i].slotIdentificator = globals.slots[l].slotIdentificator;
                                     globals.slots[l].placed_cards++;
-                                    console.log("Coloca una carta de spy")
+                                  // console.log("Coloca una carta de spy")
                                     l = globals.slots.length;
                                     i = globals.cards.length;
 
@@ -1096,7 +1096,7 @@ function tightBondValueAdd(array, playerNum){
                 for(let l = i+1; l < playerArray.length; l++){
                     // console.log(playerArray[l].cardName);
                     if(playerArray[i].cardName === playerArray[l].cardName && playerArray[l].effect === Effect.TIGHT_BOND && playerArray[l].state === CardState.GAME){
-                        console.log("entra en el if de thightBond")
+                      // console.log("entra en el if de thightBond")
                         playerArray[i].value *= 2;
                         playerArray[l].value *= 2;
                         array.push(playerArray[i])
@@ -1837,7 +1837,7 @@ function updateEndRound()
         {
             globals.playerTokens[1][globals.player1LivesDeleted].showBack = true;
             globals.roundWinner = localStorage.getItem('izen_abizena');
-            console.log("entra en player1 gana");
+          // console.log("entra en player1 gana");
             globals.player1LivesDeleted++;
         }
         else if(globals.player1Points < globals.player2Points)
@@ -1845,12 +1845,12 @@ function updateEndRound()
             
             globals.playerTokens[0][globals.player2LivesDeleted].showBack = true;
             globals.roundWinner = globals.selectedEnemy;
-            console.log("entra en player2 gana");
+          // console.log("entra en player2 gana");
             globals.player2LivesDeleted++;
         }
         else
         {
-            console.log("han empatado");
+          // console.log("han empatado");
             globals.playerTokens[1][globals.player1LivesDeleted].showBack = true;
             globals.playerTokens[0][globals.player2LivesDeleted].showBack = true;
             globals.roundWinner = localStorage.getItem('izen_abizena');
@@ -1891,7 +1891,7 @@ function updateEndRound()
             globals.turnState = Turn.PLAYER1;
             globals.actionsCounter = 0;
         }
-       console.log(globals.checkBothPlayerRound);
+     // console.log(globals.checkBothPlayerRound);
         //Empieza la ronda el que ha ganado.
 
         endRoundDecoyReset();
@@ -1947,7 +1947,7 @@ function updateActions(card)
 
     else if (globals.turnState === Turn.NO_TURN)
     {
-        console.log("NO TURN");
+      // console.log("NO TURN");
         globals.actionsCounter = 0;
     }
 
@@ -1959,7 +1959,7 @@ function updateLives()
     // console.log(globals.actionsCounter.player0);
     if(globals.actionsCounter.player0 > 0)
     {
-        console.log("entra en if1");
+      // console.log("entra en if1");
         let liveNum = 0;
         globals.playerTokens[1][0].showBack = true;
         globals.playerTokens[1][1].showBack = true;
@@ -2068,7 +2068,7 @@ function updateLevelTime()
 
 function multiMensaje()
 {
-    console.log(globals.lenguageSelected);
+  // console.log(globals.lenguageSelected);
 
     document.getElementById('mailText').innerHTML = lenguageText[globals.lenguageSelected].emailText;
     document.getElementById('passwordText').innerHTML = lenguageText[globals.lenguageSelected].passwordText;

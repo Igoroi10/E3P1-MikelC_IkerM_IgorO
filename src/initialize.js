@@ -317,7 +317,7 @@ function loadCardImages(){
 
         }
 
-        console.log("fin de carga de imagenes");
+      // console.log("fin de carga de imagenes");
     }
 
 
@@ -396,7 +396,7 @@ function logInHandler(event)
     
     const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
 
-    console.log(dataToSend);
+  // console.log(dataToSend);
 
     //Ruta relativa al fichero que hace la petición (verifyUser.php)
     const url = "../server/routes/verifyUser.php";
@@ -431,7 +431,7 @@ function logInHandler(event)
 
     request.responseType = "text";
     request.send(dataToSend);
-    console.log("datatoSend2:  " + dataToSend)
+  // console.log("datatoSend2:  " + dataToSend)
 
 }
 
@@ -467,7 +467,7 @@ console.log("entra en el funcion manageLogin");
             }
             //Usuario logueado
     
-            console.log(localStorage.getItem("izen_abizena"));
+          // console.log(localStorage.getItem("izen_abizena"));
             createList();
     
             //ACtivamos el menú de play y ocultamos el de logIn
@@ -499,7 +499,7 @@ console.log("entra en el funcion manageLogin");
     updateUserText(userData);
     
     selectEnemy();
-    console.log("Fin de funcion")
+  // console.log("Fin de funcion")
 }
 
 // ===========================================================
@@ -507,7 +507,7 @@ console.log("entra en el funcion manageLogin");
 // ===========================================================
 function postForgotPasswordData(event)
 {
-    console.log("Entra en postForgotPasswordData");
+  // console.log("Entra en postForgotPasswordData");
 
     checkPassword();
 
@@ -518,7 +518,7 @@ function postForgotPasswordData(event)
     
     const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
 
-    console.log(dataToSend);
+  // console.log(dataToSend);
 
     //Ruta relativa al fichero que hace la petición (postNewPassword.php)
     const url = "../server/routes/postNewPassword.php";
@@ -534,11 +534,11 @@ function postForgotPasswordData(event)
             {
                 if(this.responseText != null)
                 {
-                    console.log(this.responseText);
+                  // console.log(this.responseText);
                     const userData = JSON.parse(this.responseText);
-                    console.log("------------")
-                    console.log(userData)
-                    console.log("------------")
+                  // console.log("------------")
+                  // console.log(userData)
+                  // console.log("------------")
                     manageForgot(userData);
                 }
                 else
@@ -556,35 +556,35 @@ function postForgotPasswordData(event)
 
 function checkPassword()
 {
-    console.log("entra a la funcion checkPassword");
+  // console.log("entra a la funcion checkPassword");
     
     if (globals.inputPassword_Forgot.value !== globals.inputConfirmPassword_Forgot.value || globals.inputPassword_Forgot.value === "" || globals.inputConfirmPassword_Forgot.value  === "" )
     {
-        console.log("entr en el if de checkPassword de Forgot")
+      // console.log("entr en el if de checkPassword de Forgot")
         globals.inputPassword_Forgot.value = "";
     }
 
     if(globals.inputPassword_Register.value !== globals.inputConfirmPassword_Register.value || globals.inputPassword_Register.value === "" || globals.inputConfirmPassword_Register.value  === "")
     {
-        console.log("entr en el if de checkPassword de Register")
+      // console.log("entr en el if de checkPassword de Register")
         globals.inputPassword_Register.value = "";
     }
 
     else
-        console.log("contraseña correcta");
+      console.log("contraseña correcta");
 }
 
 
 
 function manageForgot(userData)
 {
-//     console.log("entra en el funcion manageForgot");
+//   // console.log("entra en el funcion manageForgot");
     // console.log(userData.emaila);
     // console.log(userData.pasahitza);
-    console.log(userData['error']);
+  // console.log(userData['error']);
     if (userData.error === "Changed succesfully" && globals.inputEmail_Forgot.value !== "" && globals.inputPassword_Forgot.value !== "" && globals.inputConfirmPassword_Forgot.value !== "" )
     {
-        console.log("Todo correcto en manageForgot");
+      // console.log("Todo correcto en manageForgot");
         if(globals.lenguageSelected === 0)
             document.getElementById('lblError').innerHTML = "Password changed successfully";
         else
@@ -648,9 +648,9 @@ function postRegisterData()
             {
                 if(this.responseText != null)
                 {
-                    console.log(this.responseText);
+                  // console.log(this.responseText);
                     const userData = JSON.parse(this.responseText);
-                    console.log(userData);
+                  // console.log(userData);
                     manageRegister(userData);
                 }
                 else
@@ -669,7 +669,7 @@ function postRegisterData()
 function manageRegister(userData)
 {
     // console.log("entra en el funcion manageRegister");
-        console.log(userData.message);
+      // console.log(userData.message);
 
         if (userData.message == "user registered succesfully" && globals.inputNameSurname_Register.value !== ""  && globals.inputEmail_Register.value !== "" && globals.inputPassword_Register.value !== "")
         {
@@ -724,7 +724,7 @@ function updateUserText(user)
 
 
 function createNormalDeck(){
-    console.log(globals.cards);
+  // console.log(globals.cards);
     let cardsNeeded = 65;
     const normalMode = GameMode.NORMAL_MODE;
     addZarate();
@@ -738,10 +738,10 @@ function createNormalDeck(){
     addUnitCards(cardsNeeded,normalMode);
     filterExtraCards(normalMode);
     globals.cards.splice(60);
-    console.log("Array de información");
-    console.log(globals.cardInfo);
-    console.log("Cartas generadas con ello");
-    console.log(globals.cards);
+  // console.log("Array de información");
+  // console.log(globals.cardInfo);
+  // console.log("Cartas generadas con ello");
+  // console.log(globals.cards);
 }
 
 
@@ -800,8 +800,8 @@ function insertCard(i){
         const instaCard = new SuddenCard(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].deskribapena, globals.cardInfo[i].efektua);
         globals.cards.push(instaCard);
         if(globals.cardInfo[i].izena === "Decoy"){
-            console.log("Decoy added")
-            console.log(instaCard);
+          // console.log("Decoy added")
+          // console.log(instaCard);
         }
 
         break;
@@ -1076,7 +1076,7 @@ function AddTokenCard()
             {
                 for(let j = 0; j < 3; j++)
                 {
-                    console.log(globals.cardInfo[i]);
+                  // console.log(globals.cardInfo[i]);
                     insertCard(i);
                 }
             }
@@ -1467,7 +1467,7 @@ function initCardInfo()
                     initCardLinks();
 
 
-                    console.log("Card info loaded");
+                  // console.log("Card info loaded");
                    
                     // console.log(resultJSON); 
 
