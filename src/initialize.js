@@ -582,15 +582,16 @@ function manageForgot(userData)
     // console.log(userData.emaila);
     // console.log(userData.pasahitza);
     console.log(userData['error']);
-    if (userData.error === "Changed succesfully" && globals.inputEmail_Forgot.value !== "" && globals.inputPassword_Forgot.value !== "" && globals.inputConfirmPassword_Register.value !== "" )
+    if (userData.error === "Changed succesfully" && globals.inputEmail_Forgot.value !== "" && globals.inputPassword_Forgot.value !== "" && globals.inputConfirmPassword_Forgot.value !== "" )
     {
+        console.log("Todo correcto en manageForgot");
         if(globals.lenguageSelected === 0)
             document.getElementById('lblError').innerHTML = "Password changed successfully";
         else
             document.getElementById('lblError').innerHTML = "Pasahitza aldatu egin da";
     
     
-        // console.log("Todo correcto en manageForgot");
+        
         //Mostrar mensaje de todo ok
         globals.gameState = State.LOG_IN;
         checkStates();
