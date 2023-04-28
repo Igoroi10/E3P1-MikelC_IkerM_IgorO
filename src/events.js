@@ -79,7 +79,7 @@ function btnSubmitForget()
 
 function btnSubmitRegister()
 {
-    console.log("entra en btnSubmitRegister");
+    // console.log("entra en btnSubmitRegister");
     postRegisterData();
 }
 
@@ -125,6 +125,7 @@ function btnForgotPassword()
     globals.gameState = State.FORGOT_PASSWORD;
 
     //Limpieza de forgot
+    document.getElementById('lblErrorForgot').innerHTML = "";
     globals.inputEmail_Forgot.value             = "";
     globals.inputPassword_Forgot.value          = "";
     globals.inputConfirmPassword_Forgot.value   = "";
@@ -134,10 +135,11 @@ function btnForgotPassword()
 
 function btnRegister()
 {
-    console.log("entra en la funcion btnRegister")
+    // console.log("entra en la funcion btnRegister")
     globals.gameState = State.REGISTER;
 
     //Limpieza de registro
+    document.getElementById('lblErrorRegister').innerHTML = "";
     globals.inputNameSurname_Register.value     = "";
     globals.inputEmail_Register.value           = "";
     globals.inputPassword_Register.value        = "";

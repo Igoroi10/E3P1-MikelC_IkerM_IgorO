@@ -578,7 +578,7 @@ function checkPassword()
 
 function manageForgot(userData)
 {
-    console.log("entra en el funcion manageForgot");
+//     console.log("entra en el funcion manageForgot");
     // console.log(userData.emaila);
     // console.log(userData.pasahitza);
     console.log(userData['error']);
@@ -618,7 +618,7 @@ function manageForgot(userData)
 
 function postRegisterData()
 {
-    console.log("Entra en postRegister");
+    // console.log("Entra en postRegister");
 
     // Funcion que checkea si la Confirmacion de la contraseña Esta bien o no 
     checkPassword();
@@ -631,7 +631,7 @@ function postRegisterData()
     
     const dataToSend = 'izen_abizena=' + objectToSend.izen_abizena + '&emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
 
-    console.log(dataToSend);
+    // console.log(dataToSend);
 
     //Ruta relativa al fichero que hace la petición (RegisterNewUser.php)
     const url = "../server/routes/postNewUser.php";
@@ -649,7 +649,7 @@ function postRegisterData()
                 {
                     console.log(this.responseText);
                     const userData = JSON.parse(this.responseText);
-
+                    console.log(userData);
                     manageRegister(userData);
                 }
                 else
@@ -667,50 +667,37 @@ function postRegisterData()
 
 function manageRegister(userData)
 {
-    console.log("entra en el funcion manageRegister");
-    if (userData.emaila !== "")
-    {
-        console.log(userData.pasahitza);
-        // console.log(userData.izen_abizena);
-        // console.log(userData);
+    // console.log("entra en el funcion manageRegister");
+        console.log(userData.message);
 
-        if(userData.izen_abizena === "" ||userData.pasahitza === "" )
+        if (userData.message == "user registered succesfully" && globals.inputNameSurname_Register.value !== ""  && globals.inputEmail_Register.value !== "" && globals.inputPassword_Register.value !== "")
         {
-            console.log("entra en undefined o null del primer if de manageRegister");
-            document.getElementById('lblErrorRegister').innerHTML = "The Email or Password are not correct";
-            // globals.lblError.innerHTML = "The Email or Password are not correct";
+            if(globals.lenguageSelected === 0)
+                document.getElementById('lblError').innerHTML = "User registered correctly";
+            else
+                document.getElementById('lblError').innerHTML = "Erabiltzailea erregistratu egin da.";
+
+            // localStorageUpdate();
+            globals.gameState = State.LOG_IN;
+            checkStates();
+        }
+
+        //Mostrar mensaje de todo ok
+        else
+        {
+            if(globals.lenguageSelected === 0)
+                document.getElementById('lblErrorRegister').innerHTML = "User not registered. Email already exists or data unfilled.";
+            else
+                document.getElementById('lblErrorRegister').innerHTML = "Erabiltzailea ez da erregistratu. Email-a kontu bat dauka jadanik edo ez duzu datu guztiak sartu. ";
 
             globals.inputNameSurname_Register.value         = "";
             globals.inputEmail_Register.value               = "";
             globals.inputPassword_Register.value            = "";
             globals.inputConfirmPassword_Register.value     = "";
         }
-
-        //Mostrar mensaje de todo ok
-        else
-        {
-            console.log("Todo correcto en el ManageRegister");
-            lblError.innerHTML = "";
-            // localStorageUpdate();
-            globals.gameState = State.LOG_IN;
-            checkStates();
-        }
            
-    }
 
-    else
-    {
-        console.log("entra en undefined o null de email de la funcion manageRegister");
-        document.getElementById('lblError').innerHTML = "The Email or Password are not correct";
-        
-        // globals.lblError.innerHTML = "The Email or Password are not correct";
 
-        globals.inputNameSurname_Register.value         = "";
-        globals.inputEmail_Register.value               = "";
-        globals.inputPassword_Register.value            = "";
-        globals.inputConfirmPassword_Register.value     = "";
-
-    }
 }
 
 // ===========================================================
