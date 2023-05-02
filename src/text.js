@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 
-export const lenguajeText = [
+export const lenguageText = [
     {  
         emailText: 'Email', 
         passwordText: 'Password', 
@@ -19,7 +19,10 @@ export const lenguajeText = [
         submitText: 'SUBMIT',
         nameSurnameText: 'Name & Surname',
         registerText: 'Register',
-        backText: 'Back'
+        backText: 'Back',
+        errorMensajeText: 'The username or password are incorrect. Please try again.',
+        buttonEndRoundText: 'End Round',
+        buttonNextTurnText: 'Next Turn'
     },
 
     {
@@ -40,7 +43,10 @@ export const lenguajeText = [
         submitText: 'BIDALI',
         nameSurnameText: 'Izen Abizena',
         registerText: 'Erregistratu',
-        backText: 'Atzera'
+        backText: 'Atzera',
+        errorMensajeText: 'Erabiltzailea edo pasahitza gaizki daude. Mesedez berriz saiatu.',
+        buttonEndRoundText: 'Ronda Amaitu',
+        buttonNextTurnText: 'Hurrengo Txanda'
     },
 ]
 
@@ -56,6 +62,6 @@ export const gameText = [
         turnText: "-ren txanda", 
         selectCardText: 'Karta bat aukeratu eta mahaian ipini', 
         decoyText: '(Karta bat aukeratu decoy egiteko)', 
-        onePlayerPassedText: 'Bakarrik ' + globals.turnState + ' jokalariak jolastu dezake'
+        onePlayerPassedText: 'Bakarrik ' + globals.turnState + '. jokalariak jokatu dezake'
     }
 ]

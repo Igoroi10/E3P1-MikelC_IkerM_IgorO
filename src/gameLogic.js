@@ -2090,6 +2090,9 @@ function multiMensaje()
     document.getElementById('btnLogin_Register').innerHTML = lenguajeText[globals.lenguajeSelected].submitText;
     document.getElementById('btnBack').innerHTML = lenguajeText[globals.lenguajeSelected].backText;
     document.getElementById('btnBack_register').innerHTML = lenguajeText[globals.lenguajeSelected].backText;
+    document.getElementById('btnTurn').innerHTML = lenguageText[globals.lenguageSelected].buttonNextTurnText;
+    document.getElementById('btnRound').innerHTML = lenguageText[globals.lenguageSelected].buttonEndRoundText;
+    document.getElementById('btnLogout').innerHTML = lenguageText[globals.lenguageSelected].logOutText;
 }
 
 export {
