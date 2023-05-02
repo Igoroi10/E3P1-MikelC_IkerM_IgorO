@@ -1,8 +1,9 @@
 
 
 import { Card } from "./Card.js";
-import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE , SlotIdentificators, Turn} from "./constants.js";
+import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE , SlotIdentificators, Turn, Type, Effect} from "./constants.js";
 import { gameLoop } from "./game.js";
+import { decoyEffectResult } from "./gameLogic.js";
 import globals from "./globals.js";
 import { gameText } from "./text.js";
 // import { GameZones } from "./GameZones.js";
@@ -580,10 +581,12 @@ function renderSelectedCardAndPossibleSlots(){
         globals.ctx.strokeStyle = "yellow";
         globals.ctx.strokeRect(x1, y1, w1, h1);
 
-        switch(globals.selectedCardId_Click.categoryId){
+
+
+        switch(globals.cards[globals.selectedCardId_Click].categoryId){
 
             case CardCategory.UNIT:
-                renderUnitSlots(globals.selectedCardId_Click.categoryId);
+                renderUnitSlots(globals.cards[globals.selectedCardId_Click]);
                 break;
             
             case CardCategory.INSTAEFFECT:
@@ -603,6 +606,80 @@ function renderSelectedCardAndPossibleSlots(){
 }
 
 function renderUnitSlots(card){
+
+    let slotID;
+
+    if(globals.turnState === 0){
+        if(card.type === Type.PHYSICAL){
+
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER0_F1;
+            
+            else
+                slotID = SlotIdentificators.PLAYER1_F1;
+        }
+
+
+
+        else if(card.type === Type.DISTANCE){
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER0_F2;
+            
+            else
+                slotID = SlotIdentificators.PLAYER1_F2;
+        }
+
+
+        else {
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER0_F3;
+            
+            else
+                slotID = SlotIdentificators.PLAYER1_F3;
+        }
+    }
+
+    else{
+        if(card.type === Type.PHYSICAL){
+
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER1_F1;
+            
+            else
+                slotID = SlotIdentificators.PLAYER0_F1;
+        }
+
+
+
+        else if(card.type === Type.DISTANCE){
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER1_F2;
+            
+            else
+                slotID = SlotIdentificators.PLAYER0_F2;
+        }
+
+
+        else {
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER1_F3;
+            
+            else
+                slotID = SlotIdentificators.PLAYER0_F3;
+        }
+    }
+
+    for(let i = 0; i < globals.slots.length; i++){
+        if(globals.slots[i].slotIdentificator === slotID && globals.slots[i].placed_cards === -1){
+            const x1 = Math.floor(globals.slots[i].xPos);
+            const y1 = Math.floor(globals.slots[i].yPos);
+            const w1 = CardSizes.TOKEN_WIDHT;
+            const h1 = CardSizes.TOKEN_HEIGHT;
+
+            globals.ctx.strokeStyle = "yellow";
+            globals.ctx.strokeRect(x1, y1, w1, h1);    
+            }
+    }
 
 }
 
@@ -624,9 +701,10 @@ function renderFieldSlots(){
     }
 
     for(let i = 0; i < globals.slots.length; i++){
-        if(globals.slots[i].slotIdentificator === f1ID || globals.slots[i].slotIdentificator === f2ID 
-        ||globals.slots[i].slotIdentificator === f3ID){
-            console.log("entra en el render de recuadro de slot");
+        if(globals.slots[i].slotIdentificator === f1ID && globals.slots[i].placed_cards === -1
+        || globals.slots[i].slotIdentificator === f2ID && globals.slots[i].placed_cards === -1
+        || globals.slots[i].slotIdentificator === f3ID && globals.slots[i].placed_cards === -1){
+
             const x1 = Math.floor(globals.slots[i].xPos);
             const y1 = Math.floor(globals.slots[i].yPos);
             const w1 = CardSizes.TOKEN_WIDHT;
@@ -639,7 +717,6 @@ function renderFieldSlots(){
 }
 
 function renderBuffSlots(){
-
     let b1ID;
     let b2ID;
     let b3ID;
@@ -657,9 +734,9 @@ function renderBuffSlots(){
     }
 
     for(let i = 0; i < globals.slots.length; i++){
-        if(globals.slots[i].slotIdentificator === b1ID || globals.slots[i].slotIdentificator === b2ID 
-        ||globals.slots[i].slotIdentificator === b3ID){
-            console.log("entra en el render de recuadro de slot");
+        if(globals.slots[i].slotIdentificator === b1ID && globals.slots[i].placed_cards === -1
+        || globals.slots[i].slotIdentificator === b2ID && globals.slots[i].placed_cards === -1
+        || globals.slots[i].slotIdentificator === b3ID && globals.slots[i].placed_cards === -1){
             const x1 = Math.floor(globals.slots[i].xPos);
             const y1 = Math.floor(globals.slots[i].yPos);
             const w1 = CardSizes.TOKEN_WIDHT;
