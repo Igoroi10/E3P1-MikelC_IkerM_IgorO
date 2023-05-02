@@ -35,6 +35,7 @@ function drawGame()
     }
 
     renderCards();
+    renderSelectedCardAndPossibleSlots();
     drawMessages();
     drawTokens();
     drawPoints();
@@ -565,6 +566,24 @@ function drawMessages()
 
 }
 
+function renderSelectedCardAndPossibleSlots(){
+
+    if(globals.selectedCardId_Click >= 0){
+
+        const x1 = Math.floor(globals.cards[globals.selectedCardId_Click].xPos);
+        const y1 = Math.floor(globals.cards[globals.selectedCardId_Click].yPos);
+        const w1 = CardSizes.TOKEN_WIDHT;
+        const h1 = CardSizes.TOKEN_HEIGHT;
+
+        console.log("x1: " + x1);
+        console.log("y1: " + y1);
+        console.log("w1: " + w1);
+        console.log("h1: " + h1);
+
+        globals.ctx.strokeStyle = "yellow";
+        globals.ctx.strokeRect(x1, y1, w1, h1);
+    }
+}
 
 function gameOverScreen()
 {
