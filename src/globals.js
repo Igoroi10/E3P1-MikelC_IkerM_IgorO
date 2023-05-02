@@ -203,7 +203,7 @@ export default
 
    
     
-    lenguajeSelected: 0,
+    lenguageSelected: 0,
 
     btnBack: {},
     btnBack_register: {},

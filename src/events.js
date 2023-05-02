@@ -84,14 +84,14 @@ export function btnStartAdmin()
 
 function btnEnglishMode()
 {
-    globals.lenguajeSelected = 0;
+    globals.lenguageSelected = 0;
     console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
 }
 
 function btnEuskeraMode()
 {
-    globals.lenguajeSelected = 1;
+    globals.lenguageSelected = 1;
     console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
 }
