@@ -1580,7 +1580,7 @@ function placeCard()
                     }
                     
                     if(selectedCard.effect === Effect.SPY) {
-                        if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
+                        if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F1)
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
@@ -1597,7 +1597,7 @@ function placeCard()
                                 globals.checkPlaced = true;
                             }
                             // ASEDIO
-                            else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
+                            else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F3)
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
@@ -1622,7 +1622,7 @@ function placeCard()
                                 //  selectedCard.state = CardState.GAME;
                                 globals.checkPlaced = true;
                             }
-                            else if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
+                            else if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F1)
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
@@ -1639,7 +1639,7 @@ function placeCard()
                                 globals.checkPlaced = true;
                             }
                             // ASEDIO
-                            else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
+                            else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F3)
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
@@ -1673,7 +1673,7 @@ function placeCard()
                     }
 
                     if(selectedCard.effect === Effect.SPY) {
-                        if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F3)
+                        if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER0_F1)
                         {
                             selectedCard.xPos = selectedSlotId.xPos;
                             selectedCard.yPos = selectedSlotId.yPos;
@@ -1690,7 +1690,7 @@ function placeCard()
                             globals.checkPlaced = true;
                         }
                         // ASEDIO
-                        else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F1)
+                        else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER0_F3)
                         {
                             selectedCard.xPos = selectedSlotId.xPos;
                             selectedCard.yPos = selectedSlotId.yPos;
@@ -1714,7 +1714,7 @@ function placeCard()
                                 //  selectedCard.state = CardState.GAME;
                                 globals.checkPlaced = true;
                             }
-                            else if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F3)
+                            else if (selectedCard.type === Type.PHYSICAL && slotIdentificator === SlotIdentificators.PLAYER1_F1)
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
@@ -1731,7 +1731,7 @@ function placeCard()
                                 globals.checkPlaced = true;
                             }
                             // ASEDIO
-                            else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F1)
+                            else if (selectedCard.type === Type.SIEGE  && slotIdentificator === SlotIdentificators.PLAYER1_F3)
                             {
                                 selectedCard.xPos = selectedSlotId.xPos;
                                 selectedCard.yPos = selectedSlotId.yPos;
