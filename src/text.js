@@ -4,9 +4,9 @@ export const lenguageText = [
     {  
         emailText: 'Email', 
         passwordText: 'Password', 
-        winrateText: 'Winrate', 
-        gamesWonText: 'Games won', 
-        totalGamesText: 'Total games', 
+        winrateText: 'Winrate: 46%', 
+        gamesWonText: 'Games won: 46', 
+        totalGamesText: 'Total games: 100', 
         userListText: 'Users List', 
         selectDifficultText: 'Select game difficult:', 
         normalButtonText: 'Normal', 
@@ -21,16 +21,16 @@ export const lenguageText = [
         registerText: 'Register',
         backText: 'Back',
         errorMensajeText: 'The username or password are incorrect. Please try again.',
-        buttonEndRoundText: 'End Round',
-        buttonNextTurnText: 'Next Turn'
+        buttonEndRoundText: 'END ROUND',
+        buttonNextTurnText: 'NEXT TURN'
     },
 
     {
         emailText: 'Emaila', 
         passwordText: 'Pasahitza', 
-        winrateText: 'Irabazi tasa', 
-        gamesWonText: 'Irabazitako partidak', 
-        totalGamesText: 'Jokatutako partidak', 
+        winrateText: 'Irabazi tasa: 46%', 
+        gamesWonText: 'Irabazitako partidak: 46', 
+        totalGamesText: 'Jokatutako partidak: 100', 
         userListText: 'Erabiltzaile zerrenda', 
         selectDifficultText: 'Partidaren zailtasuna aukeratu:', 
         normalButtonText: 'Normala', 
@@ -45,8 +45,8 @@ export const lenguageText = [
         registerText: 'Erregistratu',
         backText: 'Atzera',
         errorMensajeText: 'Erabiltzailea edo pasahitza gaizki daude. Mesedez berriz saiatu.',
-        buttonEndRoundText: 'Ronda Amaitu',
-        buttonNextTurnText: 'Hurrengo Txanda'
+        buttonEndRoundText: 'RONDA AMAITU',
+        buttonNextTurnText: 'HURRENGO TXANDA'
     },
 ]
 
