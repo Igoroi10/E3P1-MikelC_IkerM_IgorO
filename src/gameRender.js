@@ -1,6 +1,7 @@
 
 
-import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE , Turn} from "./constants.js";
+import { Card } from "./Card.js";
+import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE , SlotIdentificators, Turn} from "./constants.js";
 import { gameLoop } from "./game.js";
 import globals from "./globals.js";
 import { gameText } from "./text.js";
@@ -575,14 +576,103 @@ function renderSelectedCardAndPossibleSlots(){
         const w1 = CardSizes.TOKEN_WIDHT;
         const h1 = CardSizes.TOKEN_HEIGHT;
 
-        console.log("x1: " + x1);
-        console.log("y1: " + y1);
-        console.log("w1: " + w1);
-        console.log("h1: " + h1);
 
         globals.ctx.strokeStyle = "yellow";
         globals.ctx.strokeRect(x1, y1, w1, h1);
+
+        switch(globals.selectedCardId_Click.categoryId){
+
+            case CardCategory.UNIT:
+                renderUnitSlots(globals.selectedCardId_Click.categoryId);
+                break;
+            
+            case CardCategory.INSTAEFFECT:
+                renderFieldSlots();
+                break;
+            
+            case CardCategory.PERMAEFFECT:
+                renderBuffSlots();
+                break;
+            
+            case CardCategory.CLIMATE:
+                renderClimateSlots();
+                break;
+            
+        }
     }
+}
+
+function renderUnitSlots(card){
+
+}
+
+function renderFieldSlots(){
+    let f1ID;
+    let f2ID;
+    let f3ID;
+
+    if(globals.turnState === 0){
+        f1ID = SlotIdentificators.PLAYER0_F1;
+        f2ID = SlotIdentificators.PLAYER0_F2;
+        f3ID = SlotIdentificators.PLAYER0_F3;
+    }
+
+    else{
+        f1ID = SlotIdentificators.PLAYER1_F1;
+        f2ID = SlotIdentificators.PLAYER1_F2;
+        f3ID = SlotIdentificators.PLAYER1_F3;
+    }
+
+    for(let i = 0; i < globals.slots.length; i++){
+        if(globals.slots[i].slotIdentificator === f1ID || globals.slots[i].slotIdentificator === f2ID 
+        ||globals.slots[i].slotIdentificator === f3ID){
+            console.log("entra en el render de recuadro de slot");
+            const x1 = Math.floor(globals.slots[i].xPos);
+            const y1 = Math.floor(globals.slots[i].yPos);
+            const w1 = CardSizes.TOKEN_WIDHT;
+            const h1 = CardSizes.TOKEN_HEIGHT;
+
+            globals.ctx.strokeStyle = "yellow";
+            globals.ctx.strokeRect(x1, y1, w1, h1);    
+            }
+    }
+}
+
+function renderBuffSlots(){
+
+    let b1ID;
+    let b2ID;
+    let b3ID;
+
+    if(globals.turnState === 0){
+        b1ID = SlotIdentificators.PLAYER0_B1;
+        b2ID = SlotIdentificators.PLAYER0_B2;
+        b3ID = SlotIdentificators.PLAYER0_B3;
+    }
+
+    else{
+        b1ID = SlotIdentificators.PLAYER1_B1;
+        b2ID = SlotIdentificators.PLAYER1_B2;
+        b3ID = SlotIdentificators.PLAYER1_B3;
+    }
+
+    for(let i = 0; i < globals.slots.length; i++){
+        if(globals.slots[i].slotIdentificator === b1ID || globals.slots[i].slotIdentificator === b2ID 
+        ||globals.slots[i].slotIdentificator === b3ID){
+            console.log("entra en el render de recuadro de slot");
+            const x1 = Math.floor(globals.slots[i].xPos);
+            const y1 = Math.floor(globals.slots[i].yPos);
+            const w1 = CardSizes.TOKEN_WIDHT;
+            const h1 = CardSizes.TOKEN_HEIGHT;
+
+            globals.ctx.strokeStyle = "yellow";
+            globals.ctx.strokeRect(x1, y1, w1, h1);    
+        }
+    }
+}
+
+function renderClimateSlots(){
+
 }
 
 function gameOverScreen()
