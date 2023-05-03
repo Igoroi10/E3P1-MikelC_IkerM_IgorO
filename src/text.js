@@ -20,7 +20,9 @@ export const lenguageText = [
         nameSurnameText: 'Name & Surname',
         registerText: 'Register',
         backText: 'Back',
-        errorMensajeText: 'The username or password are incorrect. Please try again.'
+        errorMensajeText: 'The username or password are incorrect. Please try again.',
+        buttonEndRoundText: 'END ROUND',
+        buttonNextTurnText: 'NEXT TURN'
     },
 
     {
@@ -42,7 +44,9 @@ export const lenguageText = [
         nameSurnameText: 'Izen Abizena',
         registerText: 'Erregistratu',
         backText: 'Atzera',
-        errorMensajeText: 'Erabiltzailea edo pasahitza gaizki daude. Mesedez berriz saiatu.'
+        errorMensajeText: 'Erabiltzailea edo pasahitza gaizki daude. Mesedez berriz saiatu.',
+        buttonEndRoundText: 'RONDA AMAITU',
+        buttonNextTurnText: 'HURRENGO TXANDA'
     },
 ]
 

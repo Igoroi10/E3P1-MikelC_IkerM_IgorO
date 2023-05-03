@@ -30,7 +30,7 @@ function drawGame()
     drawNames();
     if (globals.action.c)
     {
-        console.log(globals.cards.length)
+      // console.log(globals.cards.length)
         displayCards();
     }
 
