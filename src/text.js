@@ -55,15 +55,21 @@ export const lenguageText = [
 export const gameText = [
     {
         turnText: "'s turn", 
-        selectCardText: 'Select a card and put it on the table', 
-        decoyText: '(Select a card to decoy)', 
-        onePlayerPassedText: 'Only player ' + globals.turnState + ' can play'
+        selectCardText: 'Select a card', 
+        placeCardText: 'Place the choosen card in an empty slot',
+        decoyText: '(Select a card if you want to do the decoy effect or you can change turn)', 
+        onePlayerPassedText: 'Only player ' + globals.turnState + ' can play',
+        earnedPointsText: 'You have earned ' + ' points.', 
+        losePointsText: 'you have lost x points.',
     },
 
     {
         turnText: "-ren txanda", 
-        selectCardText: 'Karta bat aukeratu eta mahaian ipini', 
-        decoyText: '(Karta bat aukeratu decoy egiteko)', 
-        onePlayerPassedText: 'Bakarrik ' + globals.turnState + '. jokalariak jokatu dezake'
+        selectCardText: 'Karta bat aukeratu', 
+        placeCardText: 'Aukeratutako karta argiztatutako hutsune batean ipini',
+        decoyText: '(Karta bat aukeratu docoy efektua egin nahi baduzu, bestela txanda pasa)', 
+        onePlayerPassedText: 'Bakarrik ' + globals.turnState + '. jokalariak jokatu dezake',
+        earnedPointsText: ' puntu irabazi dituzu.', 
+        losePointsText: ' puntu galdu dituzu.',
     }
 ]

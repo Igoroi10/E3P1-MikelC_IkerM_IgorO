@@ -503,7 +503,6 @@ function drawMessages()
         globals.ctx.fillStyle = 'yellow';    
         globals.ctx.fillText("The game has ended", 80, 555);
     }
-
     if(!globals.checkBothPlayerRound)
    {
         if (globals.checkRoundPlayer1 && !globals.checkRoundPlayer2)
@@ -525,8 +524,13 @@ function drawMessages()
    else if(globals.actionsCounter === 0)
    {
         globals.ctx.font = '20px magicmedieval'; 
-        globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(gameText[globals.lenguageSelected].selectCardText, 60, 585);
+        globals.ctx.fillStyle = 'yellow';  
+        if(globals.selectedCardId_Click === -1)
+        {
+            globals.ctx.fillText(gameText[globals.lenguageSelected].selectCardText, 60, 585);
+        }  
+        else
+            globals.ctx.fillText(gameText[globals.lenguageSelected].placeCardText, 60, 585);
    }
    
 //    225, 220
