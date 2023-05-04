@@ -229,8 +229,8 @@ export default
     controls:                       {},
     controlsEUS:                    {},
     controlsEN:                     {},
-    controls_InGame:                {},
-    btnCloseControls:               {},
-
+    btnCloseControlsEUS:            {},
+    btnCloseControlsEN:             {},
+    btnControls:                    {},
 
 }
