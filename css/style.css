@@ -46,9 +46,7 @@
     
 }
 
-#controlScreenEN{
-    /* Hay que quitar el margin top */
-    margin-top: 20px;  
+#controlScreenEN{ 
     height: 1080px;
     width: 1920px;
     background-image: url("../images/Controls_EN.png");
@@ -56,8 +54,6 @@
 
 
 #controlScreenEUS{
-    /* Hay que quitar el margin top */
-    margin-top: 20px;
     height: 1080px;
     width: 1920px;
     background-image: url("../images/Controls_EUS.png");
