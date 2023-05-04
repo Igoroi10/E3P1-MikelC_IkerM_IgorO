@@ -787,8 +787,8 @@ function betweenTurnsScreen(){
             globals.ctx.font = '45px magicmedieval'; 
             globals.ctx.fillStyle = 'white';    
             globals.ctx.fillText(hostName + gameText[globals.lenguageSelected].turnText, 650, 420);
-            globals.ctx.fillText("You have passed your turn", 600, 360);
-            globals.ctx.fillText("Click the button bellow to continue", 550, 480); 
+            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnText, 600, 360);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnContinue, 550, 480); 
         }
 
         else{
@@ -796,8 +796,8 @@ function betweenTurnsScreen(){
             globals.ctx.font = '45px magicmedieval'; 
             globals.ctx.fillStyle = 'white';    
             globals.ctx.fillText(globals.selectedEnemy + gameText[globals.lenguageSelected].turnText, 650, 420); 
-            globals.ctx.fillText("You have passed your turn", 600, 360);
-            globals.ctx.fillText("Click the button bellow to continue", 550, 480);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnText, 600, 360);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnContinue, 550, 480);
         }
     }
 }

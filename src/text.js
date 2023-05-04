@@ -55,13 +55,17 @@ export const gameText = [
         turnText: "'s turn", 
         selectCardText: 'Select a card and put it on the table', 
         decoyText: '(Select a card to decoy)', 
-        onePlayerPassedText: 'Only player ' + globals.turnState + ' can play'
+        onePlayerPassedText: 'Only player ' + globals.turnState + ' can play',
+        passTurnText: "You have passed your turn",
+        passTurnContinue: "Click the button bellow to continue",
     },
 
     {
         turnText: "-ren txanda", 
         selectCardText: 'Karta bat aukeratu eta mahaian ipini', 
         decoyText: '(Karta bat aukeratu decoy egiteko)', 
-        onePlayerPassedText: 'Bakarrik ' + globals.turnState + '. jokalariak jokatu dezake'
+        onePlayerPassedText: 'Bakarrik ' + globals.turnState + '. jokalariak jokatu dezake',
+        passTurnText: "Zure txanda bukatu duzu",
+        passTurnContinue: "Azpiko botoia sakatu jokatzen segitzeko",
     }
 ]
