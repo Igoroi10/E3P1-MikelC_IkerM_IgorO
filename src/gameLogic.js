@@ -307,8 +307,7 @@ function updateCard(card) // Puede ser una global de estado o una constante
                 
                 checkCardEffect(card);
                 // console.log("State Despues " + card.state);
-                
-                
+                globals.calculateNewPoints = true;
             }
             break;
 
@@ -1785,7 +1784,7 @@ function placeCard()
             // console.log(selectedCard);
                 if(globals.action.mousePressed && globals.checkPlaced)
                 {
-                    // console.log("Carta colocada");
+                    console.log("Carta colocada");
 
                     // globals.mouseSelectedSlot = false;
                     // console.log("entra en el if del ");

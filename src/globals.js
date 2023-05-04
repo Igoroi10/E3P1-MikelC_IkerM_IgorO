@@ -229,4 +229,6 @@ export default
     previousPoints2: 0,
     earnedPlayer1Points: 0,
     earnedPlayer2Points: 0,
+    calculateNewPoints: false,
+    renderAlpha: 1,
 }

@@ -42,7 +42,9 @@ function drawGame()
     drawTokens();
     drawPoints();
     renderBigCard();
+    renderEarnedPoints();
     gameOverScreen();
+    
 }
 
 function renderMap ()
@@ -532,6 +534,35 @@ function drawMessages()
         else
             globals.ctx.fillText(gameText[globals.lenguageSelected].placeCardText, 60, 585);
    }
+}
+
+function renderEarnedPoints()
+{
+    globals.ctx.font = '40px magicmedieval'; 
+    globals.ctx.fillStyle = 'yellow';  
+    // console.log(globals.placedCard);
+    if(globals.turnState === Turn.PLAYER1)
+    {
+        if(globals.calculateNewPoints)
+        {
+            // console.log(globals.renderAlpha);
+            globals.renderAlpha -= (globals.deltaTime / 2);
+            if(globals.renderAlpha < 0)
+            {
+                globals.renderAlpha = 0;
+            }
+            globals.ctx.save();
+            globals.ctx.globalAlpha = globals.renderAlpha;
+            globals.ctx.fillText(gameText[globals.lenguageSelected].earnedPointsText + globals.earnedPlayer2Points + gameText[globals.lenguageSelected].earnedPoints2Text, 570, 300); 
+            globals.ctx.restore();
+        }
+    }
+    if(globals.renderAlpha === 0)
+    {
+        globals.calculateNewPoints = false;
+    }
+    // console.log(globals.renderAlpha);
+
 }
 
 function renderSelectedCardAndPossibleSlots(){

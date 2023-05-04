@@ -59,8 +59,9 @@ export const gameText = [
         placeCardText: 'Place the choosen card in an empty slot',
         decoyText: '(Select a card if you want to do the decoy effect or you can change turn)', 
         onePlayerPassedText: 'Only player ' + globals.turnState + ' can play',
-        earnedPointsText: 'You have earned ' + ' points.', 
-        losePointsText: 'you have lost x points.',
+        earnedPointsText: 'You have earned ',
+        earnedPoints2Text: ' points.', 
+        losePointsText: 'you have lost' + globals.earnedPlayer1Points + ' points.',
     },
 
     {
@@ -69,7 +70,7 @@ export const gameText = [
         placeCardText: 'Aukeratutako karta argiztatutako hutsune batean ipini',
         decoyText: '(Karta bat aukeratu docoy efektua egin nahi baduzu, bestela txanda pasa)', 
         onePlayerPassedText: 'Bakarrik ' + globals.turnState + '. jokalariak jokatu dezake',
-        earnedPointsText: ' puntu irabazi dituzu.', 
-        losePointsText: ' puntu galdu dituzu.',
+        earnedPoints2Text: ' puntu irabazi dituzu.', 
+        losePointsText: globals.earnedPlayer1Points +  ' puntu galdu dituzu.',
     }
 ]
