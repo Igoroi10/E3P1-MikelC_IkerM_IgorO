@@ -119,6 +119,7 @@ function detectCollisionBetweenMouseAndCards_Click()
                             if(globals.actionsCounter === 0)
                             {
                                 globals.selectedCardId_Click = i;
+                                globals.currentSelectedCardId = i;
                                 //Testear el id - Ver si el slot identioficator corresponde a field 1 2 o 3 del turnState
                                 checkLastSelection();
                                 updateSelectedCard(card);

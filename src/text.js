@@ -59,9 +59,11 @@ export const gameText = [
         placeCardText: 'Place the choosen card in an empty slot',
         decoyText: '(Select a card if you want to do the decoy effect or you can change turn)', 
         onePlayerPassedText: 'Only player ' + globals.turnState + ' can play',
-        earnedPointsText: 'You have earned ',
+        earnedPointsText: ' earned ',
         earnedPoints2Text: ' points.', 
         losePointsText: 'you have lost' + globals.earnedPlayer1Points + ' points.',
+        scorchEffectText: 'The scorch effect has been produced',
+        commandersText: 'you have doubled the points in the row',
     },
 
     {
@@ -70,7 +72,9 @@ export const gameText = [
         placeCardText: 'Aukeratutako karta argiztatutako hutsune batean ipini',
         decoyText: '(Karta bat aukeratu docoy efektua egin nahi baduzu, bestela txanda pasa)', 
         onePlayerPassedText: 'Bakarrik ' + globals.turnState + '. jokalariak jokatu dezake',
-        earnedPoints2Text: ' puntu irabazi dituzu.', 
+        earnedPoints2Text: ' puntu irabazi ditu.', 
         losePointsText: globals.earnedPlayer1Points +  ' puntu galdu dituzu.',
+        scorchEffectText: 'Scorch efektua eginda',
+        commandersText: 'Lerro honen puntuak bikoiztu dituzu',
     }
 ]

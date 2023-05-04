@@ -231,4 +231,5 @@ export default
     earnedPlayer2Points: 0,
     calculateNewPoints: false,
     renderAlpha: 1,
+    currentSelectedCardId: -1,
 }
