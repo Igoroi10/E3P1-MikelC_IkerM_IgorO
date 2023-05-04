@@ -225,5 +225,12 @@ export default
     inputConfirmPassword_Register:  {},
     submit_register:                {},
 
+    //Controls
+    controls:                       {},
+    controlsEUS:                    {},
+    controlsEN:                     {},
+    controls_InGame:                {},
+    btnCloseControls:               {},
+
 
 }
