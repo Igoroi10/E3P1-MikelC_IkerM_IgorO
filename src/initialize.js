@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -87,6 +87,13 @@ function initHTMLelements()
     globals.inputConfirmPassword_Register           = document.getElementById('Confirm_Password_Register');
     globals.submit_register                         = document.getElementById('btnLogin_Register');
 
+    //Pantalla Controls
+    globals.controls                                = document.getElementById('controlScreen');
+    globals.controlsEUS                             = document.getElementById('controlScreenEUS');
+    globals.controlsEN                              = document.getElementById('controlScreenEN');
+    globals.btnCloseControls                        = document.getElementById('btnClose');
+    // globals.controls_InGame                         = document.getElementById('')
+
 
     //Mostramos la pantalla de Log In
     document.getElementById('sectionLogIn').style.display = "flex";
@@ -103,6 +110,8 @@ function initHTMLelements()
 
     globals.submit_forget.addEventListener("mousedown", btnSubmitForget, false);
     globals.submit_register.addEventListener("mousedown", btnSubmitRegister, false);
+
+    globals.btnCloseControls.addEventListener("mousedown", btnClose, false);
     
     // globals.sectionForgotPassword = 
     // globals.sectionRegister = 
