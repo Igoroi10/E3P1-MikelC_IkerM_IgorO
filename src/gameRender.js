@@ -532,44 +532,6 @@ function drawMessages()
         else
             globals.ctx.fillText(gameText[globals.lenguageSelected].placeCardText, 60, 585);
    }
-   
-//    225, 220
-//    225, 660
-//    globals.ctx.fillStyle = 'red'; 
-//    globals.ctx.fillRect(220, 680, 50, 50);
-//    globals.ctx.clearRect(223, 683, 45, 45);
-//    globals.ctx.fillRect(290, 680, 50, 50);
-//    globals.ctx.clearRect(293, 683, 45, 45);
-
-//    globals.ctx.fillRect(220, 235, 50, 50);
-//    globals.ctx.clearRect(223, 238, 45, 45);
-//    globals.ctx.fillRect(290, 235, 50, 50);
-//    globals.ctx.clearRect(293, 238, 45, 45);
-   //////////////////////////////////////////////////
-   ////// FRASES
-   //////////////////////////////////////////////////
-//    globals.ctx.fillText("Start of the round.", 90, 585); 
-
-//    globals.ctx.fillText(globals.selectedEnemy + "'s turn.", 90, 585); 
-//    globals.ctx.fillText(hostName + "'s turn.", 90, 585); 
-
-//    globals.ctx.fillText(globals.selectedEnemy + " passed, your turn.", 90, 585); 
-//    globals.ctx.fillText(hostName + " passed, your turn.", 90, 585); 
-
-//    globals.ctx.fillText(globals.selectedEnemy + " has won the round", 90, 585); 
-//    globals.ctx.fillText(hostName + " has won the round", 90, 585); 
-
-//    globals.ctx.fillText("Draw a card", 90, 585); 
-
-//    globals.ctx.fillText("Select an unit or effect card", 90, 585); 
-
-//    globals.ctx.fillText("Take one card from your table or end turn", 90, 585); 
-
-//    globals.ctx.fillText("Your turn is finished", 90, 585); 
-
-//    globals.ctx.fillText("Select where will be the card placed", 90, 585); 
-
-
 }
 
 function renderSelectedCardAndPossibleSlots(){

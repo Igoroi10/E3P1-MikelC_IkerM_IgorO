@@ -225,5 +225,8 @@ export default
     inputConfirmPassword_Register:  {},
     submit_register:                {},
 
-
+    previousPoints1: 0,
+    previousPoints2: 0,
+    earnedPlayer1Points: 0,
+    earnedPlayer2Points: 0,
 }

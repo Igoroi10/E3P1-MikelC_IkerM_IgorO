@@ -880,6 +880,7 @@ function updatePoints(){
     globals.player1Points = calculatePoints(player1);
     globals.player2Points = calculatePoints(player2);
 
+    calculateEarnedPoints();
     // globals.player1Points = player1Points;
     // globals.player2Points = player2Points;
 
@@ -1023,6 +1024,13 @@ function calculatePoints(player){
 
     tighBondValueDecrease(tightBondArray, player)
     return points;
+}
+
+function calculateEarnedPoints()
+{
+    globals.earnedPlayer1Points = globals.player1Points - globals.previousPoints1;
+
+    globals.earnedPlayer2Points = globals.player2Points - globals.previousPoints2;
 }
 
 function createPointers(points, player){
@@ -1777,7 +1785,7 @@ function placeCard()
             // console.log(selectedCard);
                 if(globals.action.mousePressed && globals.checkPlaced)
                 {
-                    //console.log("Carta colocada");
+                    // console.log("Carta colocada");
 
                     // globals.mouseSelectedSlot = false;
                     // console.log("entra en el if del ");
@@ -1788,6 +1796,11 @@ function placeCard()
                     globals.placedCard              = true;
                     globals.checkPlaced             = false;
                     
+                    globals.previousPoints1 = globals.player1Points;
+                    globals.previousPoints2 = globals.player2Points;
+
+                    // console.log(globals.previousPoints1);
+                    // console.log(globals.previousPoints2);
                 }
             }
         }
