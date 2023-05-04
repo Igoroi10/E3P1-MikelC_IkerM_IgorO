@@ -169,11 +169,6 @@ function checkStates(){
             globals.gameState = State.PLAYING;
            break; 
 
-        case State.CONTROLS:
-            console.log("entra en estado Controls")
-            makeThisScreenVisible(State.CONTROLS);
-            break;
-
         default:
            console.error("Error: Game State invalid");
    }
@@ -206,13 +201,6 @@ function makeThisScreenVisible(screen){
             visibleDiv = "registerScreen";
             break;
 
-        case State.CONTROLS:
-            if(globals.lenguageSelected === 0)
-                visibleDiv = "controlScreenEN";
-
-            else
-                visibleDiv = "controlScreenEUS";
-            break; 
     }
 
 
@@ -2143,7 +2131,7 @@ function multiMensaje()
     document.getElementById('btnBack_register').innerHTML = lenguageText[globals.lenguageSelected].backText;
     document.getElementById('btnRound').innerHTML = lenguageText[globals.lenguageSelected].buttonEndRoundText;
     document.getElementById('btnTurn').innerHTML = lenguageText[globals.lenguageSelected].buttonNextTurnText;
-    document.getElementById('buttonLogOut').innerHTML = lenguageText[globals.lenguageSelected].logOutText;
+    // document.getElementById('buttonLogOut').innerHTML = lenguageText[globals.lenguageSelected].logOutText;
 }
 
 export {
