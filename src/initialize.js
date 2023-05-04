@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose, btnControls} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -89,9 +89,12 @@ function initHTMLelements()
 
     //Pantalla Controls
     globals.controls                                = document.getElementById('controlScreen');
-    globals.controlsEUS                             = document.getElementById('controlScreenEUS');
-    globals.controlsEN                              = document.getElementById('controlScreenEN');
-    globals.btnCloseControls                        = document.getElementById('btnClose');
+    // globals.controlsEUS                             = document.getElementById('controlScreenEUS');
+    // globals.controlsEN                              = document.getElementById('controlScreenEN');
+    globals.btnCloseControlsEUS                     = document.getElementById('btnCloseEUS');
+    globals.btnCloseControlsEN                      = document.getElementById('btnCloseEN');
+    globals.btnControls                             = document.getElementById('btnControls');
+    
     // globals.controls_InGame                         = document.getElementById('')
 
 
@@ -111,7 +114,10 @@ function initHTMLelements()
     globals.submit_forget.addEventListener("mousedown", btnSubmitForget, false);
     globals.submit_register.addEventListener("mousedown", btnSubmitRegister, false);
 
-    globals.btnCloseControls.addEventListener("mousedown", btnClose, false);
+    globals.btnCloseControlsEUS.addEventListener("mousedown", btnClose, false);
+    globals.btnCloseControlsEN.addEventListener("mousedown", btnClose, false);
+
+    globals.btnControls.addEventListener("mousedown", btnControls, false)
     
     // globals.sectionForgotPassword = 
     // globals.sectionRegister = 
