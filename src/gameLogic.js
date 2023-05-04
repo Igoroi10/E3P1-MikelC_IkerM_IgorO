@@ -2098,7 +2098,7 @@ function updateLevelTime()
 
 function multiMensaje()
 {
-    console.log(globals.lenguageSelected);
+    // console.log(globals.lenguageSelected);
 
     document.getElementById('mailText').innerHTML = lenguageText[globals.lenguageSelected].emailText;
     document.getElementById('passwordText').innerHTML = lenguageText[globals.lenguageSelected].passwordText;
@@ -2128,7 +2128,8 @@ function multiMensaje()
     document.getElementById('btnBack_register').innerHTML = lenguageText[globals.lenguageSelected].backText;
     document.getElementById('btnRound').innerHTML = lenguageText[globals.lenguageSelected].buttonEndRoundText;
     document.getElementById('btnTurn').innerHTML = lenguageText[globals.lenguageSelected].buttonNextTurnText;
-    document.getElementById('buttonLogOut').innerHTML = lenguageText[globals.lenguageSelected].logOutText;
+    document.getElementById('logInText').innerHTML = lenguageText[globals.lenguageSelected].logInText;
+    // document.getElementById('buttonLogOut').innerHTML = lenguageText[globals.lenguageSelected].logOutText;
 }
 
 export {

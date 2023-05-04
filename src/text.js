@@ -22,7 +22,8 @@ export const lenguageText = [
         backText: 'Back',
         errorMensajeText: 'The username or password are incorrect. Please try again.',
         buttonEndRoundText: 'END ROUND',
-        buttonNextTurnText: 'NEXT TURN'
+        buttonNextTurnText: 'NEXT TURN',
+        logInText: 'Log in'
     },
 
     {
@@ -46,7 +47,8 @@ export const lenguageText = [
         backText: 'Atzera',
         errorMensajeText: 'Erabiltzailea edo pasahitza gaizki daude. Mesedez berriz saiatu.',
         buttonEndRoundText: 'RONDA AMAITU',
-        buttonNextTurnText: 'HURRENGO TXANDA'
+        buttonNextTurnText: 'HURRENGO TXANDA',
+        logInText: 'Sahioa hasi'
     },
 ]
 
