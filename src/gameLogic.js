@@ -169,6 +169,11 @@ function checkStates(){
             globals.gameState = State.PLAYING;
            break; 
 
+        case State.CONTROLS:
+            console.log("entra en estado Controls")
+            makeThisScreenVisible(State.CONTROLS);
+            break;
+
         default:
            console.error("Error: Game State invalid");
    }
@@ -200,6 +205,14 @@ function makeThisScreenVisible(screen){
         case State.REGISTER:
             visibleDiv = "registerScreen";
             break;
+
+        case State.CONTROLS:
+            if(globals.lenguageSelected === 0)
+                visibleDiv = "controlScreenEN";
+
+            else
+                visibleDiv = "controlScreenEUS";
+            break; 
     }
 
 
@@ -211,6 +224,8 @@ function makeThisScreenVisible(screen){
     document.getElementById("divCanvas").style.display              = "none";
     document.getElementById("forgotPasswordScreen").style.display   = "none";
     document.getElementById("registerScreen").style.display         = "none";
+    document.getElementById('controlScreenEN').style.display        = "none";
+    document.getElementById('controlScreenEUS').style.display       = "none";
 
     document.getElementById(visibleDiv).style.display    = "block";
 
