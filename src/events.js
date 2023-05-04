@@ -256,16 +256,35 @@ export function btnNormalMode()
 
     globals.gameState = State.GAME_START;
     globals.gameMode = GameMode.NORMAL_MODE;
+    requestAnimationFrame(gameLoop);
     
     checkStates();
-
-    requestAnimationFrame(gameLoop);
 }
 
 function btnClose()
 {
-    globals.gameState = State.PLAYING;
+    console.log("entra en close")
+    // document.getElementById('btnLogout').style.display = "none";
+    document.getElementById('divCanvas').style.display = "block";
+    document.getElementById('controlScreenEN').style.display = "none";
+    document.getElementById('controlScreenEUS').style.display = "none";
+
     checkStates();
+}
+
+function btnControls ()
+{
+    document.getElementById('idiomaButton').style.display = "none";
+    if(globals.lenguageSelected === 0)
+        document.getElementById('controlScreenEN').style.display = "block";
+
+    else
+        document.getElementById('controlScreenEUS').style.display = "block";
+
+    document.getElementById('sectionLogIn').style.display = "none";
+    document.getElementById('sectionPlay').style.display = "none";
+    document.getElementById('playerMenuScreen').style.display = "none";
+    document.getElementById('divCanvas').style.display = "none";
 }
 
 
@@ -483,8 +502,6 @@ export function keydownHandler(event)
         case Key.EXAMINE:
             // console.log("Entra en C");
             globals.action.e        = true;
-            globals.gameState = State.CONTROLS;
-            checkStates();
             break;
 
         case Key.ENGLISH_KEY:
@@ -577,5 +594,6 @@ export {
     btnSubmitForget,
     btnSubmitRegister,
     btnClose,
+    btnControls,
 
 }
