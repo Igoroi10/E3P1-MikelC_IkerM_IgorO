@@ -373,12 +373,14 @@ function checkRoundState()
     {
       // console.log("EL JUGADOR 1 TERMINO LA RONDA");
         globals.checkRoundPlayer2 = true;
+        globals.actionsCounter = 0;
     }
 
     if (globals.turnState != Turn.PLAYER0 && globals.turnState === Turn.PLAYER1)
     {
       // console.log("EL JUGADOR 2 TERMINO LA RONDA");
         globals.checkRoundPlayer1 = true;
+        globals.actionsCounter = 0;
     }
 
     if (globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
