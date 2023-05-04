@@ -13,8 +13,6 @@ const State = {
     GAME_START:         9,
     FORGOT_PASSWORD:    10,
     REGISTER:           11,
-    CONTROLS:           12,
-    GAME_CONTROLS:      13,
     
 }  
 
