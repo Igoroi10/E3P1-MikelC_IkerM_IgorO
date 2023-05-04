@@ -262,6 +262,13 @@ export function btnNormalMode()
     requestAnimationFrame(gameLoop);
 }
 
+function btnClose()
+{
+    globals.gameState = State.PLAYING;
+    checkStates();
+}
+
+
 function checkIfTurnPass ()
 {
     //CHECK DEL PLAYER 1
@@ -476,6 +483,8 @@ export function keydownHandler(event)
         case Key.EXAMINE:
             // console.log("Entra en C");
             globals.action.e        = true;
+            globals.gameState = State.CONTROLS;
+            checkStates();
             break;
 
         case Key.ENGLISH_KEY:
@@ -567,4 +576,6 @@ export {
     btnBack,
     btnSubmitForget,
     btnSubmitRegister,
+    btnClose,
+
 }
