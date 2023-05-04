@@ -224,9 +224,10 @@ export function btnStartTurn()
 
     //Ahora Una vez pulsado el boton de turno deberemos de hacer un check para saber quien lo ha puslado y si le corresponde poder jugar en ese turno o no
     globals.actionsCounter ++;
-    // checkIfTurnPass();
 
-    // checkIfRoundPass();
+    if(!globals.checkRoundPlayer1 && !globals.checkRoundPlayer2){
+        globals.showTurnChangeScreen = true;
+    }
 
 }
 

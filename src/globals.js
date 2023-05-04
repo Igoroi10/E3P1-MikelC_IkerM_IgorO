@@ -155,15 +155,15 @@ export default
     actionsCounter: 0,
 
     //Card States
-    draw: false,
-    double_click: false,
-    click: false,
-    selected: false,
-    DISCARD: false,
-    otherSelected: false,
-    decoy: false,
-    medic: false,
-    inmediateEffect: false,
+    draw:           false,
+    double_click:   false,
+    click:          false,
+    selected:       false,
+    DISCARD:        false,
+    otherSelected:  false,
+    decoy:          false,
+    medic:          false,
+    inmediateEffect:false,
     effectFinished: false,
 
     player: [[],[]],
@@ -199,6 +199,8 @@ export default
     //Inicializamos el render de la carta Grande a false
     bigRender: false,
 
+    showTurnChangeScreen: false,
+
     
 
    
@@ -224,6 +226,9 @@ export default
     inputPassword_Register:         {}, 
     inputConfirmPassword_Register:  {},
     submit_register:                {},
+
+
+
 
 
 }
