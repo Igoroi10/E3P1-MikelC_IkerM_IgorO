@@ -888,6 +888,18 @@ h3{
 
 }
 
+#btnControls{
+    color:white;
+    background-color: lightblue;
+    margin: auto;
+    width: 100px;
+    margin-left: 150px;
+    margin-top: 50px;
+    padding: 15px;
+    position:absolute;
+    font-family: magicmedieval;
+}
+
 .container{
     background:black;
     position:relative;
