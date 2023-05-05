@@ -214,6 +214,8 @@ function makeThisScreenVisible(screen){
     document.getElementById("registerScreen").style.display         = "none";
     document.getElementById('controlScreenEN').style.display        = "none";
     document.getElementById('controlScreenEUS').style.display       = "none";
+    document.getElementById('btnConfirmEndRound').style.display     = "none";
+    document.getElementById('btnDenyEndRound').style.display        = "none";
 
     document.getElementById(visibleDiv).style.display    = "block";
 
