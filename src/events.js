@@ -235,10 +235,10 @@ export function btnStartTurn()
 export function btnEndRound()
 {
     // console.log("Boton Round Pulsado");
+    document.getElementById('btnConfirmEndRound').style.display     = "block";
+    document.getElementById('btnDenyEndRound').style.display        = "block";
     
-    checkRoundState();
-    
-    checkIfRoundPass();
+
 }
 
 export function btnNormalMode()
@@ -316,6 +316,31 @@ function checkIfTurnPass ()
 
 }
 
+function btnConfirmRound()
+{
+    globals.checkIfRoundConfirm = true;
+
+    document.getElementById('btnConfirmEndRound').style.display     = "none";
+    document.getElementById('btnDenyEndRound').style.display        = "none";
+
+    checkRoundState();
+    
+    checkIfRoundPass();
+
+}
+
+function btnDenyRound ()
+{
+    globals.checkIfRoundConfirm = false;
+
+    document.getElementById('btnConfirmEndRound').style.display     = "none";
+    document.getElementById('btnDenyEndRound').style.display        = "none";
+
+    checkRoundState();
+    
+    checkIfRoundPass();
+}
+
 function checkIfRoundPass()
 {
     //Si uno o ninguno de los jugadores a Pasado la Ronda 
@@ -363,6 +388,7 @@ function checkIfRoundPass()
         globals.turnState = Turn.NO_TURN;       // MAS ADELANTE CAMBIARLO - SOLO SE PUEDE JUGAR UNA RONDA
         // globals.checkBothPlayerRound = false;
         // console.log(globals.turnState);
+        globals.checkIfRoundConfirm = false;
 
    }
     
@@ -370,18 +396,21 @@ function checkIfRoundPass()
 
 function checkRoundState()
 {
-    if (globals.turnState === Turn.PLAYER0)
+    console.log("entra en la funcion checkRoundState")
+    if (globals.turnState === Turn.PLAYER0 && globals.checkIfRoundConfirm)
     {
       // console.log("EL JUGADOR 1 TERMINO LA RONDA");
         globals.checkRoundPlayer2 = true;
         globals.actionsCounter = 0;
+        globals.checkIfRoundConfirm = false;
     }
 
-    if (globals.turnState != Turn.PLAYER0 && globals.turnState === Turn.PLAYER1)
+    if (globals.turnState != Turn.PLAYER0 && globals.turnState === Turn.PLAYER1 && globals.checkIfRoundConfirm)
     {
       // console.log("EL JUGADOR 2 TERMINO LA RONDA");
         globals.checkRoundPlayer1 = true;
         globals.actionsCounter = 0;
+        globals.checkIfRoundConfirm = false;
     }
 
     if (globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
@@ -389,6 +418,7 @@ function checkRoundState()
       // console.log("entra en el if de los dos true()()()()()()()");
         globals.checkBothPlayerRound = true;
       // console.log(globals.checkBothPlayerRound);
+        globals.checkIfRoundConfirm = false;
     }
 
     else
@@ -598,5 +628,7 @@ export {
     btnSubmitRegister,
     btnClose,
     btnControls,
+    btnConfirmRound,
+    btnDenyRound,
 
 }
