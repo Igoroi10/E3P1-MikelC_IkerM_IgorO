@@ -575,15 +575,32 @@ function renderEarnedPoints()
         }
         else if(carta.cardName === "Commanders_Horn")
         {
-            globals.renderAlpha -= (globals.deltaTime / 3);
-            if(globals.renderAlpha < 0)
+            if(carta.slotIdentificator === SlotIdentificators.PLAYER1_B1 || carta.slotIdentificator === SlotIdentificators.PLAYER1_B2 || carta.slotIdentificator === SlotIdentificators.PLAYER1_B3)
             {
-                globals.renderAlpha = 0;
+                //efectuado el efecto de scorch
+                globals.renderAlpha -= (globals.deltaTime / 3);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(gameText[globals.lenguageSelected].commandersText, 740, 290 ); 
+                globals.ctx.restore();
             }
-            globals.ctx.save();
-            globals.ctx.globalAlpha = globals.renderAlpha;
-            globals.ctx.fillText(gameText[globals.lenguageSelected].commandersText, 760, 600);
-            globals.ctx.restore(); 
+            else
+            {
+                //efectuado el efecto de scorch
+                globals.renderAlpha -= (globals.deltaTime / 3);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(gameText[globals.lenguageSelected].commandersText, 740, 600); 
+                globals.ctx.restore();
+            }
         }
         else if(carta.slotIdentificator === SlotIdentificators.PLAYER1_F1 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F2 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F3)
         {
