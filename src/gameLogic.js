@@ -1882,7 +1882,17 @@ function updateGameOver()
 
 function updateEndRound()
 {
-
+    if(globals.showTurnChangeScreen)
+    {
+        console.log("pasa a true el showTurn");
+        document.getElementById('btnControls').style.display = "none";
+        document.getElementById('btnRound').style.display = "none";
+    }
+    else
+    {
+        document.getElementById('btnControls').style.display = "block";
+        document.getElementById('btnRound').style.display = "block";
+    }
     //Player1Points invitado
     //Player1Points host
     if(globals.turnState === Turn.NO_TURN)
@@ -1949,6 +1959,7 @@ function updateEndRound()
         }
      // console.log(globals.checkBothPlayerRound);
         //Empieza la ronda el que ha ganado.
+
 
         endRoundDecoyReset();
 
