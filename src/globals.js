@@ -246,6 +246,12 @@ export default
     btnCloseControlsEN:             {},
     btnControls:                    {},
 
+    //Round
+    btnConfirmRound:                {},
+    btnDenyRound:                   {},
+    checkIfRoundConfirm:            false,      //Confirma si se le ha dado o no al boton.
+
+
 
 
 
