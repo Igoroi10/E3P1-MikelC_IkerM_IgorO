@@ -1031,7 +1031,9 @@ a{
 }
 
 #editList{
-    width: 130px;
-    height: 100px;
-    overflow-y: scroll;
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 300px;
+    height: 150px;
+    color: #FCFCFD;
 }

@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose, btnControls} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose, btnControls, createUserEditList} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -1568,6 +1568,7 @@ function getAllUsers()
                     //Guardamos los datos del resultJSON
                     globals.all_users = resultJSON;
                     createList();
+                    createUserEditList();
                     // console.log("this.responetext" + this.responseText);
                     // console.log(globals.all_users);
                 }
