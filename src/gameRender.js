@@ -509,19 +509,19 @@ function drawMessages()
    {
         if (globals.checkRoundPlayer1 && !globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 0, 610);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 10, 610);
         }
 
         else if (!globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 0, 610);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 10, 610);
         }
    }
     if(globals.actionsCounter === 1 )
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(gameText[globals.lenguageSelected].decoyText, 0, 585);
+        globals.ctx.fillText(gameText[globals.lenguageSelected].decoyText, 10, 585);
    }
    else if(globals.actionsCounter === 0)
    {
@@ -529,10 +529,10 @@ function drawMessages()
         globals.ctx.fillStyle = 'yellow';  
         if(globals.selectedCardId_Click === -1)
         {
-            globals.ctx.fillText(gameText[globals.lenguageSelected].selectCardText, 0, 585);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].selectCardText, 10, 585);
         }  
         else
-            globals.ctx.fillText(gameText[globals.lenguageSelected].placeCardText, 0, 585);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].placeCardText, 10, 585);
    }
 }
 
@@ -874,31 +874,54 @@ function gameOverScreen()
 
 
 function betweenTurnsScreen(){
-
     const hostName = localStorage.getItem('izen_abizena');
     if(globals.showTurnChangeScreen){
-        globals.ctx.fillStyle = 'black';  
-        globals.ctx.globalAlpha = 0.85;
-        globals.ctx.fillRect(0, 0, globals.canvas.width, globals.canvas.height);
 
-        if(globals.turnState === Turn.PLAYER0){
-            globals.ctx.globalAlpha = 1;
+        if(globals.checkIfPlayer1TurnPass){
+            globals.renderTurnAlpha -= (globals.deltaTime / 5);
+            if(globals.renderTurnAlpha < 0)
+            {
+                globals.renderTurnAlpha = 0;
+            }
+            globals.ctx.save();
+            globals.ctx.globalAlpha = globals.renderTurnAlpha;
+            globals.ctx.fillStyle = 'black';  
+            globals.ctx.fillRect(0, 0, globals.canvas.width, globals.canvas.height);
             globals.ctx.font = '45px magicmedieval'; 
             globals.ctx.fillStyle = 'white';    
             globals.ctx.fillText(hostName + gameText[globals.lenguageSelected].turnText, 650, 420);
             globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnText, 600, 360);
-            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnContinue, 550, 480); 
+            globals.ctx.restore();
         }
 
-        else{
-            globals.ctx.globalAlpha = 1;
+        else if(globals.checkIfPlayer0TurnPass){
+            // console.log("checkPlayer 1 turn pass");
+            globals.renderTurnAlpha -= (globals.deltaTime / 5);
+            if(globals.renderTurnAlpha < 0)
+            {
+                globals.renderTurnAlpha = 0;
+            }
+            globals.ctx.save();
+            globals.ctx.globalAlpha = globals.renderTurnAlpha;
+            globals.ctx.fillStyle = 'black';  
+            globals.ctx.fillRect(0, 0, globals.canvas.width, globals.canvas.height);
             globals.ctx.font = '45px magicmedieval'; 
             globals.ctx.fillStyle = 'white';    
             globals.ctx.fillText(globals.selectedEnemy + gameText[globals.lenguageSelected].turnText, 650, 420); 
             globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnText, 600, 360);
-            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnContinue, 550, 480);
+            globals.ctx.restore();
         }
+        // console.log(globals.turnState);
     }
+    if(globals.renderTurnAlpha === 0)
+    {
+        console.log("entra el el alpha = 0");
+        globals.showTurnChangeScreen = false;
+        globals.checkIfPlayer1TurnPass = false;
+        globals.checkIfPlayer0TurnPass = false;
+        globals.renderTurnAlpha = 1;
+    }
+    // console.log(globals.checkIfPlayer1TurnPass);
 }
 
 export{

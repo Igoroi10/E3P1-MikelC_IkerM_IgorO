@@ -233,7 +233,10 @@ export default
     earnedPlayer2Points: 0,
     calculateNewPoints: false,
     renderAlpha: 1,
+    renderTurnAlpha: 1,
     currentSelectedCardId: -1,
+    checkIfPlayer0TurnPass: false,
+    checkIfPlayer1TurnPass: false,
 
     //Controls
     controls:                       {},
