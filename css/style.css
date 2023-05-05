@@ -81,6 +81,33 @@
     
 }
 
+#btnConfirmEndRound{
+    color:red;
+    margin: auto;
+    width: 100px;
+    margin-left: 1400px;
+    margin-top: 300px;
+    padding: 15px;
+    font-size: 20px;
+    position:absolute;
+    font-family: magicmedieval;
+    cursor: pointer;
+}
+
+#btnDenyEndRound{
+    color:red;
+    margin: auto;
+    width: 100px;
+    margin-left: 1550px;
+    margin-top: 300px;
+    padding: 15px;
+    font-size: 20px;
+    position:absolute;
+    font-family: magicmedieval;
+    cursor: pointer;
+}
+
+
 #controlScreenEN{ 
     height: 1080px;
     width: 1920px;
@@ -943,12 +970,14 @@ h3{
 }
 
 #btnControls{
-    color:white;
-    background-color: lightblue;
+    /* color:white; */
+    font-size: 40px;
+    background-color: black;
     margin: auto;
+    cursor: pointer;
     width: 100px;
-    margin-left: 150px;
-    margin-top: 50px;
+    margin-left: 10px;
+    margin-top: 40px;
     padding: 15px;
     position:absolute;
     font-family: magicmedieval;
