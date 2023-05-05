@@ -232,4 +232,13 @@ export default
     calculateNewPoints: false,
     renderAlpha: 1,
     currentSelectedCardId: -1,
+
+    //Controls
+    controls:                       {},
+    controlsEUS:                    {},
+    controlsEN:                     {},
+    btnCloseControlsEUS:            {},
+    btnCloseControlsEN:             {},
+    btnControls:                    {},
+
 }

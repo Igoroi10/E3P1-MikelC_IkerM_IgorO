@@ -200,6 +200,7 @@ function makeThisScreenVisible(screen){
         case State.REGISTER:
             visibleDiv = "registerScreen";
             break;
+
     }
 
 
@@ -211,6 +212,8 @@ function makeThisScreenVisible(screen){
     document.getElementById("divCanvas").style.display              = "none";
     document.getElementById("forgotPasswordScreen").style.display   = "none";
     document.getElementById("registerScreen").style.display         = "none";
+    document.getElementById('controlScreenEN').style.display        = "none";
+    document.getElementById('controlScreenEUS').style.display       = "none";
 
     document.getElementById(visibleDiv).style.display    = "block";
 
@@ -2141,7 +2144,6 @@ function multiMensaje()
     document.getElementById('btnRound').innerHTML = lenguageText[globals.lenguageSelected].buttonEndRoundText;
     document.getElementById('btnTurn').innerHTML = lenguageText[globals.lenguageSelected].buttonNextTurnText;
     document.getElementById('logInText').innerHTML = lenguageText[globals.lenguageSelected].logInText;
-    // document.getElementById('buttonLogOut').innerHTML = lenguageText[globals.lenguageSelected].logOutText;
 }
 
 export {

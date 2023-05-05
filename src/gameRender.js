@@ -549,7 +549,7 @@ function renderEarnedPoints()
             if(carta.slotIdentificator === SlotIdentificators.PLAYER1_F1 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F2 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F3)
             {
                 //efectuado el efecto de scorch
-                globals.renderAlpha -= (globals.deltaTime / 3);
+                globals.renderAlpha -= (globals.deltaTime / 2);
                 if(globals.renderAlpha < 0)
                 {
                     globals.renderAlpha = 0;
@@ -562,7 +562,7 @@ function renderEarnedPoints()
             else
             {
                 //efectuado el efecto de scorch
-                globals.renderAlpha -= (globals.deltaTime / 3);
+                globals.renderAlpha -= (globals.deltaTime / 2);
                 if(globals.renderAlpha < 0)
                 {
                     globals.renderAlpha = 0;
@@ -578,7 +578,7 @@ function renderEarnedPoints()
             if(carta.slotIdentificator === SlotIdentificators.PLAYER1_B1 || carta.slotIdentificator === SlotIdentificators.PLAYER1_B2 || carta.slotIdentificator === SlotIdentificators.PLAYER1_B3)
             {
                 //efectuado el efecto de scorch
-                globals.renderAlpha -= (globals.deltaTime / 3);
+                globals.renderAlpha -= (globals.deltaTime / 2);
                 if(globals.renderAlpha < 0)
                 {
                     globals.renderAlpha = 0;
@@ -591,7 +591,7 @@ function renderEarnedPoints()
             else
             {
                 //efectuado el efecto de scorch
-                globals.renderAlpha -= (globals.deltaTime / 3);
+                globals.renderAlpha -= (globals.deltaTime / 2);
                 if(globals.renderAlpha < 0)
                 {
                     globals.renderAlpha = 0;
@@ -606,7 +606,7 @@ function renderEarnedPoints()
         {
             if(globals.lenguageSelected === 0)
             {
-                globals.renderAlpha -= (globals.deltaTime / 3);
+                globals.renderAlpha -= (globals.deltaTime / 2);
                 if(globals.renderAlpha < 0)
                 {
                     globals.renderAlpha = 0;
@@ -618,7 +618,7 @@ function renderEarnedPoints()
             }
             else if(globals.lenguageSelected === 1)
             {
-                globals.renderAlpha -= (globals.deltaTime / 3);
+                globals.renderAlpha -= (globals.deltaTime / 2);
                 if(globals.renderAlpha < 0)
                 {
                     globals.renderAlpha = 0;
@@ -633,26 +633,26 @@ function renderEarnedPoints()
         {
             if(globals.lenguageSelected === 0)
             {
-                globals.renderAlpha -= (globals.deltaTime / 3);
+                globals.renderAlpha -= (globals.deltaTime / 2);
                 if(globals.renderAlpha < 0)
                 {
                     globals.renderAlpha = 0;
                 }
                 globals.ctx.save();
                 globals.ctx.globalAlpha = globals.renderAlpha;
-                globals.ctx.fillText(globals.selectedEnemy + gameText[globals.lenguageSelected].earnedPointsText + globals.earnedPlayer2Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 290 ); 
+                globals.ctx.fillText(localStorage.getItem('izen_abizena') + gameText[globals.lenguageSelected].earnedPointsText + globals.earnedPlayer1Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 600 ); 
                 globals.ctx.restore();
             }
             else if(globals.lenguageSelected === 1)
             {
-                globals.renderAlpha -= (globals.deltaTime / 3);
+                globals.renderAlpha -= (globals.deltaTime / 2);
                 if(globals.renderAlpha < 0)
                 {
                     globals.renderAlpha = 0;
                 }
                 globals.ctx.save();
                 globals.ctx.globalAlpha = globals.renderAlpha;
-                globals.ctx.fillText(localStorage.getItem('izen_abizena') + globals.earnedPlayer2Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 290 ); 
+                globals.ctx.fillText(localStorage.getItem('izen_abizena') + globals.earnedPlayer1Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 600 ); 
                 globals.ctx.restore();
             }
         }
@@ -661,8 +661,8 @@ function renderEarnedPoints()
     {
         globals.calculateNewPoints = false;
         globals.renderAlpha = 1;
-        globals.earnedPlayer1Points = 0;
-        globals.earnedPlayer2Points = 0;
+        // globals.earnedPlayer1Points = 0;
+        // globals.earnedPlayer2Points = 0;
     }
     // console.log(globals.previousPoints2);
 

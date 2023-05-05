@@ -256,11 +256,37 @@ export function btnNormalMode()
 
     globals.gameState = State.GAME_START;
     globals.gameMode = GameMode.NORMAL_MODE;
+    requestAnimationFrame(gameLoop);
     
     checkStates();
-
-    requestAnimationFrame(gameLoop);
 }
+
+function btnClose()
+{
+    console.log("entra en close")
+    // document.getElementById('btnLogout').style.display = "none";
+    document.getElementById('divCanvas').style.display = "block";
+    document.getElementById('controlScreenEN').style.display = "none";
+    document.getElementById('controlScreenEUS').style.display = "none";
+
+    checkStates();
+}
+
+function btnControls ()
+{
+    document.getElementById('idiomaButton').style.display = "none";
+    if(globals.lenguageSelected === 0)
+        document.getElementById('controlScreenEN').style.display = "block";
+
+    else
+        document.getElementById('controlScreenEUS').style.display = "block";
+
+    document.getElementById('sectionLogIn').style.display = "none";
+    document.getElementById('sectionPlay').style.display = "none";
+    document.getElementById('playerMenuScreen').style.display = "none";
+    document.getElementById('divCanvas').style.display = "none";
+}
+
 
 function checkIfTurnPass ()
 {
@@ -347,12 +373,14 @@ function checkRoundState()
     {
       // console.log("EL JUGADOR 1 TERMINO LA RONDA");
         globals.checkRoundPlayer2 = true;
+        globals.actionsCounter = 0;
     }
 
     if (globals.turnState != Turn.PLAYER0 && globals.turnState === Turn.PLAYER1)
     {
       // console.log("EL JUGADOR 2 TERMINO LA RONDA");
         globals.checkRoundPlayer1 = true;
+        globals.actionsCounter = 0;
     }
 
     if (globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
@@ -567,4 +595,7 @@ export {
     btnBack,
     btnSubmitForget,
     btnSubmitRegister,
+    btnClose,
+    btnControls,
+
 }
