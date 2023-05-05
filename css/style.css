@@ -85,8 +85,9 @@
     color:red;
     margin: auto;
     width: 100px;
-    margin-left: 1400px;
-    margin-top: 300px;
+    height: 55px;
+    margin-left: 1450px;
+    margin-top: 335px;
     padding: 15px;
     font-size: 20px;
     position:absolute;
@@ -98,8 +99,9 @@
     color:red;
     margin: auto;
     width: 100px;
+    height: 55px;
     margin-left: 1550px;
-    margin-top: 300px;
+    margin-top: 335px;
     padding: 15px;
     font-size: 20px;
     position:absolute;
@@ -949,7 +951,7 @@ h3{
     margin: auto;
     width: 100px;
     margin-left: 1550px;
-    margin-top: 450px;
+    margin-top: 475px;
     padding: 15px;
     position:absolute;
     font-family: magicmedieval;
@@ -963,7 +965,7 @@ h3{
     margin: auto;
     width: 100px;
     margin-left: 1550px;
-    margin-top: 350px;
+    margin-top: 400px;
     padding: 15px;
     position:absolute;
     font-family: magicmedieval;
