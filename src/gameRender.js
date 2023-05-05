@@ -541,7 +541,6 @@ function renderEarnedPoints()
     globals.ctx.font = '40px magicmedieval'; 
     globals.ctx.fillStyle = 'yellow';  
     let carta = globals.cards[globals.currentSelectedCardId];
-    console.log(carta);
     
     if(globals.calculateNewPoints)
     {
