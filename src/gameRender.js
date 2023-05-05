@@ -44,7 +44,7 @@ function drawGame()
     renderBigCard();
     renderEarnedPoints();
     gameOverScreen();
-    
+    betweenTurnsScreen();
 }
 
 function renderMap ()
@@ -872,6 +872,34 @@ function gameOverScreen()
     }
 } 
 
+
+function betweenTurnsScreen(){
+
+    const hostName = localStorage.getItem('izen_abizena');
+    if(globals.showTurnChangeScreen){
+        globals.ctx.fillStyle = 'black';  
+        globals.ctx.globalAlpha = 0.85;
+        globals.ctx.fillRect(0, 0, globals.canvas.width, globals.canvas.height);
+
+        if(globals.turnState === Turn.PLAYER0){
+            globals.ctx.globalAlpha = 1;
+            globals.ctx.font = '45px magicmedieval'; 
+            globals.ctx.fillStyle = 'white';    
+            globals.ctx.fillText(hostName + gameText[globals.lenguageSelected].turnText, 650, 420);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnText, 600, 360);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnContinue, 550, 480); 
+        }
+
+        else{
+            globals.ctx.globalAlpha = 1;
+            globals.ctx.font = '45px magicmedieval'; 
+            globals.ctx.fillStyle = 'white';    
+            globals.ctx.fillText(globals.selectedEnemy + gameText[globals.lenguageSelected].turnText, 650, 420); 
+            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnText, 600, 360);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnContinue, 550, 480);
+        }
+    }
+}
 
 export{
     render,

@@ -64,6 +64,8 @@ export const gameText = [
         losePointsText: 'you have lost' + globals.earnedPlayer1Points + ' points.',
         scorchEffectText: 'The scorch effect has been produced',
         commandersText: 'you have doubled the points in the row',
+        passTurnText: "You have passed your turn",
+        passTurnContinue: "Click the button bellow to continue",
     },
 
     {
@@ -76,5 +78,7 @@ export const gameText = [
         losePointsText: globals.earnedPlayer1Points +  ' puntu galdu dituzu.',
         scorchEffectText: 'Scorch efektua eginda',
         commandersText: 'Lerro honen puntuak bikoiztu dituzu',
+        passTurnText: "Zure txanda bukatu duzu",
+        passTurnContinue: "Azpiko botoia sakatu jokatzen segitzeko",
     }
 ]
