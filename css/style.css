@@ -1029,3 +1029,11 @@ a{
     color: #d9c6ee;
     text-decoration: underline;
 }
+
+#editList{
+    width: 130px;
+    height: 100px;
+    overflow-y: scroll;
+}
+
+}
