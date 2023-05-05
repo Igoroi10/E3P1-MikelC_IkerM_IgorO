@@ -509,19 +509,19 @@ function drawMessages()
    {
         if (globals.checkRoundPlayer1 && !globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 60, 610);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 0, 610);
         }
 
         else if (!globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 60, 610);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 0, 610);
         }
    }
     if(globals.actionsCounter === 1 )
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(gameText[globals.lenguageSelected].decoyText, 60, 585);
+        globals.ctx.fillText(gameText[globals.lenguageSelected].decoyText, 0, 585);
    }
    else if(globals.actionsCounter === 0)
    {
@@ -529,10 +529,10 @@ function drawMessages()
         globals.ctx.fillStyle = 'yellow';  
         if(globals.selectedCardId_Click === -1)
         {
-            globals.ctx.fillText(gameText[globals.lenguageSelected].selectCardText, 60, 585);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].selectCardText, 0, 585);
         }  
         else
-            globals.ctx.fillText(gameText[globals.lenguageSelected].placeCardText, 60, 585);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].placeCardText, 0, 585);
    }
 }
 
@@ -542,6 +542,7 @@ function renderEarnedPoints()
     globals.ctx.fillStyle = 'yellow';  
     let carta = globals.cards[globals.currentSelectedCardId];
     console.log(carta);
+    
     if(globals.calculateNewPoints)
     {
         if(carta.cardName === "Scorch")
@@ -585,7 +586,7 @@ function renderEarnedPoints()
                 }
                 globals.ctx.save();
                 globals.ctx.globalAlpha = globals.renderAlpha;
-                globals.ctx.fillText(gameText[globals.lenguageSelected].commandersText, 740, 290 ); 
+                globals.ctx.fillText(gameText[globals.lenguageSelected].commandersText, 660, 290 ); 
                 globals.ctx.restore();
             }
             else
@@ -598,13 +599,41 @@ function renderEarnedPoints()
                 }
                 globals.ctx.save();
                 globals.ctx.globalAlpha = globals.renderAlpha;
-                globals.ctx.fillText(gameText[globals.lenguageSelected].commandersText, 740, 600); 
+                globals.ctx.fillText(gameText[globals.lenguageSelected].commandersText, 660, 600); 
                 globals.ctx.restore();
             }
         }
         else if(carta.slotIdentificator === SlotIdentificators.PLAYER1_F1 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F2 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F3)
         {
-                console.log("entra el los slots del player0");
+            if(globals.lenguageSelected === 0)
+            {
+                globals.renderAlpha -= (globals.deltaTime / 3);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(globals.selectedEnemy + " "  + gameText[globals.lenguageSelected].earnedPointsText + globals.earnedPlayer2Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 290 ); 
+                globals.ctx.restore();
+            }
+            else if(globals.lenguageSelected === 1)
+            {
+                globals.renderAlpha -= (globals.deltaTime / 3);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(globals.selectedEnemy + " " + globals.earnedPlayer2Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 290 ); 
+                globals.ctx.restore();
+            }
+        }
+        else if(carta.slotIdentificator === SlotIdentificators.PLAYER0_F1 || carta.slotIdentificator === SlotIdentificators.PLAYER0_F2 || carta.slotIdentificator === SlotIdentificators.PLAYER0_F3)
+        {
+            if(globals.lenguageSelected === 0)
+            {
                 globals.renderAlpha -= (globals.deltaTime / 3);
                 if(globals.renderAlpha < 0)
                 {
@@ -614,9 +643,9 @@ function renderEarnedPoints()
                 globals.ctx.globalAlpha = globals.renderAlpha;
                 globals.ctx.fillText(globals.selectedEnemy + gameText[globals.lenguageSelected].earnedPointsText + globals.earnedPlayer2Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 290 ); 
                 globals.ctx.restore();
-        }
-        else if(carta.slotIdentificator === SlotIdentificators.PLAYER0_F1 || carta.slotIdentificator === SlotIdentificators.PLAYER0_F2 || carta.slotIdentificator === SlotIdentificators.PLAYER0_F3)
-        {
+            }
+            else if(globals.lenguageSelected === 1)
+            {
                 globals.renderAlpha -= (globals.deltaTime / 3);
                 if(globals.renderAlpha < 0)
                 {
@@ -624,8 +653,9 @@ function renderEarnedPoints()
                 }
                 globals.ctx.save();
                 globals.ctx.globalAlpha = globals.renderAlpha;
-                globals.ctx.fillText(localStorage.getItem('izen_abizena') + gameText[globals.lenguageSelected].earnedPointsText + globals.earnedPlayer1Points + gameText[globals.lenguageSelected].earnedPoints2Text, 760, 600); 
+                globals.ctx.fillText(localStorage.getItem('izen_abizena') + globals.earnedPlayer2Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 290 ); 
                 globals.ctx.restore();
+            }
         }
     }
     if(globals.renderAlpha === 0)
