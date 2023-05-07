@@ -1067,6 +1067,7 @@ a{
     margin-top: 5px;
     margin-left: 5px;
     width: 300px;
-    height: 150px;
+    height: 190px;
     color: #FCFCFD;
+    overflow-y: scroll;
 }

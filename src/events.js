@@ -195,6 +195,9 @@ function createUserEditList()
         buttonEdit.innerHTML = "edit";
         buttonDelete.innerHTML = "delete";
 
+        buttonEdit.style.cssText = 'background-color: green; padding: 5px;';
+        buttonDelete.style.cssText = 'background-color: red; padding: 5px;';
+
         document.querySelector('#editList').appendChild(li);
         li.appendChild(buttonEdit);
         li.appendChild(buttonDelete);
