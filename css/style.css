@@ -1062,3 +1062,78 @@ a{
     color: #d9c6ee;
     text-decoration: underline;
 }
+
+
+/* Botones de Control de Mazos y Player */
+
+#btn_add_deck{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_remove_deck{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_edit_deck{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_add_player{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_remove_player{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_edit_player{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
