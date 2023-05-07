@@ -156,6 +156,7 @@ function createList()
     const users = globals.all_users;                        
     const hostEmail = localStorage.getItem('emaila').toLowerCase();
     const hostName = localStorage.getItem('izen_abizena');
+    console.log(usersList);
 
     if(hostName === globals.all_users[0].izen_abizena)
         globals.selectedEnemy = globals.all_users[1].izen_abizena;
@@ -169,8 +170,8 @@ function createList()
             if(users[i]['emaila'] !== hostEmail && hostEmail !== null){
                 // console.log("entra en el if del emaila logueado = hostEmail");
                 const li = document.createElement('option');            // Creamos Una linea
-                li.textContent = users[i]['izen_abizena'];                      // Asignamos cada valor del array a la linea correspondiente del ciclo
-                usersList.appendChild(li);                      // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
+                li.textContent = users[i]['izen_abizena'];              // Asignamos cada valor del array a la linea correspondiente del ciclo
+                usersList.appendChild(li);                              // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
             }
 
         }
@@ -178,6 +179,27 @@ function createList()
     document.getElementById('playerName').innerHTML= '' + hostName;
     document.getElementById('adminName').innerHTML= '' + hostName;
 
+}
+
+function createUserEditList()
+{
+    for(let i = 0; i < globals.all_users.length; i++)
+    {
+        const li = document.createElement("ul");
+        const buttonEdit = document.createElement("button");
+        const buttonDelete = document.createElement("button");
+        buttonEdit.setAttribute("id", "buttonEdit" + i);
+        buttonDelete.setAttribute("id", "buttonDelete" + i);
+        li.textContent = globals.all_users[i]['izen_abizena'] + " ";
+        
+        buttonEdit.innerHTML = "edit";
+        buttonDelete.innerHTML = "delete";
+
+        document.querySelector('#editList').appendChild(li);
+        li.appendChild(buttonEdit);
+        li.appendChild(buttonDelete);
+
+    }
 }
 
 function selectEnemy()
@@ -630,5 +652,5 @@ export {
     btnControls,
     btnConfirmRound,
     btnDenyRound,
-
+    createUserEditList,
 }
