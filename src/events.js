@@ -190,6 +190,7 @@ function createUserEditList()
         const buttonDelete = document.createElement("button");
         buttonEdit.setAttribute("id", "buttonEdit" + i);
         buttonDelete.setAttribute("id", "buttonDelete" + i);
+        // buttonDelete.setAttribute("onclick", deleteConfirmAction());
         li.textContent = globals.all_users[i]['izen_abizena'] + " ";
         
         buttonEdit.innerHTML = "edit";
@@ -323,8 +324,8 @@ function btnControls ()
 function btnEditUser(event)
 {
     console.log("entra en la funcion btnEditUSer");
-    var target = event.target;
-    var id =  target.id      //El id de cada boton
+    let target = event.target;
+    let id =  target.id      //El id de cada boton
     console.log(id);
 
     document.getElementById("editList").style.display = "none";
@@ -332,8 +333,17 @@ function btnEditUser(event)
 
 function btnDeleteUser(event)
 {
-    console.log("entra en la funcion btnDeleteUser");
+    let target = event.target;
+    let id =  target.id      //El id de cada boton
+    // let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
+    if (confirm("Are you sure you want to delete it")) {
+        console.log("Accion aceptada");
+        // BORRAR EL USUARIO AQUI
+      } else {
+        console.log("Accion cancelada");
+      }
 }
+
 
 function checkIfTurnPass ()
 {

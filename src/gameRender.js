@@ -924,6 +924,8 @@ function betweenTurnsScreen(){
     // console.log(globals.checkIfPlayer1TurnPass);
 }
 
+
+
 export{
     render,
     renderBigCard,
