@@ -373,7 +373,7 @@ function btnEditUser(event)
 
     globals.gameState = State.EDIT_PLAYER;
     checkStates();
-    document.getElementById("editList").style.display = "none";
+    // document.getElementById("editList").style.display = "none";
     
 }
 
