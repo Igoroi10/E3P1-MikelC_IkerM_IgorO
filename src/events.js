@@ -190,14 +190,13 @@ function createUserEditList()
         const buttonDelete = document.createElement("button");
         buttonEdit.setAttribute("id", "buttonEdit" + i);
         buttonDelete.setAttribute("id", "buttonDelete" + i);
-        // buttonDelete.setAttribute("onclick", deleteConfirmAction());
         li.textContent = globals.all_users[i]['izen_abizena'] + " ";
         
         buttonEdit.innerHTML = "edit";
         buttonDelete.innerHTML = "delete";
 
-        buttonEdit.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #2ce226; border: none; outline: none; cursor: pointer; font-size: 1em; font-weight: 600;';
-        buttonDelete.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #f03c3c; border: none; outline: none; cursor: pointer; font-size: 1em; font-weight: 600;';
+        buttonEdit.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #2ce226; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
+        buttonDelete.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #f03c3c; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
 
 
 
@@ -208,8 +207,37 @@ function createUserEditList()
         globals.buttonEditUser     = document.getElementById("buttonEdit" + i);
         globals.buttonDeleteUser   = document.getElementById("buttonDelete" + i)
 
-        globals.buttonEditUser.addEventListener("mousedown",       btnEditUser,       false);
-        globals.buttonDeleteUser.addEventListener("mousedown", btnDeleteUser,      false);
+        globals.buttonEditUser.addEventListener("mousedown",     btnEditUser,    false);
+        globals.buttonDeleteUser.addEventListener("mousedown",   btnDeleteUser,  false);
+    }
+}
+
+function createCardList()
+{   
+    for(let i = 0; i < globals.cardInfo.length; i++)
+    {
+        const li = document.createElement("ul");
+        const buttonEdit = document.createElement("button");
+        const buttonDelete = document.createElement("button");
+        buttonEdit.setAttribute("id", "buttonEditCard" + i);
+        buttonDelete.setAttribute("id", "buttonDeleteCard" + i);
+        li.textContent = globals.cardInfo[i]['izena'] + " ";
+
+        buttonEdit.innerHTML = "edit";
+        buttonDelete.innerHTML = "delete";
+
+        buttonEdit.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #2ce226; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
+        buttonDelete.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #f03c3c; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
+
+        document.querySelector('#editCardList').appendChild(li);
+        li.appendChild(buttonEdit);
+        li.appendChild(buttonDelete);
+        
+        globals.buttonEditCard     = document.getElementById("buttonEditCard" + i);
+        globals.buttonDeleteCard   = document.getElementById("buttonDeleteCard" + i)
+
+        globals.buttonEditCard.addEventListener("mousedown",     btnEditCard,    false);
+        globals.buttonDeleteCard.addEventListener("mousedown",   btnDeleteCard,  false);
     }
 }
 
@@ -339,7 +367,6 @@ function btnControls ()
 
 function btnEditUser(event)
 {
-    console.log("entra en la funcion btnEditUSer");
     let target = event.target;
     let id =  target.id      //El id de cada boton
     console.log(id);
@@ -352,8 +379,7 @@ function btnEditUser(event)
 
 function btnDeleteUser(event)
 {
-    let target = event.target;
-    let id =  target.id      //El id de cada boton
+    let id =  event.target.id;  //El id de cada boton
     // let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
     if (confirm("Are you sure you want to delete it")) {
         console.log("Accion aceptada");
@@ -363,6 +389,22 @@ function btnDeleteUser(event)
       }
 }
 
+function btnEditCard()
+{
+    console.log("entra en la funcion btnEditCard");
+}
+
+function btnDeleteCard(event)
+{
+    let id = event.target.id;      //El id de cada boton
+    // let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
+    if (confirm("Are you sure you want to delete it")) {
+        console.log("Accion aceptada");
+        // BORRAR EL USUARIO AQUI
+      } else {
+        console.log("Accion cancelada");
+      }
+}
 
 function checkIfTurnPass ()
 {
@@ -708,4 +750,5 @@ export {
     createUserEditList,
     btnBack_playerEdit_admin,
     btnSubmit_playerEdit_admin,
+    createCardList,
 }
