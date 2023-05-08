@@ -137,14 +137,14 @@ function initHTMLelements()
     globals.btnDenyRound.addEventListener("mousedown", btnDenyRound, false);
 
     //Botones de Deck control
-    globals.btn_add_deck.addEventListener();
-    globals.btn_remove_deck.addEventListener(); 
-    globals.btn_edit_deck.addEventListener();
+    // globals.btn_add_deck.addEventListener();
+    // globals.btn_remove_deck.addEventListener(); 
+    // globals.btn_edit_deck.addEventListener();
 
-    //Botones de Player control
-    globals.btn_add_player.addEventListener();
-    globals.btn_remove_player.addEventListener();
-    globals.btn_edit_player.addEventListener();
+    // //Botones de Player control
+    // globals.btn_add_player.addEventListener();
+    // globals.btn_remove_player.addEventListener();
+    // globals.btn_edit_player.addEventListener();
     
     // globals.sectionForgotPassword = 
     // globals.sectionRegister = 
