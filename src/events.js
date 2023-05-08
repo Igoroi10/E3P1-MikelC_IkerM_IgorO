@@ -190,7 +190,6 @@ function createUserEditList()
         const buttonDelete = document.createElement("button");
         buttonEdit.setAttribute("id", "buttonEdit" + i);
         buttonDelete.setAttribute("id", "buttonDelete" + i);
-        // buttonDelete.setAttribute("onclick", deleteConfirmAction());
         li.textContent = globals.all_users[i]['izen_abizena'] + " ";
         
         buttonEdit.innerHTML = "edit";
@@ -208,8 +207,23 @@ function createUserEditList()
         globals.buttonEditUser     = document.getElementById("buttonEdit" + i);
         globals.buttonDeleteUser   = document.getElementById("buttonDelete" + i)
 
-        globals.buttonEditUser.addEventListener("mousedown",       btnEditUser,       false);
-        globals.buttonDeleteUser.addEventListener("mousedown", btnDeleteUser,      false);
+        globals.buttonEditUser.addEventListener("mousedown",     btnEditUser,    false);
+        globals.buttonDeleteUser.addEventListener("mousedown",   btnDeleteUser,  false);
+    }
+    console.log("entra");
+}
+
+function createCardList()
+{
+    console.log("entra en la funcion createCardList");
+    console.log(globals.cardInfo);
+    
+    for(let i = 0; i < globals.cardInfo.length; i++)
+    {
+        const li = document.createElement("ul");
+        li.textContent = globals.cardInfo[i]['izena'] + " ";
+
+        document.querySelector('#editCardList').appendChild(li);
     }
 }
 
@@ -687,4 +701,5 @@ export {
     btnConfirmRound,
     btnDenyRound,
     createUserEditList,
+    createCardList,
 }

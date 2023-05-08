@@ -1072,6 +1072,15 @@ a{
     overflow-y: scroll;
 }
 
+#editCardList{
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 985px;
+    height: 290px;
+    color: #FCFCFD;
+    overflow-y: scroll;
+}
+
 /* Botones de Control de Mazos y Player */
 
 #btn_add_deck{
