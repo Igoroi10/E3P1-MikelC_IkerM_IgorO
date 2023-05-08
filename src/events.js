@@ -368,9 +368,21 @@ function btnControls ()
 function btnEditUser(event)
 {
     let target = event.target;
-    let id =  target.id      //El id de cada boton
-    console.log(id);
+    let id =  target.id                                             //El id de cada boton
+    let i = id.charAt(id.length - 1)                                // Recogemos el numero del usuario para buscarlo en el array de Users
+    // console.log(i);
+    // console.log(globals.all_users[i]);
+    let name_surname        = globals.all_users[i].izen_abizena; 
+    let email               = globals.all_users[i].emaila;
 
+    console.log("Name: " + name_surname);
+    console.log("Email: " + email);
+
+    document.getElementById('name_surname_EditPlayer').placeholder                      = name_surname;
+    document.getElementById('emaila_EditPlayer').placeholder                            = email;
+  
+
+    
     globals.gameState = State.EDIT_PLAYER;
     checkStates();
     // document.getElementById("editList").style.display = "none";
