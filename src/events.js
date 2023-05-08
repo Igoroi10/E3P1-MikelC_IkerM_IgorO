@@ -213,10 +213,7 @@ function createUserEditList()
 }
 
 function createCardList()
-{
-    console.log("entra en la funcion createCardList");
-    console.log(globals.cardInfo);
-    
+{   
     for(let i = 0; i < globals.cardInfo.length; i++)
     {
         const li = document.createElement("ul");
@@ -354,7 +351,6 @@ function btnControls ()
 
 function btnEditUser(event)
 {
-    console.log("entra en la funcion btnEditUSer");
     let target = event.target;
     let id =  target.id      //El id de cada boton
     console.log(id);
