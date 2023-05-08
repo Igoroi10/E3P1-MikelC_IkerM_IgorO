@@ -250,6 +250,22 @@ function btnBack()
     checkStates();
 }
 
+function btnBack_playerEdit_admin()
+{
+    // console.log("entra en back de admin");
+    
+    globals.gameState = State.ADMIN_MENU
+    document.getElementById('name_surname_EditPlayer').innerHTML    = "";
+    document.getElementById('emaila_EditPlayer').innerHTML          = "";
+    
+    checkStates();
+}
+
+function btnSubmit_playerEdit_admin()
+{
+    // console.log("entra en Submit de admin")
+}
+
 //Boton Que Pasa de turno
 export function btnStartTurn()
 {
@@ -690,4 +706,6 @@ export {
     btnConfirmRound,
     btnDenyRound,
     createUserEditList,
+    btnBack_playerEdit_admin,
+    btnSubmit_playerEdit_admin,
 }
