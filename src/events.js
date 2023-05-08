@@ -195,8 +195,8 @@ function createUserEditList()
         buttonEdit.innerHTML = "edit";
         buttonDelete.innerHTML = "delete";
 
-        buttonEdit.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #2ce226; border: none; outline: none; cursor: pointer; font-size: 1em; font-weight: 600;';
-        buttonDelete.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #f03c3c; border: none; outline: none; cursor: pointer; font-size: 1em; font-weight: 600;';
+        buttonEdit.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #2ce226; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
+        buttonDelete.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #f03c3c; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
 
 
 
@@ -210,7 +210,6 @@ function createUserEditList()
         globals.buttonEditUser.addEventListener("mousedown",     btnEditUser,    false);
         globals.buttonDeleteUser.addEventListener("mousedown",   btnDeleteUser,  false);
     }
-    console.log("entra");
 }
 
 function createCardList()
@@ -221,9 +220,21 @@ function createCardList()
     for(let i = 0; i < globals.cardInfo.length; i++)
     {
         const li = document.createElement("ul");
+        const buttonEdit = document.createElement("button");
+        const buttonDelete = document.createElement("button");
+        buttonEdit.setAttribute("id", "buttonEditCard" + i);
+        buttonDelete.setAttribute("id", "buttonDeleteCard" + i);
         li.textContent = globals.cardInfo[i]['izena'] + " ";
 
+        buttonEdit.innerHTML = "edit";
+        buttonDelete.innerHTML = "delete";
+
+        buttonEdit.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #2ce226; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
+        buttonDelete.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #f03c3c; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
+
         document.querySelector('#editCardList').appendChild(li);
+        li.appendChild(buttonEdit);
+        li.appendChild(buttonDelete);
     }
 }
 
