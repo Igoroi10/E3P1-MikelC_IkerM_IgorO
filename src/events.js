@@ -360,8 +360,7 @@ function btnEditUser(event)
 
 function btnDeleteUser(event)
 {
-    let target = event.target;
-    let id =  target.id      //El id de cada boton
+    let id =  event.target.id;  //El id de cada boton
     // let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
     if (confirm("Are you sure you want to delete it")) {
         console.log("Accion aceptada");
@@ -378,8 +377,7 @@ function btnEditCard()
 
 function btnDeleteCard(event)
 {
-    let target = event.target;
-    let id =  target.id      //El id de cada boton
+    let id = event.target.id;      //El id de cada boton
     // let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
     if (confirm("Are you sure you want to delete it")) {
         console.log("Accion aceptada");
