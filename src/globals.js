@@ -245,6 +245,9 @@ export default
     checkIfPlayer0TurnPass: false,
     checkIfPlayer1TurnPass: false,
 
+    //Formulario DeleteUser
+    inputEmail_Delete:              "",
+
     //Controls
     controls:                       {},
     controlsEUS:                    {},

@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { createNormalDeck, initGame, postForgotPasswordData, postRegisterData,  } from "./initialize.js";
+import { createNormalDeck, initGame, postForgotPasswordData, postRegisterData,  postDeleteUser} from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
@@ -392,10 +392,13 @@ function btnEditUser(event)
 function btnDeleteUser(event)
 {
     let id =  event.target.id;  //El id de cada boton
-    // let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
+    let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
     if (confirm("Are you sure you want to delete it")) {
         console.log("Accion aceptada");
         // BORRAR EL USUARIO AQUI
+        globals.inputEmail_Delete = globals.all_users[i]['emaila'];
+        console.log(globals.inputEmail_Delete);
+        postDeleteUser();
       } else {
         console.log("Accion cancelada");
       }
