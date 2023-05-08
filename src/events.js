@@ -198,10 +198,17 @@ function createUserEditList()
         buttonEdit.style.cssText = 'background-color: green; padding: 5px;';
         buttonDelete.style.cssText = 'background-color: red; padding: 5px;';
 
+
+
         document.querySelector('#editList').appendChild(li);
         li.appendChild(buttonEdit);
         li.appendChild(buttonDelete);
 
+        globals.buttonEditUser     = document.getElementById("buttonEdit" + i);
+        globals.buttonDeleteUser   = document.getElementById("buttonDelete" + i)
+
+        globals.buttonEditUser.addEventListener("mousedown",       btnEditUser,       false);
+        globals.buttonDeleteUser.addEventListener("mousedown", btnDeleteUser,      false);
     }
 }
 
@@ -313,6 +320,18 @@ function btnControls ()
     document.getElementById('divCanvas').style.display = "none";
 }
 
+function btnEditUser(event)
+{
+    console.log("entra en la funcion btnEditUSer");
+    var target = event.target;
+    var id = target.id
+    console.log(id);
+}
+
+function btnDeleteUser(event)
+{
+    console.log("entra en la funcion btnDeleteUser");
+}
 
 function checkIfTurnPass ()
 {
