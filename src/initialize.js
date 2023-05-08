@@ -102,6 +102,16 @@ function initHTMLelements()
     globals.btnConfirmRound                         = document.getElementById('btnConfirmEndRound');
     globals.btnDenyRound                            = document.getElementById('btnDenyEndRound');
 
+    //Botones de Deck control
+    globals.btn_add_deck                            = document.getElementById('btn_add_deck');
+    globals.btn_remove_deck                         = document.getElementById('btn_remove_deck');
+    globals.btn_edit_deck                           = document.getElementById('btn_edit_deck');
+
+
+    //Botones de Player control
+    globals.btn_add_player                          = document.getElementById('btn_add_player');
+    globals.btn_remove_player                       = document.getElementById('btn_remove_player');
+    globals.btn_edit_player                         = document.getElementById('btn_edit_player');
 
     //Mostramos la pantalla de Log In
     document.getElementById('sectionLogIn').style.display = "flex";
@@ -127,6 +137,15 @@ function initHTMLelements()
     globals.btnConfirmRound.addEventListener("mousedown", btnConfirmRound, false);
     globals.btnDenyRound.addEventListener("mousedown", btnDenyRound, false);
 
+    //Botones de Deck control
+    // globals.btn_add_deck.addEventListener();
+    // globals.btn_remove_deck.addEventListener(); 
+    // globals.btn_edit_deck.addEventListener();
+
+    // //Botones de Player control
+    // globals.btn_add_player.addEventListener();
+    // globals.btn_remove_player.addEventListener();
+    // globals.btn_edit_player.addEventListener();
     
     // globals.sectionForgotPassword = 
     // globals.sectionRegister = 

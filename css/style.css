@@ -524,23 +524,24 @@ html {
     height: 300px;
     /* background-color: purple; */
     margin: auto;
-    margin-top: 60px;
+    /* margin-top: 10px; */
     margin-left: 200px;
 }
 
 #dechControl {
     float: right;
     width: 1000px;
-    height: 200px;
+    height: 100px;
     /* background-color: green; */
     margin: auto;
-    margin-top: 90px;
+    margin-left: 2000px;
+    /* margin-top: 90px; */
 }
 
 #dechRectangle{
     float: right;
     width: 995px;
-    height: 200px;
+    height: 300px;
     box-shadow:
          inset 0 -3em 3em rgba(0,0,0,0.1),
                0 0  0 1px rgb(231, 227, 227),
@@ -552,15 +553,15 @@ html {
 #playerControl {
     float: right;
     width: 1000px;
-    height: 200px;
+    height: 100px;
     /* background-color: green; */
     margin: auto;
-    margin-top: 15px;
+    margin-top: 100px;
 }
 #playerRectangle {
     float: right;
     width: 995px;
-    height: 200px;
+    height: 300px;
     box-shadow:
          inset 0 -3em 3em rgba(0,0,0,0.1),
                0 0  0 1px rgb(255, 255, 255),
@@ -570,26 +571,12 @@ html {
     margin-right: 10px;
 }
 
-#last30days{
-    width: 300px;
-    height: 500px;
-    /* background-color: #36395A; */
-    margin: auto;
-    margin-top: 390px;
-    margin-left: 130px;
-    padding: 20px;
-    box-shadow:
-         inset 0 -3em 3em rgba(0,0,0,0.1),
-               0 0  0 1px rgb(255,255,255),
-               0.3em 0.3em 1em rgba(0,0,0,0.3);
-}
-
-#adminMenuScreen{
+#adminSection{
     /* background-image: url("../images/background.jpg"); */
     margin: auto;
     margin-top: 50px;
     width: 1664px; 
-    height: 936px; 
+    height: 100vh; 
     /* background-color: red; */
     padding-left: 0;
     padding-right: 0;
@@ -597,8 +584,21 @@ html {
     margin-right: auto;
     margin-top: 0px;
     display: block;
-    /* border: 3px solid rgb(0, 0, 0); */
+    border: 1px solid rgba(0, 0, 0, 0.01);
 }
+
+#last30days{
+    margin-top: 100px;
+    width: 375px;
+    height: 1000px;
+    /* background-color: #00ff3c83; */
+    margin-left: 130px;
+    box-shadow:
+         inset 0 -3em 3em rgba(0,0,0,0.1),
+               0 0  0 1px rgb(255,255,255),
+               0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
 
 #adminName{
     font-family: "JetBrains Mono",monospace;
@@ -687,7 +687,7 @@ html {
     margin: auto;
     margin-top: 50px;
     width: 1664px; 
-    height: 936px; 
+    height: 100vh; 
     /* background-color: red; */
     padding-left: 0;
     padding-right: 0;
@@ -1070,4 +1070,78 @@ a{
     height: 190px;
     color: #FCFCFD;
     overflow-y: scroll;
+}
+
+/* Botones de Control de Mazos y Player */
+
+#btn_add_deck{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_remove_deck{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_edit_deck{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_add_player{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_remove_player{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_edit_player{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
 }

@@ -254,8 +254,16 @@ export default
     btnDenyRound:                   {},
     checkIfRoundConfirm:            false,      //Confirma si se le ha dado o no al boton.
 
+    //Botones de Deck control
+    btn_add_deck:                   {},                      
+    btn_remove_deck:                {},                         
+    btn_edit_deck:                  {},
 
 
+    //Botones de Player control
+    btn_add_player:                 {},
+    btn_remove_player:              {},
+    btn_edit_player:                {},
 
 
 }

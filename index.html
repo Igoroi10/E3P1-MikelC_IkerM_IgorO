@@ -56,45 +56,53 @@
     </div>
 
     <!-- ADMIN PAGE -->
-
-    <div id="adminMenuScreen" style="display:none;">
-            <div id = "adminScreen">
-                    <img src="./images/profile.png" width="150" height="150">
-                    <h1 id="adminName"><b>Igor</b></h1>
-            </div>
+    
+    <div id="adminMenuScreen">
+        <div id = "adminSection">
 
             <div id="logOutButton">
                 <button class="btnLogout" id="logOutTitle" type="button">Log out</button>
             </div>
 
-        
             <div id="dechControl">
-                    <h2 id="secondTitle">Deck Control</h2>
-                    <button class="boton" type="button">add</button>  <i id="barra">/</i>  
-                    <button class="boton" type="button">remove</button>  <i id="barra">/</i>   
-                    <button class="boton" type="button">edit</button>  <i id="barra">/</i>  
-                    <input class="boton" type="text" value placeholder="Search">
+                <h2 id="secondTitle">Deck Control</h2>
+
+                <button id="btn_add_deck"           type="button">              add             </button>           <i id="barra">/</i>  
+                <button id="btn_remove_deck"        type="button">              remove          </button>           <i id="barra">/</i>   
+                <button id="btn_edit_deck"          type="button">              edit            </button>  
             </div>
+
+            <div id = "adminScreen">
+                <img src="./images/profile.png" width="150" height="150">
+                <h1 id="adminName"><b>Igor</b></h1>
+            </div>
+            
             <div id="dechRectangle">
+    
             </div>
+
             <div id="playerControl">
-                    <h2 id="secondTitle">Player Control</h2>
-                    <button class="boton" type="button">add</button>  <i id="barra">/</i>  
-                    <button class="boton" type="button">remove</button>  <i id="barra">/</i>   
-                    <button class="boton" type="button">edit</button>  <i id="barra">/</i>  
-                    <input class="boton" type="text" value placeholder="Search">
+                
+                <h2 id="secondTitle">Player Control</h2>
+
+                <button id="btn_add_player"         type="button">              add             </button>  <i id="barra">/</i>  
+                <button id="btn_remove_player"      type="button">              remove          </button>  <i id="barra">/</i>   
+                <button id="btn_edit_player"        type="button">              edit            </button>   
             </div>
+
             <div id="playerRectangle">
                 <div id="editList">
                 </div>
             </div>
+
             <div id="last30days">
-                    <h3 id="a30days">Active players</h3>
-                    <h3 id="a30days">(last 30 days)</h3>
+                <h3 id="a30days">Active players</h3>
+                <h3 id="a30days">(last 30 days)</h3>
             </div>
 
+        </div>
+      
     </div>
-    
     <!-- PLAYER PAGE -->
     
     <div id="playerMenuScreen" style="display: none;">
