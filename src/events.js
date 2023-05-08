@@ -195,8 +195,8 @@ function createUserEditList()
         buttonEdit.innerHTML = "edit";
         buttonDelete.innerHTML = "delete";
 
-        buttonEdit.style.cssText = 'background-color: green; padding: 5px;';
-        buttonDelete.style.cssText = 'background-color: red; padding: 5px;';
+        buttonEdit.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #2ce226; border: none; outline: none; cursor: pointer; font-size: 1em; font-weight: 600;';
+        buttonDelete.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #f03c3c; border: none; outline: none; cursor: pointer; font-size: 1em; font-weight: 600;';
 
 
 
