@@ -235,6 +235,12 @@ function createCardList()
         document.querySelector('#editCardList').appendChild(li);
         li.appendChild(buttonEdit);
         li.appendChild(buttonDelete);
+        
+        globals.buttonEditCard     = document.getElementById("buttonEditCard" + i);
+        globals.buttonDeleteCard   = document.getElementById("buttonDeleteCard" + i)
+
+        globals.buttonEditCard.addEventListener("mousedown",     btnEditCard,    false);
+        globals.buttonDeleteCard.addEventListener("mousedown",   btnDeleteCard,  false);
     }
 }
 
@@ -369,6 +375,15 @@ function btnDeleteUser(event)
       }
 }
 
+function btnEditCard()
+{
+    console.log("entra en la funcion btnEditCard");
+}
+
+function btnDeleteCard()
+{
+    console.log("entra en la funcion btnÇDeleteCard");
+}
 
 function checkIfTurnPass ()
 {
