@@ -266,4 +266,7 @@ export default
     btn_edit_player:                {},
 
 
+    //Botones de Edit de Player - Admin Page
+    btn_back_EditAdmin:             {},
+    btn_submit_EditAdmin:           {},
 }
