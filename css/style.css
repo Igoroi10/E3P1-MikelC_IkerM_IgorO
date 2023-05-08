@@ -687,7 +687,7 @@ html {
     margin: auto;
     margin-top: 50px;
     width: 1664px; 
-    height: 936px; 
+    height: 100vh; 
     /* background-color: red; */
     padding-left: 0;
     padding-right: 0;
