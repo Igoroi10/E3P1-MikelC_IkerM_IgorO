@@ -169,6 +169,10 @@ function checkStates(){
             globals.gameState = State.PLAYING;
            break; 
 
+        case State.EDIT_PLAYER:
+            makeThisScreenVisible(State.EDIT_PLAYER);
+            break;
+
         default:
            console.error("Error: Game State invalid");
    }
@@ -201,6 +205,10 @@ function makeThisScreenVisible(screen){
             visibleDiv = "registerScreen";
             break;
 
+        case State.EDIT_PLAYER:
+            visibleDiv = "editPlayerSection";
+            break;
+
     }
 
 
@@ -216,6 +224,7 @@ function makeThisScreenVisible(screen){
     document.getElementById('controlScreenEUS').style.display       = "none";
     document.getElementById('btnConfirmEndRound').style.display     = "none";
     document.getElementById('btnDenyEndRound').style.display        = "none";
+    document.getElementById('editPlayerSection').style.display      = "none";
 
     document.getElementById(visibleDiv).style.display    = "block";
 
