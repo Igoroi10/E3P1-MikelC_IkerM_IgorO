@@ -324,8 +324,10 @@ function btnEditUser(event)
 {
     console.log("entra en la funcion btnEditUSer");
     var target = event.target;
-    var id = target.id
+    var id =  target.id      //El id de cada boton
     console.log(id);
+
+    document.getElementById("editList").style.display = "none";
 }
 
 function btnDeleteUser(event)
