@@ -1070,6 +1070,14 @@ a{
     text-decoration: underline;
 }
 
+#editList{
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 985px;
+    height: 290px;
+    color: #FCFCFD;
+    overflow-y: scroll;
+}
 
 /* Botones de Control de Mazos y Player */
 
@@ -1077,7 +1085,7 @@ a{
     width: 100px;
     height: 40px;
     border-radius: 40px;
-    background: #ffffff;
+    background:#ffffff;
     border: none;
     outline: none;
     cursor: pointer;
@@ -1145,42 +1153,3 @@ a{
     font-weight: 600;
 }
 
-#editPlayerSection{
-    justify-content: center;
-}
-
-#btnPlayer_edit{
-    margin-left: 20px;
-    width: 100px;
-    height: 40px;
-    border-radius: 40px;
-    background: #ffffff;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: 600;
-
-}
-
-#btnAdmin_edit{
-    margin-left: 30px;
-    width: 100px;
-    height: 40px;
-    border-radius: 40px;
-    background: #ffffff;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    font-size: 1em;
-    font-weight: 600;
-
-}
-
-
-
-#PlayerEditText{
-    font-size: 1em;
-    color: white;
-    /* background-color: yellow; */
-}

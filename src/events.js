@@ -156,6 +156,7 @@ function createList()
     const users = globals.all_users;                        
     const hostEmail = localStorage.getItem('emaila').toLowerCase();
     const hostName = localStorage.getItem('izen_abizena');
+    console.log(usersList);
 
     if(hostName === globals.all_users[0].izen_abizena)
         globals.selectedEnemy = globals.all_users[1].izen_abizena;
@@ -169,8 +170,8 @@ function createList()
             if(users[i]['emaila'] !== hostEmail && hostEmail !== null){
                 // console.log("entra en el if del emaila logueado = hostEmail");
                 const li = document.createElement('option');            // Creamos Una linea
-                li.textContent = users[i]['izen_abizena'];                      // Asignamos cada valor del array a la linea correspondiente del ciclo
-                usersList.appendChild(li);                      // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
+                li.textContent = users[i]['izen_abizena'];              // Asignamos cada valor del array a la linea correspondiente del ciclo
+                usersList.appendChild(li);                              // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
             }
 
         }
@@ -178,6 +179,38 @@ function createList()
     document.getElementById('playerName').innerHTML= '' + hostName;
     document.getElementById('adminName').innerHTML= '' + hostName;
 
+}
+
+function createUserEditList()
+{
+    for(let i = 0; i < globals.all_users.length; i++)
+    {
+        const li = document.createElement("ul");
+        const buttonEdit = document.createElement("button");
+        const buttonDelete = document.createElement("button");
+        buttonEdit.setAttribute("id", "buttonEdit" + i);
+        buttonDelete.setAttribute("id", "buttonDelete" + i);
+        // buttonDelete.setAttribute("onclick", deleteConfirmAction());
+        li.textContent = globals.all_users[i]['izen_abizena'] + " ";
+        
+        buttonEdit.innerHTML = "edit";
+        buttonDelete.innerHTML = "delete";
+
+        buttonEdit.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #2ce226; border: none; outline: none; cursor: pointer; font-size: 1em; font-weight: 600;';
+        buttonDelete.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #f03c3c; border: none; outline: none; cursor: pointer; font-size: 1em; font-weight: 600;';
+
+
+
+        document.querySelector('#editList').appendChild(li);
+        li.appendChild(buttonEdit);
+        li.appendChild(buttonDelete);
+
+        globals.buttonEditUser     = document.getElementById("buttonEdit" + i);
+        globals.buttonDeleteUser   = document.getElementById("buttonDelete" + i)
+
+        globals.buttonEditUser.addEventListener("mousedown",       btnEditUser,       false);
+        globals.buttonDeleteUser.addEventListener("mousedown", btnDeleteUser,      false);
+    }
 }
 
 function selectEnemy()
@@ -286,6 +319,29 @@ function btnControls ()
     document.getElementById('sectionPlay').style.display = "none";
     document.getElementById('playerMenuScreen').style.display = "none";
     document.getElementById('divCanvas').style.display = "none";
+}
+
+function btnEditUser(event)
+{
+    console.log("entra en la funcion btnEditUSer");
+    let target = event.target;
+    let id =  target.id      //El id de cada boton
+    console.log(id);
+
+    document.getElementById("editList").style.display = "none";
+}
+
+function btnDeleteUser(event)
+{
+    let target = event.target;
+    let id =  target.id      //El id de cada boton
+    // let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
+    if (confirm("Are you sure you want to delete it")) {
+        console.log("Accion aceptada");
+        // BORRAR EL USUARIO AQUI
+      } else {
+        console.log("Accion cancelada");
+      }
 }
 
 
@@ -630,5 +686,5 @@ export {
     btnControls,
     btnConfirmRound,
     btnDenyRound,
-
+    createUserEditList,
 }

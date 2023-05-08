@@ -38,6 +38,9 @@ export default
 
     buttonEuskera: {},
 
+    buttonEditUser: {},
+
+    buttonDeleteUser: {},
     //Array de Cartas
     cards: [],
 
