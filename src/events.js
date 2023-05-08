@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { createNormalDeck, initGame, postForgotPasswordData, postRegisterData,  } from "./initialize.js";
+import { createNormalDeck, initGame, postForgotPasswordData, postRegisterData, postNewUser } from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
@@ -292,6 +292,10 @@ function btnBack_playerEdit_admin()
 function btnSubmit_playerEdit_admin()
 {
     // console.log("entra en Submit de admin")
+    postNewUser();
+    console.log(globals.newIzenAbizenaEdit.value)
+    console.log(globals.newEmailaEdit.value)
+
 }
 
 //Boton Que Pasa de turno
@@ -369,8 +373,10 @@ function btnEditUser(event)
 {
     let target = event.target;
     let id =  target.id      //El id de cada boton
-    console.log(id);
+    let i = id.charAt(id.length - 1);
+    globals.inputEmailaEdit = globals.all_users[i]['emaila'];
 
+    console.log(globals.inputEmailaEdit);
     globals.gameState = State.EDIT_PLAYER;
     checkStates();
     // document.getElementById("editList").style.display = "none";

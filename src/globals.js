@@ -216,6 +216,12 @@ export default
 
     btnBack: {},
     btnBack_register: {},
+    //Formulario EditUser
+
+    newRolaEdit:                    "",
+    inputEmailaEdit:                "",
+    newEmailaEdit:                  {},
+    newIzenAbizenaEdit:             {},
 
     //Formulario Forgot
     sectionForgotPassword:          {},
