@@ -1,6 +1,6 @@
 
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose, btnControls, btnConfirmRound, btnDenyRound, createUserEditList} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose, btnControls, btnConfirmRound, btnDenyRound, createUserEditList, btnBack_playerEdit_admin, btnSubmit_playerEdit_admin} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -113,6 +113,10 @@ function initHTMLelements()
     globals.btn_remove_player                       = document.getElementById('btn_remove_player');
     globals.btn_edit_player                         = document.getElementById('btn_edit_player');
 
+    //Botones de edit Player - Admin Page
+    globals.btn_back_EditAdmin                      = document.getElementById('btnBack_edit_Player');
+    globals.btn_submit_EditAdmin                    = document.getElementById('btnSubmit_edit_Player');
+
     //Mostramos la pantalla de Log In
     document.getElementById('sectionLogIn').style.display = "flex";
     document.getElementById('sectionPlay').style.display = "none";
@@ -150,7 +154,9 @@ function initHTMLelements()
     // globals.sectionForgotPassword = 
     // globals.sectionRegister = 
     
-
+    //Botones de  edit Player - Admin Page
+    globals.btn_back_EditAdmin.addEventListener("mousedown", btnBack_playerEdit_admin, false);
+    globals.btn_submit_EditAdmin.addEventListener("mousedown", btnSubmit_playerEdit_admin, false);
     
 }
 
