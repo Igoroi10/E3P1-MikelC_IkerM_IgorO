@@ -380,9 +380,17 @@ function btnEditCard()
     console.log("entra en la funcion btnEditCard");
 }
 
-function btnDeleteCard()
+function btnDeleteCard(event)
 {
-    console.log("entra en la funcion btnÇDeleteCard");
+    let target = event.target;
+    let id =  target.id      //El id de cada boton
+    // let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
+    if (confirm("Are you sure you want to delete it")) {
+        console.log("Accion aceptada");
+        // BORRAR EL USUARIO AQUI
+      } else {
+        console.log("Accion cancelada");
+      }
 }
 
 function checkIfTurnPass ()
