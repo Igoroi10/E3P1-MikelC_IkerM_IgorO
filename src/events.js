@@ -328,7 +328,10 @@ function btnEditUser(event)
     let id =  target.id      //El id de cada boton
     console.log(id);
 
+    globals.gameState = State.EDIT_PLAYER;
+    checkStates();
     document.getElementById("editList").style.display = "none";
+    
 }
 
 function btnDeleteUser(event)
