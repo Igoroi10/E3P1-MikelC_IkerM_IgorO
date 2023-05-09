@@ -2176,7 +2176,10 @@ function multiMensaje()
     document.getElementById('btnBack_register').innerHTML = lenguageText[globals.lenguageSelected].backText;
     document.getElementById('btnRound').innerHTML = lenguageText[globals.lenguageSelected].buttonEndRoundText;
     document.getElementById('btnTurn').innerHTML = lenguageText[globals.lenguageSelected].buttonNextTurnText;
-    document.getElementById('logInText').innerHTML = lenguageText[globals.lenguageSelected].logInText;
+    document.getElementById('secondTitle').innerHTML = lenguageText[globals.lenguageSelected].deckControl;
+    document.getElementById('secondTitlel').innerHTML = lenguageText[globals.lenguageSelected].playerControl;
+    document.getElementById('a30days1').innerHTML = lenguageText[globals.lenguageSelected].activePlayersText;
+    document.getElementById('a30days2').innerHTML = lenguageText[globals.lenguageSelected].last30Days;
 }
 
 export {

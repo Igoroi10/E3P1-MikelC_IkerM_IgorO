@@ -23,7 +23,11 @@ export const lenguageText = [
         errorMensajeText: 'The username or password are incorrect. Please try again.',
         buttonEndRoundText: 'END ROUND',
         buttonNextTurnText: 'NEXT TURN',
-        logInText: 'Log in'
+        logInText: 'Log in',
+        activePlayersText: 'Active players',
+        last30Days: '(last 30 days)',
+        deckControl: 'Deck Control',
+        playerControl: 'Player Control'
     },
 
     {
@@ -48,7 +52,11 @@ export const lenguageText = [
         errorMensajeText: 'Erabiltzailea edo pasahitza gaizki daude. Mesedez berriz saiatu.',
         buttonEndRoundText: 'RONDA AMAITU',
         buttonNextTurnText: 'HURRENGO TXANDA',
-        logInText: 'Sahioa hasi'
+        logInText: 'Sahioa hasi',
+        activePlayersText: 'Azken 30 egunetan',
+        last30Days: 'jokalari aktiboak',
+        deckControl: 'Karta sortaren Kontrola',
+        playerControl: 'Jokalariaren Kontrola'
     },
 ]
 
