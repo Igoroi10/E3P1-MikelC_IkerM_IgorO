@@ -602,6 +602,13 @@ html {
                0.3em 0.3em 1em rgba(0,0,0,0.3); */
 }
 
+#a30days1{
+    color: white;
+}
+
+#a30days2{
+    color: white;
+}
 
 #adminName{
     font-family: "JetBrains Mono",monospace;
