@@ -522,6 +522,7 @@ function drawMessages()
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
         globals.ctx.fillText(gameText[globals.lenguageSelected].decoyText, 10, 585);
+        globals.ctx.fillText(gameText[globals.lenguageSelected].decoyText2, 10, 600);
    }
    else if(globals.actionsCounter === 0)
    {
