@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { createNormalDeck, initGame, postForgotPasswordData, postRegisterData,  postDeleteUser , postNewUser} from "./initialize.js";
+import { createNormalDeck, initGame, postForgotPasswordData, postRegisterData,  postDeleteUser , postNewUser, postDeleteCard} from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
@@ -417,10 +417,13 @@ function btnEditCard()
 function btnDeleteCard(event)
 {
     let id = event.target.id;      //El id de cada boton
-    // let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
+    let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
     if (confirm("Are you sure you want to delete it")) {
         console.log("Accion aceptada");
         // BORRAR EL USUARIO AQUI
+        globals.inputCardCode = globals.cardInfo[i].karta_kod;
+        console.log(globals.inputCardCode);
+        postDeleteCard();
       } else {
         console.log("Accion cancelada");
       }

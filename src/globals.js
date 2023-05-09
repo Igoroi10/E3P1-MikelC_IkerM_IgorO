@@ -223,6 +223,9 @@ export default
     newEmailaEdit:                  {},
     newIzenAbizenaEdit:             {},
 
+    //Formulario DeleteCard         
+    inputCardCode:                  "",
+
     //Formulario Forgot
     sectionForgotPassword:          {},
 

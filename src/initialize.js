@@ -766,6 +766,53 @@ function postDeleteUser(event)
 
 }
 
+// ===========================================================
+//                    P O S T  d e  D E L E T E  U S E R
+// ===========================================================
+
+function postDeleteCard()
+{
+  console.log("Entra en postDeleteCard");
+
+    const objectToSend = {
+        karta_kod: globals.inputCardCode
+    }
+    
+    const dataToSend = 'karta_kod=' + objectToSend.karta_kod;
+
+    console.log(dataToSend);
+    //Ruta relativa al fichero que hace la petición (postNewPassword.php)
+    const url = "../server/routes/postDeleteCard.php";
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                  console.log("this.responseText" + this.responseText);
+                    const userData = JSON.parse(this.responseText);
+                  // console.log("------------")
+                  console.log(userData)
+                  // console.log("------------")
+                }
+                else
+                    alert("Comunication error: No data received");
+            }
+            else
+                alert( "Comunication error: " + this.statusText);
+        }
+    }
+
+    request.responseType = "text";
+    request.send(dataToSend);
+
+}
 
 function manageRegister(userData)
 {
@@ -1615,7 +1662,6 @@ function initCardInfo()
                     
                     //Guardamos los datos del resultJSON
                     globals.cardInfo = resultJSON;
-                    
                     initCardLinks();
                     createCardList();
 
@@ -1757,4 +1803,5 @@ export {
     postRegisterData,
     postDeleteUser,
     postNewUser,
+    postDeleteCard,
 }
