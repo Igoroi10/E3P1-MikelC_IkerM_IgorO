@@ -68,7 +68,11 @@ function initHTMLelements()
     globals.sectionLogIn            = document.getElementById('sectionLogIn');
     globals.sectionPlay             = document.getElementById('sectionPlay');
     
-    
+    //Formulario EditUser
+    globals.newRolaEdit             = 'player';
+    globals.newEmailaEdit           = document.getElementById('emailRegister');
+    globals.newIzenAbizenaEdit      = document.getElementById('Name&Surname');
+
 
     //Formulario Forget
     globals.sectionForgotPassword   = document.getElementById('forgetbtn');
@@ -798,6 +802,57 @@ function manageRegister(userData)
 
 }
 
+// ===========================================================
+//                    POST   USERS
+// ===========================================================
+
+
+function postNewUser()
+{
+    // console.log("Entra en postNewUser");
+
+    // Funcion que checkea si la Confirmacion de la contraseña Esta bien o no 
+
+    const objectToSend = {
+        newRola: globals.newRolaEdit,
+        emaila: globals.inputEmailaEdit,
+        newEmaila: globals.newEmailaEdit.value,
+        newIzenAbizena: globals.newIzenAbizenaEdit.value
+    }
+    
+    const dataToSend = 'newRola=' + objectToSend.newRola + '&emaila=' + objectToSend.emaila + '&newEmaila=' + objectToSend.newEmaila  + '&newIzenAbizena=' + objectToSend.newIzenAbizena;
+
+
+    //Ruta relativa al fichero que hace la petición (RegisterNewUser.php)
+    const url = "../server/routes/postEditUser.php";
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                  // console.log(this.responseText);
+                    const userData = JSON.parse(this.responseText);
+                  console.log(userData);
+                }
+                else
+                    alert("Comunication error: No data received");
+            }
+            else
+                alert( "Comunication error: " + this.statusText);
+        }
+    }
+
+    request.responseType = "text";
+    request.send(dataToSend);
+
+}
 // ===========================================================
 //                    F I N   D E   P O S T S
 // ===========================================================
@@ -1701,4 +1756,5 @@ export {
     postForgotPasswordData,
     postRegisterData,
     postDeleteUser,
+    postNewUser,
 }
