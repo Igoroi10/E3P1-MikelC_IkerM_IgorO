@@ -638,9 +638,16 @@ function manageForgot(userData)
     {
       // console.log("Todo correcto en manageForgot");
         if(globals.lenguageSelected === 0)
+        {
             document.getElementById('lblError').innerHTML = "Password changed successfully";
-        else
+            document.getElementById('lblError').style.cssText = 'color: green';
+        }
+        else if(globals.lenguageSelected === 1)
+        {
             document.getElementById('lblError').innerHTML = "Pasahitza aldatu egin da";
+            document.getElementById('lblError').style.cssText = 'color: green';
+        }
+
     
     
         
