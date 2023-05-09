@@ -832,9 +832,17 @@ function manageRegister(userData)
         if (userData.message == "user registered succesfully" && globals.inputNameSurname_Register.value !== ""  && globals.inputEmail_Register.value !== "" && globals.inputPassword_Register.value !== "")
         {
             if(globals.lenguageSelected === 0)
+            {
                 document.getElementById('lblError').innerHTML = "User registered correctly";
+                document.getElementById('lblError').style.cssText = 'color: green';
+            }
+
             else
+            {
                 document.getElementById('lblError').innerHTML = "Erabiltzailea erregistratu egin da.";
+                document.getElementById('lblError').style.cssText = 'color: green';
+            }
+                
 
             // localStorageUpdate();
             globals.gameState = State.LOG_IN;
