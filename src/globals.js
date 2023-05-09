@@ -46,7 +46,7 @@ export default
 
     buttonDeleteCard: {},
 
-    buttonPlayer:   {},
+    buttonPlayerEdit:   {},
 
     buttonAdmin:    {},
     //Array de Cartas

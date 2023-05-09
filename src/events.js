@@ -426,14 +426,18 @@ function btnDeleteCard(event)
       }
 }
 
-function btnbuttonPlayerEdit()
+function btnPlayerEdit()
 {
     globals.newRolaEdit = "player";
+    document.getElementById('btnPlayer_edit').style.cssText = 'background-color: black; color: #D3D3D3;';
+    document.getElementById('btnAdmin_edit').style.cssText = 'background-color: white; color: black;';
 }
 
-function btnbuttonAdminEdit()
+function btnAdminEdit()
 {
     globals.newRolaEdit = "admin";
+    document.getElementById('btnAdmin_edit').style.cssText = 'background-color: black; color: #D3D3D3;';
+    document.getElementById('btnPlayer_edit').style.cssText = 'background-color: white; color: black;';
 }
 
 function checkIfTurnPass ()
@@ -781,6 +785,6 @@ export {
     btnBack_playerEdit_admin,
     btnSubmit_playerEdit_admin,
     createCardList,
-    btnbuttonAdminEdit,
-    btnbuttonPlayerEdit,
+    btnAdminEdit,
+    btnPlayerEdit,
 }

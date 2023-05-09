@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose, btnControls, btnConfirmRound, btnDenyRound, createUserEditList, createCardList, btnBack_playerEdit_admin, btnSubmit_playerEdit_admin, btnbuttonPlayerEdit, btnbuttonAdminEdit} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose, btnControls, btnConfirmRound, btnDenyRound, createUserEditList, createCardList, btnBack_playerEdit_admin, btnSubmit_playerEdit_admin, btnPlayerEdit, btnAdminEdit} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -26,7 +26,7 @@ function initHTMLelements()
     globals.buttonMode      = document.getElementById('btnNormal');
     globals.buttonEnglish   = document.getElementById('btnEnglish');
     globals.buttonEuskera   = document.getElementById('btnEuskera');
-    globals.buttonPlayer   = document.getElementById('btnPlayer_edit');
+    globals.buttonPlayerEdit   = document.getElementById('btnPlayer_edit');
     globals.buttonAdmin   = document.getElementById('btnAdmin_edit');
 
     //Get A reference to the canvas 
@@ -52,8 +52,8 @@ function initHTMLelements()
         }
     globals.buttonEnglish.addEventListener("mousedown", btnEnglishMode, false);
     globals.buttonEuskera.addEventListener("mousedown", btnEuskeraMode, false);
-    globals.buttonPlayer.addEventListener("mousedown", btnbuttonPlayerEdit, false);
-    globals.buttonAdmin.addEventListener("mousedown", btnbuttonAdminEdit, false);
+    globals.buttonPlayerEdit.addEventListener("mousedown", btnPlayerEdit, false);
+    globals.buttonAdmin.addEventListener("mousedown", btnAdminEdit, false);
 
 
     // globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);
