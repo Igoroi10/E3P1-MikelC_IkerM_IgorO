@@ -2158,6 +2158,7 @@ function multiMensaje()
     document.getElementById('btnNormal').innerHTML = lenguageText[globals.lenguageSelected].normalButtonText;
     document.getElementById('difficultButton').innerHTML = lenguageText[globals.lenguageSelected].expertButtonText;
     document.getElementById('logOutTitle').innerHTML = lenguageText[globals.lenguageSelected].logOutText;
+    document.getElementById('logOutTitle1').innerHTML = lenguageText[globals.lenguageSelected].logOutText;
     document.getElementById('forgetbtn').innerHTML = lenguageText[globals.lenguageSelected].forgotPasswordBox;
     document.getElementById('btnregister').innerHTML = lenguageText[globals.lenguageSelected].dontHaveAccountText;
     document.getElementById('forgotPasswordTitle').innerHTML = lenguageText[globals.lenguageSelected].forgotPasswordText;
