@@ -426,6 +426,16 @@ function btnDeleteCard(event)
       }
 }
 
+function btnbuttonPlayerEdit()
+{
+    globals.newRolaEdit = "player";
+}
+
+function btnbuttonAdminEdit()
+{
+    globals.newRolaEdit = "admin";
+}
+
 function checkIfTurnPass ()
 {
     //CHECK DEL PLAYER 1
@@ -771,4 +781,6 @@ export {
     btnBack_playerEdit_admin,
     btnSubmit_playerEdit_admin,
     createCardList,
+    btnbuttonAdminEdit,
+    btnbuttonPlayerEdit,
 }
