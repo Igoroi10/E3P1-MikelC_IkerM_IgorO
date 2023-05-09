@@ -380,8 +380,8 @@ function btnEditUser(event)
     console.log("Name: " + name_surname);
     console.log("Email: " + email);
 
-    document.getElementById('name_surname_EditPlayer').placeholder                      = name_surname;
-    document.getElementById('emaila_EditPlayer').placeholder                            = email;
+    document.getElementById('name_surname_EditPlayer').value                      = name_surname;
+    document.getElementById('emaila_EditPlayer').value                            = email;
   
 
     
