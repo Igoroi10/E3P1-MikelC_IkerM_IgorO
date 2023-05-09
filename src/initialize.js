@@ -70,8 +70,8 @@ function initHTMLelements()
     
     //Formulario EditUser
     globals.newRolaEdit             = 'player';
-    globals.newEmailaEdit           = document.getElementById('emailRegister');
-    globals.newIzenAbizenaEdit      = document.getElementById('Name&Surname');
+    globals.newEmailaEdit           = document.getElementById('emaila_EditPlayer');
+    globals.newIzenAbizenaEdit      = document.getElementById('name_surname_EditPlayer');
 
 
     //Formulario Forget
@@ -747,7 +747,7 @@ function postDeleteUser(event)
             {
                 if(this.responseText != null)
                 {
-                //   console.log(this.responseText);
+                  console.log(this.responseText);
                     const userData = JSON.parse(this.responseText);
                   // console.log("------------")
                   console.log(userData)
@@ -822,7 +822,7 @@ function postNewUser()
     
     const dataToSend = 'newRola=' + objectToSend.newRola + '&emaila=' + objectToSend.emaila + '&newEmaila=' + objectToSend.newEmaila  + '&newIzenAbizena=' + objectToSend.newIzenAbizena;
 
-
+    console.log(dataToSend);
     //Ruta relativa al fichero que hace la petición (RegisterNewUser.php)
     const url = "../server/routes/postEditUser.php";
     const request = new XMLHttpRequest();
