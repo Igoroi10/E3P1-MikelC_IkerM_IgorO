@@ -293,9 +293,6 @@ function btnSubmit_playerEdit_admin()
 {
     // console.log("entra en Submit de admin")
     postNewUser();
-    console.log(globals.newIzenAbizenaEdit.value)
-    console.log(globals.newEmailaEdit.value)
-
 }
 
 //Boton Que Pasa de turno
