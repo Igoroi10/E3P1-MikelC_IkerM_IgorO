@@ -289,4 +289,7 @@ export default
     //Botones de Edit de Player - Admin Page
     btn_back_EditAdmin:             {},
     btn_submit_EditAdmin:           {},
+
+    //Boton add User de la Admin Page
+    btn_addUser:                    {},
 }
