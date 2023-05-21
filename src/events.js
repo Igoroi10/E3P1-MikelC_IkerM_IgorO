@@ -149,6 +149,10 @@ function btnAddUser()
 function btnRegister()
 {
     // console.log("entra en la funcion btnRegister")
+    
+    let registerName = document.getElementById('registerText');
+    registerName.innerHTML = "Register";
+
     globals.gameState = State.REGISTER;
 
     //Limpieza de registro
