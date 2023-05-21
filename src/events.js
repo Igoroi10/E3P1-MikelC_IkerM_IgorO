@@ -133,6 +133,19 @@ function btnForgotPassword()
     checkStates();
 }
 
+function btnAddUser()
+{
+    console.log("entra en el boton addUser");
+    globals.gameState = State.REGISTER
+    globals.FromAddUser = true;
+
+    let addUserName = document.getElementById('registerText');
+    addUserName.innerHTML = "Add User";
+
+    checkStates();
+
+}
+
 function btnRegister()
 {
     // console.log("entra en la funcion btnRegister")
@@ -788,4 +801,5 @@ export {
     createCardList,
     btnAdminEdit,
     btnPlayerEdit,
+    btnAddUser,
 }
