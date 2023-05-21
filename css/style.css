@@ -1236,6 +1236,18 @@ a{
     font-weight: 600;
 }
 
+#btnAddUser_AdminPage{
+    width: 150px;
+    height: 60px;
+    border-radius: 40px;
+    background: #02e1ff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
 /* #btnSubmit_Back_Edit{
     background-color: red;
 } */
