@@ -849,7 +849,21 @@ function manageRegister(userData)
                 
 
             // localStorageUpdate();
-            globals.gameState = State.LOG_IN;
+            if (globals.FromAddUser)
+            {
+                console.log("entra en el estado FromAddUser")
+                globals.gameState = State.ADMIN_MENU;
+                globals.FromAddUser = false;
+            }
+           
+            else
+            {
+                console.log("no entra en estado ");
+                globals.gameState = State.LOG_IN;
+            }
+                
+
+
             checkStates();
         }
 
