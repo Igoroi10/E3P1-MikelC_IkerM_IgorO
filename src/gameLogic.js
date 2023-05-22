@@ -158,7 +158,7 @@ function checkStates(){
            break;        
 
         case State.GAME_START:
-            // GENERAR EL MAZO 
+             // GENERAR EL MAZO
             createNormalDeck();
 
             // LLAMAR A LA FUNION STARTING DEAL y CAMBIAMOS EL ESTADO DEL JUEGO
@@ -995,8 +995,12 @@ function calculatePoints(player){
     // console.log("moraleBoost1: " + moraleBoost1);
     // tighBondValueDecrease()
     // console.log(points);
-    climateRestore(climateArray)
-    tighBondValueDecrease(tightBondArray, player)
+
+    tighBondValueDecrease(tightBondArray, player);
+
+    if(globals.gameMode = GameMode.EXPERT_MODE)
+        climateRestore(climateArray);
+
     return points;
 }
 
@@ -1148,30 +1152,44 @@ function climateCheck(array){
     for(let l = 0; l < 3; l++){
         let player0SlotID;
         let player1SlotID;
+        let climate;
 
         switch(l){
             case 0:
-                if(frost)
+                if(frost){
                     player0SlotID = SlotIdentificators.PLAYER0_F1;
                     player1SlotID = SlotIdentificators.PLAYER1_F1;
+                    climate = true;
+                }
+                else
+                    climate = false;
                 break;
             case 1:
-                if(fog)
+                if(fog){
                     player0SlotID = SlotIdentificators.PLAYER0_F2;
                     player1SlotID = SlotIdentificators.PLAYER1_F2;
+                    climate = true;
+                }
+                else
+                    climate = false;
                 break;
             case 2:
-                if(rain)
+                if(rain){
                     player0SlotID = SlotIdentificators.PLAYER0_F3;
                     player1SlotID = SlotIdentificators.PLAYER1_F3;
+                    climate = true;
+                }
+                else
+                    climate = false;
                 break;
 
         }
-
-        for(let i = 0; i < globals.cards.length; i++){
-            if(globals.cards[i].slotIdentificator === player0SlotID || globals.cards[i].slotIdentificator === player1SlotID){
-                array.push(i, globals.cards[i].value);
-                globals.cards[i].value = 1;
+        if(climate){
+            for(let i = 0; i < globals.cards.length; i++){
+                if(globals.cards[i].slotIdentificator === player0SlotID || globals.cards[i].slotIdentificator === player1SlotID){
+                    array.push(i, globals.cards[i].value);
+                    globals.cards[i].value = 1;
+                }
             }
         }
     }
