@@ -246,6 +246,28 @@ export function btnNormalMode()
     requestAnimationFrame(gameLoop);
 }
 
+function btnExpertMode()
+{
+    globals.buttonStart.style.visibility = "Hidden";
+    // globals.buttonAdmin.style.visibility = "Hidden";
+    // globals.buttonPlayer.style.visibility = "Hidden";
+
+    document.getElementById('divCanvas').style.display = "block";
+    document.getElementById('sectionLogIn').style.display = "none";
+    document.getElementById('sectionPlay').style.display = "none";
+    document.getElementById('playerMenuScreen').style.display = "none";
+
+    document.getElementById("btnStart").innerHTML = "OVER";
+    document.getElementById('sectionLogIn').style.display = "none";
+
+    globals.gameState = State.GAME_START;
+    globals.gameMode = GameMode.EXPERT_MODE;
+    
+    checkStates();
+
+    requestAnimationFrame(gameLoop);
+}
+
 function checkIfTurnPass ()
 {
     //CHECK DEL PLAYER 1
@@ -551,4 +573,5 @@ export {
     btnBack,
     btnSubmitForget,
     btnSubmitRegister,
+    btnExpertMode,
 }
