@@ -862,7 +862,6 @@ function calculatePoints(player){
 
 
     let points = 0;
-    let climate = SlotIdentificators.CLIMATE_FIELD; // Para el modo expert en un futuro
     let buff1;
     let buff2;
     let buff3;
@@ -876,8 +875,14 @@ function calculatePoints(player){
     let moraleBoost2 = 0;
     let moraleBoost3 = 0;
     let tightBondArray = [];
+    let climateArray = [[],[]];
 
-    tightBondValueAdd(tightBondArray, player)
+    if(globals.gameMode === GameMode.EXPERT_MODE)
+        climateCheck(climateArray);
+
+    tightBondValueAdd(tightBondArray, player);
+
+
 
     if(player === 0){
 
@@ -990,7 +995,7 @@ function calculatePoints(player){
     // console.log("moraleBoost1: " + moraleBoost1);
     // tighBondValueDecrease()
     // console.log(points);
-
+    climateRestore(climateArray)
     tighBondValueDecrease(tightBondArray, player)
     return points;
 }
@@ -1123,6 +1128,63 @@ function tighBondValueDecrease(array, playerNum){
     }
 }
 
+function climateCheck(array){
+    let frost;
+    let fog;
+    let rain;
+    let climateSlotID = SlotIdentificators.CLIMATE_FIELD;
+
+    for(let i = 0; i < globals.cards.length; i++){
+        if(globals.cards[i].slotIdentificator === climateSlotID){
+            if(globals.cards[i].name === "Bitting_frost")
+                frost = true;
+            else if(globals.cards[i].name === "Impenetrable_fog") 
+                fog = true;
+            else if(globals.cards[i].name === "Torrential_rain") 
+                rain = true;
+        }
+    }
+    
+    for(let l = 0; l < 3; l++){
+        let player0SlotID;
+        let player1SlotID;
+
+        switch(l){
+            case 0:
+                if(frost)
+                    player0SlotID = SlotIdentificators.PLAYER0_F1;
+                    player1SlotID = SlotIdentificators.PLAYER1_F1;
+                break;
+            case 1:
+                if(fog)
+                    player0SlotID = SlotIdentificators.PLAYER0_F2;
+                    player1SlotID = SlotIdentificators.PLAYER1_F2;
+                break;
+            case 2:
+                if(rain)
+                    player0SlotID = SlotIdentificators.PLAYER0_F3;
+                    player1SlotID = SlotIdentificators.PLAYER1_F3;
+                break;
+
+        }
+
+        for(let i = 0; i < globals.cards.length; i++){
+            if(globals.cards[i].slotIdentificator === player0SlotID || globals.cards[i].slotIdentificator === player1SlotID){
+                array.push(i, globals.cards[i].value);
+                globals.cards[i].value = 1;
+            }
+        }
+    }
+
+}
+
+function climateRestore(array){
+    for(let i = 0; i < array.length; i++) {
+        let num = array[i][0];
+        let value = array[i][1];
+        globals.cards[num].value = value;
+    }
+}
 // =========================
 //      START OF POINT CALCULATION AT THE END OF THE ROUND
 // =========================
