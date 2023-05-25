@@ -23,6 +23,7 @@ function initHTMLelements()
     globals.buttonRound     = document.getElementById('btnRound');
     globals.buttonLogout    = document.getElementsByClassName('btnLogout');
     globals.buttonMode      = document.getElementById('btnNormal');
+    globals.buttonExpert    = document.getElementById('btnNormal');
     globals.buttonEnglish   = document.getElementById('btnEnglish');
     globals.buttonEuskera   = document.getElementById('btnEuskera');
 
