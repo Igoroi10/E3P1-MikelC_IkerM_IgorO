@@ -998,9 +998,12 @@ function calculatePoints(player){
 
     tighBondValueDecrease(tightBondArray, player);
 
-    if(globals.gameMode = GameMode.EXPERT_MODE)
+    if(globals.gameMode === GameMode.EXPERT_MODE && climateArray[0].length > 0){
+        console.log(globals.gameMode);
+        console.log (climateArray[0].length );
         climateRestore(climateArray);
-
+    }
+        
     return points;
 }
 
@@ -1197,11 +1200,11 @@ function climateCheck(array){
 }
 
 function climateRestore(array){
-    for(let i = 0; i < array.length; i++) {
-        let num = array[i][0];
-        let value = array[i][1];
-        globals.cards[num].value = value;
-    }
+        for(let i = 0; i < array.length; i++) {
+            let num = array[i][0];
+            let points = array[i][1];
+            globals.cards[num].value = points;
+        }
 }
 // =========================
 //      START OF POINT CALCULATION AT THE END OF THE ROUND
@@ -2158,7 +2161,7 @@ function multiMensaje()
     document.getElementById('head').innerHTML = lenguajeText[globals.lenguajeSelected].userListText;
     document.getElementById('selectDifficultTitle').innerHTML = lenguajeText[globals.lenguajeSelected].selectDifficultText;
     document.getElementById('btnNormal').innerHTML = lenguajeText[globals.lenguajeSelected].normalButtonText;
-    document.getElementById('difficultButton').innerHTML = lenguajeText[globals.lenguajeSelected].expertButtonText;
+    document.getElementById('btnExpert').innerHTML = lenguajeText[globals.lenguajeSelected].expertButtonText;
     document.getElementById('logOutTitle').innerHTML = lenguajeText[globals.lenguajeSelected].logOutText;
     document.getElementById('forgetbtn').innerHTML = lenguajeText[globals.lenguajeSelected].forgotPasswordBox;
     document.getElementById('btnregister').innerHTML = lenguajeText[globals.lenguajeSelected].dontHaveAccountText;
