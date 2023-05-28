@@ -508,6 +508,10 @@ function loadHandler()
             globals.assets.card_value[i].removeEventListener("load", loadHandler, false);
         }
 
+        for (let i = 0; i < globals.sounds.length; i++)
+        {
+            globals.sounds[i].removeEventListener("canplaythrough", loadHandler, false);
+        }
 
         // console.log("Assets finished loading");
 
