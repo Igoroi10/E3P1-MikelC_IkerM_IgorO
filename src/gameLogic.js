@@ -114,7 +114,7 @@ function checkStates(){
         case State.LOG_IN:
             makeThisScreenVisible(State.LOG_IN);
             console.log("entra en checkstate LogIn");
-            globals.currentSound = Sound.GAME_MUSIC;
+            globals.currentSound = Sound.MENU_MUSIC;
            
            break;
 
@@ -158,12 +158,15 @@ function checkStates(){
 
         case State.GAME_END:
             makeThisScreenVisible(State.GAME_END);
+            globals.currentSound = Sound.ENDGAME_MUSIC;
+            globals.sounds[globals.currentSound].volume = 0.5;
            break;        
 
         case State.GAME_START:
             // GENERAR EL MAZO 
             createNormalDeck();
-            globals.currentSound = Sound.GAME_MUSIC;
+            // globals.currentSound = Sound.GAME_MUSIC;
+            globals.sounds[globals.currentSound].volume = 0.3;
 
             // LLAMAR A LA FUNION STARTING DEAL y CAMBIAMOS EL ESTADO DEL JUEGO
             startingDeal(GameMode.NORMAL_MODE);
@@ -307,6 +310,10 @@ function updateCard(card) // Puede ser una global de estado o una constante
 
 
         case CardState.SELECTED:
+            //FALTA METER UN TIMER A LA CARTA DE SELECTED o UNA BOLEANA PARA EL SONIDO
+                // globals.currentSound = Sound.CARD_SELECT;
+                // globals.sounds[globals.currentSound].volume = 0.1;
+
             // console.log("entra a selected")
             // console.log(globals.cards[globals.selectedCardId_Click]);
             placeCard();
@@ -1617,6 +1624,9 @@ function placeCard()
             // console.log("Entra en el segundo if");
             if(globals.selectedCardId_Click !== -1 && globals.selectedSlotId !== -1)
             {
+                //FALTA METER BOLEANA O TIMER PARA EL SONIDO
+                // globals.currentSound = Sound.CARD_PLACED;
+                // globals.sounds[globals.currentSound].volume = 0.1;
 
                 // console.log("Entra placed card");
                 const selectedCard      = globals.cards[globals.selectedCardId_Click];
@@ -1844,6 +1854,8 @@ function placeCard()
 
                     // console.log(globals.previousPoints1);
                     // console.log(globals.previousPoints2);
+
+                    globals.currentSound = Sound.CARD_PLACED;
                 }
             }
         }

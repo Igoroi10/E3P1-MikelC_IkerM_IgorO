@@ -772,6 +772,8 @@ function decoyEvent()
                 // console.log("Entra en todos los ifs");
                 const card = globals.cards[globals.selectedCardId_Click]
                 decoyEffectResult(card);
+                globals.currentSound = Sound.EFFECT_DECOY;
+                globals.sounds[globals.currentSound].volume = 1;
             }
         }
         
