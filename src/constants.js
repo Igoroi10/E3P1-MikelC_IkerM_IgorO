@@ -379,6 +379,25 @@ const Turn ={
 
 }
 
+const Sound = {
+    NO_SOUND:                  -1,
+    
+    MENU_MUSIC:                 0,
+    GAME_MUSIC:                 1,
+    ENDGAME_MUSIC:              2,
+    
+
+    CARD_PLACED:                3,
+    CARD_DRAW:                  4,
+    CARD_SELECT:                5,
+
+    EFFECT_DECOY:               6,
+    EFFECT_COMMANDERSHORN:      7,
+    EFFECT_SCORCH:              8,
+    EFFECT_MEDIC:               9,
+
+}
+
 export{
 
     State,
@@ -403,4 +422,5 @@ export{
     Player1_map_pos,
     SlotIdentificators,
     Turn,
+    Sound,
 }
