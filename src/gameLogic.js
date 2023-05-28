@@ -510,7 +510,7 @@ function scorchEffect(card){
     let valueToScorch = -1;
     let fieldToScorch;
 
-
+    globals.currentSound = Sound.EFFECT_SCORCH;
 
     switch (fieldID){
 
