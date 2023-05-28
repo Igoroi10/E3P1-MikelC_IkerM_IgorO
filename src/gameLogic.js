@@ -114,7 +114,8 @@ function checkStates(){
         case State.LOG_IN:
             makeThisScreenVisible(State.LOG_IN);
             console.log("entra en checkstate LogIn");
-            globals.currentSound = Sound.MENU_MUSIC;
+            globals.currentSound = Sound.GAME_MUSIC;
+           
            break;
 
     //Comentario comentado
@@ -162,6 +163,7 @@ function checkStates(){
         case State.GAME_START:
             // GENERAR EL MAZO 
             createNormalDeck();
+            globals.currentSound = Sound.GAME_MUSIC;
 
             // LLAMAR A LA FUNION STARTING DEAL y CAMBIAMOS EL ESTADO DEL JUEGO
             startingDeal(GameMode.NORMAL_MODE);
