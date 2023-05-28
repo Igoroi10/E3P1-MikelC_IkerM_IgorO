@@ -479,6 +479,7 @@ function checkCardEffect(card){
             //efecto de puntuación
             break;
         case Effect.COMMANDERS_HORN:
+            globals.currentSound = Sound.EFFECT_COMMANDERSHORN;
             //efecto de puntuación
             break;
         case Effect.DECOY:
