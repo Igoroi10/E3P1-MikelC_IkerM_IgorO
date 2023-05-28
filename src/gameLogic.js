@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { State, CardState, SlotIdentificators, Effect, GameMode, Player0_map_pos, Player1_map_pos, Turn, Common_map_pos, Type, CardCategory, CardSlotsQuantity} from "./constants.js";
+import { State, CardState, SlotIdentificators, Effect, GameMode, Player0_map_pos, Player1_map_pos, Turn, Common_map_pos, Type, CardCategory, CardSlotsQuantity, Sound} from "./constants.js";
 import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets, initTimers } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards, detectCollisionBetweenMouseAndSlots, detectCollisionBetweenMouseAndCards_Click } from "./collision.js"; 
 import { selectEnemy, createList,  checkIfRoundPass} from "./events.js";
@@ -65,7 +65,7 @@ function playGame()
     updateEndRound();
     updateGameOver();
 
-   
+   playSound();
 
     // checkEndRound();
     
@@ -113,6 +113,8 @@ function checkStates(){
 
         case State.LOG_IN:
             makeThisScreenVisible(State.LOG_IN);
+            console.log("entra en checkstate LogIn");
+            globals.currentSound = Sound.MENU_MUSIC;
            break;
 
     //Comentario comentado
@@ -228,6 +230,21 @@ function makeThisScreenVisible(screen){
 
     document.getElementById(visibleDiv).style.display    = "block";
 
+}
+
+function playSound()
+{
+    //Reporduccion del sonido invocado
+
+    if (globals.currentSound != Sound.NO_SOUND)
+    {
+        //Reporduciremos el sonido correspondiente
+        globals.sounds[globals.currentSound].currentTime = 0;
+        globals.sounds[globals.currentSound].play();
+
+        //Reseteamos current sound
+        globals.currentSound = Sound.NO_SOUND;
+    }
 }
 
 // =========================
