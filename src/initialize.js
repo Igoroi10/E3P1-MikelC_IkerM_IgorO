@@ -311,21 +311,21 @@ function loadAssets()
     let gameMusic = document.querySelector("#gameMusic");
     gameMusic.addEventListener("canplaythrough", loadHandler, false);
     gameMusic.addEventListener("timeupdate", updateMusic, false);
-    gameMusic.laod();
+    gameMusic.load();
     globals.sounds.push(gameMusic);
     globals.assetsToLoad.push(gameMusic);
 
     let endGameMusic = document.querySelector("#endGameMusic");
     endGameMusic.addEventListener("canplaythrough", loadHandler, false);
     endGameMusic.addEventListener("timeupdate", updateMusic, false);
-    endGameMusic.laod();
+    endGameMusic.load();
     globals.sounds.push(endGameMusic);
     globals.assetsToLoad.push(endGameMusic);
 
     let menuTheme = document.querySelector("#menuTheme");
     menuTheme.addEventListener("canplaythrough", loadHandler, false);
     menuTheme.addEventListener("timeupdate", updateMusic, false);
-    menuTheme.laod();
+    menuTheme.load();
     globals.sounds.push(menuTheme);
     globals.assetsToLoad.push(menuTheme);
 
@@ -333,43 +333,43 @@ function loadAssets()
     //EFFECTS
     let placedCard = document.querySelector("#placedCard");
     placedCard.addEventListener("canplaythrough", loadHandler, false);
-    placedCard.laod();
+    placedCard.load();
     globals.sounds.push(placedCard);
     globals.assetsToLoad.push(placedCard);
 
     let drawCard = document.querySelector("#drawCard");
     drawCard.addEventListener("canplaythrough", loadHandler, false);
-    drawCard.laod();
+    drawCard.load();
     globals.sounds.push(drawCard);
     globals.assetsToLoad.push(drawCard);
 
     let selectCard = document.querySelector("#selectCard");
     selectCard.addEventListener("canplaythrough", loadHandler, false);
-    selectCard.laod();
+    selectCard.load();
     globals.sounds.push(selectCard);
     globals.assetsToLoad.push(selectCard);
 
     let effect_Decoy = document.querySelector("#effect_Decoy");
     effect_Decoy.addEventListener("canplaythrough", loadHandler, false);
-    effect_Decoy.laod();
+    effect_Decoy.load();
     globals.sounds.push(effect_Decoy);
     globals.assetsToLoad.push(effect_Decoy);
 
     let effect_CommandersHorn = document.querySelector("#effect_CommandersHorn");
     effect_CommandersHorn.addEventListener("canplaythrough", loadHandler, false);
-    effect_CommandersHorn.laod();
+    effect_CommandersHorn.load();
     globals.sounds.push(effect_CommandersHorn);
     globals.assetsToLoad.push(effect_CommandersHorn);
 
     let effect_Scorch = document.querySelector("#effect_Scorch");
     effect_Scorch.addEventListener("canplaythrough", loadHandler, false);
-    effect_Scorch.laod();
+    effect_Scorch.load();
     globals.sounds.push(effect_Scorch);
     globals.assetsToLoad.push(effect_Scorch);
 
     let effect_Medic = document.querySelector("#effect_Medic");
     effect_Medic.addEventListener("canplaythrough", loadHandler, false);
-    effect_Medic.laod();
+    effect_Medic.load();
     globals.sounds.push(effect_Medic);
     globals.assetsToLoad.push(effect_Medic);
 
