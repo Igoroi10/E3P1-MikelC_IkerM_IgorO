@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import { createNormalDeck, initGame, postForgotPasswordData, postRegisterData,  postDeleteUser , postNewUser, postDeleteCard} from "./initialize.js";
-import { Key, State, Turn, GameMode } from "./constants.js";
+import { Key, State, Turn, GameMode, Sound } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
 import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal,  decoyEffectResult , multiMensaje} from "./gameLogic.js";
@@ -778,6 +778,19 @@ function decoyEvent()
     }
 }
 
+function upodateMusic()
+{
+    const buffer = 0.28;
+    const music = globals.sounds[Sound.GAME_MUSIC];
+    if(music.currentTime > music.duration - buffer)
+    {
+        music.currentTime = 0;
+        music.play();
+    }
+
+
+}
+
 
 
 
@@ -806,4 +819,5 @@ export {
     btnAdminEdit,
     btnPlayerEdit,
     btnAddUser,
+    upodateMusic,
 }
