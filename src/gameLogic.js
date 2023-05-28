@@ -165,7 +165,7 @@ function checkStates(){
         case State.GAME_START:
             // GENERAR EL MAZO 
             createNormalDeck();
-            // globals.currentSound = Sound.GAME_MUSIC;
+            globals.currentSound = Sound.GAME_MUSIC;
             globals.sounds[globals.currentSound].volume = 0.3;
 
             // LLAMAR A LA FUNION STARTING DEAL y CAMBIAMOS EL ESTADO DEL JUEGO
@@ -742,6 +742,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                                 globals.player[playerNum][i].state = CardState.GAME;
                                 globals.player[playerNum][i].showBack = false;
 
+                                globals.currentSound = Sound.EFFECT_MEDIC;
                             }
                         }
 
@@ -832,7 +833,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                                     l = globals.slots.length;
                                     i = globals.cards.length;
 
-
+                                    globals.currentSound = Sound.CARD_DRAW;
                                 }
                             }
                         }
@@ -2008,6 +2009,8 @@ function updateEndRound()
         dealCards();
         globals.player1Points = 0;
         globals.player2Points = 0;
+
+        globals.currentSound = Sound.CARD_DRAW;
     }
 
     // else if(globals.turnState === Turn.PLAYER1 || globals.turnState === Turn.PLAYER2)
