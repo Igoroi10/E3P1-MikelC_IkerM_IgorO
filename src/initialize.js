@@ -308,6 +308,14 @@ function loadAssets()
     //=======================
     
     // MUSIC
+
+    let menuTheme = document.querySelector("#menuTheme");
+    menuTheme.addEventListener("canplaythrough", loadHandler, false);
+    menuTheme.addEventListener("timeupdate", updateMusic, false);
+    menuTheme.load();
+    globals.sounds.push(menuTheme);
+    globals.assetsToLoad.push(menuTheme);
+
     let gameMusic = document.querySelector("#gameMusic");
     gameMusic.addEventListener("canplaythrough", loadHandler, false);
     gameMusic.addEventListener("timeupdate", updateMusic, false);
@@ -321,13 +329,6 @@ function loadAssets()
     endGameMusic.load();
     globals.sounds.push(endGameMusic);
     globals.assetsToLoad.push(endGameMusic);
-
-    let menuTheme = document.querySelector("#menuTheme");
-    menuTheme.addEventListener("canplaythrough", loadHandler, false);
-    menuTheme.addEventListener("timeupdate", updateMusic, false);
-    menuTheme.load();
-    globals.sounds.push(menuTheme);
-    globals.assetsToLoad.push(menuTheme);
 
 
     //EFFECTS
