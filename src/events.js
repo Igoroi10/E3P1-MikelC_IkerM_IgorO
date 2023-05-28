@@ -778,7 +778,7 @@ function decoyEvent()
     }
 }
 
-function upodateMusic()
+function updateMusic()
 {
     const buffer = 0.28;
     const music = globals.sounds[Sound.GAME_MUSIC];
@@ -819,5 +819,5 @@ export {
     btnAdminEdit,
     btnPlayerEdit,
     btnAddUser,
-    upodateMusic,
+    updateMusic,
 }
