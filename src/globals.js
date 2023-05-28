@@ -293,4 +293,8 @@ export default
     //Boton add User de la Admin Page
     btn_addUser:                    {},
     FromAddUser:                    false,
+
+    //Sonidos
+    sounds:                         [],
+    currentSound:                   -1,
 }
