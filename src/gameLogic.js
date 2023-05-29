@@ -678,7 +678,12 @@ function musterEffect(card){
     let searchSlot;
     // console.log("carta a principio de muster");
     // console.log(card)
-    if(card.slotIdentificators < SlotIdentificators.PLAYER1_F1)
+    // if(card.slotIdentificators < SlotIdentificators.PLAYER1_F1)
+    //     playerNum = 0;
+    // else
+    //     playerNum = 1;
+
+    if(globals.turnState === 0)
         playerNum = 0;
     else
         playerNum = 1;
