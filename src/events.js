@@ -360,6 +360,28 @@ export function btnNormalMode()
     checkStates();
 }
 
+function btnExpertMode()
+{
+    globals.buttonStart.style.visibility = "Hidden";
+    // globals.buttonAdmin.style.visibility = "Hidden";
+    // globals.buttonPlayer.style.visibility = "Hidden";
+
+    document.getElementById('divCanvas').style.display = "block";
+    document.getElementById('sectionLogIn').style.display = "none";
+    document.getElementById('sectionPlay').style.display = "none";
+    document.getElementById('playerMenuScreen').style.display = "none";
+
+    document.getElementById("btnStart").innerHTML = "OVER";
+    document.getElementById('sectionLogIn').style.display = "none";
+
+    globals.gameState = State.GAME_START;
+    globals.gameMode = GameMode.EXPERT_MODE;
+    
+    checkStates();
+
+    requestAnimationFrame(gameLoop);
+}
+
 function btnClose()
 {
     console.log("entra en close")
@@ -458,28 +480,6 @@ function btnAdminEdit()
     globals.newRolaEdit = "admin";
     document.getElementById('btnAdmin_edit').style.cssText = 'background-color: black; color: #D3D3D3;';
     document.getElementById('btnPlayer_edit').style.cssText = 'background-color: white; color: black;';
-}
-
-function btnExpertMode()
-{
-    globals.buttonStart.style.visibility = "Hidden";
-    // globals.buttonAdmin.style.visibility = "Hidden";
-    // globals.buttonPlayer.style.visibility = "Hidden";
-
-    document.getElementById('divCanvas').style.display = "block";
-    document.getElementById('sectionLogIn').style.display = "none";
-    document.getElementById('sectionPlay').style.display = "none";
-    document.getElementById('playerMenuScreen').style.display = "none";
-
-    document.getElementById("btnStart").innerHTML = "OVER";
-    document.getElementById('sectionLogIn').style.display = "none";
-
-    globals.gameState = State.GAME_START;
-    globals.gameMode = GameMode.EXPERT_MODE;
-    
-    checkStates();
-
-    requestAnimationFrame(gameLoop);
 }
 
 function checkIfTurnPass ()
