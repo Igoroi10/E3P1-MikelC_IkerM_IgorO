@@ -1589,16 +1589,23 @@ function updateTurn()
 {
     // console.log("Turno player: " + globals.turnState);
     // console.log(globals.selectedCardId_Click);
+    let actionsToPass;
+
+    if(globals.gameMode === GameMode.NORMAL_MODE)
+        actionsToPass = 2;
+    
+    else 
+        actionsToPass = 3;
 
     //Check de turnos
-    if(globals.turnState === 1 && globals.actionsCounter >= 2)
+    if(globals.turnState === 1 && globals.actionsCounter >= actionsToPass)
     {
         globals.checkIfPlayer1TurnPass = true;
         globals.turnState = Turn.PLAYER0 //Cambiamos de Player despues de las dos acciones
         globals.actionsCounter = 0;
     }
 
-    else if(globals.turnState === 0 && globals.actionsCounter >= 2)
+    else if(globals.turnState === 0 && globals.actionsCounter >= actionsToPass)
     {
         globals.checkIfPlayer0TurnPass = true;
         globals.turnState = Turn.PLAYER1 //Cambiamos de Player despues de las dos acciones
