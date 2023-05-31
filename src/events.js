@@ -510,8 +510,37 @@ function btnDenyRound ()
     checkIfRoundPass();
 }
 
+//Reiniciar todo
 function btnReset()
 {
+    console.log("entra en reset");
+
+    globals.cards.length                    = 0;    //reinicio del array de cartas
+    globals.tokens.length                   = 0;
+
+    globals.currentSound                    = -1;
+    globals.sounds.currentTime              = 0;
+
+    globals.player[0].length                = 0;
+    globals.player[1].length                = 0;
+
+
+    globals.selectedCardId                  = -1;
+    globals.selectedCardId_Click            = -1;
+    globals.selectedSlotId                  = -1; 
+
+    globals.actionsCounter                  = 0;
+
+    globals.checkPlaced                     = false;
+
+
+    globals.selectedEnemy = globals.all_users[0].izen_abizena;
+
+    
+
+    //Volver a la selección de contrincante
+    globals.gameState = State.PLAYER_MENU;
+    checkStates();
 
 }
 
