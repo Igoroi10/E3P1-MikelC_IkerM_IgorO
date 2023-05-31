@@ -297,4 +297,7 @@ export default
     //Sonidos
     sounds:                         [],
     currentSound:                   -1,
+
+    //Boton de reseteo
+    btnReset:                       {},
 }
