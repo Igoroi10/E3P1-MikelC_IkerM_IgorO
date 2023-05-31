@@ -513,13 +513,14 @@ function btnDenyRound ()
 //Reiniciar todo
 function btnReset()
 {
-    console.log("entra en reset");
+    const music = globals.sounds[Sound.GAME_MUSIC];
 
     globals.cards.length                    = 0;    //reinicio del array de cartas
     globals.tokens.length                   = 0;
 
+    // Reinicio de la musica, se pone en pause ya que al darle al boton de seleccion de mdoo de juego se reinicia automaticamente
     globals.currentSound                    = -1;
-    globals.sounds.currentTime              = 0;
+    music.pause();                                  
 
     globals.player[0].length                = 0;
     globals.player[1].length                = 0;
