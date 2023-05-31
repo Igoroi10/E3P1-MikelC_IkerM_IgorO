@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { createNormalDeck, initGame, postForgotPasswordData  } from "./initialize.js";
+import { createNormalDeck, initGame, postForgotPasswordData, postRegisterData,  postDeleteUser , postNewUser, postDeleteCard} from "./initialize.js";
 import { Key, State, Turn, GameMode } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
@@ -64,7 +64,7 @@ export function btnStartOut ()
 
 export function btnLogOut ()
 {
-    console.log("Entra en logOut");
+    // console.log("Entra en logOut");
     document.getElementById('lblError').innerHTML = ""; 
     logOut();
     // checkStates();
@@ -72,13 +72,14 @@ export function btnLogOut ()
 
 function btnSubmitForget()
 {
-    console.log("entra en boton submit");
+    // console.log("entra en boton submit");
     postForgotPasswordData();
 
 }
 
 function btnSubmitRegister()
 {
+    // console.log("entra en btnSubmitRegister");
     postRegisterData();
 }
 
@@ -98,24 +99,33 @@ export function btnStartAdmin()
 
 function btnEnglishMode()
 {
-    globals.lenguajeSelected = 0;
-    console.log("entra en la funcion btnEnglishMode");
+    document.getElementById('lblError').innerHTML = ""; 
+    document.getElementById('lblErrorForgot').innerHTML = "";
+    document.getElementById('lblErrorRegister').innerHTML = "";
+    
+    globals.lenguageSelected = 0;
+  // console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
 }
 
 function btnEuskeraMode()
 {
-    globals.lenguajeSelected = 1;
-    console.log("entra en la funcion btnEnglishMode");
+    document.getElementById('lblError').innerHTML = ""; 
+    document.getElementById('lblErrorForgot').innerHTML = "";
+    document.getElementById('lblErrorRegister').innerHTML = "";
+
+    globals.lenguageSelected = 1;
+  // console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
 }
 
 function btnForgotPassword()
 {
-    console.log("entra en la funcion btnForgotPassword")
+  // console.log("entra en la funcion btnForgotPassword")
     globals.gameState = State.FORGOT_PASSWORD;
 
     //Limpieza de forgot
+    document.getElementById('lblErrorForgot').innerHTML = "";
     globals.inputEmail_Forgot.value             = "";
     globals.inputPassword_Forgot.value          = "";
     globals.inputConfirmPassword_Forgot.value   = "";
@@ -123,12 +133,30 @@ function btnForgotPassword()
     checkStates();
 }
 
+function btnAddUser()
+{
+    console.log("entra en el boton addUser");
+    globals.gameState = State.REGISTER
+    globals.FromAddUser = true;
+
+    let addUserName = document.getElementById('registerText');
+    addUserName.innerHTML = "Add User";
+
+    checkStates();
+
+}
+
 function btnRegister()
 {
-    console.log("entra en la funcion btnRegister")
+    // console.log("entra en la funcion btnRegister")
+    
+    let registerName = document.getElementById('registerText');
+    registerName.innerHTML = "Register";
+
     globals.gameState = State.REGISTER;
 
     //Limpieza de registro
+    document.getElementById('lblErrorRegister').innerHTML = "";
     globals.inputNameSurname_Register.value     = "";
     globals.inputEmail_Register.value           = "";
     globals.inputPassword_Register.value        = "";
@@ -143,28 +171,92 @@ function createList()
     globals.selectedEnemy = globals.all_users[0].izen_abizena;
     const usersList = document.querySelector('select');     // Guardamos en una Variable la lista que queremos seleccionar
     const users = globals.all_users;                        
-    const hostEmail = localStorage.getItem('emaila');
+    const hostEmail = localStorage.getItem('emaila').toLowerCase();
     const hostName = localStorage.getItem('izen_abizena');
+    console.log(usersList);
 
     if(hostName === globals.all_users[0].izen_abizena)
         globals.selectedEnemy = globals.all_users[1].izen_abizena;
 
         // console.log(users[1]['emaila']);
-    //Creacion de la Lista - Automatizada 
-    for(let i = 0; i < users.length; i++)
-    {
-        if(users[i]['emaila'] !== hostEmail && hostEmail !== null){
-            // console.log("entra en el if del emaila logueado = hostEmail");
-            const li = document.createElement('option');            // Creamos Una linea
-            li.textContent = users[i]['izen_abizena'];                      // Asignamos cada valor del array a la linea correspondiente del ciclo
-            usersList.appendChild(li);                      // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
-        }
+      // console.log(hostEmail);
+        //Creacion de la Lista - Automatizada 
+        for(let i = 0; i < users.length; i++)
+        {
+          // console.log(users[i]['emaila'])
+            if(users[i]['emaila'] !== hostEmail && hostEmail !== null){
+                // console.log("entra en el if del emaila logueado = hostEmail");
+                const li = document.createElement('option');            // Creamos Una linea
+                li.textContent = users[i]['izen_abizena'];              // Asignamos cada valor del array a la linea correspondiente del ciclo
+                usersList.appendChild(li);                              // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
+            }
 
-    }
-    console.log(hostName);
+        }
+  // console.log(hostName);
     document.getElementById('playerName').innerHTML= '' + hostName;
     document.getElementById('adminName').innerHTML= '' + hostName;
 
+}
+
+function createUserEditList()
+{
+    for(let i = 0; i < globals.all_users.length; i++)
+    {
+        const li = document.createElement("ul");
+        const buttonEdit = document.createElement("button");
+        const buttonDelete = document.createElement("button");
+        buttonEdit.setAttribute("id", "buttonEdit" + i);
+        buttonDelete.setAttribute("id", "buttonDelete" + i);
+        console.log(globals.all_users[i])
+        li.textContent = globals.all_users[i]['izen_abizena'] + " / " + globals.all_users[i]['emaila'] + " / " + globals.all_users[i]['rol'] + "  ";
+        
+        buttonEdit.innerHTML = "edit";
+        buttonDelete.innerHTML = "delete";
+
+        buttonEdit.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #2ce226; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
+        buttonDelete.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #f03c3c; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
+
+
+
+        document.querySelector('#editList').appendChild(li);
+        li.appendChild(buttonEdit);
+        li.appendChild(buttonDelete);
+
+        globals.buttonEditUser     = document.getElementById("buttonEdit" + i);
+        globals.buttonDeleteUser   = document.getElementById("buttonDelete" + i)
+
+        globals.buttonEditUser.addEventListener("mousedown",     btnEditUser,    false);
+        globals.buttonDeleteUser.addEventListener("mousedown",   btnDeleteUser,  false);
+    }
+}
+
+function createCardList()
+{   
+    for(let i = 0; i < globals.cardInfo.length; i++)
+    {
+        const li = document.createElement("ul");
+        const buttonEdit = document.createElement("button");
+        const buttonDelete = document.createElement("button");
+        buttonEdit.setAttribute("id", "buttonEditCard" + i);
+        buttonDelete.setAttribute("id", "buttonDeleteCard" + i);
+        li.textContent = globals.cardInfo[i]['izena'] + " ";
+
+        buttonEdit.innerHTML = "edit";
+        buttonDelete.innerHTML = "delete";
+
+        buttonEdit.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #2ce226; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
+        buttonDelete.style.cssText = 'width: 100px; height: 40px; border-radius: 40px; background: #f03c3c; border: none; outline: none; cursor: pointer; font-size: 15px; font-weight: 600;';
+
+        document.querySelector('#editCardList').appendChild(li);
+        li.appendChild(buttonEdit);
+        li.appendChild(buttonDelete);
+        
+        globals.buttonEditCard     = document.getElementById("buttonEditCard" + i);
+        globals.buttonDeleteCard   = document.getElementById("buttonDeleteCard" + i)
+
+        globals.buttonEditCard.addEventListener("mousedown",     btnEditCard,    false);
+        globals.buttonDeleteCard.addEventListener("mousedown",   btnDeleteCard,  false);
+    }
 }
 
 function selectEnemy()
@@ -173,14 +265,14 @@ function selectEnemy()
     select.addEventListener('change', function(){
     let selectedOption = this.options[select.selectedIndex];
     globals.selectedEnemy = selectedOption.text;
-    console.log(globals.selectedEnemy);
+  // console.log(globals.selectedEnemy);
   });
   
 }
 
 export function btnStartPlayer()
 {
-    console.log("entra en btnPlayer");
+  // console.log("entra en btnPlayer");
     // globals.buttonStart.style.visibility = "Hidden";
     globals.buttonAdmin.style.visibility = "Hidden";
     globals.buttonPlayer.style.visibility = "Hidden";
@@ -193,12 +285,32 @@ export function btnStartPlayer()
 
 function btnBack()
 {
-    console.log("entra en btnBack");
+  // console.log("entra en btnBack");
     globals.gameState = State.LOG_IN;
+    document.getElementById('lblError').innerHTML = ""; 
+    document.getElementById('lblErrorForgot').innerHTML = "";
+    document.getElementById('lblErrorRegister').innerHTML = "";
     globals.inputEmail.value             = "";
     globals.inputPassword.value          = "";
 
     checkStates();
+}
+
+function btnBack_playerEdit_admin()
+{
+    // console.log("entra en back de admin");
+    
+    globals.gameState = State.ADMIN_MENU
+    document.getElementById('name_surname_EditPlayer').innerHTML    = "";
+    document.getElementById('emaila_EditPlayer').innerHTML          = "";
+    
+    checkStates();
+}
+
+function btnSubmit_playerEdit_admin()
+{
+    // console.log("entra en Submit de admin")
+    postNewUser();
 }
 
 //Boton Que Pasa de turno
@@ -208,9 +320,10 @@ export function btnStartTurn()
 
     //Ahora Una vez pulsado el boton de turno deberemos de hacer un check para saber quien lo ha puslado y si le corresponde poder jugar en ese turno o no
     globals.actionsCounter ++;
-    // checkIfTurnPass();
 
-    // checkIfRoundPass();
+    if(!globals.checkRoundPlayer1 && !globals.checkRoundPlayer2){
+        globals.showTurnChangeScreen = true;
+    }
 
 }
 
@@ -218,10 +331,10 @@ export function btnStartTurn()
 export function btnEndRound()
 {
     // console.log("Boton Round Pulsado");
+    document.getElementById('btnConfirmEndRound').style.display     = "block";
+    document.getElementById('btnDenyEndRound').style.display        = "block";
     
-    checkRoundState();
-    
-    checkIfRoundPass();
+
 }
 
 export function btnNormalMode()
@@ -238,12 +351,113 @@ export function btnNormalMode()
     document.getElementById("btnStart").innerHTML = "OVER";
     document.getElementById('sectionLogIn').style.display = "none";
 
+    console.log("estado primero de game mode: " + globals.gameMode);
     globals.gameState = State.GAME_START;
     globals.gameMode = GameMode.NORMAL_MODE;
+    console.log("estado después de declarar game mode: " + globals.gameMode);
+    requestAnimationFrame(gameLoop);
     
     checkStates();
+}
 
-    requestAnimationFrame(gameLoop);
+function btnClose()
+{
+    console.log("entra en close")
+    // document.getElementById('btnLogout').style.display = "none";
+    document.getElementById('divCanvas').style.display = "block";
+    document.getElementById('controlScreenEN').style.display = "none";
+    document.getElementById('controlScreenEUS').style.display = "none";
+
+    checkStates();
+}
+
+function btnControls ()
+{
+    document.getElementById('idiomaButton').style.display = "none";
+    if(globals.lenguageSelected === 0)
+        document.getElementById('controlScreenEN').style.display = "block";
+
+    else
+        document.getElementById('controlScreenEUS').style.display = "block";
+
+    document.getElementById('sectionLogIn').style.display = "none";
+    document.getElementById('sectionPlay').style.display = "none";
+    document.getElementById('playerMenuScreen').style.display = "none";
+    document.getElementById('divCanvas').style.display = "none";
+}
+
+function btnEditUser(event)
+{
+    let target = event.target;
+    let id =  target.id                                             //El id de cada boton
+    let i = id.charAt(id.length - 1)                                // Recogemos el numero del usuario para buscarlo en el array de Users
+    // console.log(i);
+    // console.log(globals.all_users[i]);
+    let name_surname        = globals.all_users[i].izen_abizena; 
+    let email               = globals.all_users[i].emaila;
+    globals.inputEmailaEdit = globals.all_users[i]['emaila'];
+
+    console.log("Name: " + name_surname);
+    console.log("Email: " + email);
+
+    document.getElementById('name_surname_EditPlayer').value                      = name_surname;
+    document.getElementById('emaila_EditPlayer').value                            = email;
+  
+
+    
+    globals.gameState = State.EDIT_PLAYER;
+    checkStates();
+    // document.getElementById("editList").style.display = "none";
+    
+}
+
+function btnDeleteUser(event)
+{
+    let id =  event.target.id;  //El id de cada boton
+    let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
+    if (confirm("Are you sure you want to delete it")) {
+        console.log("Accion aceptada");
+        // BORRAR EL USUARIO AQUI
+        globals.inputEmail_Delete = globals.all_users[i]['emaila'];
+        console.log(globals.inputEmail_Delete);
+        postDeleteUser();
+      } else {
+        console.log("Accion cancelada");
+      }
+}
+
+function btnEditCard()
+{
+    console.log("entra en la funcion btnEditCard");
+}
+
+function btnDeleteCard(event)
+{
+    let id = event.target.id;      //El id de cada boton
+    let i = id.charAt(id.length - 1);       //PARA SABER EL NUMERO SOLAMENTE --> (i)
+    if (confirm("Are you sure you want to delete it")) {
+        console.log("Accion aceptada");
+        // BORRAR EL USUARIO AQUI
+        globals.inputCardCode = globals.cardInfo[i].karta_kod;
+        console.log(globals.inputCardCode);
+        postDeleteCard();
+      } else {
+        console.log("Accion cancelada");
+      }
+}
+
+function btnPlayerEdit()
+{
+    globals.newRolaEdit = "player";
+    document.getElementById('btnPlayer_edit').style.cssText = 'background-color: black; color: #D3D3D3;';
+    document.getElementById('btnAdmin_edit').style.cssText = 'background-color: white; color: black;';
+}
+
+function btnAdminEdit()
+{
+    globals.newRolaEdit = "admin";
+    document.getElementById('btnAdmin_edit').style.cssText = 'background-color: black; color: #D3D3D3;';
+    document.getElementById('btnPlayer_edit').style.cssText = 'background-color: white; color: black;';
 }
 
 function btnExpertMode()
@@ -295,6 +509,31 @@ function checkIfTurnPass ()
 
 }
 
+function btnConfirmRound()
+{
+    globals.checkIfRoundConfirm = true;
+
+    document.getElementById('btnConfirmEndRound').style.display     = "none";
+    document.getElementById('btnDenyEndRound').style.display        = "none";
+
+    checkRoundState();
+    
+    checkIfRoundPass();
+
+}
+
+function btnDenyRound ()
+{
+    globals.checkIfRoundConfirm = false;
+
+    document.getElementById('btnConfirmEndRound').style.display     = "none";
+    document.getElementById('btnDenyEndRound').style.display        = "none";
+
+    checkRoundState();
+    
+    checkIfRoundPass();
+}
+
 function checkIfRoundPass()
 {
     //Si uno o ninguno de los jugadores a Pasado la Ronda 
@@ -342,6 +581,7 @@ function checkIfRoundPass()
         globals.turnState = Turn.NO_TURN;       // MAS ADELANTE CAMBIARLO - SOLO SE PUEDE JUGAR UNA RONDA
         // globals.checkBothPlayerRound = false;
         // console.log(globals.turnState);
+        globals.checkIfRoundConfirm = false;
 
    }
     
@@ -349,27 +589,33 @@ function checkIfRoundPass()
 
 function checkRoundState()
 {
-    if (globals.turnState === Turn.PLAYER0)
+    console.log("entra en la funcion checkRoundState")
+    if (globals.turnState === Turn.PLAYER0 && globals.checkIfRoundConfirm)
     {
-        console.log("EL JUGADOR 1 TERMINO LA RONDA");
+      // console.log("EL JUGADOR 1 TERMINO LA RONDA");
         globals.checkRoundPlayer2 = true;
+        globals.actionsCounter = 0;
+        globals.checkIfRoundConfirm = false;
     }
 
-    if (globals.turnState != Turn.PLAYER0 && globals.turnState === Turn.PLAYER1)
+    if (globals.turnState != Turn.PLAYER0 && globals.turnState === Turn.PLAYER1 && globals.checkIfRoundConfirm)
     {
-        console.log("EL JUGADOR 2 TERMINO LA RONDA");
+      // console.log("EL JUGADOR 2 TERMINO LA RONDA");
         globals.checkRoundPlayer1 = true;
+        globals.actionsCounter = 0;
+        globals.checkIfRoundConfirm = false;
     }
 
     if (globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
     {
-        console.log("entra en el if de los dos true()()()()()()()");
+      // console.log("entra en el if de los dos true()()()()()()()");
         globals.checkBothPlayerRound = true;
-        console.log(globals.checkBothPlayerRound);
+      // console.log(globals.checkBothPlayerRound);
+        globals.checkIfRoundConfirm = false;
     }
 
     else
-        console.log("ERROR");
+      console.log("ERROR");
 
 }
 
@@ -485,13 +731,13 @@ export function keydownHandler(event)
             break;
 
         case Key.ENGLISH_KEY:
-            console.log("Entra en la tecla N");
+          // console.log("Entra en la tecla N");
             globals.action.n        = true;
             // multiMensaje();
             break;
 
         case Key.EUSK_KEY:
-            console.log("Entra en la tecla U");
+          // console.log("Entra en la tecla U");
             globals.action.u        = true;
             // multiMensaje();
             break;
@@ -527,12 +773,12 @@ export function keyupHandler(event)
             break;  
             
         case Key.ENGLISH_KEY:
-            console.log("Entra en la tecla N");
+          // console.log("Entra en la tecla N");
             globals.action.n        = false;
             break;
 
         case Key.EUSK_KEY:
-            console.log("Entra en la tecla U");
+          // console.log("Entra en la tecla U");
             globals.action.u        = false;
             break;
     }
@@ -574,4 +820,16 @@ export {
     btnSubmitForget,
     btnSubmitRegister,
     btnExpertMode,
+    btnClose,
+    btnControls,
+    btnConfirmRound,
+    btnDenyRound,
+    createUserEditList,
+    btnBack_playerEdit_admin,
+    btnSubmit_playerEdit_admin,
+    createCardList,
+    btnAdminEdit,
+    btnPlayerEdit,
+    btnAddUser,
+
 }

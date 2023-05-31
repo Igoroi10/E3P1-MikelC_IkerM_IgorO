@@ -1,5 +1,6 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnExpertMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister} from "./events.js";
+
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnExpertMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose, btnControls, btnConfirmRound, btnDenyRound, createUserEditList, createCardList, btnBack_playerEdit_admin, btnSubmit_playerEdit_admin, btnPlayerEdit, btnAdminEdit, btnAddUser} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -10,6 +11,7 @@ import ImageSet from "./ImageSet.js";
 import { Player0_map_pos, Player1_map_pos, Common_map_pos, SlotIdentificators } from "./constants.js";
 import { checkStates, localStorageUpdate } from "./gameLogic.js";
 import Time from "./Timer.js";
+import {lenguageText } from "./text.js";
 
 
 function initHTMLelements()
@@ -26,6 +28,8 @@ function initHTMLelements()
     globals.buttonExpert    = document.getElementById('btnExpert');
     globals.buttonEnglish   = document.getElementById('btnEnglish');
     globals.buttonEuskera   = document.getElementById('btnEuskera');
+    globals.buttonPlayerEdit   = document.getElementById('btnPlayer_edit');
+    globals.buttonAdmin   = document.getElementById('btnAdmin_edit');
 
     //Get A reference to the canvas 
     globals.canvas = document.getElementById('gameScreen');
@@ -44,13 +48,15 @@ function initHTMLelements()
     globals.buttonTurn.addEventListener("mousedown",        btnStartTurn,       false);
     globals.buttonRound.addEventListener("mousedown",       btnEndRound,        false);
     globals.buttonMode.addEventListener("mousedown",       btnNormalMode,        false);
-    globals.buttonMode.addEventListener("mousedown",       btnExpertMode,        false);
+    globals.buttonExpert.addEventListener("mousedown",       btnExpertMode,        false);
         for(let i = 0; i < globals.buttonLogout.length; i++)
         {
             globals.buttonLogout[i].addEventListener("mousedown",      btnLogOut,          false);
         }
     globals.buttonEnglish.addEventListener("mousedown", btnEnglishMode, false);
     globals.buttonEuskera.addEventListener("mousedown", btnEuskeraMode, false);
+    globals.buttonPlayerEdit.addEventListener("mousedown", btnPlayerEdit, false);
+    globals.buttonAdmin.addEventListener("mousedown", btnAdminEdit, false);
 
 
     // globals.buttonAdd.addEventListener("mousedown", btnAddDown, false);
@@ -69,7 +75,10 @@ function initHTMLelements()
     globals.sectionLogIn            = document.getElementById('sectionLogIn');
     globals.sectionPlay             = document.getElementById('sectionPlay');
     
-    
+    //Formulario EditUser
+    globals.newEmailaEdit           = document.getElementById('emaila_EditPlayer');
+    globals.newIzenAbizenaEdit      = document.getElementById('name_surname_EditPlayer');
+
 
     //Formulario Forget
     globals.sectionForgotPassword   = document.getElementById('forgetbtn');
@@ -88,6 +97,36 @@ function initHTMLelements()
     globals.inputConfirmPassword_Register           = document.getElementById('Confirm_Password_Register');
     globals.submit_register                         = document.getElementById('btnLogin_Register');
 
+    //Pantalla Controls
+    globals.controls                                = document.getElementById('controlScreen');
+    // globals.controlsEUS                             = document.getElementById('controlScreenEUS');
+    // globals.controlsEN                              = document.getElementById('controlScreenEN');
+    globals.btnCloseControlsEUS                     = document.getElementById('btnCloseEUS');
+    globals.btnCloseControlsEN                      = document.getElementById('btnCloseEN');
+    globals.btnControls                             = document.getElementById('btnControls');
+    
+    // globals.controls_InGame                         = document.getElementById('')
+
+    //Round
+    globals.btnConfirmRound                         = document.getElementById('btnConfirmEndRound');
+    globals.btnDenyRound                            = document.getElementById('btnDenyEndRound');
+
+    //Botones de Deck control
+    globals.btn_add_deck                            = document.getElementById('btn_add_deck');
+    globals.btn_remove_deck                         = document.getElementById('btn_remove_deck');
+    globals.btn_edit_deck                           = document.getElementById('btn_edit_deck');
+
+
+    //Botones de Player control
+    globals.btn_add_player                          = document.getElementById('btn_add_player');
+    globals.btn_remove_player                       = document.getElementById('btn_remove_player');
+    globals.btn_edit_player                         = document.getElementById('btn_edit_player');
+
+    //Botones de edit Player - Admin Page
+    globals.btn_back_EditAdmin                      = document.getElementById('btnBack_edit_Player');
+    globals.btn_submit_EditAdmin                    = document.getElementById('btnSubmit_edit_Player');
+    globals.btn_addUser                             = document.getElementById('btnAddUser_AdminPage');
+
 
     //Mostramos la pantalla de Log In
     document.getElementById('sectionLogIn').style.display = "flex";
@@ -103,12 +142,34 @@ function initHTMLelements()
     globals.btnBack_register.addEventListener("mousedown", btnBack, false);
 
     globals.submit_forget.addEventListener("mousedown", btnSubmitForget, false);
-    // globals.sectionRegister.addEventListener("mousedown", btnSubmitRegister, false);
+    globals.submit_register.addEventListener("mousedown", btnSubmitRegister, false);
+
+    globals.btnCloseControlsEUS.addEventListener("mousedown", btnClose, false);
+    globals.btnCloseControlsEN.addEventListener("mousedown", btnClose, false);
+
+    globals.btnControls.addEventListener("mousedown", btnControls, false)
+
+    globals.btnConfirmRound.addEventListener("mousedown", btnConfirmRound, false);
+    globals.btnDenyRound.addEventListener("mousedown", btnDenyRound, false);
+
+    globals.btn_addUser.addEventListener("mousedown", btnAddUser, false);
+
+    //Botones de Deck control
+    // globals.btn_add_deck.addEventListener();
+    // globals.btn_remove_deck.addEventListener(); 
+    // globals.btn_edit_deck.addEventListener();
+
+    // //Botones de Player control
+    // globals.btn_add_player.addEventListener();
+    // globals.btn_remove_player.addEventListener();
+    // globals.btn_edit_player.addEventListener();
     
     // globals.sectionForgotPassword = 
     // globals.sectionRegister = 
     
-
+    //Botones de  edit Player - Admin Page
+    globals.btn_back_EditAdmin.addEventListener("mousedown", btnBack_playerEdit_admin, false);
+    globals.btn_submit_EditAdmin.addEventListener("mousedown", btnSubmit_playerEdit_admin, false);
     
 }
 
@@ -318,7 +379,7 @@ function loadCardImages(){
 
         }
 
-        console.log("fin de carga de imagenes");
+      // console.log("fin de carga de imagenes");
     }
 
 
@@ -397,7 +458,7 @@ function logInHandler(event)
     
     const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
 
-    console.log(dataToSend);
+  // console.log(dataToSend);
 
     //Ruta relativa al fichero que hace la petición (verifyUser.php)
     const url = "../server/routes/verifyUser.php";
@@ -432,7 +493,7 @@ function logInHandler(event)
 
     request.responseType = "text";
     request.send(dataToSend);
-    console.log("datatoSend2:  " + dataToSend)
+  // console.log("datatoSend2:  " + dataToSend)
 
 }
 
@@ -447,7 +508,7 @@ console.log("entra en el funcion manageLogin");
     {
         if(userData === undefined)
         {
-            globals.lblError.innerHTML = "The username or password are incorrect. Please try again.";
+            globals.lblError.innerHTML = lenguageText[globals.lenguageSelected].errorMensajeText;
             globals.inputEmail.value = "";
             globals.inputPassword.value = "";
         }
@@ -468,7 +529,7 @@ console.log("entra en el funcion manageLogin");
             }
             //Usuario logueado
     
-            console.log(localStorage.getItem("izen_abizena"));
+          // console.log(localStorage.getItem("izen_abizena"));
             createList();
     
             //ACtivamos el menú de play y ocultamos el de logIn
@@ -489,7 +550,7 @@ console.log("entra en el funcion manageLogin");
         // console.log("entra error data");
         globals.gameState = State.LOG_IN;
         //Mostramos el mensaje de error
-        globals.lblError.innerHTML = "The username or password are incorrect. Please try again.";
+        globals.lblError.innerHTML = lenguageText[globals.lenguageSelected].errorMensajeText;
         globals.inputEmail.value = "";
         globals.inputPassword.value = "";
         
@@ -500,7 +561,7 @@ console.log("entra en el funcion manageLogin");
     updateUserText(userData);
     
     selectEnemy();
-    console.log("Fin de funcion")
+  // console.log("Fin de funcion")
 }
 
 // ===========================================================
@@ -508,20 +569,20 @@ console.log("entra en el funcion manageLogin");
 // ===========================================================
 function postForgotPasswordData(event)
 {
-    console.log("Entra en postForgotPasswordData");
+  // console.log("Entra en postForgotPasswordData");
 
     checkPassword();
 
     const objectToSend = {
-        emaila: globals.inputEmail_Forgot.value,
+        emaila: globals.inputEmail_Forgot.value.toLowerCase(),
         pasahitza: globals.inputPassword_Forgot.value
     }
     
     const dataToSend = 'emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
 
-    console.log(dataToSend);
+  // console.log(dataToSend);
 
-    //Ruta relativa al fichero que hace la petición (verifyUser.php)
+    //Ruta relativa al fichero que hace la petición (postNewPassword.php)
     const url = "../server/routes/postNewPassword.php";
     const request = new XMLHttpRequest();
     request.open('POST', url, true);
@@ -535,12 +596,11 @@ function postForgotPasswordData(event)
             {
                 if(this.responseText != null)
                 {
-                    console.log(this.responseText);
+                  // console.log(this.responseText);
                     const userData = JSON.parse(this.responseText);
-
-                    //Guardado Global
-                    globals.hostPlayerInfo = userData;
-
+                  // console.log("------------")
+                  // console.log(userData)
+                  // console.log("------------")
                     manageForgot(userData);
                 }
                 else
@@ -558,44 +618,330 @@ function postForgotPasswordData(event)
 
 function checkPassword()
 {
-    if (globals.inputPassword_Forgot.value !== globals.inputConfirmPassword_Forgot.value )
+  // console.log("entra a la funcion checkPassword");
+    
+    if (globals.inputPassword_Forgot.value !== globals.inputConfirmPassword_Forgot.value || globals.inputPassword_Forgot.value === "" || globals.inputConfirmPassword_Forgot.value  === "" )
     {
-        console.log("entr en el if de checkPassword")
-        globals.inputPassword_Forgot.value = null;
+      // console.log("entr en el if de checkPassword de Forgot")
+        globals.inputPassword_Forgot.value = "";
     }
+
+    if(globals.inputPassword_Register.value !== globals.inputConfirmPassword_Register.value || globals.inputPassword_Register.value === "" || globals.inputConfirmPassword_Register.value  === "")
+    {
+      // console.log("entr en el if de checkPassword de Register")
+        globals.inputPassword_Register.value = "";
+    }
+
     else
-        console.log("contraseña correcta");
+      console.log("contraseña correcta");
 }
+
+
 
 function manageForgot(userData)
 {
-    console.log("entra en el funcion manageForgot");
-    if (userData.emaila !== "")
+//   // console.log("entra en el funcion manageForgot");
+    // console.log(userData.emaila);
+    // console.log(userData.pasahitza);
+  // console.log(userData['error']);
+    if (userData.error === "Changed succesfully" && globals.inputEmail_Forgot.value !== "" && globals.inputPassword_Forgot.value !== "" && globals.inputConfirmPassword_Forgot.value !== "" )
     {
-        if(userData === undefined || userData.pasahitza === null)
+      // console.log("Todo correcto en manageForgot");
+        if(globals.lenguageSelected === 0)
         {
-            console.log("entra en undefined o null");
-            globals.lblError.innerHTML = "The Email or Password are not correct";
-            globals.inputEmail_Forgot.value = "";
-            globals.inputPassword_Forgot.value = "";
-            globals.inputConfirmPassword_Forgot.value = "";
+            document.getElementById('lblError').innerHTML = "Password changed successfully";
+            document.getElementById('lblError').style.cssText = 'color: green';
+        }
+        else if(globals.lenguageSelected === 1)
+        {
+            document.getElementById('lblError').innerHTML = "Pasahitza aldatu egin da";
+            document.getElementById('lblError').style.cssText = 'color: green';
         }
 
-        else
-            lblError.innerHTML = "";
+    
+    
+        
+        //Mostrar mensaje de todo ok
+        globals.gameState = State.LOG_IN;
+        checkStates();
+        // localStorageUpdate();
     }
 
     else
     {
-        console.log("entra en el primer else de la funcion manageForgot")
-        //Mostrar mensaje de todo ok
-
-
-        localStorageUpdate();
-        checkStates();
+        if(globals.lenguageSelected === 0)
+            document.getElementById('lblErrorForgot').innerHTML = "The Email or Password are not correct";
+        else
+            document.getElementById('lblErrorForgot').innerHTML = "Pasahitza edo emaila ez dira zuzenak";
+    
+        document.getElementById('lblErrorForgot').innerHTML = "The Email or Password are not correct";
+        globals.inputEmail_Forgot.value = "";
+        globals.inputPassword_Forgot.value = "";
+        globals.inputConfirmPassword_Forgot.value = "";
         
     }
 }
+
+// ===========================================================
+//                    P O S T  d e  R E G I S T E R
+// ===========================================================
+
+function postRegisterData()
+{
+    // console.log("Entra en postRegister");
+
+    // Funcion que checkea si la Confirmacion de la contraseña Esta bien o no 
+    checkPassword();
+
+    const objectToSend = {
+        izen_abizena: globals.inputNameSurname_Register.value,
+        emaila: globals.inputEmail_Register.value.toLowerCase(),
+        pasahitza: globals.inputPassword_Register.value
+    }
+    
+    const dataToSend = 'izen_abizena=' + objectToSend.izen_abizena + '&emaila=' + objectToSend.emaila + '&pasahitza=' + objectToSend.pasahitza;
+
+    // console.log(dataToSend);
+
+    //Ruta relativa al fichero que hace la petición (RegisterNewUser.php)
+    const url = "../server/routes/postNewUser.php";
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                  // console.log(this.responseText);
+                    const userData = JSON.parse(this.responseText);
+                  // console.log(userData);
+                    manageRegister(userData);
+                }
+                else
+                    alert("Comunication error: No data received");
+            }
+            else
+                alert( "Comunication error: " + this.statusText);
+        }
+    }
+
+    request.responseType = "text";
+    request.send(dataToSend);
+
+}
+
+// ===========================================================
+//                    P O S T  d e  D E L E T E  U S E R
+// ===========================================================
+
+function postDeleteUser(event)
+{
+  console.log("Entra en postDeleteUser");
+
+    const objectToSend = {
+        emaila: globals.inputEmail_Delete
+    }
+    
+    const dataToSend = 'emaila=' + objectToSend.emaila;
+
+    console.log(dataToSend);
+    //Ruta relativa al fichero que hace la petición (postNewPassword.php)
+    const url = "../server/routes/postDeleteUser.php";
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                  console.log(this.responseText);
+                    const userData = JSON.parse(this.responseText);
+                  // console.log("------------")
+                  console.log(userData)
+                  // console.log("------------")
+                }
+                else
+                    alert("Comunication error: No data received");
+            }
+            else
+                alert( "Comunication error: " + this.statusText);
+        }
+    }
+
+    request.responseType = "text";
+    request.send(dataToSend);
+
+}
+
+// ===========================================================
+//                    P O S T  d e  D E L E T E  U S E R
+// ===========================================================
+
+function postDeleteCard()
+{
+  console.log("Entra en postDeleteCard");
+
+    const objectToSend = {
+        karta_kod: globals.inputCardCode
+    }
+    
+    const dataToSend = 'karta_kod=' + objectToSend.karta_kod;
+
+    console.log(dataToSend);
+    //Ruta relativa al fichero que hace la petición (postNewPassword.php)
+    const url = "../server/routes/postDeleteCard.php";
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                  console.log("this.responseText" + this.responseText);
+                    const userData = JSON.parse(this.responseText);
+                  // console.log("------------")
+                  console.log(userData)
+                  // console.log("------------")
+                }
+                else
+                    alert("Comunication error: No data received");
+            }
+            else
+                alert( "Comunication error: " + this.statusText);
+        }
+    }
+
+    request.responseType = "text";
+    request.send(dataToSend);
+
+}
+
+function manageRegister(userData)
+{
+    // console.log("entra en el funcion manageRegister");
+      // console.log(userData.message);
+
+        if (userData.message == "user registered succesfully" && globals.inputNameSurname_Register.value !== ""  && globals.inputEmail_Register.value !== "" && globals.inputPassword_Register.value !== "")
+        {
+            if(globals.lenguageSelected === 0)
+            {
+                document.getElementById('lblError').innerHTML = "User registered correctly";
+                document.getElementById('lblError').style.cssText = 'color: green';
+            }
+
+            else
+            {
+                document.getElementById('lblError').innerHTML = "Erabiltzailea erregistratu egin da.";
+                document.getElementById('lblError').style.cssText = 'color: green';
+            }
+                
+
+            // localStorageUpdate();
+            if (globals.FromAddUser)
+            {
+                console.log("entra en el estado FromAddUser")
+                globals.gameState = State.ADMIN_MENU;
+                globals.FromAddUser = false;
+            }
+           
+            else
+            {
+                console.log("no entra en estado ");
+                globals.gameState = State.LOG_IN;
+            }
+                
+
+
+            checkStates();
+        }
+
+        //Mostrar mensaje de todo ok
+        else
+        {
+            if(globals.lenguageSelected === 0)
+                document.getElementById('lblErrorRegister').innerHTML = "User not registered. Email already exists or data unfilled.";
+            else
+                document.getElementById('lblErrorRegister').innerHTML = "Erabiltzailea ez da erregistratu. Email-a kontu bat dauka jadanik edo ez duzu datu guztiak sartu. ";
+
+            globals.inputNameSurname_Register.value         = "";
+            globals.inputEmail_Register.value               = "";
+            globals.inputPassword_Register.value            = "";
+            globals.inputConfirmPassword_Register.value     = "";
+        }
+           
+
+
+}
+
+// ===========================================================
+//                    POST   USERS
+// ===========================================================
+
+
+function postNewUser()
+{
+    // console.log("Entra en postNewUser");
+
+    // Funcion que checkea si la Confirmacion de la contraseña Esta bien o no 
+
+    const objectToSend = {
+        newRola: globals.newRolaEdit,
+        emaila: globals.inputEmailaEdit,
+        newEmaila: globals.newEmailaEdit.value,
+        newIzenAbizena: globals.newIzenAbizenaEdit.value
+    }
+    console.log(globals.newRolaEdit);
+    const dataToSend = 'newRola=' + objectToSend.newRola + '&emaila=' + objectToSend.emaila + '&newEmaila=' + objectToSend.newEmaila  + '&newIzenAbizena=' + objectToSend.newIzenAbizena;
+
+    console.log(dataToSend);
+    //Ruta relativa al fichero que hace la petición (RegisterNewUser.php)
+    const url = "../server/routes/postEditUser.php";
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                  // console.log(this.responseText);
+                    const userData = JSON.parse(this.responseText);
+                  console.log(userData);
+                }
+                else
+                    alert("Comunication error: No data received");
+            }
+            else
+                alert( "Comunication error: " + this.statusText);
+        }
+    }
+
+    request.responseType = "text";
+    request.send(dataToSend);
+
+}
+// ===========================================================
+//                    F I N   D E   P O S T S
+// ===========================================================
 
 
 function updateUserText(user)
@@ -616,7 +962,7 @@ function updateUserText(user)
 
 
 function createNormalDeck(){
-    console.log(globals.cards);
+  // console.log(globals.cards);
     let cardsNeeded = 65;
     const normalMode = GameMode.NORMAL_MODE;
     addZarate();
@@ -630,10 +976,10 @@ function createNormalDeck(){
     addUnitCards(cardsNeeded,normalMode);
     filterExtraCards(normalMode);
     globals.cards.splice(60);
-    console.log("Array de información");
-    console.log(globals.cardInfo);
-    console.log("Cartas generadas con ello");
-    console.log(globals.cards);
+  // console.log("Array de información");
+  // console.log(globals.cardInfo);
+  // console.log("Cartas generadas con ello");
+  // console.log(globals.cards);
 }
 
 
@@ -692,8 +1038,8 @@ function insertCard(i){
         const instaCard = new SuddenCard(globals.cardInfo[i].irudia,  globals.cardInfo[i].izena, CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].deskribapena, globals.cardInfo[i].efektua);
         globals.cards.push(instaCard);
         if(globals.cardInfo[i].izena === "Decoy"){
-            console.log("Decoy added")
-            console.log(instaCard);
+          // console.log("Decoy added")
+          // console.log(instaCard);
         }
 
         break;
@@ -968,7 +1314,7 @@ function AddTokenCard()
             {
                 for(let j = 0; j < 3; j++)
                 {
-                    console.log(globals.cardInfo[i]);
+                  // console.log(globals.cardInfo[i]);
                     insertCard(i);
                 }
             }
@@ -1355,11 +1701,11 @@ function initCardInfo()
                     
                     //Guardamos los datos del resultJSON
                     globals.cardInfo = resultJSON;
-                    
                     initCardLinks();
+                    createCardList();
 
 
-                    console.log("Card info loaded");
+                  // console.log("Card info loaded");
                    
                     // console.log(resultJSON); 
 
@@ -1445,6 +1791,7 @@ function getAllUsers()
                     //Guardamos los datos del resultJSON
                     globals.all_users = resultJSON;
                     createList();
+                    createUserEditList();
                     // console.log("this.responetext" + this.responseText);
                     // console.log(globals.all_users);
                 }
@@ -1492,4 +1839,8 @@ export {
     getAllUsers,
     initTimers,
     postForgotPasswordData,
+    postRegisterData,
+    postDeleteUser,
+    postNewUser,
+    postDeleteCard,
 }

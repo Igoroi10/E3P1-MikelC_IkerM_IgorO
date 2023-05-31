@@ -40,6 +40,17 @@ export default
 
     buttonEuskera: {},
 
+    buttonEditUser: {},
+
+    buttonDeleteUser: {},
+
+    buttonEditCard: {},
+
+    buttonDeleteCard: {},
+
+    buttonPlayerEdit:   {},
+
+    buttonAdmin:    {},
     //Array de Cartas
     cards: [],
 
@@ -157,15 +168,15 @@ export default
     actionsCounter: 0,
 
     //Card States
-    draw: false,
-    double_click: false,
-    click: false,
-    selected: false,
-    DISCARD: false,
-    otherSelected: false,
-    decoy: false,
-    medic: false,
-    inmediateEffect: false,
+    draw:           false,
+    double_click:   false,
+    click:          false,
+    selected:       false,
+    DISCARD:        false,
+    otherSelected:  false,
+    decoy:          false,
+    medic:          false,
+    inmediateEffect:false,
     effectFinished: false,
 
     player: [[],[]],
@@ -201,14 +212,25 @@ export default
     //Inicializamos el render de la carta Grande a false
     bigRender: false,
 
+    showTurnChangeScreen: false,
+
     
 
    
     
-    lenguajeSelected: 0,
+    lenguageSelected: 0,
 
     btnBack: {},
     btnBack_register: {},
+    //Formulario EditUser
+
+    newRolaEdit:                    "",
+    inputEmailaEdit:                "",
+    newEmailaEdit:                  {},
+    newIzenAbizenaEdit:             {},
+
+    //Formulario DeleteCard         
+    inputCardCode:                  "",
 
     //Formulario Forgot
     sectionForgotPassword:          {},
@@ -227,5 +249,50 @@ export default
     inputConfirmPassword_Register:  {},
     submit_register:                {},
 
+    previousPoints1: 0,
+    previousPoints2: 0,
+    earnedPlayer1Points: 0,
+    earnedPlayer2Points: 0,
+    calculateNewPoints: false,
+    renderAlpha: 1,
+    renderTurnAlpha: 1,
+    currentSelectedCardId: -1,
+    checkIfPlayer0TurnPass: false,
+    checkIfPlayer1TurnPass: false,
 
+    //Formulario DeleteUser
+    inputEmail_Delete:              "",
+
+    //Controls
+    controls:                       {},
+    controlsEUS:                    {},
+    controlsEN:                     {},
+    btnCloseControlsEUS:            {},
+    btnCloseControlsEN:             {},
+    btnControls:                    {},
+
+    //Round
+    btnConfirmRound:                {},
+    btnDenyRound:                   {},
+    checkIfRoundConfirm:            false,      //Confirma si se le ha dado o no al boton.
+
+    //Botones de Deck control
+    btn_add_deck:                   {},                      
+    btn_remove_deck:                {},                         
+    btn_edit_deck:                  {},
+
+
+    //Botones de Player control
+    btn_add_player:                 {},
+    btn_remove_player:              {},
+    btn_edit_player:                {},
+
+
+    //Botones de Edit de Player - Admin Page
+    btn_back_EditAdmin:             {},
+    btn_submit_EditAdmin:           {},
+
+    //Boton add User de la Admin Page
+    btn_addUser:                    {},
+    FromAddUser:                    false,
 }

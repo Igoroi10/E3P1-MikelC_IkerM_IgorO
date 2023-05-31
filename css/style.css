@@ -11,6 +11,120 @@
     color: #fff;
 }
 
+#btnCloseEUS{
+    align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(203, 0, 0, 0.4) 0 2px 4px,rgba(255, 0, 0, 0.995) 0 7px 13px -3px,#BD5532 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+    background-color: black;
+    /* background-image: url("../images/background.jpg"); */
+    margin-left: 95%;
+    margin-top: 5px;
+    
+}
+
+#btnCloseEN{
+    align-items: center;
+    appearance: none;
+    background-color: #FCFCFD;
+    border-radius: 4px;
+    border-width: 0;
+    box-shadow: rgba(203, 0, 0, 0.4) 0 2px 4px,rgba(255, 0, 0, 0.995) 0 7px 13px -3px,#BD5532 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: "JetBrains Mono",monospace;
+    height: 48px;
+    justify-content: center;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 18px;
+    background-color: black;
+    /* background-image: url("../images/background.jpg"); */
+    margin-left: 95%;
+    margin-top: 5px;
+    
+}
+
+#btnConfirmEndRound{
+    color:red;
+    margin: auto;
+    width: 100px;
+    height: 55px;
+    margin-left: 1450px;
+    margin-top: 335px;
+    padding: 15px;
+    font-size: 20px;
+    position:absolute;
+    font-family: magicmedieval;
+    cursor: pointer;
+}
+
+#btnDenyEndRound{
+    color:red;
+    margin: auto;
+    width: 100px;
+    height: 55px;
+    margin-left: 1550px;
+    margin-top: 335px;
+    padding: 15px;
+    font-size: 20px;
+    position:absolute;
+    font-family: magicmedieval;
+    cursor: pointer;
+}
+
+
+#controlScreenEN{ 
+    height: 1080px;
+    width: 1920px;
+    background-image: url("../images/Controls_EN.png");
+}
+
+
+#controlScreenEUS{
+    height: 1080px;
+    width: 1920px;
+    background-image: url("../images/Controls_EUS.png");
+}
+
 @font-face {
     font-family: magicmedieval;
     src: url(../fonts/Magicmedieval-pRV1.ttf);
@@ -221,7 +335,8 @@ html {
     white-space: nowrap;
     will-change: box-shadow,transform;
     font-size: 18px;
-    background-image: url("../images/background.jpg");
+    background-color: black;
+    /* background-image: url("../images/background.jpg"); */
     margin-left: 50px;
     margin-top: 5px;
 }
@@ -412,23 +527,24 @@ html {
     height: 300px;
     /* background-color: purple; */
     margin: auto;
-    margin-top: 60px;
+    /* margin-top: 10px; */
     margin-left: 200px;
 }
 
 #dechControl {
     float: right;
     width: 1000px;
-    height: 200px;
+    height: 100px;
     /* background-color: green; */
     margin: auto;
-    margin-top: 90px;
+    margin-left: 2000px;
+    /* margin-top: 90px; */
 }
 
 #dechRectangle{
     float: right;
     width: 995px;
-    height: 200px;
+    height: 300px;
     box-shadow:
          inset 0 -3em 3em rgba(0,0,0,0.1),
                0 0  0 1px rgb(231, 227, 227),
@@ -440,15 +556,15 @@ html {
 #playerControl {
     float: right;
     width: 1000px;
-    height: 200px;
+    height: 100px;
     /* background-color: green; */
     margin: auto;
-    margin-top: 15px;
+    margin-top: 100px;
 }
 #playerRectangle {
     float: right;
     width: 995px;
-    height: 200px;
+    height: 300px;
     box-shadow:
          inset 0 -3em 3em rgba(0,0,0,0.1),
                0 0  0 1px rgb(255, 255, 255),
@@ -458,26 +574,12 @@ html {
     margin-right: 10px;
 }
 
-#last30days{
-    width: 300px;
-    height: 500px;
-    /* background-color: #36395A; */
-    margin: auto;
-    margin-top: 390px;
-    margin-left: 130px;
-    padding: 20px;
-    box-shadow:
-         inset 0 -3em 3em rgba(0,0,0,0.1),
-               0 0  0 1px rgb(255,255,255),
-               0.3em 0.3em 1em rgba(0,0,0,0.3);
-}
-
-#adminMenuScreen{
+#adminSection{
     /* background-image: url("../images/background.jpg"); */
     margin: auto;
     margin-top: 50px;
     width: 1664px; 
-    height: 936px; 
+    height: 100vh; 
     /* background-color: red; */
     padding-left: 0;
     padding-right: 0;
@@ -485,7 +587,27 @@ html {
     margin-right: auto;
     margin-top: 0px;
     display: block;
-    /* border: 3px solid rgb(0, 0, 0); */
+    border: 1px solid rgba(0, 0, 0, 0.01);
+}
+
+#last30days{
+    margin-top: 100px;
+    width: 375px;
+    height: 1000px;
+    /* background-color: #00ff3c83; */
+    margin-left: 130px;
+    /* box-shadow:
+         inset 0 -3em 3em rgba(0,0,0,0.1),
+               0 0  0 1px rgb(255,255,255),
+               0.3em 0.3em 1em rgba(0,0,0,0.3); */
+}
+
+#a30days1{
+    color: white;
+}
+
+#a30days2{
+    color: white;
 }
 
 #adminName{
@@ -552,7 +674,8 @@ html {
     white-space: nowrap;
     will-change: box-shadow,transform;
     font-size: 18px;
-    background-image: url("../images/background.jpg");
+    background-color: black;
+    /* background-image: url("../images/background.jpg"); */
 }
 
 #boton:focus {
@@ -575,7 +698,7 @@ html {
     margin: auto;
     margin-top: 50px;
     width: 1664px; 
-    height: 936px; 
+    height: 100vh; 
     /* background-color: red; */
     padding-left: 0;
     padding-right: 0;
@@ -707,7 +830,8 @@ html {
     white-space: nowrap;
     will-change: box-shadow,transform;
     font-size: 18px;
-    background-image: url("../images/background.jpg");
+    background-color: black;
+    /* background-image: url("../images/background.jpg"); */
     margin-left: 50px;
     margin-top: 5px;
 }
@@ -741,7 +865,8 @@ html {
     white-space: nowrap;
     will-change: box-shadow,transform;
     font-size: 18px;
-    background-image: url("../images/background.jpg");
+    background-color: black;
+    /* background-image: url("../images/background.jpg"); */
     margin-left: 50px;
     margin-top: 5px;
 }
@@ -781,6 +906,16 @@ h3{
     font-weight: bold;
 }
 
+#lblErrorForgot{
+    color: red;
+    font-weight: bold;
+}
+
+#lblErrorRegister{
+    color: red;
+    font-weight: bold;
+}
+
 #lblSessionUser{
     font-weight: bold;
 }
@@ -792,13 +927,32 @@ h3{
     color: white;
     /* background-color: #36395A; */
     margin: auto;
-    margin-top: 90px;
-    margin-right: 200px;
+    margin-top: 200px;
+    /* margin-right: 50px; */
     padding: 20px;
-    box-shadow:
-         inset 0 -3em 3em rgba(0,0,0,0.1),
-               0 0  0 2px rgb(255,255,255),
-               0.3em 0.3em 1em rgba(0,0,0,0.3);
+}
+
+#selectUserList{
+    margin-top: 50px;
+    margin-left: 130px;
+    display: inline-block;
+	width: 50%;
+	cursor: pointer;
+  	padding: 7px 10px;
+  	height: 42px;
+  	outline: 0; 
+  	border: 0;
+	border-radius: 0;
+	background: #f0f0f0;
+	color: #7b7b7b;
+	font-size: 1em;
+	color: #999;
+	font-family: 
+	'Quicksand', sans-serif;
+	border:2px solid rgba(0,0,0,0.2);
+    border-radius: 12px;
+    position: relative;
+    transition: all 0.25s ease;
 }
 
 #headingUserList{
@@ -810,10 +964,11 @@ h3{
     margin: auto;
     width: 100px;
     margin-left: 1550px;
-    margin-top: 450px;
+    margin-top: 475px;
     padding: 15px;
     position:absolute;
     font-family: magicmedieval;
+    cursor: pointer;
 
 }
 
@@ -823,11 +978,26 @@ h3{
     margin: auto;
     width: 100px;
     margin-left: 1550px;
-    margin-top: 350px;
+    margin-top: 400px;
     padding: 15px;
     position:absolute;
     font-family: magicmedieval;
+    cursor: pointer;
 
+}
+
+#btnControls{
+    /* color:white; */
+    font-size: 40px;
+    background-color: black;
+    margin: auto;
+    cursor: pointer;
+    width: 100px;
+    margin-left: 10px;
+    margin-top: 40px;
+    padding: 15px;
+    position:absolute;
+    font-family: magicmedieval;
 }
 
 .container{
@@ -877,7 +1047,8 @@ h3{
     white-space: nowrap;
     will-change: box-shadow,transform;
     font-size: 18px;
-    background-image: url("../images/background.jpg");
+    background-color: black;
+    /* background-image: url("../images/background.jpg"); */
     margin-left: 10px;
     margin-top: 5px;
 }
@@ -905,3 +1076,179 @@ a{
     color: #d9c6ee;
     text-decoration: underline;
 }
+
+#editList{
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 985px;
+    height: 290px;
+    font-size: 22px;
+    color: #FCFCFD;
+    overflow-y: scroll;
+}
+
+#editCardList{
+    margin-top: 5px;
+    margin-left: 5px;
+    width: 985px;
+    height: 290px;
+    font-size: 22px;
+    color: #FCFCFD;
+    overflow-y: scroll;
+}
+
+/* Botones de Control de Mazos y Player */
+
+#btn_add_deck{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background:#ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_remove_deck{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_edit_deck{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_add_player{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_remove_player{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btn_edit_player{
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#editPlayerSection{
+    justify-content: center;
+}
+
+#btnPlayer_edit{
+    margin-left: 20px;
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+
+}
+
+#btnAdmin_edit{
+    margin-left: 30px;
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    background: #ffffff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+
+}
+
+
+
+#PlayerEditText{
+    font-size: 1em;
+    color: white;
+    /* background-color: yellow; */
+}
+
+#btnSubmit_edit_Player{
+    margin-left: 20px;
+    width: 150px;
+    height: 60px;
+    border-radius: 40px;
+    background: #02e1ff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btnBack_edit_Player{
+    width: 150px;
+    height: 60px;
+    border-radius: 40px;
+    background: #df2424;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+#btnAddUser_AdminPage{
+    width: 150px;
+    height: 60px;
+    border-radius: 40px;
+    background: #02e1ff;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+/* #btnSubmit_Back_Edit{
+    background-color: red;
+} */
+

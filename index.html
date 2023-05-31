@@ -18,12 +18,34 @@
         </div>
     </header>
 
+
+    <!-- Pantalla de Controles antes de  Inicializar el juego-->
+    <div id="controlScreen">
+
+        <!-- Ingles -->
+        <div id="controlScreenEUS">
+            <button id="btnCloseEUS">X</button>     
+        </div>
+
+        <!-- Euskera -->
+        <div id="controlScreenEN">
+            <button id="btnCloseEN">X</button>     
+        </div>
+    </div>
+        
+
+
     <div id = "divCanvas">
         <div class="container">
 
             <button id="btnTurn" type="button" style="display: block;">NEXT TURN</button>
 
             <button id="btnRound" type="button">END ROUND</button>
+
+            <button id="btnControls" type="button"  style="display: block;">🔍</button>
+
+            <button id ="btnConfirmEndRound"> ✔ </button>
+            <button id ="btnDenyEndRound"> X </button>
 
             <canvas id="gameScreen" width="1664" height="936">
             <h2>HOLA</h2>
@@ -34,44 +56,55 @@
     </div>
 
     <!-- ADMIN PAGE -->
-
-    <div id="adminMenuScreen" style="display:none;">
-            <div id = "adminScreen">
-                    <img src="./images/profile.png" width="150" height="150">
-                    <h1 id="adminName"><b>Igor</b></h1>
-            </div>
+    
+    <div id="adminMenuScreen">
+        <div id = "adminSection">
 
             <div id="logOutButton">
                 <button class="btnLogout" id="logOutTitle" type="button">Log out</button>
             </div>
 
-        
             <div id="dechControl">
-                    <h2 id="secondTitle">Deck Control</h2>
-                    <button class="boton" type="button">add</button>  <i id="barra">/</i>  
-                    <button class="boton" type="button">remove</button>  <i id="barra">/</i>   
-                    <button class="boton" type="button">edit</button>  <i id="barra">/</i>  
-                    <input class="boton" type="text" value placeholder="Search">
+                <h2 id="secondTitle">Deck Control</h2>
+
+                <!-- <button id="btn_add_deck"           type="button">              add             </button>           <i id="barra">/</i>  
+                <button id="btn_remove_deck"        type="button">              remove          </button>           <i id="barra">/</i>   
+                <button id="btn_edit_deck"          type="button">              edit            </button>   -->
             </div>
+
+            <div id = "adminScreen">
+                <img src="./images/profile.png" width="150" height="150">
+                <h1 id="adminName"><b>Igor</b></h1>
+            </div>
+            
             <div id="dechRectangle">
+                <div id="editCardList" style="display: block;">
 
+                </div>
             </div>
+
             <div id="playerControl">
-                    <h2 id="secondTitle">Player Control</h2>
-                    <button class="boton" type="button">add</button>  <i id="barra">/</i>  
-                    <button class="boton" type="button">remove</button>  <i id="barra">/</i>   
-                    <button class="boton" type="button">edit</button>  <i id="barra">/</i>  
-                    <input class="boton" type="text" value placeholder="Search">
+                
+                <h2 id="secondTitlel">Player Control</h2>
+                <button id="btnAddUser_AdminPage">ADD USER</button>
+                <!-- <button id="btn_add_player"         type="button">              add             </button>  <i id="barra">/</i>  
+                <button id="btn_remove_player"      type="button">              remove          </button>  <i id="barra">/</i>   
+                <button id="btn_edit_player"        type="button">              edit            </button>    -->
             </div>
-            <div id="playerRectangle">
 
+            <div id="playerRectangle">
+                <div id="editList" style="display:block">
+                </div>
             </div>
+
             <div id="last30days">
-                    <h3 id="a30days">Active players</h3>
-                    <h3 id="a30days">(last 30 days)</h3>
+                <h3 id="a30days1">Active players</h3>
+                <h3 id="a30days2">(last 30 days)</h3>
             </div>
+
+        </div>
+      
     </div>
-    
     <!-- PLAYER PAGE -->
     
     <div id="playerMenuScreen" style="display: none;">
@@ -82,7 +115,7 @@
             </div>
 
             <div id="logOutButton">
-                <button class="btnLogout" type="button">Log out</button>
+                <button class="btnLogout" id="logOutTitle1" type="button">Log out</button>
             </div>
 
             <div id="userList">
@@ -111,6 +144,8 @@
                 <!-- <button id = "btnStart" class="btn btn-primary" type="button"> PLAY </button> -->
             </div>
     </div>
+
+
     
     <label id = "txtPruebas"> </label>
     <!-- <label id = "txtPruebas"> </label> -->
@@ -130,7 +165,7 @@
                 <div class="form-box">  
                     <div class="form-value">
                         <form action="" onsubmit="return false">
-                            <h2>Login</h2>
+                            <h2 id="logInText">Login</h2>
                             <div class="inputbox">
                                 <label id="lblError"></label>
                                 <br>
@@ -192,7 +227,7 @@
                     <form action="" onsubmit="return false">
                         <h2 id="forgotPasswordTitle">Forgot Password</h2>
                         <div class="inputbox">
-                            <label id="lblError"></label>
+                            <label id="lblErrorForgot"></label>
                             <br>
     
                             <!-- Email -->
@@ -244,13 +279,13 @@
                     <form action="" onsubmit="return false">
                         <h2 id="registerText">Register</h2>
                         <div class="inputbox">
-                            <label id="lblError"></label>
+                            <label id="lblErrorRegister"></label>
                             <br>
     
                             <!-- Name & Surname -->
                             <div class="inputbox">
                                 <ion-icon name="mail-outline"></ion-icon>
-                                <input type="name" id="name_surname" placeholder="Jovani Vazquez" required>
+                                <input type="name" id="name_surname" placeholder="name surname" required>
                                 <label for="" id="Name&Surname">Name & Surname </label>
                             </div>
     
@@ -294,6 +329,53 @@
         </section>
        
     </div>
+
+    <!-- Edit Page - Player  -->
+    <div id="editPlayerSection">
+        <section id="sectionEdit">
+            <div class="form-box"> 
+                <div class="form-value">
+                    <form action="" onsubmit="return false">
+                        <div class="inputbox">
+                            <h2 id="edit_playerText">Edit Player Characteristics</h2>
+                            <label id="lblErrorRegister"></label>
+                                <br>
+    
+                            <!-- Name & Surname -->
+                            <div class="inputbox">
+                                <ion-icon name="mail-outline"></ion-icon>
+                                <input type="text" id="name_surname_EditPlayer" value="" placeholder="name surname" required>
+                                <label for="" id="Name&Surname">Name & Surname </label>
+                            </div>
+    
+                            <!-- Email -->
+                            <div class="inputbox">
+                                <ion-icon name="mail-outline"></ion-icon>
+                                <input type="email" id="emaila_EditPlayer" value="" placeholder="example@domain.com" disabled>
+                                <label for="" id="emailRegister">Email</label>
+                            </div>
+    
+                            <!-- Rol -->
+                            <div id="butonEditSection">
+                                <h3 id="PlayerEditText">ROL</h3>
+                                <button     id="btnPlayer_edit"  >     PLAYER       </button>
+                                <button     id="btnAdmin_edit"   >      ADMIN       </button>
+                            </div> 
+                        </div>
+                    </form>
+
+                    <div id="btnSubmit_Back_Edit">
+                        <button     id ="btnBack_edit_Player"   >            BACK       </button>
+                        <button     id ="btnSubmit_edit_Player" >            SUBMIT     </button>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+    <!-- Edit Page - Deck Control -->
     
     
     <script type="module" src="./src/game.js"></script>

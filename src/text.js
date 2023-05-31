@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 
-export const lenguajeText = [
+export const lenguageText = [
     {  
         emailText: 'Email', 
         passwordText: 'Password', 
@@ -19,7 +19,15 @@ export const lenguajeText = [
         submitText: 'SUBMIT',
         nameSurnameText: 'Name & Surname',
         registerText: 'Register',
-        backText: 'Back'
+        backText: 'Back',
+        errorMensajeText: 'The username or password are incorrect. Please try again.',
+        buttonEndRoundText: 'END ROUND',
+        buttonNextTurnText: 'NEXT TURN',
+        logInText: 'Log in',
+        activePlayersText: 'Active players',
+        last30Days: '(last 30 days)',
+        deckControl: 'Deck Control',
+        playerControl: 'Player Control'
     },
 
     {
@@ -40,22 +48,47 @@ export const lenguajeText = [
         submitText: 'BIDALI',
         nameSurnameText: 'Izen Abizena',
         registerText: 'Erregistratu',
-        backText: 'Atzera'
+        backText: 'Atzera',
+        errorMensajeText: 'Erabiltzailea edo pasahitza gaizki daude. Mesedez berriz saiatu.',
+        buttonEndRoundText: 'RONDA AMAITU',
+        buttonNextTurnText: 'HURRENGO TXANDA',
+        logInText: 'Sahioa hasi',
+        activePlayersText: 'Azken 30 egunetan',
+        last30Days: 'jokalari aktiboak',
+        deckControl: 'Karta sortaren Kontrola',
+        playerControl: 'Jokalariaren Kontrola'
     },
 ]
 
 export const gameText = [
     {
         turnText: "'s turn", 
-        selectCardText: 'Select a card and put it on the table', 
-        decoyText: '(Select a card to decoy)', 
-        onePlayerPassedText: 'Only player ' + globals.turnState + ' can play'
+        selectCardText: 'Select a card', 
+        placeCardText: 'Place the choosen card in an empty slot',
+        decoyText: '(Select a card if you want to decoy)', 
+        decoyText2: 'else skip your turn',
+        onePlayerPassedText: 'Only player ' + globals.turnState + ' can play',
+        earnedPointsText: ' earned ',
+        earnedPoints2Text: ' points.', 
+        losePointsText: 'you have lost' + globals.earnedPlayer1Points + ' points.',
+        scorchEffectText: 'The scorch effect has been produced',
+        commandersText: 'you have doubled the points in the row',
+        passTurnText: "You have passed your turn",
+        passTurnContinue: "Click the button bellow to continue",
     },
 
     {
         turnText: "-ren txanda", 
-        selectCardText: 'Karta bat aukeratu eta mahaian ipini', 
-        decoyText: '(Karta bat aukeratu decoy egiteko)', 
-        onePlayerPassedText: 'Bakarrik ' + globals.turnState + '. jokalariak jokatu dezake'
+        selectCardText: 'Karta bat aukeratu', 
+        placeCardText: 'Karta argiztatutako hutsunean ipini',
+        decoyText: '(Karta bat aukeratu decoy efektua egiteko)', 
+        decoyText2: 'bestela txanda pasa',
+        onePlayerPassedText: 'Bakarrik ' + globals.turnState + '. jokalariak jokatu dezake',
+        earnedPoints2Text: ' puntu irabazi ditu.', 
+        losePointsText: globals.earnedPlayer1Points +  ' puntu galdu dituzu.',
+        scorchEffectText: 'Scorch efektua eginda',
+        commandersText: 'Lerro honen puntuak bikoiztu dituzu',
+        passTurnText: "Zure txanda bukatu duzu",
+        passTurnContinue: "Azpiko botoia sakatu jokatzen segitzeko",
     }
 ]

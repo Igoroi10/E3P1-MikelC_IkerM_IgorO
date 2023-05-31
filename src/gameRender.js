@@ -1,7 +1,9 @@
 
 
-import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE , Turn} from "./constants.js";
+import { Card } from "./Card.js";
+import { CardCategory, CardDisplaySize, CardSizes, CARD_SIZE , SlotIdentificators, Turn, Type, Effect} from "./constants.js";
 import { gameLoop } from "./game.js";
+import { decoyEffectResult } from "./gameLogic.js";
 import globals from "./globals.js";
 import { gameText } from "./text.js";
 // import { GameZones } from "./GameZones.js";
@@ -30,16 +32,19 @@ function drawGame()
     drawNames();
     if (globals.action.c)
     {
-        console.log(globals.cards.length)
+      // console.log(globals.cards.length)
         displayCards();
     }
 
     renderCards();
+    renderSelectedCardAndPossibleSlots();
     drawMessages();
     drawTokens();
     drawPoints();
     renderBigCard();
+    renderEarnedPoints();
     gameOverScreen();
+    betweenTurnsScreen();
 }
 
 function renderMap ()
@@ -230,7 +235,7 @@ function renderBigCard(){
         globals.bigRender = true;
         const card = globals.cards[globals.selectedCardId];
 
-        if(globals.lenguajeSelected === 0)
+        if(globals.lenguageSelected === 0)
             descriptionText = card.description;
         
         else
@@ -478,7 +483,7 @@ function drawMessages()
         globals.ctx.fillRect(50, 530, 310, 85);
         globals.ctx.globalAlpha = 1.0; 
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(hostName+ gameText[globals.lenguajeSelected].turnText, 90, 555); 
+        globals.ctx.fillText(hostName+ gameText[globals.lenguageSelected].turnText, 90, 555); 
     }
     else if(globals.turnState === Turn.PLAYER1)
     {
@@ -488,7 +493,7 @@ function drawMessages()
         globals.ctx.fillRect(50, 530, 310, 85);
         globals.ctx.globalAlpha = 1.0;
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(globals.selectedEnemy + gameText[globals.lenguajeSelected].turnText, 90, 555); 
+        globals.ctx.fillText(globals.selectedEnemy + gameText[globals.lenguageSelected].turnText, 90, 555); 
     }
     else
     {
@@ -500,71 +505,353 @@ function drawMessages()
         globals.ctx.fillStyle = 'yellow';    
         globals.ctx.fillText("The game has ended", 80, 555);
     }
-
     if(!globals.checkBothPlayerRound)
    {
         if (globals.checkRoundPlayer1 && !globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText(gameText[globals.lenguajeSelected].onePlayerPassedText, 60, 610);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 10, 610);
         }
 
         else if (!globals.checkRoundPlayer1 && globals.checkRoundPlayer2)
         {
-            globals.ctx.fillText(gameText[globals.lenguajeSelected].onePlayerPassedText, 60, 610);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].onePlayerPassedText, 10, 610);
         }
    }
     if(globals.actionsCounter === 1 )
    {
         globals.ctx.font = '20px magicmedieval'; 
         globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(gameText[globals.lenguajeSelected].decoyText, 60, 585);
+        globals.ctx.fillText(gameText[globals.lenguageSelected].decoyText, 10, 585);
+        globals.ctx.fillText(gameText[globals.lenguageSelected].decoyText2, 10, 600);
    }
    else if(globals.actionsCounter === 0)
    {
         globals.ctx.font = '20px magicmedieval'; 
-        globals.ctx.fillStyle = 'yellow';    
-        globals.ctx.fillText(gameText[globals.lenguajeSelected].selectCardText, 60, 585);
+        globals.ctx.fillStyle = 'yellow';  
+        if(globals.selectedCardId_Click === -1)
+        {
+            globals.ctx.fillText(gameText[globals.lenguageSelected].selectCardText, 10, 585);
+        }  
+        else
+            globals.ctx.fillText(gameText[globals.lenguageSelected].placeCardText, 10, 585);
    }
-   
-//    225, 220
-//    225, 660
-//    globals.ctx.fillStyle = 'red'; 
-//    globals.ctx.fillRect(220, 680, 50, 50);
-//    globals.ctx.clearRect(223, 683, 45, 45);
-//    globals.ctx.fillRect(290, 680, 50, 50);
-//    globals.ctx.clearRect(293, 683, 45, 45);
+}
 
-//    globals.ctx.fillRect(220, 235, 50, 50);
-//    globals.ctx.clearRect(223, 238, 45, 45);
-//    globals.ctx.fillRect(290, 235, 50, 50);
-//    globals.ctx.clearRect(293, 238, 45, 45);
-   //////////////////////////////////////////////////
-   ////// FRASES
-   //////////////////////////////////////////////////
-//    globals.ctx.fillText("Start of the round.", 90, 585); 
-
-//    globals.ctx.fillText(globals.selectedEnemy + "'s turn.", 90, 585); 
-//    globals.ctx.fillText(hostName + "'s turn.", 90, 585); 
-
-//    globals.ctx.fillText(globals.selectedEnemy + " passed, your turn.", 90, 585); 
-//    globals.ctx.fillText(hostName + " passed, your turn.", 90, 585); 
-
-//    globals.ctx.fillText(globals.selectedEnemy + " has won the round", 90, 585); 
-//    globals.ctx.fillText(hostName + " has won the round", 90, 585); 
-
-//    globals.ctx.fillText("Draw a card", 90, 585); 
-
-//    globals.ctx.fillText("Select an unit or effect card", 90, 585); 
-
-//    globals.ctx.fillText("Take one card from your table or end turn", 90, 585); 
-
-//    globals.ctx.fillText("Your turn is finished", 90, 585); 
-
-//    globals.ctx.fillText("Select where will be the card placed", 90, 585); 
-
+function renderEarnedPoints()
+{
+    globals.ctx.font = '40px magicmedieval'; 
+    globals.ctx.fillStyle = 'yellow';  
+    let carta = globals.cards[globals.currentSelectedCardId];
+    
+    if(globals.calculateNewPoints)
+    {
+        if(carta.cardName === "Scorch")
+        {
+            if(carta.slotIdentificator === SlotIdentificators.PLAYER1_F1 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F2 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F3)
+            {
+                //efectuado el efecto de scorch
+                globals.renderAlpha -= (globals.deltaTime / 2);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(gameText[globals.lenguageSelected].scorchEffectText, 740, 290 ); 
+                globals.ctx.restore();
+            }
+            else
+            {
+                //efectuado el efecto de scorch
+                globals.renderAlpha -= (globals.deltaTime / 2);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(gameText[globals.lenguageSelected].scorchEffectText, 740, 600); 
+                globals.ctx.restore();
+            }
+        }
+        else if(carta.cardName === "Commanders_Horn")
+        {
+            if(carta.slotIdentificator === SlotIdentificators.PLAYER1_B1 || carta.slotIdentificator === SlotIdentificators.PLAYER1_B2 || carta.slotIdentificator === SlotIdentificators.PLAYER1_B3)
+            {
+                //efectuado el efecto de scorch
+                globals.renderAlpha -= (globals.deltaTime / 2);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(gameText[globals.lenguageSelected].commandersText, 660, 290 ); 
+                globals.ctx.restore();
+            }
+            else
+            {
+                //efectuado el efecto de scorch
+                globals.renderAlpha -= (globals.deltaTime / 2);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(gameText[globals.lenguageSelected].commandersText, 660, 600); 
+                globals.ctx.restore();
+            }
+        }
+        else if(carta.slotIdentificator === SlotIdentificators.PLAYER1_F1 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F2 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F3)
+        {
+            if(globals.lenguageSelected === 0)
+            {
+                globals.renderAlpha -= (globals.deltaTime / 2);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(globals.selectedEnemy + " "  + gameText[globals.lenguageSelected].earnedPointsText + globals.earnedPlayer2Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 290 ); 
+                globals.ctx.restore();
+            }
+            else if(globals.lenguageSelected === 1)
+            {
+                globals.renderAlpha -= (globals.deltaTime / 2);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(globals.selectedEnemy + " " + globals.earnedPlayer2Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 290 ); 
+                globals.ctx.restore();
+            }
+        }
+        else if(carta.slotIdentificator === SlotIdentificators.PLAYER0_F1 || carta.slotIdentificator === SlotIdentificators.PLAYER0_F2 || carta.slotIdentificator === SlotIdentificators.PLAYER0_F3)
+        {
+            if(globals.lenguageSelected === 0)
+            {
+                globals.renderAlpha -= (globals.deltaTime / 2);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(localStorage.getItem('izen_abizena') + gameText[globals.lenguageSelected].earnedPointsText + globals.earnedPlayer1Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 600 ); 
+                globals.ctx.restore();
+            }
+            else if(globals.lenguageSelected === 1)
+            {
+                globals.renderAlpha -= (globals.deltaTime / 2);
+                if(globals.renderAlpha < 0)
+                {
+                    globals.renderAlpha = 0;
+                }
+                globals.ctx.save();
+                globals.ctx.globalAlpha = globals.renderAlpha;
+                globals.ctx.fillText(localStorage.getItem('izen_abizena') + globals.earnedPlayer1Points + gameText[globals.lenguageSelected].earnedPoints2Text, 757, 600 ); 
+                globals.ctx.restore();
+            }
+        }
+    }
+    if(globals.renderAlpha === 0)
+    {
+        globals.calculateNewPoints = false;
+        globals.renderAlpha = 1;
+        // globals.earnedPlayer1Points = 0;
+        // globals.earnedPlayer2Points = 0;
+    }
+    // console.log(globals.previousPoints2);
 
 }
 
+function renderSelectedCardAndPossibleSlots(){
+
+    if(globals.selectedCardId_Click >= 0){
+
+        const x1 = Math.floor(globals.cards[globals.selectedCardId_Click].xPos);
+        const y1 = Math.floor(globals.cards[globals.selectedCardId_Click].yPos);
+        const w1 = CardSizes.TOKEN_WIDHT;
+        const h1 = CardSizes.TOKEN_HEIGHT;
+
+
+        globals.ctx.strokeStyle = "yellow";
+        globals.ctx.strokeRect(x1, y1, w1, h1);
+
+
+
+        switch(globals.cards[globals.selectedCardId_Click].categoryId){
+
+            case CardCategory.UNIT:
+                renderUnitSlots(globals.cards[globals.selectedCardId_Click]);
+                break;
+            
+            case CardCategory.INSTAEFFECT:
+                renderFieldSlots();
+                break;
+            
+            case CardCategory.PERMAEFFECT:
+                renderBuffSlots();
+                break;
+            
+            case CardCategory.CLIMATE:
+                renderClimateSlots();
+                break;
+            
+        }
+    }
+}
+
+function renderUnitSlots(card){
+
+    let slotID;
+
+    if(globals.turnState === 0){
+        if(card.type === Type.PHYSICAL){
+
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER0_F1;
+            
+            else
+                slotID = SlotIdentificators.PLAYER1_F1;
+        }
+
+
+
+        else if(card.type === Type.DISTANCE){
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER0_F2;
+            
+            else
+                slotID = SlotIdentificators.PLAYER1_F2;
+        }
+
+
+        else {
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER0_F3;
+            
+            else
+                slotID = SlotIdentificators.PLAYER1_F3;
+        }
+    }
+
+    else{
+        if(card.type === Type.PHYSICAL){
+
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER1_F1;
+            
+            else
+                slotID = SlotIdentificators.PLAYER0_F1;
+        }
+
+
+
+        else if(card.type === Type.DISTANCE){
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER1_F2;
+            
+            else
+                slotID = SlotIdentificators.PLAYER0_F2;
+        }
+
+
+        else {
+            if(card.effect !== Effect.SPY)
+                slotID = SlotIdentificators.PLAYER1_F3;
+            
+            else
+                slotID = SlotIdentificators.PLAYER0_F3;
+        }
+    }
+
+    for(let i = 0; i < globals.slots.length; i++){
+        if(globals.slots[i].slotIdentificator === slotID && globals.slots[i].placed_cards === -1){
+            const x1 = Math.floor(globals.slots[i].xPos);
+            const y1 = Math.floor(globals.slots[i].yPos);
+            const w1 = CardSizes.TOKEN_WIDHT;
+            const h1 = CardSizes.TOKEN_HEIGHT;
+
+            globals.ctx.strokeStyle = "yellow";
+            globals.ctx.strokeRect(x1, y1, w1, h1);    
+            }
+    }
+
+}
+
+function renderFieldSlots(){
+    let f1ID;
+    let f2ID;
+    let f3ID;
+
+    if(globals.turnState === 0){
+        f1ID = SlotIdentificators.PLAYER0_F1;
+        f2ID = SlotIdentificators.PLAYER0_F2;
+        f3ID = SlotIdentificators.PLAYER0_F3;
+    }
+
+    else{
+        f1ID = SlotIdentificators.PLAYER1_F1;
+        f2ID = SlotIdentificators.PLAYER1_F2;
+        f3ID = SlotIdentificators.PLAYER1_F3;
+    }
+
+    for(let i = 0; i < globals.slots.length; i++){
+        if(globals.slots[i].slotIdentificator === f1ID && globals.slots[i].placed_cards === -1
+        || globals.slots[i].slotIdentificator === f2ID && globals.slots[i].placed_cards === -1
+        || globals.slots[i].slotIdentificator === f3ID && globals.slots[i].placed_cards === -1){
+
+            const x1 = Math.floor(globals.slots[i].xPos);
+            const y1 = Math.floor(globals.slots[i].yPos);
+            const w1 = CardSizes.TOKEN_WIDHT;
+            const h1 = CardSizes.TOKEN_HEIGHT;
+
+            globals.ctx.strokeStyle = "yellow";
+            globals.ctx.strokeRect(x1, y1, w1, h1);    
+            }
+    }
+}
+
+function renderBuffSlots(){
+    let b1ID;
+    let b2ID;
+    let b3ID;
+
+    if(globals.turnState === 0){
+        b1ID = SlotIdentificators.PLAYER0_B1;
+        b2ID = SlotIdentificators.PLAYER0_B2;
+        b3ID = SlotIdentificators.PLAYER0_B3;
+    }
+
+    else{
+        b1ID = SlotIdentificators.PLAYER1_B1;
+        b2ID = SlotIdentificators.PLAYER1_B2;
+        b3ID = SlotIdentificators.PLAYER1_B3;
+    }
+
+    for(let i = 0; i < globals.slots.length; i++){
+        if(globals.slots[i].slotIdentificator === b1ID && globals.slots[i].placed_cards === -1
+        || globals.slots[i].slotIdentificator === b2ID && globals.slots[i].placed_cards === -1
+        || globals.slots[i].slotIdentificator === b3ID && globals.slots[i].placed_cards === -1){
+            const x1 = Math.floor(globals.slots[i].xPos);
+            const y1 = Math.floor(globals.slots[i].yPos);
+            const w1 = CardSizes.TOKEN_WIDHT;
+            const h1 = CardSizes.TOKEN_HEIGHT;
+
+            globals.ctx.strokeStyle = "yellow";
+            globals.ctx.strokeRect(x1, y1, w1, h1);    
+        }
+    }
+}
+
+function renderClimateSlots(){
+
+}
 
 function gameOverScreen()
 {
@@ -587,9 +874,63 @@ function gameOverScreen()
 } 
 
 
+function betweenTurnsScreen(){
+    const hostName = localStorage.getItem('izen_abizena');
+    if(globals.showTurnChangeScreen){
+
+        if(globals.checkIfPlayer1TurnPass){
+            globals.renderTurnAlpha -= (globals.deltaTime / 5);
+            if(globals.renderTurnAlpha < 0)
+            {
+                globals.renderTurnAlpha = 0;
+            }
+            globals.ctx.save();
+            globals.ctx.globalAlpha = globals.renderTurnAlpha;
+            globals.ctx.fillStyle = 'black';  
+            globals.ctx.fillRect(0, 0, globals.canvas.width, globals.canvas.height);
+            globals.ctx.font = '45px magicmedieval'; 
+            globals.ctx.fillStyle = 'white';    
+            globals.ctx.fillText(hostName + gameText[globals.lenguageSelected].turnText, 650, 420);
+            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnText, 600, 360);
+            globals.ctx.restore();
+        }
+
+        else if(globals.checkIfPlayer0TurnPass){
+            // console.log("checkPlayer 1 turn pass");
+            globals.renderTurnAlpha -= (globals.deltaTime / 5);
+            if(globals.renderTurnAlpha < 0)
+            {
+                globals.renderTurnAlpha = 0;
+            }
+            globals.ctx.save();
+            globals.ctx.globalAlpha = globals.renderTurnAlpha;
+            globals.ctx.fillStyle = 'black';  
+            globals.ctx.fillRect(0, 0, globals.canvas.width, globals.canvas.height);
+            globals.ctx.font = '45px magicmedieval'; 
+            globals.ctx.fillStyle = 'white';    
+            globals.ctx.fillText(globals.selectedEnemy + gameText[globals.lenguageSelected].turnText, 650, 420); 
+            globals.ctx.fillText(gameText[globals.lenguageSelected].passTurnText, 600, 360);
+            globals.ctx.restore();
+        }
+        // console.log(globals.turnState);
+    }
+    if(globals.renderTurnAlpha === 0)
+    {
+        console.log("entra el el alpha = 0");
+        globals.showTurnChangeScreen = false;
+        globals.checkIfPlayer1TurnPass = false;
+        globals.checkIfPlayer0TurnPass = false;
+        globals.renderTurnAlpha = 1;
+    }
+    // console.log(globals.checkIfPlayer1TurnPass);
+}
+
+
+
 export{
     render,
     renderBigCard,
     displayCards,
     renderCard,
+    renderEarnedPoints,
 }
