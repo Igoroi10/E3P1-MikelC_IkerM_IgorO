@@ -510,6 +510,13 @@ function btnDenyRound ()
     checkIfRoundPass();
 }
 
+function btnReset()
+{
+
+}
+
+
+
 function checkIfRoundPass()
 {
     //Si uno o ninguno de los jugadores a Pasado la Ronda 
@@ -822,4 +829,5 @@ export {
     btnPlayerEdit,
     btnAddUser,
     updateMusic,
+    btnReset,
 }
