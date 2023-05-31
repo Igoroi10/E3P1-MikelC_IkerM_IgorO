@@ -4,6 +4,7 @@ import { Key, State, Turn, GameMode, Sound } from "./constants.js";
 import { gameLoop } from "./game.js";
 import { renderBigCard } from "./gameRender.js";
 import { checkStates, localStorageUpdate, logOut, createExpertDeck, distributeHandCards, startingDeal,  decoyEffectResult , multiMensaje} from "./gameLogic.js";
+import { detectCollisionBetweenMouseAndCards_Click } from "./collision.js";
 
 
 
@@ -177,12 +178,21 @@ function createList()
 
     if(hostName === globals.all_users[0].izen_abizena)
         globals.selectedEnemy = globals.all_users[1].izen_abizena;
+        globals.selectedEnemyKod = globals.all_users[1];
+        console.log(globals.selectedEnemyKod);
 
+        
         // console.log(users[1]['emaila']);
       // console.log(hostEmail);
         //Creacion de la Lista - Automatizada 
         for(let i = 0; i < users.length; i++)
         {
+            if(globals.all_users[i].izen_abizena === hostName)
+            {
+                globals.hostKod =  globals.all_users[i]
+                console.log(globals.hostKod);
+                console.log("el nombre del host");
+            }
           // console.log(users[i]['emaila'])
             if(users[i]['emaila'] !== hostEmail && hostEmail !== null){
                 // console.log("entra en el if del emaila logueado = hostEmail");

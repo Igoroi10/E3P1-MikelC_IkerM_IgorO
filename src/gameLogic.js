@@ -1256,7 +1256,9 @@ function localStorageUpdate(){
     localStorage.setItem('logged', 'true');
     localStorage.setItem('rol', globals.hostPlayerInfo.rol);
     localStorage.setItem('emaila', globals.hostPlayerInfo.emaila);
-    localStorage.setItem('izen_abizena', globals.hostPlayerInfo.izena_abizena)
+    localStorage.setItem('izen_abizena', globals.hostPlayerInfo.izena_abizena);
+    localStorage.setItem('user_kod', globals.hostPlayerInfo.user_kod);
+    
 }
 
 function logOut(){
@@ -1925,8 +1927,20 @@ function updateGameOver()
     else if(globals.playerTokens[1][0].showBack && globals.playerTokens[1][1].showBack)
     {
         globals.winner = localStorage.getItem('izen_abizena');
+        // console.log("entra en el if de las dos vidas back");
         globals.checkIfLives0 = true;
     }
+
+    if(globals.winner === globals.selectedEnemy)
+    {
+        globals.winnerKod = globals.selectedEnemyKod;
+    }
+    else if(globals.winner === localStorage.getItem('izen_abizena'))
+    {
+        globals.winnerKod = globals.hostPlayerInfo.rol;
+        // console.log(globals.hostPlayerInfo)
+    }
+    // console.log(localStorage.getItem('user_kod'));
 }
 
 function updateEndRound()

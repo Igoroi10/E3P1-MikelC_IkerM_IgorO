@@ -297,4 +297,7 @@ export default
     //Sonidos
     sounds:                         [],
     currentSound:                   -1,
+    winnerKod:                      -1,
+    hostKod:                        -1,
+    selectedEnemyKod:               -1,
 }

@@ -864,7 +864,7 @@ function gameOverScreen()
         globals.ctx.globalAlpha = 1;
         var img = new Image();
         img.src = "./images/gwent_win.png";
-        globals.ctx.drawImage(img, 570, 250);
+        globals.ctx.drawImage(img, 570, 200);
         globals.ctx.font = '45px magicmedieval'; 
         globals.ctx.fillStyle = 'white';    
         globals.ctx.fillText(globals.winner, 720, 685); 
