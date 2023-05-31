@@ -1057,7 +1057,7 @@ function calculatePoints(player){
     // console.log(points);
 
     tighBondValueDecrease(tightBondArray, player);
-    console.log("modo de juego en el loop: " + globals.gameMode);
+    // console.log("modo de juego en el loop: " + globals.gameMode);
     if(globals.gameMode === GameMode.EXPERT_MODE && climateArray[0].length > 0){
 
         console.log (climateArray[0].length );
@@ -1408,6 +1408,7 @@ function startingTokensDeal()
  
 }
 
+
 function updateTokenPlacement()
 {
     for(let i = 0; i < globals.tokens.length; i++)
@@ -1508,6 +1509,7 @@ function distributeHandCards()
 {
     // console.log("Entra en Distribute");
     createDistribution();
+    dealClimate();
 }
 
 function createDistribution()
@@ -1548,6 +1550,41 @@ function createDistribution()
 
 }
 
+function dealClimate(){
+    for(let k = 0; k < 2; k++){
+        let handIdentificatorDeal;
+        
+        if(k === 0)
+            handIdentificatorDeal = SlotIdentificators.PLAYER0_HAND
+        else
+            handIdentificatorDeal = SlotIdentificators.PLAYER1_HAND
+
+        for(let h = 0; h < 2; h++){
+            console.log("entra a colocar cartas de clima")
+            for(let i = 0; i < globals.player[k].length; i++){
+                if(globals.player[k][i].categoryId === CardCategory.CLIMATE){
+                    console.log(globals.player[k][i]);
+                }
+                if(globals.player[k][i].state === CardState.DECK && globals.player[k][i].categoryId === CardCategory.CLIMATE){
+                    
+                    for(let l = 0; l < globals.slots.length; l++){
+                        if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorDeal){
+                            globals.player[k][i].xPos = globals.slots[l].xPos;
+                            globals.player[k][i].yPos = globals.slots[l].yPos;
+                            globals.player[k][i].state = CardState.HAND;
+                            globals.player[k][i].showBack = true;
+                            globals.slots[l].placed_cards++;
+                            l = globals.slots.length;
+                            i = globals.player[k].length;
+    
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
 function updateTurn()
 {
     // console.log("Turno player: " + globals.turnState);

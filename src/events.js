@@ -207,7 +207,7 @@ function createUserEditList()
         const buttonDelete = document.createElement("button");
         buttonEdit.setAttribute("id", "buttonEdit" + i);
         buttonDelete.setAttribute("id", "buttonDelete" + i);
-        console.log(globals.all_users[i])
+        // console.log(globals.all_users[i])
         li.textContent = globals.all_users[i]['izen_abizena'] + " / " + globals.all_users[i]['emaila'] + " / " + globals.all_users[i]['rol'] + "  ";
         
         buttonEdit.innerHTML = "edit";
