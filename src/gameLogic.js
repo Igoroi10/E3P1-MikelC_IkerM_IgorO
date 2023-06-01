@@ -1,6 +1,6 @@
 import globals from "./globals.js";
 import { State, CardState, SlotIdentificators, Effect, GameMode, Player0_map_pos, Player1_map_pos, Turn, Common_map_pos, Type, CardCategory, CardSlotsQuantity, Sound} from "./constants.js";
-import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets, initTimers } from "./initialize.js";
+import { createExpertDeck, createNormalDeck, initSlots, initCardInfo, initCardLinks, loadAssets, initTimers, postGameOver } from "./initialize.js";
 import {detectCollisionBetweenMouseAndCards, detectCollisionBetweenMouseAndSlots, detectCollisionBetweenMouseAndCards_Click } from "./collision.js"; 
 import { selectEnemy, createList,  checkIfRoundPass} from "./events.js";
 import { Card } from "./Card.js";
@@ -160,6 +160,7 @@ function checkStates(){
             makeThisScreenVisible(State.GAME_END);
             globals.currentSound = Sound.ENDGAME_MUSIC;
             globals.sounds[globals.currentSound].volume = 0.5;
+            postGameOver();
            break;        
 
         case State.GAME_START:
@@ -220,6 +221,10 @@ function makeThisScreenVisible(screen){
 
         case State.EDIT_PLAYER:
             visibleDiv = "editPlayerSection";
+            break;
+
+        case State.GAME_END:
+            visibleDiv = "divCanvas";
             break;
 
     }
@@ -2069,6 +2074,9 @@ function updateGameOver()
         globals.winnerKod = globals.enemyKod;
         globals.loser = globals.hostKod;
         globals.checkIfLives0 = true;
+
+        // globals.gameState = State.GAME_END;
+        // checkStates();
     }
     else if(globals.playerTokens[1][0].showBack && globals.playerTokens[1][1].showBack)
     {
@@ -2076,6 +2084,9 @@ function updateGameOver()
         globals.winnerKod = globals.hostKod;
         globals.loser = globals.enemyKod;
         globals.checkIfLives0 = true;
+
+        // globals.gameState = State.GAME_END;
+        // checkStates();
     }
     // console.log(globals.winnerKod)
 }
