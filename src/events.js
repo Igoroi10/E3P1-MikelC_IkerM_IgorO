@@ -207,7 +207,7 @@ function createUserEditList()
         const buttonDelete = document.createElement("button");
         buttonEdit.setAttribute("id", "buttonEdit" + i);
         buttonDelete.setAttribute("id", "buttonDelete" + i);
-        console.log(globals.all_users[i])
+        // console.log(globals.all_users[i])
         li.textContent = globals.all_users[i]['izen_abizena'] + " / " + globals.all_users[i]['emaila'] + " / " + globals.all_users[i]['rol'] + "  ";
         
         buttonEdit.innerHTML = "edit";
@@ -351,11 +351,35 @@ export function btnNormalMode()
     document.getElementById("btnStart").innerHTML = "OVER";
     document.getElementById('sectionLogIn').style.display = "none";
 
+    console.log("estado primero de game mode: " + globals.gameMode);
     globals.gameState = State.GAME_START;
     globals.gameMode = GameMode.NORMAL_MODE;
+    console.log("estado después de declarar game mode: " + globals.gameMode);
     requestAnimationFrame(gameLoop);
     
     checkStates();
+}
+
+function btnExpertMode()
+{
+    globals.buttonStart.style.visibility = "Hidden";
+    // globals.buttonAdmin.style.visibility = "Hidden";
+    // globals.buttonPlayer.style.visibility = "Hidden";
+
+    document.getElementById('divCanvas').style.display = "block";
+    document.getElementById('sectionLogIn').style.display = "none";
+    document.getElementById('sectionPlay').style.display = "none";
+    document.getElementById('playerMenuScreen').style.display = "none";
+
+    document.getElementById("btnStart").innerHTML = "OVER";
+    document.getElementById('sectionLogIn').style.display = "none";
+
+    globals.gameState = State.GAME_START;
+    globals.gameMode = GameMode.EXPERT_MODE;
+    
+    checkStates();
+
+    requestAnimationFrame(gameLoop);
 }
 
 function btnClose()
@@ -847,6 +871,7 @@ export {
     btnBack,
     btnSubmitForget,
     btnSubmitRegister,
+    btnExpertMode,
     btnClose,
     btnControls,
     btnConfirmRound,
@@ -860,4 +885,5 @@ export {
     btnAddUser,
     updateMusic,
     btnReset,
+
 }

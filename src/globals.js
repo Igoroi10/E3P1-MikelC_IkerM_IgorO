@@ -34,6 +34,8 @@ export default
 
     buttonMode: {},
 
+    buttonExpert: {},
+
     buttonEnglish: {},
 
     buttonEuskera: {},

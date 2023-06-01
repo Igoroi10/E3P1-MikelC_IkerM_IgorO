@@ -24,6 +24,7 @@ function initHTMLelements()
     globals.buttonRound     = document.getElementById('btnRound');
     globals.buttonLogout    = document.getElementsByClassName('btnLogout');
     globals.buttonMode      = document.getElementById('btnNormal');
+    globals.buttonExpert    = document.getElementById('btnExpert');
     globals.buttonEnglish   = document.getElementById('btnEnglish');
     globals.buttonEuskera   = document.getElementById('btnEuskera');
     globals.buttonPlayerEdit   = document.getElementById('btnPlayer_edit');
@@ -46,6 +47,7 @@ function initHTMLelements()
     globals.buttonTurn.addEventListener("mousedown",        btnStartTurn,       false);
     globals.buttonRound.addEventListener("mousedown",       btnEndRound,        false);
     globals.buttonMode.addEventListener("mousedown",       btnNormalMode,        false);
+    globals.buttonExpert.addEventListener("mousedown",       btnExpertMode,        false);
         for(let i = 0; i < globals.buttonLogout.length; i++)
         {
             globals.buttonLogout[i].addEventListener("mousedown",      btnLogOut,          false);
@@ -1075,7 +1077,6 @@ function createExpertDeck(){
     addDecoy();
     addPermaCards(expertMode);
     addInstaCards(expertMode);
-    addClimateCards();
     AddTokenCard();
 
     // console.log("cards.length after addOneEach: " + globals.cards.length);
@@ -1086,6 +1087,7 @@ function createExpertDeck(){
     //Comentada Funcion - DA ERROR 
     addUnitCards(cardsNeeded);
     globals.cards.splice(80);
+    addClimateCards();
 
 }
 
@@ -1132,11 +1134,11 @@ function insertCard(i){
         globals.cards.push(permaCard);
         break;
 
-        // case "climate":
-        // const climateCard = new ClimateCard(globals.cardInfo[i].irudia, globals.cardInfo[i].cardName, 
-        //                                     CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].deskribapena, globals.cardInfo[i].efektua);
-        // globals.cards.push(climateCard);
-        // break;
+        case "climate":
+        const climateCard = new ClimateCard(globals.cardInfo[i].irudia, globals.cardInfo[i].cardName, 
+                                            CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].deskribapena, globals.cardInfo[i].efektua);
+        globals.cards.push(climateCard);
+        break;
 
         case "token":
         
@@ -1167,10 +1169,13 @@ function addClimateCards(){
 
         for(let l = 0; l < globals.cardInfo.length; l++){
             if(globals.cardInfo[l].kategoria === "climate"){
-                // console.log("entra en el de kategoria en clima")
+
                 if(checks === randomChoice){
-                    if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
+                    if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate"){
                         insertCard(l);
+                        console.log("añade carta de clima")
+                    }
+
                     l = globals.cardInfo.length;
                     // console.log("añadido carta de clima")
                 } 
