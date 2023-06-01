@@ -794,7 +794,7 @@ function renderFieldSlots(){
 
     if(globals.cards[globals.selectedCardId_Click].effect !== Effect.DECOY)
     {
-        console.log("entra en renderField NO DECOY");
+        // console.log("entra en renderField NO DECOY");
 
         if(globals.turnState === 0){
             f1ID = SlotIdentificators.PLAYER0_F1;
