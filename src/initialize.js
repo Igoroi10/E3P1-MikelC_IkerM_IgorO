@@ -1,5 +1,5 @@
 
-import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose, btnControls, btnConfirmRound, btnDenyRound, createUserEditList, createCardList, btnBack_playerEdit_admin, btnSubmit_playerEdit_admin, btnPlayerEdit, btnAdminEdit, btnAddUser, updateMusic} from "./events.js";
+import {btnStartDown, btnStartOver, btnStartOut, btnStartAdmin, btnStartPlayer, btnStartTurn,canvasRightMouseupHandler, canvasMousedownHandler, canvasMousemoveHandler, canvasMouseupHandler, canvasRightMousedownHandler, keydownHandler, keyupHandler, btnEndRound, btnLogOut, createList, selectEnemy, btnNormalMode, btnForgotPassword, btnRegister, btnEnglishMode, btnEuskeraMode, btnBack, btnSubmitForget, btnSubmitRegister, btnClose, btnControls, btnConfirmRound, btnDenyRound, createUserEditList, createCardList, btnBack_playerEdit_admin, btnSubmit_playerEdit_admin, btnPlayerEdit, btnAdminEdit, btnAddUser, updateMusic, btnReset, btnExpertMode} from "./events.js";
 import globals from "./globals.js";
 import {  State, Languages, CardState, CardCategory, Rarity, Effect, Type, CardQuantity, CardSizes, GameMode, FPS, Card_img_quantity} from "./constants.js";
 import render from "./gameRender.js";
@@ -24,6 +24,7 @@ function initHTMLelements()
     globals.buttonRound     = document.getElementById('btnRound');
     globals.buttonLogout    = document.getElementsByClassName('btnLogout');
     globals.buttonMode      = document.getElementById('btnNormal');
+    globals.buttonExpert    = document.getElementById('btnExpert');
     globals.buttonEnglish   = document.getElementById('btnEnglish');
     globals.buttonEuskera   = document.getElementById('btnEuskera');
     globals.buttonPlayerEdit   = document.getElementById('btnPlayer_edit');
@@ -46,6 +47,7 @@ function initHTMLelements()
     globals.buttonTurn.addEventListener("mousedown",        btnStartTurn,       false);
     globals.buttonRound.addEventListener("mousedown",       btnEndRound,        false);
     globals.buttonMode.addEventListener("mousedown",       btnNormalMode,        false);
+    globals.buttonExpert.addEventListener("mousedown",       btnExpertMode,        false);
         for(let i = 0; i < globals.buttonLogout.length; i++)
         {
             globals.buttonLogout[i].addEventListener("mousedown",      btnLogOut,          false);
@@ -125,6 +127,9 @@ function initHTMLelements()
     globals.btn_addUser                             = document.getElementById('btnAddUser_AdminPage');
 
 
+    //Boton de reset
+    globals.btnReset                                = document.getElementById('btnReset');
+
     //Mostramos la pantalla de Log In
     document.getElementById('sectionLogIn').style.display = "flex";
     document.getElementById('sectionPlay').style.display = "none";
@@ -150,6 +155,8 @@ function initHTMLelements()
     globals.btnDenyRound.addEventListener("mousedown", btnDenyRound, false);
 
     globals.btn_addUser.addEventListener("mousedown", btnAddUser, false);
+
+    globals.btnReset.addEventListener("mousedown", btnReset, false)
 
     //Botones de Deck control
     // globals.btn_add_deck.addEventListener();
@@ -909,6 +916,58 @@ function postDeleteCard()
 
 }
 
+// ===========================================================
+//              P O S T  d e  G A M E  O V E R
+// ===========================================================
+
+function postGameOver(event)
+{
+    console.log("Entra en postGameOver");
+    //Partida (partida irabazlea, partida kod), Ronda (ronda kod, ronda irabazlea, irabazlearen puntuazioa, galtzailearen puntuazioa, partida_ronda), jolastu (user_jolastu, partida_jolastu)
+
+    const objectToSend = {
+        partida_irabazlea: globals.winner,
+        ronda_irabazlea: globals.roundWinnerKod,
+        irabazlearen_puntuazioa: globals.roundWinnerPoints,
+        galtzailearen_puntuazioa: globals.roundLoserPoints
+    }
+    
+    const dataToSend = 'partida_irabazlea=' + objectToSend.winner  + '&ronda_irabazlea=' + objectToSend.ronda_irabazlea + '&irabazlearen_puntuazioa=' + objectToSend.irabazlearen_puntuazioa + '&galtzailearen_puntuazioa=' + objectToSend.galtzailearen_puntuazioa;
+
+    console.log(dataToSend);
+    //Ruta relativa al fichero que hace la petición (postNewPassword.php)
+    const url = "../server/routes/postEndGameInfo.php";
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                  console.log(this.responseText);
+                    const userData = JSON.parse(this.responseText);
+                  // console.log("------------")
+                  console.log(userData)
+                  // console.log("------------")
+                }
+                else
+                    alert("Comunication error: No data received");
+            }
+            else
+                alert( "Comunication error: " + this.statusText);
+        }
+    }
+
+    request.responseType = "text";
+    request.send(dataToSend);
+
+}
+
 function manageRegister(userData)
 {
     // console.log("entra en el funcion manageRegister");
@@ -1070,7 +1129,6 @@ function createExpertDeck(){
     addDecoy();
     addPermaCards(expertMode);
     addInstaCards(expertMode);
-    addClimateCards();
     AddTokenCard();
 
     // console.log("cards.length after addOneEach: " + globals.cards.length);
@@ -1081,6 +1139,7 @@ function createExpertDeck(){
     //Comentada Funcion - DA ERROR 
     addUnitCards(cardsNeeded);
     globals.cards.splice(80);
+    addClimateCards();
 
 }
 
@@ -1127,11 +1186,11 @@ function insertCard(i){
         globals.cards.push(permaCard);
         break;
 
-        // case "climate":
-        // const climateCard = new ClimateCard(globals.cardInfo[i].irudia, globals.cardInfo[i].cardName, 
-        //                                     CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].deskribapena, globals.cardInfo[i].efektua);
-        // globals.cards.push(climateCard);
-        // break;
+        case "climate":
+        const climateCard = new ClimateCard(globals.cardInfo[i].irudia, globals.cardInfo[i].cardName, 
+                                            CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].deskribapena, globals.cardInfo[i].efektua);
+        globals.cards.push(climateCard);
+        break;
 
         case "token":
         
@@ -1162,10 +1221,13 @@ function addClimateCards(){
 
         for(let l = 0; l < globals.cardInfo.length; l++){
             if(globals.cardInfo[l].kategoria === "climate"){
-                // console.log("entra en el de kategoria en clima")
+
                 if(checks === randomChoice){
-                    if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate")
+                    if(globals.cardInfo[i].izena !== "Decoy" || globals.cardInfo[i].izena !== "Zarate"){
                         insertCard(l);
+                        console.log("añade carta de clima")
+                    }
+
                     l = globals.cardInfo.length;
                     // console.log("añadido carta de clima")
                 } 
@@ -1759,7 +1821,7 @@ function deckPlayer2()
 function initCardInfo()
 {
 
-    const url = "http://localhost/mythClash/server/routes/getAllCards.php";
+    const url = "../server/routes/getAllCards.php";
     const request = new XMLHttpRequest();
 
     request.onreadystatechange = function()
@@ -1804,7 +1866,7 @@ function initCardInfo()
 function initCardLinks()
 {
 
-    const url = "http://localhost/mythClash/server/routes/getAllLinks.php";
+    const url = "../server/routes/getAllLinks.php";
     const request = new XMLHttpRequest();
 
     request.onreadystatechange = function()
@@ -1848,7 +1910,7 @@ function initCardLinks()
 function getAllUsers()
 {
     // console.log("entra en getAllUsers");
-    const url = "http://localhost/mythClash/server/routes/getAllUsers.php";
+    const url = "../server/routes/getAllUsers.php";
     const request = new XMLHttpRequest();
 
     request.onreadystatechange = function()

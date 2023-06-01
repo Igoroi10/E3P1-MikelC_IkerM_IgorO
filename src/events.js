@@ -114,6 +114,7 @@ function btnEuskeraMode()
     document.getElementById('lblErrorForgot').innerHTML = "";
     document.getElementById('lblErrorRegister').innerHTML = "";
 
+    console.log(globals.selectedEnemy)
     globals.lenguageSelected = 1;
   // console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
@@ -177,6 +178,7 @@ function createList()
 
     if(hostName === globals.all_users[0].izen_abizena)
         globals.selectedEnemy = globals.all_users[1].izen_abizena;
+        console.log(globals.enemyKod);
 
         // console.log(users[1]['emaila']);
       // console.log(hostEmail);
@@ -189,6 +191,7 @@ function createList()
                 const li = document.createElement('option');            // Creamos Una linea
                 li.textContent = users[i]['izen_abizena'];              // Asignamos cada valor del array a la linea correspondiente del ciclo
                 usersList.appendChild(li);                              // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
+                console.log(globals.selectedEnemy);
             }
 
         }
@@ -207,7 +210,7 @@ function createUserEditList()
         const buttonDelete = document.createElement("button");
         buttonEdit.setAttribute("id", "buttonEdit" + i);
         buttonDelete.setAttribute("id", "buttonDelete" + i);
-        console.log(globals.all_users[i])
+        // console.log(globals.all_users[i])
         li.textContent = globals.all_users[i]['izen_abizena'] + " / " + globals.all_users[i]['emaila'] + " / " + globals.all_users[i]['rol'] + "  ";
         
         buttonEdit.innerHTML = "edit";
@@ -265,9 +268,8 @@ function selectEnemy()
     select.addEventListener('change', function(){
     let selectedOption = this.options[select.selectedIndex];
     globals.selectedEnemy = selectedOption.text;
-  // console.log(globals.selectedEnemy);
+  console.log(globals.selectedEnemy);
   });
-  
 }
 
 export function btnStartPlayer()
@@ -351,11 +353,49 @@ export function btnNormalMode()
     document.getElementById("btnStart").innerHTML = "OVER";
     document.getElementById('sectionLogIn').style.display = "none";
 
+    console.log("estado primero de game mode: " + globals.gameMode);
     globals.gameState = State.GAME_START;
     globals.gameMode = GameMode.NORMAL_MODE;
+    console.log("estado después de declarar game mode: " + globals.gameMode);
     requestAnimationFrame(gameLoop);
     
+    const users = globals.all_users;
+    for(let i = 0; i < users.length; i++)
+    {
+        if(globals.selectedEnemy === globals.all_users[i].izen_abizena)
+        {
+            globals.enemyKod = users[i].user_kod;
+        }
+        if(localStorage.getItem('izen_abizena') === users[i].izen_abizena)
+        {
+            globals.hostKod = users[i].user_kod;
+        }
+    }
+    console.log(globals.hostKod);
+
     checkStates();
+}
+
+function btnExpertMode()
+{
+    globals.buttonStart.style.visibility = "Hidden";
+    // globals.buttonAdmin.style.visibility = "Hidden";
+    // globals.buttonPlayer.style.visibility = "Hidden";
+
+    document.getElementById('divCanvas').style.display = "block";
+    document.getElementById('sectionLogIn').style.display = "none";
+    document.getElementById('sectionPlay').style.display = "none";
+    document.getElementById('playerMenuScreen').style.display = "none";
+
+    document.getElementById("btnStart").innerHTML = "OVER";
+    document.getElementById('sectionLogIn').style.display = "none";
+
+    globals.gameState = State.GAME_START;
+    globals.gameMode = GameMode.EXPERT_MODE;
+    
+    checkStates();
+
+    requestAnimationFrame(gameLoop);
 }
 
 function btnClose()
@@ -509,6 +549,43 @@ function btnDenyRound ()
     
     checkIfRoundPass();
 }
+
+//Reiniciar todo
+function btnReset()
+{
+    const music = globals.sounds[Sound.GAME_MUSIC];
+
+    globals.cards.length                    = 0;    //reinicio del array de cartas
+    globals.tokens.length                   = 0;
+
+    // Reinicio de la musica, se pone en pause ya que al darle al boton de seleccion de mdoo de juego se reinicia automaticamente
+    globals.currentSound                    = -1;
+    music.pause();                                  
+
+    globals.player[0].length                = 0;
+    globals.player[1].length                = 0;
+
+
+    globals.selectedCardId                  = -1;
+    globals.selectedCardId_Click            = -1;
+    globals.selectedSlotId                  = -1; 
+
+    globals.actionsCounter                  = 0;
+
+    globals.checkPlaced                     = false;
+
+
+    globals.selectedEnemy = globals.all_users[0].izen_abizena;
+
+    
+
+    //Volver a la selección de contrincante
+    globals.gameState = State.PLAYER_MENU;
+    checkStates();
+
+}
+
+
 
 function checkIfRoundPass()
 {
@@ -810,6 +887,7 @@ export {
     btnBack,
     btnSubmitForget,
     btnSubmitRegister,
+    btnExpertMode,
     btnClose,
     btnControls,
     btnConfirmRound,
@@ -822,4 +900,6 @@ export {
     btnPlayerEdit,
     btnAddUser,
     updateMusic,
+    btnReset,
+
 }

@@ -801,31 +801,39 @@ function renderFieldSlots(){
     let f2ID;
     let f3ID;
 
-    if(globals.turnState === 0){
-        f1ID = SlotIdentificators.PLAYER0_F1;
-        f2ID = SlotIdentificators.PLAYER0_F2;
-        f3ID = SlotIdentificators.PLAYER0_F3;
-    }
+    // console.log(globals.selectedCardId_Click);
+    // console.log(globals.cards[globals.selectedCardId_Click].effect)
 
-    else{
-        f1ID = SlotIdentificators.PLAYER1_F1;
-        f2ID = SlotIdentificators.PLAYER1_F2;
-        f3ID = SlotIdentificators.PLAYER1_F3;
-    }
+    if(globals.cards[globals.selectedCardId_Click].effect !== Effect.DECOY)
+    {
+        // console.log("entra en renderField NO DECOY");
 
-    for(let i = 0; i < globals.slots.length; i++){
-        if(globals.slots[i].slotIdentificator === f1ID && globals.slots[i].placed_cards === -1
-        || globals.slots[i].slotIdentificator === f2ID && globals.slots[i].placed_cards === -1
-        || globals.slots[i].slotIdentificator === f3ID && globals.slots[i].placed_cards === -1){
+        if(globals.turnState === 0){
+            f1ID = SlotIdentificators.PLAYER0_F1;
+            f2ID = SlotIdentificators.PLAYER0_F2;
+            f3ID = SlotIdentificators.PLAYER0_F3;
+        }
 
-            const x1 = Math.floor(globals.slots[i].xPos);
-            const y1 = Math.floor(globals.slots[i].yPos);
-            const w1 = CardSizes.TOKEN_WIDHT;
-            const h1 = CardSizes.TOKEN_HEIGHT;
+        else{
+            f1ID = SlotIdentificators.PLAYER1_F1;
+            f2ID = SlotIdentificators.PLAYER1_F2;
+            f3ID = SlotIdentificators.PLAYER1_F3;
+        }
 
-            globals.ctx.strokeStyle = "yellow";
-            globals.ctx.strokeRect(x1, y1, w1, h1);    
-            }
+        for(let i = 0; i < globals.slots.length; i++){
+            if(globals.slots[i].slotIdentificator === f1ID && globals.slots[i].placed_cards === -1
+            || globals.slots[i].slotIdentificator === f2ID && globals.slots[i].placed_cards === -1
+            || globals.slots[i].slotIdentificator === f3ID && globals.slots[i].placed_cards === -1){
+
+                const x1 = Math.floor(globals.slots[i].xPos);
+                const y1 = Math.floor(globals.slots[i].yPos);
+                const w1 = CardSizes.TOKEN_WIDHT;
+                const h1 = CardSizes.TOKEN_HEIGHT;
+
+                globals.ctx.strokeStyle = "yellow";
+                globals.ctx.strokeRect(x1, y1, w1, h1);    
+                }
+        }
     }
 }
 

@@ -163,13 +163,19 @@ function checkStates(){
            break;        
 
         case State.GAME_START:
-            // GENERAR EL MAZO 
-            createNormalDeck();
+
+             // GENERAR EL MAZO
+             if(globals.gameMode === GameMode.NORMAL_MODE){
+                createNormalDeck();
+                startingDeal(GameMode.NORMAL_MODE);
+             }
+
+             if(globals.gameMode === GameMode.EXPERT_MODE){
+                createExpertDeck();
+                startingDeal(GameMode.EXPERT_MODE);
+             }
             globals.currentSound = Sound.GAME_MUSIC;
             globals.sounds[globals.currentSound].volume = 0.3;
-
-            // LLAMAR A LA FUNION STARTING DEAL y CAMBIAMOS EL ESTADO DEL JUEGO
-            startingDeal(GameMode.NORMAL_MODE);
             distributeHandCards();
             startingTokensDeal();
             
@@ -490,12 +496,16 @@ function checkCardEffect(card){
             break;
     //Estos a implementar en modo experto
         case Effect.BITTING_FROST:
+            globals.actionsCounter++;
             break;
         case Effect.CLEAR_WEATHER:
+            clearWeatherEfffect();
             break;
         case Effect.IMPENETRABLE_FOG:
+            globals.actionsCounter++;
             break;
         case Effect.TORRENTIAL_RAIN:
+            globals.actionsCounter++;
             break;
         case Effect.SCORCH_INMUNE:
             break;
@@ -553,6 +563,17 @@ function scorchEffect(card){
 
     if(card.categoryId !== CardCategory.UNIT)
         card.state = CardState.DISCARD;
+
+}
+
+function clearWeatherEfffect(){
+    updateSlots();
+
+    for(let i = 0; i < globals.cards.length; i++){
+        if(globals.cards[i].slotIdentificator === SlotIdentificators.CLIMATE_FIELD){
+            globals.cards[i].state = CardState.DISCARD;
+        }
+    }
 
 }
 
@@ -719,7 +740,7 @@ function musterEffect(card){
                 if(searchingCard.cardName === nameToSearch)
                     searchingCard.slotIdentificator = searchSlot;
                 searchingCard.slotIdentificator = card.slotIdentificator;
-                checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum)
+                checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum, card.slotIdentificator)
             }
         }
     }
@@ -727,7 +748,7 @@ function musterEffect(card){
 }
 
 
-function checkIfSlotAvailable(effect, card, playerNum){
+function checkIfSlotAvailable(effect, card, playerNum, slotID){
     switch(effect){
         case Effect.MEDIC:
             let medicChecks = 0;
@@ -763,8 +784,6 @@ function checkIfSlotAvailable(effect, card, playerNum){
             let effectChecks = 0;
             let handToSearch;
             let deckToSearch;
-            console.log("Deck state before muster")
-            console.log(globals.cards)
 
             if(card.slotIdentificator < SlotIdentificators.PLAYER1_F1 || card.slotIdentificator === SlotIdentificators.PLAYER0_HAND || card.slotIdentificator === SlotIdentificators.PLAYER0_DECK){
                 handToSearch = SlotIdentificators.PLAYER0_HAND;
@@ -787,7 +806,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     if(globals.cards[i].cardName === card.cardName && globals.cards[i].slotIdentificator === handToSearch ||
                         globals.cards[i].cardName === card.cardName && globals.cards[i].slotIdentificator === deckToSearch){
                         for(let l = 0; l < globals.slots.length; l++){
-                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === card.slotIdentificator){
+                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === slotID){
                                 globals.cards[i].xPos = globals.slots[l].xPos;
                                 globals.cards[i].yPos = globals.slots[l].yPos;
                                 globals.cards[i].state = CardState.GAME;
@@ -949,7 +968,6 @@ function calculatePoints(player){
 
 
     let points = 0;
-    let climate = SlotIdentificators.CLIMATE_FIELD; // Para el modo expert en un futuro
     let buff1;
     let buff2;
     let buff3;
@@ -963,8 +981,14 @@ function calculatePoints(player){
     let moraleBoost2 = 0;
     let moraleBoost3 = 0;
     let tightBondArray = [];
+    let climateArray = [[],[]];
 
-    tightBondValueAdd(tightBondArray, player)
+    if(globals.gameMode === GameMode.EXPERT_MODE)
+        climateCheck(climateArray);
+
+    tightBondValueAdd(tightBondArray, player);
+
+
 
     if(player === 0){
 
@@ -1078,7 +1102,14 @@ function calculatePoints(player){
     // tighBondValueDecrease()
     // console.log(points);
 
-    tighBondValueDecrease(tightBondArray, player)
+    tighBondValueDecrease(tightBondArray, player);
+    // console.log("modo de juego en el loop: " + globals.gameMode);
+    if(globals.gameMode === GameMode.EXPERT_MODE && climateArray[0].length > 0){
+
+        console.log (climateArray[0].length );
+        climateRestore(climateArray);
+    }
+        
     return points;
 }
 
@@ -1217,6 +1248,77 @@ function tighBondValueDecrease(array, playerNum){
     }
 }
 
+function climateCheck(array){
+    let frost;
+    let fog;
+    let rain;
+    let climateSlotID = SlotIdentificators.CLIMATE_FIELD;
+
+    for(let i = 0; i < globals.cards.length; i++){
+        if(globals.cards[i].slotIdentificator === climateSlotID){
+            if(globals.cards[i].name === "Bitting_frost")
+                frost = true;
+            else if(globals.cards[i].name === "Impenetrable_fog") 
+                fog = true;
+            else if(globals.cards[i].name === "Torrential_rain") 
+                rain = true;
+        }
+    }
+    
+    for(let l = 0; l < 3; l++){
+        let player0SlotID;
+        let player1SlotID;
+        let climate;
+
+        switch(l){
+            case 0:
+                if(frost){
+                    player0SlotID = SlotIdentificators.PLAYER0_F1;
+                    player1SlotID = SlotIdentificators.PLAYER1_F1;
+                    climate = true;
+                }
+                else
+                    climate = false;
+                break;
+            case 1:
+                if(fog){
+                    player0SlotID = SlotIdentificators.PLAYER0_F2;
+                    player1SlotID = SlotIdentificators.PLAYER1_F2;
+                    climate = true;
+                }
+                else
+                    climate = false;
+                break;
+            case 2:
+                if(rain){
+                    player0SlotID = SlotIdentificators.PLAYER0_F3;
+                    player1SlotID = SlotIdentificators.PLAYER1_F3;
+                    climate = true;
+                }
+                else
+                    climate = false;
+                break;
+
+        }
+        if(climate){
+            for(let i = 0; i < globals.cards.length; i++){
+                if(globals.cards[i].slotIdentificator === player0SlotID || globals.cards[i].slotIdentificator === player1SlotID){
+                    array.push(i, globals.cards[i].value);
+                    globals.cards[i].value = 1;
+                }
+            }
+        }
+    }
+
+}
+
+function climateRestore(array){
+        for(let i = 0; i < array.length; i++) {
+            let num = array[i][0];
+            let points = array[i][1];
+            globals.cards[num].value = points;
+        }
+}
 // =========================
 //      START OF POINT CALCULATION AT THE END OF THE ROUND
 // =========================
@@ -1256,7 +1358,7 @@ function localStorageUpdate(){
     localStorage.setItem('logged', 'true');
     localStorage.setItem('rol', globals.hostPlayerInfo.rol);
     localStorage.setItem('emaila', globals.hostPlayerInfo.emaila);
-    localStorage.setItem('izen_abizena', globals.hostPlayerInfo.izena_abizena)
+    localStorage.setItem('izen_abizena', globals.hostPlayerInfo.izena_abizena);
 }
 
 function logOut(){
@@ -1290,7 +1392,7 @@ function startingDeal(mode){
 
     shuffleDeck(globals.cards)
 
-    for(let i = 0; i < cardsToDraw; i++){
+    for(let i = 0; i < globals.cards.length; i++){
         if(i % 2 === 0 && globals.cards[i].cardName !== "Decoy"){
             globals.cards[i].xPos  = Player0_map_pos.PLAYER0_DECK_XPOS;
             globals.cards[i].yPos  = Player0_map_pos.PLAYER0_DECK_YPOS;
@@ -1351,6 +1453,7 @@ function startingTokensDeal()
     }
  
 }
+
 
 function updateTokenPlacement()
 {
@@ -1452,6 +1555,7 @@ function distributeHandCards()
 {
     // console.log("Entra en Distribute");
     createDistribution();
+    dealClimate();
 }
 
 function createDistribution()
@@ -1492,20 +1596,62 @@ function createDistribution()
 
 }
 
+function dealClimate(){
+    for(let k = 0; k < 2; k++){
+        let handIdentificatorDeal;
+        
+        if(k === 0)
+            handIdentificatorDeal = SlotIdentificators.PLAYER0_HAND
+        else
+            handIdentificatorDeal = SlotIdentificators.PLAYER1_HAND
+
+        for(let h = 0; h < 2; h++){
+            console.log("entra a colocar cartas de clima")
+            for(let i = 0; i < globals.player[k].length; i++){
+                if(globals.player[k][i].categoryId === CardCategory.CLIMATE){
+                    console.log(globals.player[k][i]);
+                }
+                if(globals.player[k][i].state === CardState.DECK && globals.player[k][i].categoryId === CardCategory.CLIMATE){
+                    
+                    for(let l = 0; l < globals.slots.length; l++){
+                        if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === handIdentificatorDeal){
+                            globals.player[k][i].xPos = globals.slots[l].xPos;
+                            globals.player[k][i].yPos = globals.slots[l].yPos;
+                            globals.player[k][i].state = CardState.HAND;
+                            globals.player[k][i].showBack = true;
+                            globals.slots[l].placed_cards++;
+                            l = globals.slots.length;
+                            i = globals.player[k].length;
+    
+                        }
+                    }
+                }
+            }
+        }
+        
+    }
+}
 function updateTurn()
 {
     // console.log("Turno player: " + globals.turnState);
     // console.log(globals.selectedCardId_Click);
+    let actionsToPass;
+
+    if(globals.gameMode === GameMode.NORMAL_MODE)
+        actionsToPass = 2;
+    
+    else 
+        actionsToPass = 3;
 
     //Check de turnos
-    if(globals.turnState === 1 && globals.actionsCounter >= 2)
+    if(globals.turnState === 1 && globals.actionsCounter >= actionsToPass)
     {
         globals.checkIfPlayer1TurnPass = true;
         globals.turnState = Turn.PLAYER0 //Cambiamos de Player despues de las dos acciones
         globals.actionsCounter = 0;
     }
 
-    else if(globals.turnState === 0 && globals.actionsCounter >= 2)
+    else if(globals.turnState === 0 && globals.actionsCounter >= actionsToPass)
     {
         globals.checkIfPlayer0TurnPass = true;
         globals.turnState = Turn.PLAYER1 //Cambiamos de Player despues de las dos acciones
@@ -1920,17 +2066,21 @@ function updateGameOver()
     if(globals.playerTokens[0][0].showBack && globals.playerTokens[0][1].showBack)
     {
         globals.winner = globals.selectedEnemy;
+        globals.winnerKod = globals.enemyKod;
         globals.checkIfLives0 = true;
     }
     else if(globals.playerTokens[1][0].showBack && globals.playerTokens[1][1].showBack)
     {
         globals.winner = localStorage.getItem('izen_abizena');
+        globals.winnerKod = globals.hostKod;
         globals.checkIfLives0 = true;
     }
+    console.log(globals.winnerKod)
 }
 
 function updateEndRound()
 {
+    const users = globals.all_users;
     if(globals.showTurnChangeScreen)
     {
         console.log("pasa a true el showTurn");
@@ -1994,6 +2144,18 @@ function updateEndRound()
             globals.checkBothPlayerRound = false;
             globals.checkRoundPlayer1 = false;
             globals.checkRoundPlayer2 = false;
+            for(let i = 0; i < users.length; i++)
+                {
+                    if(localStorage.getItem('izen_abizena') === users[i].izen_abizena)
+                    {
+                        globals.roundWinnerKod.push(users[i].user_kod);
+                        globals.roundWinnerPoints.push(globals.player1Points);
+                    }
+                    if(globals.selectedEnemy === users[i].izen_abizena)
+                    {
+                        globals.roundLoserPoints.push(globals.player2Points);
+                    }
+                }
             globals.turnState = Turn.PLAYER0;
             globals.actionsCounter = 0;
         }
@@ -2003,10 +2165,22 @@ function updateEndRound()
             globals.checkBothPlayerRound = false;
             globals.checkRoundPlayer1 = false;
             globals.checkRoundPlayer2 = false;
+            for(let i = 0; i < users.length; i++)
+                {
+                    if(globals.selectedEnemy === users[i].izen_abizena)
+                    {
+                        globals.roundWinnerKod.push(users[i].user_kod);
+                        globals.roundWinnerPoints.push(globals.player2Points);
+                    }
+                    if(localStorage.getItem('izen_abizena') === users[i].izen_abizena)
+                    {
+                        globals.roundLoserPoints.push(globals.player1Points);
+                    }
+                }
             globals.turnState = Turn.PLAYER1;
             globals.actionsCounter = 0;
         }
-     // console.log(globals.checkBothPlayerRound);
+        console.log(globals.roundLoserPoints);
         //Empieza la ronda el que ha ganado.
 
 
@@ -2187,7 +2361,6 @@ function updateLevelTime()
 function multiMensaje()
 {
     // console.log(globals.lenguageSelected);
-
     document.getElementById('mailText').innerHTML = lenguageText[globals.lenguageSelected].emailText;
     document.getElementById('passwordText').innerHTML = lenguageText[globals.lenguageSelected].passwordText;
     document.getElementById('winrateTitle').innerHTML = lenguageText[globals.lenguageSelected].winrateText;
@@ -2196,7 +2369,7 @@ function multiMensaje()
     document.getElementById('head').innerHTML = lenguageText[globals.lenguageSelected].userListText;
     document.getElementById('selectDifficultTitle').innerHTML = lenguageText[globals.lenguageSelected].selectDifficultText;
     document.getElementById('btnNormal').innerHTML = lenguageText[globals.lenguageSelected].normalButtonText;
-    document.getElementById('difficultButton').innerHTML = lenguageText[globals.lenguageSelected].expertButtonText;
+    document.getElementById('btnExpert').innerHTML = lenguajeText[globals.lenguajeSelected].expertButtonText;
     document.getElementById('logOutTitle').innerHTML = lenguageText[globals.lenguageSelected].logOutText;
     document.getElementById('logOutTitle1').innerHTML = lenguageText[globals.lenguageSelected].logOutText;
     document.getElementById('forgetbtn').innerHTML = lenguageText[globals.lenguageSelected].forgotPasswordBox;

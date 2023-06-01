@@ -1,5 +1,5 @@
 import globals from "./globals.js";
-import { CardState, SlotIdentificators, Effect } from "./constants.js";
+import { CardState, SlotIdentificators, Effect, CardCategory } from "./constants.js";
 import ImageSet from "./ImageSet.js";
 import { updateSelectedCard, checkLastSelection  } from "./gameLogic.js";
 import { decoyEvent } from "./events.js";
@@ -116,7 +116,7 @@ function detectCollisionBetweenMouseAndCards_Click()
                         
                         if(globals.selectedCardId_Click === -1)
                         {
-                            if(globals.actionsCounter === 0)
+                            if(globals.actionsCounter === 0 && card.categoryId !== CardCategory.CLIMATE && card.name !== "Decoy")
                             {
                                 globals.selectedCardId_Click = i;
                                 globals.currentSelectedCardId = i;
@@ -155,6 +155,15 @@ function detectCollisionBetweenMouseAndCards_Click()
                                     decoyEvent();
                                 }
                             
+                            }
+
+                            else if (globals.actionsCounter === 2 && card.categoryId === CardCategory.CLIMATE)
+                            {
+                                globals.selectedCardId_Click = i;
+                                globals.currentSelectedCardId = i;
+                                checkLastSelection();
+                                updateSelectedCard(card);
+                                decoyEvent();
                             }
                             
                         }

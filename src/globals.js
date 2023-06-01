@@ -34,6 +34,8 @@ export default
 
     buttonMode: {},
 
+    buttonExpert: {},
+
     buttonEnglish: {},
 
     buttonEuskera: {},
@@ -297,4 +299,14 @@ export default
     //Sonidos
     sounds:                         [],
     currentSound:                   -1,
+
+    //Boton de reseteo
+    btnReset:                       {},
+
+    winnerKod:                      -1,
+    enemyKod:                       -1,
+    hostKod:                        -1,
+    roundWinnerKod:                 [],
+    roundWinnerPoints:              [],
+    roundLoserPoints:               [],
 }
