@@ -309,4 +309,9 @@ export default
     roundWinnerKod:                 [],
     roundWinnerPoints:              [],
     roundLoserPoints:               [],
+
+    //ECHAR UN OJO
+    partidaKodea:                   "10",
+    loser:                          -1,
+
 }
