@@ -114,6 +114,7 @@ function btnEuskeraMode()
     document.getElementById('lblErrorForgot').innerHTML = "";
     document.getElementById('lblErrorRegister').innerHTML = "";
 
+    console.log(globals.selectedEnemy)
     globals.lenguageSelected = 1;
   // console.log("entra en la funcion btnEnglishMode");
     multiMensaje();
@@ -177,7 +178,6 @@ function createList()
 
     if(hostName === globals.all_users[0].izen_abizena)
         globals.selectedEnemy = globals.all_users[1].izen_abizena;
-        globals.enemyKod = globals.all_users[1];
         console.log(globals.enemyKod);
 
         // console.log(users[1]['emaila']);
@@ -191,6 +191,7 @@ function createList()
                 const li = document.createElement('option');            // Creamos Una linea
                 li.textContent = users[i]['izen_abizena'];              // Asignamos cada valor del array a la linea correspondiente del ciclo
                 usersList.appendChild(li);                              // Introducimos dicho valor en formato HTML con appendChild para visualizarlo 
+                console.log(globals.selectedEnemy);
             }
 
         }
@@ -267,9 +268,8 @@ function selectEnemy()
     select.addEventListener('change', function(){
     let selectedOption = this.options[select.selectedIndex];
     globals.selectedEnemy = selectedOption.text;
-  // console.log(globals.selectedEnemy);
+  console.log(globals.selectedEnemy);
   });
-  
 }
 
 export function btnStartPlayer()
@@ -357,6 +357,15 @@ export function btnNormalMode()
     globals.gameMode = GameMode.NORMAL_MODE;
     requestAnimationFrame(gameLoop);
     
+    const users = globals.all_users;
+    for(let i = 0; i < users.length; i++)
+    {
+        if(globals.selectedEnemy === globals.all_users[i].izen_abizena)
+        {
+            globals.enemyKod = users[i].user_kod;
+        }
+    }
+
     checkStates();
 }
 
