@@ -1187,7 +1187,7 @@ function insertCard(i){
         break;
 
         case "climate":
-        const climateCard = new ClimateCard(globals.cardInfo[i].irudia, globals.cardInfo[i].cardName, 
+        const climateCard = new ClimateCard(globals.cardInfo[i].irudia, globals.cardInfo[i].izena, 
                                             CardState.DECK, true, imageSet, globals.cardInfo[i].description, globals.cardInfo[i].deskribapena, globals.cardInfo[i].efektua);
         globals.cards.push(climateCard);
         break;
