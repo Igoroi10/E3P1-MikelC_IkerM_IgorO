@@ -920,14 +920,14 @@ function checkIfSlotAvailable(effect, card, playerNum, slotID){
             globals.actionsCounter++;
             globals.showTurnChangeScreen = true;
 
-            if(globals.turnState === Turn.PLAYER0)
-            {
-                globals.checkIfPlayer0TurnPass = true;
-            }
-            else if(globals.turnState === Turn.PLAYER1)
-            {
-                globals.checkIfPlayer1TurnPass = true;
-            }
+            // if(globals.turnState === Turn.PLAYER0)
+            // {
+            //     globals.actionsCounter++;
+            // }
+            // else if(globals.turnState === Turn.PLAYER1)
+            // {
+            //     globals.actionsCounter++;
+            // }
             globals.decoy = false;
             break;
     }
