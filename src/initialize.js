@@ -926,10 +926,13 @@ function postGameOver(event)
     //Partida (partida irabazlea, partida kod), Ronda (ronda kod, ronda irabazlea, irabazlearen puntuazioa, galtzailearen puntuazioa, partida_ronda), jolastu (user_jolastu, partida_jolastu)
 
     const objectToSend = {
-        emaila: globals.winner
+        partida_irabazlea: globals.winner,
+        ronda_irabazlea: globals.roundWinnerKod,
+        irabazlearen_puntuazioa: globals.roundWinnerPoints,
+        galtzailearen_puntuazioa: globals.roundLoserPoints
     }
     
-    const dataToSend = 'emaila=' + objectToSend.emaila;
+    const dataToSend = 'partida_irabazlea=' + objectToSend.winner  + '&partida_irabazlea=' + objectToSend.ronda_irabazlea + '&irabazlearen_puntuazioa=' + objectToSend.irabazlearen_puntuazioa + '&galtzailearen_puntuazioa=' + objectToSend.galtzailearen_puntuazioa;
 
     console.log(dataToSend);
     //Ruta relativa al fichero que hace la petición (postNewPassword.php)
