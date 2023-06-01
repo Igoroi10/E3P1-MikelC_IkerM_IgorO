@@ -917,7 +917,7 @@ function postDeleteCard()
 }
 
 // ===========================================================
-//              P O S T  d e  G A M E  O V E R
+//                    P O S T  d e  G A M E  O V E R
 // ===========================================================
 
 function postGameOver(event)
@@ -926,13 +926,28 @@ function postGameOver(event)
     //Partida (partida irabazlea, partida kod), Ronda (ronda kod, ronda irabazlea, irabazlearen puntuazioa, galtzailearen puntuazioa, partida_ronda), jolastu (user_jolastu, partida_jolastu)
 
     const objectToSend = {
-        partida_irabazlea: globals.winner,
-        ronda_irabazlea: globals.roundWinnerKod,
-        irabazlearen_puntuazioa: globals.roundWinnerPoints,
-        galtzailearen_puntuazioa: globals.roundLoserPoints
+        partida_irabazlea:              globals.winner,
+        partida_kodea:                  globals.partidaKodea,                   // ECHAR UN OJO
+
+        ronda_irabazlea1:               globals.roundWinnerKod[0],
+        ronda_irabazlea2:               globals.roundWinnerKod[1],
+        ronda_irabazlea3:               globals.roundWinnerKod[2],
+        irabazlearen_puntuazioa1:       globals.roundWinnerPoints[0],
+        irabazlearen_puntuazioa2:       globals.roundWinnerPoints[1],
+        irabazlearen_puntuazioa3:       globals.roundWinnerPoints[2],
+        galtzailearen_puntuazioa1:      globals.roundLoserPoints[0],
+        galtzailearen_puntuazioa2:      globals.roundLoserPoints[1],
+        galtzailearen_puntuazioa3:      globals.roundLoserPoints[2],
+
+        partida_galtzailea:             globals.loser
+
     }
     
-    const dataToSend = 'partida_irabazlea=' + objectToSend.winner  + '&ronda_irabazlea=' + objectToSend.ronda_irabazlea + '&irabazlearen_puntuazioa=' + objectToSend.irabazlearen_puntuazioa + '&galtzailearen_puntuazioa=' + objectToSend.galtzailearen_puntuazioa;
+    const dataToSend = 'partida_irabazlea=' + objectToSend.partida_irabazlea  
+    + '&ronda_irabazlea='           + objectToSend.ronda_irabazlea1             + '&ronda_irabazlea='           + objectToSend.ronda_irabazlea2             + '&ronda_irabazlea='           + objectToSend.ronda_irabazlea3 
+    + '&irabazlearen_puntuazioa='   + objectToSend.irabazlearen_puntuazioa1     + '&irabazlearen_puntuazioa='   + objectToSend.irabazlearen_puntuazioa2     + '&irabazlearen_puntuazioa='   + objectToSend.irabazlearen_puntuazioa3
+    + '&galtzailearen_puntuazioa='  + objectToSend.galtzailearen_puntuazioa1    + '&galtzailearen_puntuazioa='  + objectToSend.galtzailearen_puntuazioa2    + '&galtzailearen_puntuazioa='  + objectToSend.galtzailearen_puntuazioa3
+    + '&user_jolastu'               + objectToSend.partida_irabazlea            + '&user_jolastu'               + objectToSend.partida_galtzailea;
 
     console.log(dataToSend);
     //Ruta relativa al fichero que hace la petición (postNewPassword.php)
