@@ -496,16 +496,16 @@ function checkCardEffect(card){
             break;
     //Estos a implementar en modo experto
         case Effect.BITTING_FROST:
-            globals.actionsCounter++;
+            // globals.actionsCounter++;
             break;
         case Effect.CLEAR_WEATHER:
             clearWeatherEfffect();
             break;
         case Effect.IMPENETRABLE_FOG:
-            globals.actionsCounter++;
+            // globals.actionsCounter++;
             break;
         case Effect.TORRENTIAL_RAIN:
-            globals.actionsCounter++;
+            // globals.actionsCounter++;
             break;
         case Effect.SCORCH_INMUNE:
             break;
