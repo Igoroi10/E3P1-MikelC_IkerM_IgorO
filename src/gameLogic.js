@@ -496,12 +496,16 @@ function checkCardEffect(card){
             break;
     //Estos a implementar en modo experto
         case Effect.BITTING_FROST:
+            globals.actionsCounter++;
             break;
         case Effect.CLEAR_WEATHER:
+            clearWeatherEfffect();
             break;
         case Effect.IMPENETRABLE_FOG:
+            globals.actionsCounter++;
             break;
         case Effect.TORRENTIAL_RAIN:
+            globals.actionsCounter++;
             break;
         case Effect.SCORCH_INMUNE:
             break;
@@ -559,6 +563,17 @@ function scorchEffect(card){
 
     if(card.categoryId !== CardCategory.UNIT)
         card.state = CardState.DISCARD;
+
+}
+
+function clearWeatherEfffect(){
+    updateSlots();
+
+    for(let i = 0; i < globals.cards.length; i++){
+        if(globals.cards[i].slotIdentificator === SlotIdentificators.CLIMATE_FIELD){
+            globals.cards[i].state = CardState.DISCARD;
+        }
+    }
 
 }
 
@@ -725,7 +740,7 @@ function musterEffect(card){
                 if(searchingCard.cardName === nameToSearch)
                     searchingCard.slotIdentificator = searchSlot;
                 searchingCard.slotIdentificator = card.slotIdentificator;
-                checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum)
+                checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum, card.slotIdentificator)
             }
         }
     }
@@ -733,7 +748,7 @@ function musterEffect(card){
 }
 
 
-function checkIfSlotAvailable(effect, card, playerNum){
+function checkIfSlotAvailable(effect, card, playerNum, slotID){
     switch(effect){
         case Effect.MEDIC:
             let medicChecks = 0;
@@ -769,8 +784,6 @@ function checkIfSlotAvailable(effect, card, playerNum){
             let effectChecks = 0;
             let handToSearch;
             let deckToSearch;
-            console.log("Deck state before muster")
-            console.log(globals.cards)
 
             if(card.slotIdentificator < SlotIdentificators.PLAYER1_F1 || card.slotIdentificator === SlotIdentificators.PLAYER0_HAND || card.slotIdentificator === SlotIdentificators.PLAYER0_DECK){
                 handToSearch = SlotIdentificators.PLAYER0_HAND;
@@ -793,7 +806,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     if(globals.cards[i].cardName === card.cardName && globals.cards[i].slotIdentificator === handToSearch ||
                         globals.cards[i].cardName === card.cardName && globals.cards[i].slotIdentificator === deckToSearch){
                         for(let l = 0; l < globals.slots.length; l++){
-                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === card.slotIdentificator){
+                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === slotID){
                                 globals.cards[i].xPos = globals.slots[l].xPos;
                                 globals.cards[i].yPos = globals.slots[l].yPos;
                                 globals.cards[i].state = CardState.GAME;
@@ -1379,7 +1392,7 @@ function startingDeal(mode){
 
     shuffleDeck(globals.cards)
 
-    for(let i = 0; i < cardsToDraw; i++){
+    for(let i = 0; i < globals.cards.length; i++){
         if(i % 2 === 0 && globals.cards[i].cardName !== "Decoy"){
             globals.cards[i].xPos  = Player0_map_pos.PLAYER0_DECK_XPOS;
             globals.cards[i].yPos  = Player0_map_pos.PLAYER0_DECK_YPOS;
