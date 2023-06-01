@@ -986,10 +986,31 @@ function calculatePoints(player){
     let moraleBoost2 = 0;
     let moraleBoost3 = 0;
     let tightBondArray = [];
-    let climateArray = [[],[]];
+    // let climateArray = [[],[]];
+    let frost;
+    let rain;
+    let fog;
 
-    if(globals.gameMode === GameMode.EXPERT_MODE)
-        climateCheck(climateArray);
+    if(globals.gameMode === GameMode.EXPERT_MODE){
+        // climateCheck(climateArray);
+        for(let i = 0; i < globals.cards.length; i++){
+            if(globals.cards[i].slotIdentificator === SlotIdentificators.CLIMATE_FIELD){
+                if(globals.cards[i].cardName === "Bitting_frost"){
+                    frost = true;
+    
+                }
+                else if(globals.cards[i].cardName === "Impenetrable_fo"){
+                    fog = true;
+                } 
+    
+                else if(globals.cards[i].cardName === "Torrential_rain"){
+                    rain = true;
+                }
+                   
+            }
+        }
+    }
+
 
     tightBondValueAdd(tightBondArray, player);
 
@@ -1087,16 +1108,25 @@ function calculatePoints(player){
         {
             // console.log(cardValue);
             if(globals.cards[i].slotIdentificator === field1){
+                if(frost){
+                    cardValue = 1;
+                }
                 // console.log("entra en el primer calcul");
                 points += (buffValue1 * (cardValue + moraleBoost1));
             }
     
             else if(globals.cards[i].slotIdentificator === field2){
+                if(rain){
+                    cardValue = 1;
+                }
                 // console.log("entra en el 2 calcul");
                 points += (buffValue2 * (cardValue + moraleBoost2));
             }
     
             else if(globals.cards[i].slotIdentificator === field3){
+                if(fog){
+                    cardValue = 1;
+                }
                 points += (buffValue3 * (cardValue + moraleBoost3));
             }
         }
@@ -1109,11 +1139,10 @@ function calculatePoints(player){
 
     tighBondValueDecrease(tightBondArray, player);
     // console.log("modo de juego en el loop: " + globals.gameMode);
-    if(globals.gameMode === GameMode.EXPERT_MODE && climateArray[0].length > 0){
+    // if(globals.gameMode === GameMode.EXPERT_MODE && climateArray[0].length > 0){
 
-        console.log (climateArray[0].length );
-        climateRestore(climateArray);
-    }
+    //     climateRestore(climateArray);
+    // }
         
     return points;
 }
@@ -1261,12 +1290,18 @@ function climateCheck(array){
 
     for(let i = 0; i < globals.cards.length; i++){
         if(globals.cards[i].slotIdentificator === climateSlotID){
-            if(globals.cards[i].name === "Bitting_frost")
+            if(globals.cards[i].cardName === "Bitting_frost"){
                 frost = true;
-            else if(globals.cards[i].name === "Impenetrable_fog") 
+
+            }
+            else if(globals.cards[i].cardName === "Impenetrable_fo"){
                 fog = true;
-            else if(globals.cards[i].name === "Torrential_rain") 
+            } 
+
+            else if(globals.cards[i].cardName === "Torrential_rain"){
                 rain = true;
+            }
+               
         }
     }
     
@@ -1278,6 +1313,7 @@ function climateCheck(array){
         switch(l){
             case 0:
                 if(frost){
+                    console.log("fog activo")
                     player0SlotID = SlotIdentificators.PLAYER0_F1;
                     player1SlotID = SlotIdentificators.PLAYER1_F1;
                     climate = true;
@@ -1287,6 +1323,7 @@ function climateCheck(array){
                 break;
             case 1:
                 if(fog){
+                    console.log("fog activo")
                     player0SlotID = SlotIdentificators.PLAYER0_F2;
                     player1SlotID = SlotIdentificators.PLAYER1_F2;
                     climate = true;
@@ -1296,6 +1333,7 @@ function climateCheck(array){
                 break;
             case 2:
                 if(rain){
+                    console.log("fog activo")
                     player0SlotID = SlotIdentificators.PLAYER0_F3;
                     player1SlotID = SlotIdentificators.PLAYER1_F3;
                     climate = true;
@@ -1305,24 +1343,33 @@ function climateCheck(array){
                 break;
 
         }
-        if(climate){
-            for(let i = 0; i < globals.cards.length; i++){
-                if(globals.cards[i].slotIdentificator === player0SlotID || globals.cards[i].slotIdentificator === player1SlotID){
-                    array.push(i, globals.cards[i].value);
-                    globals.cards[i].value = 1;
-                }
-            }
-        }
+        // if(climate){
+        //     for(let i = 0; i < globals.cards.length; i++){
+        //         if(globals.cards[i].slotIdentificator === player0SlotID || globals.cards[i].slotIdentificator === player1SlotID){
+        //             console.log("climate ejecutandose");                    array[0].push(i);
+        //             array[1].push(globals.cards[i].value);
+        //             globals.cards[i].value = 1;
+        //         }
+        //     }
+        // }
     }
 
 }
 
 function climateRestore(array){
-        for(let i = 0; i < array.length; i++) {
-            let num = array[i][0];
-            let points = array[i][1];
-            globals.cards[num].value = points;
+
+    for(let i = 0; i < globals.cards.length; i++){
+        for(let j = 0; j < globals.cardInfo.length; j++){
+            if(globals.cards[i].cardName === globals.cardInfo[j].izena && globals.cards[i].categoryId === CardCategory.UNIT){
+                globals.cards[i].value = globals.cardInfo.balioa;
+            }
         }
+    }
+        // for(let i = 0; i < array.length; i++) {
+        //     let num = array[i][0];
+        //     let points = array[i][1];
+        //     globals.cards[num].value = points;
+        // }
 }
 // =========================
 //      START OF POINT CALCULATION AT THE END OF THE ROUND
