@@ -79,6 +79,7 @@ export const gameText = [
         impenetrableFogText: 'Sets the strength of all Ranged Combat cards to 1 for both players',
         clearWeatherText: 'Removes all Weather Card',
         bitingFrostText: 'Sets the strength of all Close Combat cards to 1 for both players',
+        climateMessageText: 'Select a climate card and put it in the left box'
     },
 
     {
@@ -98,5 +99,6 @@ export const gameText = [
         impenetrableFogText: 'Zona 2ko unitate guztien indarra 1 da bi jokalarientzat',
         clearWeatherText: 'Klima karta guztien efektuak desagertu dira',
         bitingFrostText: 'Zona 3ko unitate guztien indarra 1 da bi jokalarientzat',
+        climateMessageText: 'Klima karta bat aukeratu eta ezkerreko hutsunean ipini',
     }
 ]
