@@ -75,6 +75,10 @@ export const gameText = [
         commandersText: 'you have doubled the points in the row',
         passTurnText: "You have passed your turn",
         passTurnContinue: "Click the button bellow to continue",
+        torrentialRainText: 'Sets the strength of all Siege Combat cards to 1 for both players',
+        impenetrableFogText: 'Sets the strength of all Ranged Combat cards to 1 for both players',
+        clearWeatherText: 'Removes all Weather Card',
+        bitingFrostText: 'Sets the strength of all Close Combat cards to 1 for both players',
     },
 
     {
@@ -90,5 +94,9 @@ export const gameText = [
         commandersText: 'Lerro honen puntuak bikoiztu dituzu',
         passTurnText: "Zure txanda bukatu duzu",
         passTurnContinue: "Azpiko botoia sakatu jokatzen segitzeko",
+        torrentialRainText: 'Zona 1eko unitate guztien indarra 1 da bi jokalarientzat',
+        impenetrableFogText: 'Zona 2ko unitate guztien indarra 1 da bi jokalarientzat',
+        clearWeatherText: 'Klima karta guztien efektuak desagertu dira',
+        bitingFrostText: 'Zona 3ko unitate guztien indarra 1 da bi jokalarientzat',
     }
 ]
