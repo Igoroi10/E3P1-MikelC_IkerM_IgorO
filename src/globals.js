@@ -307,4 +307,8 @@ export default
     roundWinnerKod:                 [],
     roundWinnerPoints:              [],
     roundLoserPoints:               [],
+
+    gameKod:                        "",
+    gameNumber:                     20,
+
 }

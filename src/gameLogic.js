@@ -2010,6 +2010,9 @@ function updateEndRound()
                         globals.roundLoserPoints.push(globals.player2Points);
                     }
                 }
+                if(globals.gameNumber.length < 2)
+                globals.gameKod = "pkod_00008"
+            console.log(globals.gameKod)
             globals.turnState = Turn.PLAYER0;
             globals.actionsCounter = 0;
         }
