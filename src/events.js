@@ -177,6 +177,8 @@ function createList()
 
     if(hostName === globals.all_users[0].izen_abizena)
         globals.selectedEnemy = globals.all_users[1].izen_abizena;
+        globals.enemyKod = globals.all_users[1];
+        console.log(globals.enemyKod);
 
         // console.log(users[1]['emaila']);
       // console.log(hostEmail);

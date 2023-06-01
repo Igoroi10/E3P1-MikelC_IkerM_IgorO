@@ -300,4 +300,8 @@ export default
 
     //Boton de reseteo
     btnReset:                       {},
+
+    winnerKod:                      -1,
+    enemyKod:                       -1,
+    hostKod:                        -1,
 }

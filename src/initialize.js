@@ -914,6 +914,55 @@ function postDeleteCard()
 
 }
 
+// ===========================================================
+//              P O S T  d e  G A M E  O V E R
+// ===========================================================
+
+function postGameOver(event)
+{
+    console.log("Entra en postGameOver");
+    //Partida (partida irabazlea, partida kod), Ronda (ronda kod, ronda irabazlea, irabazlearen puntuazioa, galtzailearen puntuazioa, partida_ronda), jolastu (user_jolastu, partida_jolastu)
+
+    const objectToSend = {
+        emaila: globals.winner
+    }
+    
+    const dataToSend = 'emaila=' + objectToSend.emaila;
+
+    console.log(dataToSend);
+    //Ruta relativa al fichero que hace la petición (postNewPassword.php)
+    const url = "../server/routes/postEndGameInfo.php";
+    const request = new XMLHttpRequest();
+    request.open('POST', url, true);
+    request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    request.onreadystatechange = function()
+    {
+        if (this.readyState == 4)
+        {
+            if(this.status == 200)
+            {
+                if(this.responseText != null)
+                {
+                  console.log(this.responseText);
+                    const userData = JSON.parse(this.responseText);
+                  // console.log("------------")
+                  console.log(userData)
+                  // console.log("------------")
+                }
+                else
+                    alert("Comunication error: No data received");
+            }
+            else
+                alert( "Comunication error: " + this.statusText);
+        }
+    }
+
+    request.responseType = "text";
+    request.send(dataToSend);
+
+}
+
 function manageRegister(userData)
 {
     // console.log("entra en el funcion manageRegister");
