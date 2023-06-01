@@ -740,7 +740,7 @@ function musterEffect(card){
                 if(searchingCard.cardName === nameToSearch)
                     searchingCard.slotIdentificator = searchSlot;
                 searchingCard.slotIdentificator = card.slotIdentificator;
-                checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum)
+                checkIfSlotAvailable(Effect.MUSTER, searchingCard, playerNum, card.slotIdentificator)
             }
         }
     }
@@ -748,7 +748,7 @@ function musterEffect(card){
 }
 
 
-function checkIfSlotAvailable(effect, card, playerNum){
+function checkIfSlotAvailable(effect, card, playerNum, slotID){
     switch(effect){
         case Effect.MEDIC:
             let medicChecks = 0;
@@ -806,7 +806,7 @@ function checkIfSlotAvailable(effect, card, playerNum){
                     if(globals.cards[i].cardName === card.cardName && globals.cards[i].slotIdentificator === handToSearch ||
                         globals.cards[i].cardName === card.cardName && globals.cards[i].slotIdentificator === deckToSearch){
                         for(let l = 0; l < globals.slots.length; l++){
-                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === card.slotIdentificator){
+                            if(globals.slots[l].placed_cards === -1 && globals.slots[l].slotIdentificator === slotID){
                                 globals.cards[i].xPos = globals.slots[l].xPos;
                                 globals.cards[i].yPos = globals.slots[l].yPos;
                                 globals.cards[i].state = CardState.GAME;
