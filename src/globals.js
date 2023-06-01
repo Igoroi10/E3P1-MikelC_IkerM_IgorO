@@ -305,4 +305,6 @@ export default
     enemyKod:                       -1,
     hostKod:                        -1,
     roundWinnerKod:                 [],
+    roundWinnerPoints:              [],
+    roundLoserPoints:               [],
 }

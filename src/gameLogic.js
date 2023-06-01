@@ -2003,6 +2003,11 @@ function updateEndRound()
                     if(localStorage.getItem('izen_abizena') === users[i].izen_abizena)
                     {
                         globals.roundWinnerKod.push(users[i].user_kod);
+                        globals.roundWinnerPoints.push(globals.player1Points);
+                    }
+                    if(globals.selectedEnemy === users[i].izen_abizena)
+                    {
+                        globals.roundLoserPoints.push(globals.player2Points);
                     }
                 }
             globals.turnState = Turn.PLAYER0;
@@ -2019,15 +2024,17 @@ function updateEndRound()
                     if(globals.selectedEnemy === users[i].izen_abizena)
                     {
                         globals.roundWinnerKod.push(users[i].user_kod);
+                        globals.roundWinnerPoints.push(globals.player2Points);
+                    }
+                    if(localStorage.getItem('izen_abizena') === users[i].izen_abizena)
+                    {
+                        globals.roundLoserPoints.push(globals.player1Points);
                     }
                 }
             globals.turnState = Turn.PLAYER1;
             globals.actionsCounter = 0;
         }
-        console.log(globals.roundWinnerKod[0]);
-        
-        console.log(globals.roundWinnerKod[1]);
-        console.log(globals.roundWinnerKod[2]);
+        console.log(globals.roundLoserPoints);
         //Empieza la ronda el que ha ganado.
 
 
