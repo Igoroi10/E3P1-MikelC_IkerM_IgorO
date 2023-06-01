@@ -314,4 +314,6 @@ export default
     partidaKodea:                   "10",
     loser:                          -1,
 
+    hostPlayerPoints:               [],
+    enemyPlayerPoints:              [],
 }

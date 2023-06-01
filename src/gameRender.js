@@ -942,10 +942,28 @@ function gameOverScreen()
         globals.ctx.globalAlpha = 1;
         var img = new Image();
         img.src = "./images/gwent_win.png";
-        globals.ctx.drawImage(img, 570, 250);
+        globals.ctx.drawImage(img, 570, 150);
         globals.ctx.font = '45px magicmedieval'; 
         globals.ctx.fillStyle = 'white';    
-        globals.ctx.fillText(globals.winner, 720, 685); 
+        // globals.ctx.fillText("Irabazlea: ", 280, 565); 
+        globals.ctx.fillText(localStorage.getItem('izen_abizena'), 960, 565); 
+        globals.ctx.fillText(globals.selectedEnemy, 700, 565); 
+        
+        globals.ctx.fillText("Ronda 1: ", 400, 655); 
+        globals.ctx.fillText(globals.enemyPlayerPoints[0], 800, 655); 
+        globals.ctx.fillText(globals.hostPlayerPoints[0], 1040, 655); 
+
+        globals.ctx.fillText("Ronda 2: ", 400, 770); 
+        globals.ctx.fillText(globals.enemyPlayerPoints[1], 800, 770); 
+        globals.ctx.fillText(globals.hostPlayerPoints[1], 1040, 770);
+
+        if(globals.hostPlayerPoints.length === 3)
+        {
+            console.log("entra en el 3 if")
+            globals.ctx.fillText("Ronda 3: ", 400, 885); 
+            globals.ctx.fillText(globals.enemyPlayerPoints[2], 800, 885); 
+            globals.ctx.fillText(globals.hostPlayerPoints[2], 1040, 885);
+        }
         document.getElementById('btnTurn').style.display = "none";
         document.getElementById('btnRound').style.display = "none";
     }

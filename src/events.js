@@ -393,6 +393,19 @@ function btnExpertMode()
     globals.gameState = State.GAME_START;
     globals.gameMode = GameMode.EXPERT_MODE;
     
+    const users = globals.all_users;
+    for(let i = 0; i < users.length; i++)
+    {
+        if(globals.selectedEnemy === globals.all_users[i].izen_abizena)
+        {
+            globals.enemyKod = users[i].user_kod;
+        }
+        if(localStorage.getItem('izen_abizena') === users[i].izen_abizena)
+        {
+            globals.hostKod = users[i].user_kod;
+        }
+    }
+    
     checkStates();
 
     requestAnimationFrame(gameLoop);
