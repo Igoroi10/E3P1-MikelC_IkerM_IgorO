@@ -930,7 +930,7 @@ function postGameOver(event)
         galtzailearen_puntuazioa: globals.roundLoserPoints
     }
     
-    const dataToSend = 'partida_irabazlea=' + objectToSend.winner  + '&partida_irabazlea=' + objectToSend.ronda_irabazlea + '&irabazlearen_puntuazioa=' + objectToSend.irabazlearen_puntuazioa + '&galtzailearen_puntuazioa=' + objectToSend.galtzailearen_puntuazioa;
+    const dataToSend = 'partida_irabazlea=' + objectToSend.winner  + '&ronda_irabazlea=' + objectToSend.ronda_irabazlea + '&irabazlearen_puntuazioa=' + objectToSend.irabazlearen_puntuazioa + '&galtzailearen_puntuazioa=' + objectToSend.galtzailearen_puntuazioa;
 
     console.log(dataToSend);
     //Ruta relativa al fichero que hace la petición (postNewPassword.php)
