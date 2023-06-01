@@ -309,4 +309,6 @@ export default
     roundWinnerKod:                 [],
     roundWinnerPoints:              [],
     roundLoserPoints:               [],
+    hostPlayerPoints:               [],
+    enemyPlayerPoints:              [],
 }

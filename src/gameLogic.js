@@ -2150,9 +2150,11 @@ function updateEndRound()
                     {
                         globals.roundWinnerKod.push(users[i].user_kod);
                         globals.roundWinnerPoints.push(globals.player1Points);
+                        globals.hostPlayerPoints.push(globals.player1Points);
                     }
                     if(globals.selectedEnemy === users[i].izen_abizena)
                     {
+                        globals.enemyPlayerPoints.push(globals.player2Points);
                         globals.roundLoserPoints.push(globals.player2Points);
                     }
                 }
@@ -2169,11 +2171,13 @@ function updateEndRound()
                 {
                     if(globals.selectedEnemy === users[i].izen_abizena)
                     {
+                        globals.enemyPlayerPoints.push(globals.player2Points);
                         globals.roundWinnerKod.push(users[i].user_kod);
                         globals.roundWinnerPoints.push(globals.player2Points);
                     }
                     if(localStorage.getItem('izen_abizena') === users[i].izen_abizena)
                     {
+                        globals.hostPlayerPoints.push(globals.player1Points);
                         globals.roundLoserPoints.push(globals.player1Points);
                     }
                 }
