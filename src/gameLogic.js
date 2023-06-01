@@ -567,9 +567,11 @@ function scorchEffect(card){
 }
 
 function clearWeatherEfffect(){
+    updateSlots();
+
     for(let i = 0; i < globals.cards.length; i++){
         if(globals.cards[i].slotIdentificator === SlotIdentificators.CLIMATE_FIELD){
-            cardToCompare.state = CardState.DISCARD;
+            globals.cards[i].state = CardState.DISCARD;
         }
     }
 
