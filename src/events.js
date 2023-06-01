@@ -364,7 +364,12 @@ export function btnNormalMode()
         {
             globals.enemyKod = users[i].user_kod;
         }
+        if(localStorage.getItem('izen_abizena') === users[i].izen_abizena)
+        {
+            globals.hostKod = users[i].user_kod;
+        }
     }
+    console.log(globals.hostKod);
 
     checkStates();
 }

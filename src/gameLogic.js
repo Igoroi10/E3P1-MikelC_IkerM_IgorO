@@ -1256,7 +1256,7 @@ function localStorageUpdate(){
     localStorage.setItem('logged', 'true');
     localStorage.setItem('rol', globals.hostPlayerInfo.rol);
     localStorage.setItem('emaila', globals.hostPlayerInfo.emaila);
-    localStorage.setItem('izen_abizena', globals.hostPlayerInfo.izena_abizena)
+    localStorage.setItem('izen_abizena', globals.hostPlayerInfo.izena_abizena);
 }
 
 function logOut(){
