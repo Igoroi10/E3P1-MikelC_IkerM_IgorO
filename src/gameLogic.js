@@ -2067,12 +2067,14 @@ function updateGameOver()
     {
         globals.winner = globals.selectedEnemy;
         globals.winnerKod = globals.enemyKod;
+        globals.loser = globals.hostKod;
         globals.checkIfLives0 = true;
     }
     else if(globals.playerTokens[1][0].showBack && globals.playerTokens[1][1].showBack)
     {
         globals.winner = localStorage.getItem('izen_abizena');
         globals.winnerKod = globals.hostKod;
+        globals.loser = globals.enemyKod;
         globals.checkIfLives0 = true;
     }
     // console.log(globals.winnerKod)
