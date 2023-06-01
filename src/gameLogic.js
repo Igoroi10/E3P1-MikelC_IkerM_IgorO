@@ -1345,7 +1345,7 @@ function localStorageUpdate(){
     localStorage.setItem('logged', 'true');
     localStorage.setItem('rol', globals.hostPlayerInfo.rol);
     localStorage.setItem('emaila', globals.hostPlayerInfo.emaila);
-    localStorage.setItem('izen_abizena', globals.hostPlayerInfo.izena_abizena)
+    localStorage.setItem('izen_abizena', globals.hostPlayerInfo.izena_abizena);
 }
 
 function logOut(){
@@ -2053,17 +2053,21 @@ function updateGameOver()
     if(globals.playerTokens[0][0].showBack && globals.playerTokens[0][1].showBack)
     {
         globals.winner = globals.selectedEnemy;
+        globals.winnerKod = globals.enemyKod;
         globals.checkIfLives0 = true;
     }
     else if(globals.playerTokens[1][0].showBack && globals.playerTokens[1][1].showBack)
     {
         globals.winner = localStorage.getItem('izen_abizena');
+        globals.winnerKod = globals.hostKod;
         globals.checkIfLives0 = true;
     }
+    console.log(globals.winnerKod)
 }
 
 function updateEndRound()
 {
+    const users = globals.all_users;
     if(globals.showTurnChangeScreen)
     {
         console.log("pasa a true el showTurn");
@@ -2127,6 +2131,18 @@ function updateEndRound()
             globals.checkBothPlayerRound = false;
             globals.checkRoundPlayer1 = false;
             globals.checkRoundPlayer2 = false;
+            for(let i = 0; i < users.length; i++)
+                {
+                    if(localStorage.getItem('izen_abizena') === users[i].izen_abizena)
+                    {
+                        globals.roundWinnerKod.push(users[i].user_kod);
+                        globals.roundWinnerPoints.push(globals.player1Points);
+                    }
+                    if(globals.selectedEnemy === users[i].izen_abizena)
+                    {
+                        globals.roundLoserPoints.push(globals.player2Points);
+                    }
+                }
             globals.turnState = Turn.PLAYER0;
             globals.actionsCounter = 0;
         }
@@ -2136,10 +2152,22 @@ function updateEndRound()
             globals.checkBothPlayerRound = false;
             globals.checkRoundPlayer1 = false;
             globals.checkRoundPlayer2 = false;
+            for(let i = 0; i < users.length; i++)
+                {
+                    if(globals.selectedEnemy === users[i].izen_abizena)
+                    {
+                        globals.roundWinnerKod.push(users[i].user_kod);
+                        globals.roundWinnerPoints.push(globals.player2Points);
+                    }
+                    if(localStorage.getItem('izen_abizena') === users[i].izen_abizena)
+                    {
+                        globals.roundLoserPoints.push(globals.player1Points);
+                    }
+                }
             globals.turnState = Turn.PLAYER1;
             globals.actionsCounter = 0;
         }
-     // console.log(globals.checkBothPlayerRound);
+        console.log(globals.roundLoserPoints);
         //Empieza la ronda el que ha ganado.
 
 
