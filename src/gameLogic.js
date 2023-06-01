@@ -496,12 +496,16 @@ function checkCardEffect(card){
             break;
     //Estos a implementar en modo experto
         case Effect.BITTING_FROST:
+            globals.actionsCounter++;
             break;
         case Effect.CLEAR_WEATHER:
+            clearWeatherEfffect();
             break;
         case Effect.IMPENETRABLE_FOG:
+            globals.actionsCounter++;
             break;
         case Effect.TORRENTIAL_RAIN:
+            globals.actionsCounter++;
             break;
         case Effect.SCORCH_INMUNE:
             break;
@@ -559,6 +563,15 @@ function scorchEffect(card){
 
     if(card.categoryId !== CardCategory.UNIT)
         card.state = CardState.DISCARD;
+
+}
+
+function clearWeatherEfffect(){
+    for(let i = 0; i < globals.cards.length; i++){
+        if(globals.cards[i].slotIdentificator === SlotIdentificators.CLIMATE_FIELD){
+            cardToCompare.state = CardState.DISCARD;
+        }
+    }
 
 }
 
@@ -769,8 +782,6 @@ function checkIfSlotAvailable(effect, card, playerNum){
             let effectChecks = 0;
             let handToSearch;
             let deckToSearch;
-            console.log("Deck state before muster")
-            console.log(globals.cards)
 
             if(card.slotIdentificator < SlotIdentificators.PLAYER1_F1 || card.slotIdentificator === SlotIdentificators.PLAYER0_HAND || card.slotIdentificator === SlotIdentificators.PLAYER0_DECK){
                 handToSearch = SlotIdentificators.PLAYER0_HAND;
