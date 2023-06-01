@@ -2075,7 +2075,7 @@ function updateGameOver()
         globals.winnerKod = globals.hostKod;
         globals.checkIfLives0 = true;
     }
-    console.log(globals.winnerKod)
+    // console.log(globals.winnerKod)
 }
 
 function updateEndRound()

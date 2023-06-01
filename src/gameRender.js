@@ -603,6 +603,54 @@ function renderEarnedPoints()
                 globals.ctx.restore();
             }
         }
+        else if(carta.cardName === "Torrential_rain")
+        {
+            globals.renderAlpha -= (globals.deltaTime / 2);
+            if(globals.renderAlpha < 0)
+            {
+                globals.renderAlpha = 0;
+            }
+            globals.ctx.save();
+            globals.ctx.globalAlpha = globals.renderAlpha;
+            globals.ctx.fillText(gameText[globals.lenguageSelected].torrentialRainText, 660, 400 ); 
+            globals.ctx.restore();
+        }
+        else if(carta.cardName === "Impenetrable_fo")
+        {
+            globals.renderAlpha -= (globals.deltaTime / 2);
+            if(globals.renderAlpha < 0)
+            {
+                globals.renderAlpha = 0;
+            }
+            globals.ctx.save();
+            globals.ctx.globalAlpha = globals.renderAlpha;
+            globals.ctx.fillText(gameText[globals.lenguageSelected].impenetrableFogText, 660, 400 ); 
+            globals.ctx.restore();
+        }
+        else if(carta.cardName === "Clear_weather")
+        {
+            globals.renderAlpha -= (globals.deltaTime / 2);
+            if(globals.renderAlpha < 0)
+            {
+                globals.renderAlpha = 0;
+            }
+            globals.ctx.save();
+            globals.ctx.globalAlpha = globals.renderAlpha;
+            globals.ctx.fillText(gameText[globals.lenguageSelected].clearWeatherText, 660, 400 ); 
+            globals.ctx.restore();
+        }
+        else if(carta.cardName === "Biting_frost")
+        {
+            globals.renderAlpha -= (globals.deltaTime / 2);
+            if(globals.renderAlpha < 0)
+            {
+                globals.renderAlpha = 0;
+            }
+            globals.ctx.save();
+            globals.ctx.globalAlpha = globals.renderAlpha;
+            globals.ctx.fillText(gameText[globals.lenguageSelected].bitingFrostText, 660, 400 ); 
+            globals.ctx.restore();
+        }
         else if(carta.slotIdentificator === SlotIdentificators.PLAYER1_F1 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F2 || carta.slotIdentificator === SlotIdentificators.PLAYER1_F3)
         {
             if(globals.lenguageSelected === 0)
