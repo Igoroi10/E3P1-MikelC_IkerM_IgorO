@@ -1392,7 +1392,7 @@ function startingDeal(mode){
 
     shuffleDeck(globals.cards)
 
-    for(let i = 0; i < cardsToDraw; i++){
+    for(let i = 0; i < globals.cards.length; i++){
         if(i % 2 === 0 && globals.cards[i].cardName !== "Decoy"){
             globals.cards[i].xPos  = Player0_map_pos.PLAYER0_DECK_XPOS;
             globals.cards[i].yPos  = Player0_map_pos.PLAYER0_DECK_YPOS;
