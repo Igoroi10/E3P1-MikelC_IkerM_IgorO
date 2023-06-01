@@ -857,9 +857,25 @@ function renderBuffSlots(){
     }
 }
 
-function renderClimateSlots(){
+function renderClimateSlots()
+{
+    //Recorre todo el array de slots en busca del slot de clima
+    for(let i = 0; i < globals.slots.length; i++)
+    {
+        if( globals.slots[i].slotIdentificator === SlotIdentificators.CLIMATE_FIELD)
+        {
+            const x1 = Math.floor(globals.slots[i].xPos);
+            const y1 = Math.floor(globals.slots[i].yPos);
+            const w1 = CardSizes.TOKEN_WIDHT;
+            const h1 = CardSizes.TOKEN_HEIGHT;
+        
+            globals.ctx.strokeStyle = "yellow";
+            globals.ctx.strokeRect(x1, y1, w1, h1);  
+        }
+        }
+    }
 
-}
+   
 
 function gameOverScreen()
 {
