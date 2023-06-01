@@ -926,7 +926,7 @@ function postGameOver(event)
     //Partida (partida irabazlea, partida kod), Ronda (ronda kod, ronda irabazlea, irabazlearen puntuazioa, galtzailearen puntuazioa, partida_ronda), jolastu (user_jolastu, partida_jolastu)
 
     const objectToSend = {
-        partida_irabazlea:              globals.winner,
+        partida_irabazlea:              globals.winnerKod,
         partida_kodea:                  globals.partidaKodea,                   // ECHAR UN OJO
 
         ronda_irabazlea1:               globals.roundWinnerKod[0],
@@ -1998,4 +1998,5 @@ export {
     postDeleteUser,
     postNewUser,
     postDeleteCard,
+    postGameOver,
 }
