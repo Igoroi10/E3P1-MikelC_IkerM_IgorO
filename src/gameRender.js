@@ -535,6 +535,12 @@ function drawMessages()
         else
             globals.ctx.fillText(gameText[globals.lenguageSelected].placeCardText, 10, 585);
    }
+   else if(globals.actionsCounter === 2)
+   {
+        globals.ctx.font = '20px magicmedieval'; 
+        globals.ctx.fillStyle = 'yellow';    
+        globals.ctx.fillText(gameText[globals.lenguageSelected].climateMessageText, 10, 585);
+   }
 }
 
 function renderEarnedPoints()
