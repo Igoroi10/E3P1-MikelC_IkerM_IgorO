@@ -1929,10 +1929,12 @@ function updateGameOver()
         globals.winnerKod = globals.hostKod;
         globals.checkIfLives0 = true;
     }
+    console.log(globals.winnerKod)
 }
 
 function updateEndRound()
 {
+    const users = globals.all_users;
     if(globals.showTurnChangeScreen)
     {
         console.log("pasa a true el showTurn");
@@ -1996,6 +1998,13 @@ function updateEndRound()
             globals.checkBothPlayerRound = false;
             globals.checkRoundPlayer1 = false;
             globals.checkRoundPlayer2 = false;
+            for(let i = 0; i < users.length; i++)
+                {
+                    if(localStorage.getItem('izen_abizena') === users[i].izen_abizena)
+                    {
+                        globals.roundWinnerKod.push(users[i].user_kod);
+                    }
+                }
             globals.turnState = Turn.PLAYER0;
             globals.actionsCounter = 0;
         }
@@ -2005,10 +2014,20 @@ function updateEndRound()
             globals.checkBothPlayerRound = false;
             globals.checkRoundPlayer1 = false;
             globals.checkRoundPlayer2 = false;
+            for(let i = 0; i < users.length; i++)
+                {
+                    if(globals.selectedEnemy === users[i].izen_abizena)
+                    {
+                        globals.roundWinnerKod.push(users[i].user_kod);
+                    }
+                }
             globals.turnState = Turn.PLAYER1;
             globals.actionsCounter = 0;
         }
-     // console.log(globals.checkBothPlayerRound);
+        console.log(globals.roundWinnerKod[0]);
+        
+        console.log(globals.roundWinnerKod[1]);
+        console.log(globals.roundWinnerKod[2]);
         //Empieza la ronda el que ha ganado.
 
 
