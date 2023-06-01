@@ -457,6 +457,7 @@ function discardCards()
             }
         }
     }
+
 }
 // =========================
 //     END OF UPDATE CARD
@@ -1116,7 +1117,7 @@ function calculatePoints(player){
             }
     
             else if(globals.cards[i].slotIdentificator === field2){
-                if(rain){
+                if(fog){
                     cardValue = 1;
                 }
                 // console.log("entra en el 2 calcul");
@@ -1124,7 +1125,7 @@ function calculatePoints(player){
             }
     
             else if(globals.cards[i].slotIdentificator === field3){
-                if(fog){
+                if(rain){
                     cardValue = 1;
                 }
                 points += (buffValue3 * (cardValue + moraleBoost3));
@@ -2218,6 +2219,7 @@ function updateEndRound()
                 }
             globals.turnState = Turn.PLAYER0;
             globals.actionsCounter = 0;
+            updateSlots();
         }
     
         else if(globals.roundWinner === globals.selectedEnemy)
@@ -2239,6 +2241,7 @@ function updateEndRound()
                 }
             globals.turnState = Turn.PLAYER1;
             globals.actionsCounter = 0;
+            updateSlots();
         }
         console.log(globals.roundLoserPoints);
         //Empieza la ronda el que ha ganado.
